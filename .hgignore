@@ -2,4 +2,6 @@ syntax: glob
 *.class
 */bin/*
 .metadata
+.classpath
+*.recommenders/*
 
