@@ -20,6 +20,7 @@ public class Launcher extends JFrame {
 	private static final int N_BUTTONS = 3;
 	
 	private Launcher() {
+	    
 		super("Johnny2D Launcher");
 		final Dimension prefButtonSize = new Dimension(200, 50);
 		this.setSize(500, 500);
