@@ -1,5 +1,7 @@
 package it.unibo.oop.model;
 
+import java.awt.Rectangle;
+
 import it.unibo.oop.utilities.Position;
 
 /**
@@ -19,5 +21,11 @@ public interface Entity {
 	 * @return True if the position is the same
 	 */
 	boolean isHere(Position newPosition);
+	
+	/**
+	 * 
+	 * @return The 
+	 */
+	Rectangle getBounds();
 
 }
