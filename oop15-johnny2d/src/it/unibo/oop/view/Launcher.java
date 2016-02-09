@@ -10,6 +10,7 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Launcher extends JFrame {
@@ -24,7 +25,6 @@ public class Launcher extends JFrame {
 		final Dimension prefButtonSize = new Dimension(200, 50);
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// this.setLocationByPlatform(true);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 						
@@ -62,7 +62,15 @@ public class Launcher extends JFrame {
 		menuPanel.add(options, cnst);
 		cnst.gridy++;
 		menuPanel.add(quit, cnst);
-	
+		
+		quit.addActionListener(e -> {
+			final int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
+					"Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (response == JOptionPane.YES_OPTION) {
+				System.exit(0);
+			}
+		});
+		
 		this.setContentPane(menuPanel);
 		this.setVisible(true);
 	}
