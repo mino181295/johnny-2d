@@ -18,7 +18,7 @@ public class Launcher extends JFrame {
 	private static final long serialVersionUID = -6224390548062243879L;
 	private static final Color BUTTONS_COLOR = new Color(255, 220, 130);
 	
-	private Launcher() {
+	public Launcher() {
 	    
 		super("Johnny2D Launcher");
 		
@@ -71,11 +71,16 @@ public class Launcher extends JFrame {
 			}
 		});
 		
+		this.addKeyListener(new MainKeyListener());
+		this.setFocusTraversalKeysEnabled(false);
 		this.setContentPane(menuPanel);
 		this.setVisible(true);
 	}
 	
-	public static void main(String... args) {
-		new Launcher();
+//	public static void main(String... args) {
+//		new Launcher();
+//	}
+	public void showIt() {
+	    this.setVisible(true);
 	}
 }
