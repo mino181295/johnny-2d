@@ -12,7 +12,7 @@ public class GameLoop {
     }
     
     public GameLoop() {
-        this.launcher = new Launcher();
+        this.launcher = new Launcher(this);
         
     }
     
@@ -23,5 +23,24 @@ public class GameLoop {
     
     private void doLoop() {
         
+    }
+    
+    public void keySwitcher(final int id) {
+        switch (id) {
+        case 'w':
+            System.out.println("mosso in alto");
+            break;
+        case 'a':
+            System.out.println("mosso a sx");
+            break;
+        case 's':
+            System.out.println("mosso in basso");
+            break;
+        case 'd':
+            System.out.println("mosso a dx");
+            break;
+        default:
+            System.out.println("none");
+        }
     }
 }
