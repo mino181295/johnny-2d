@@ -30,7 +30,7 @@ public class SpriteSheet {
 		sprites = new LinkedList<>();
 	}
 	
-	private BufferedImage grabSprite(int x, int y, int width, int height){
+	private BufferedImage grabSprite(int x, int y, int width, int height) {
 		return sheet.getSubimage(x, y, width, height);
 	}
 	
@@ -43,14 +43,14 @@ public class SpriteSheet {
 	 * @return
 	 * 		a list of {@link java.awt.image.BufferedImage} with all the sprite in the sprite sheet
 	 */
-	public List<BufferedImage> split(int imagesWidth, int imagesHeight){
+	public List<BufferedImage> split(int imagesWidth, int imagesHeight) {
 		sprites = new LinkedList<>();
 		if ((sheet.getHeight() % imagesHeight == 0) && (sheet.getWidth() % imagesWidth == 0)) {
 			isSplitted = true;
 		} else {
 			isSplitted = false;
 		}
-		if ((sheet != null) && isSplitted){
+		if ((sheet != null) && isSplitted) {
 			isSplitted = true;
 			for (int y = 0; y < sheet.getHeight(); y += imagesHeight) {
 				for(int x = 0; x < sheet.getWidth(); x += imagesWidth) {
