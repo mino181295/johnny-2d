@@ -1,6 +1,8 @@
 package it.unibo.oop.controller;
 
 import it.unibo.oop.view.Launcher;
+import it.unibo.oop.view.Level;
+import it.unibo.oop.view.Showable;
 
 /**
  * 
@@ -8,33 +10,24 @@ import it.unibo.oop.view.Launcher;
  *
  *  class 
  */
-public class GameLoop {
+public class GameLoop implements Controller, KeyboardObserver {
 
-    private final Launcher launcher;
+    private final Showable launcher;
+ //   private final Level level; /* da associarvi un'interfaccia */
     
-    public static void main(String[] args) {
-        new GameLoop().start();
-
-    }
-    
-    /**
-     * 
-     */
     public GameLoop() {
-        this.launcher = new Launcher(this);
-        
+        this.launcher = new Launcher();
+    //    this.level = new Level(this);
     }
     
+    @Override
     public void start() {
         this.launcher.showIt();
         this.doLoop();
     }
     
-    private void doLoop() {
-        
-    }
-    
-    public void keySwitcher(final char c) {
+    @Override
+    public void processKey(final char c) {
         switch (c) {
         case 'w':
             System.out.println("mosso in alto");
@@ -51,5 +44,14 @@ public class GameLoop {
         default:
             System.out.println("none");
         }
+    }
+    
+    private void doLoop() {
+        
+    }
+    
+    public static void main(String[] args) {
+        new GameLoop(); //.start();
+
     }
 }

@@ -13,20 +13,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import it.unibo.oop.controller.GameLoop;
+import it.unibo.oop.controller.KeyboardObserver;
 
-public class Launcher extends JFrame {
+public class Launcher extends JFrame implements Showable {
 
 	private static final long serialVersionUID = -6224390548062243879L;
 	private static final Color BUTTONS_COLOR = new Color(255, 220, 130);
 	
-	private final GameLoop gL;
-	
-	public Launcher(final GameLoop gL) {
+	public Launcher() {
 	    
 		super("Johnny2D Launcher");
-		
-		this.gL = gL;
 		
 		final Dimension prefButtonSize = new Dimension(200, 50);
 		this.setSize(500, 500);
@@ -78,18 +74,16 @@ public class Launcher extends JFrame {
 		});
 	
 		this.setContentPane(menuPanel);
-		this.setVisible(true);
-	
-		/* per keylistener: solo prova, non centra col Launcher, sono da mettere nella view di gioco */
-        this.addKeyListener(new MainKeyListener(this.gL));
-        this.setFocusTraversalKeysEnabled(false);
-		this.requestFocus(); /* per attivare il key listener */
+		// this.setVisible(true);
 	}
 	
-//	public static void main(String... args) {
-//		new Launcher();
-//	}
+	@Override
 	public void showIt() {
 	    this.setVisible(true);
 	}
+	
+//  public static void main(String... args) {
+//      new Launcher();
+//  }
+	
 }

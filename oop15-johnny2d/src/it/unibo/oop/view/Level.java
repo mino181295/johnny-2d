@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import it.unibo.oop.controller.KeyboardObserver;
+
 /**
  * The game's main level.
  */
@@ -24,7 +26,7 @@ public class Level extends JFrame {
 	/**
 	 * Constructs the level.
 	 */
-	public Level() {
+	public Level(final KeyboardObserver gLObserver) {
 		super("Johnny 2D");
 		
 		mainCharacterSprites = mainCharacter.split(SPRITES_WIDTH, SPRITES_HEIGHT);
@@ -35,10 +37,18 @@ public class Level extends JFrame {
 		this.setResizable(false);
 		gr.drawImage(mainCharacterSprites.get(0), 50, 50, null);
 		
+		/* per MainKeyListener */
+        this.addKeyListener(new MainKeyListener(gLObserver));
+        this.setFocusTraversalKeysEnabled(false);
+        this.requestFocus(); /* per attivare il key listener */
+		
 		this.setVisible(true);
 	}
 	
-	public static void main(String... args) {
-		new Level();
-	}
+/*
+ *  AVVIABILE DA GameLoop modifica by pollo (asd)
+ */
+//	public static void main(String... args) {
+//		new Level();
+//	}
 }

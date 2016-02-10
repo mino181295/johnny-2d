@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import it.unibo.oop.controller.GameLoop;
+import it.unibo.oop.controller.KeyboardObserver;
 
 /**
  * 
@@ -14,7 +15,7 @@ import it.unibo.oop.controller.GameLoop;
  */
 public class MainKeyListener implements KeyListener {
 
-    private final GameLoop gL;
+    private final KeyboardObserver gLObserver;
     
     /**
      * 
@@ -22,8 +23,8 @@ public class MainKeyListener implements KeyListener {
      *          a {@link GameLoop} instance
      * 
      */
-    public MainKeyListener(final GameLoop gL) {
-        this.gL = gL;
+    public MainKeyListener(final KeyboardObserver gL) {
+        this.gLObserver = gL;
     }
     
     @Override
@@ -39,7 +40,7 @@ public class MainKeyListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
       //  new Thread(() -> {
-            this.gL.keySwitcher(e.getKeyChar());
+            this.gLObserver.processKey(e.getKeyChar());
       //  });   
     }
 }
