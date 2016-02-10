@@ -29,18 +29,14 @@ public class MainKeyListener implements KeyListener {
     
     @Override
     public void keyPressed(KeyEvent e) {
-
+        new Thread(() -> {
+            this.gLObserver.processKey(e.getKeyCode());
+        }).start();
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public void keyReleased(KeyEvent e) { }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-      //  new Thread(() -> {
-            this.gLObserver.processKey(e.getKeyChar());
-      //  });   
-    }
+    public void keyTyped(KeyEvent e) { }
 }

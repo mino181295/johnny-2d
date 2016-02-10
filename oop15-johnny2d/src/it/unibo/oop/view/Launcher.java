@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -12,18 +13,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-import it.unibo.oop.controller.KeyboardObserver;
+import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.StateObserver;
 
 public class Launcher extends JFrame implements Showable {
 
 	private static final long serialVersionUID = -6224390548062243879L;
 	private static final Color BUTTONS_COLOR = new Color(255, 220, 130);
 	
-	public Launcher() {
+	public Launcher(final StateObserver stateObserver) {
 	    
 		super("Johnny2D Launcher");
-		
+	
 		final Dimension prefButtonSize = new Dimension(200, 50);
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,11 +68,12 @@ public class Launcher extends JFrame implements Showable {
 		cnst.gridy++;
 		menuPanel.add(quit, cnst);
 		
+		/* ACTIONS */
 		quit.addActionListener(e -> {
 			final int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
 					"Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (response == JOptionPane.YES_OPTION) {
-				System.exit(0);
+				stateObserver.stateAction(State.EXIT);
 			}
 		});
 	
@@ -79,7 +83,15 @@ public class Launcher extends JFrame implements Showable {
 	
 	@Override
 	public void showIt() {
-	    this.setVisible(true);
+	    try {
+            SwingUtilities.invokeAndWait(()->this.setVisible(true));
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	}
 	
 //  public static void main(String... args) {

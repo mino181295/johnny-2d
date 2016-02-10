@@ -28,7 +28,7 @@ public class Level extends JFrame {
 	 */
 	public Level(final KeyboardObserver gLObserver) {
 		super("Johnny 2D");
-		
+	/*	
 		mainCharacterSprites = mainCharacter.split(SPRITES_WIDTH, SPRITES_HEIGHT);
 		final Dimension screen = new Dimension(Toolkit.getDefaultToolkit().getScreenSize());
 		this.setSize(screen);
@@ -36,7 +36,7 @@ public class Level extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		gr.drawImage(mainCharacterSprites.get(0), 50, 50, null);
-		
+	*/	
 		/* per MainKeyListener */
         this.addKeyListener(new MainKeyListener(gLObserver));
         this.setFocusTraversalKeysEnabled(false);
