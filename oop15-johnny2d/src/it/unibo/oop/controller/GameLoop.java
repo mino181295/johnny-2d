@@ -1,14 +1,8 @@
 package it.unibo.oop.controller;
 
-
-import it.unibo.oop.utilities.Direction;
-import it.unibo.oop.model.PlayerState;
-import static it.unibo.oop.utilities.Direction.*;
-import static it.unibo.oop.model.PlayerState.*;
-
 import java.awt.event.KeyEvent;
-import java.util.Optional;
-
+import it.unibo.oop.utilities.Direction;
+import static it.unibo.oop.utilities.Direction.*;
 import it.unibo.oop.view.Launcher;
 import it.unibo.oop.view.Level;
 import it.unibo.oop.view.Showable;
@@ -25,8 +19,8 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     private final static int SLEEPING_TIME = 1/FRAMES_PER_SECOND;
     private final Showable launcher;
     private final Level level; /* da associarvi un'interfaccia */
-    private volatile Direction pgDir = Direction.NONE;
-    private volatile PlayerState pgState = PlayerState.NONE;
+    private volatile Direction pgDir = NONE;
+    private volatile boolean pgIsShooting = false;
     
     public GameLoop() {
         this.launcher = new Launcher(this);
@@ -57,7 +51,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     public void processKey(final int keyCode) {
         
         synchronized(this) { /* per proteggere pgDir e pdState */
-            if (this.pgDir == Direction.NONE) { /* ---> implemento una sorta di invokeAndWait */
+            if (this.pgDir == NONE) { /* ---> implemento una sorta di invokeAndWait */
                 switch (keyCode) { /* switch for a pg move */
                 case KeyEvent.VK_W:
                     System.out.println("mosso in alto");
@@ -85,7 +79,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
                 break;
             case KeyEvent.VK_SPACE:
                 System.out.println("shoot");
-                this.pgState = SHOOTING;
+                this.pgIsShooting = true;
                 break;
             default:
             }
@@ -103,7 +97,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
         
             /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
             this.pgDir = Direction.NONE; /* dopo l'utilizzo reinizializzo tutto */
-            this.pgState = PlayerState.NONE;
+            this.pgIsShooting = false;
         }
         /* chiamo V e gli faccio disegnare il frame */
     }
