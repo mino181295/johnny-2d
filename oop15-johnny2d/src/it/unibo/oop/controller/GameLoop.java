@@ -42,6 +42,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     @Override
     public void start() {
         // this.launcher.showIt();
+        this.doLoop();
     }
     
     @Override 
@@ -74,57 +75,59 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
 //        }
     }
     
-    private void processKeys() {
-        synchronized(this) { /* per proteggere pgDir e pdState */
-            if (this.pgDir == NONE) { /* ---> implemento una sorta di invokeAndWait */
-                switch (keyCode) { /* switch for a pg move */
-                case KeyEvent.VK_W:
-                    System.out.println("mosso in alto");
-                    this.pgDir = Direction.UP;
-                    break;
-                case KeyEvent.VK_A:
-                    System.out.println("mosso a sx");
-                    this.pgDir = Direction.LEFT;
-                    break;
-                case KeyEvent.VK_S:
-                    System.out.println("mosso in basso");
-                    this.pgDir = DOWN;
-                    break;
-                case KeyEvent.VK_D:
-                    System.out.println("mosso a dx");
-                    this.pgDir = RIGHT;
-                    break;
-                default:
-                }
-            }
-            switch (keyCode) { 
-            case KeyEvent.VK_ESCAPE:
-                System.out.println("show menu");
-                this.launcher.showIt(); /* da sostituire col menu di pausa */
-                break;
-            case KeyEvent.VK_SPACE:
-                System.out.println("shoot");
-                this.pgIsShooting = true;
-                break;
-            default:
-            }
-        }    
-    }
+//    private void processKeys() {
+//        synchronized(this) { /* per proteggere pgDir e pdState */
+//            if (this.pgDir == NONE) { /* ---> implemento una sorta di invokeAndWait */
+//                switch (keyCode) { /* switch for a pg move */
+//                case KeyEvent.VK_W:
+//                    System.out.println("mosso in alto");
+//                    this.pgDir = Direction.UP;
+//                    break;
+//                case KeyEvent.VK_A:
+//                    System.out.println("mosso a sx");
+//                    this.pgDir = Direction.LEFT;
+//                    break;
+//                case KeyEvent.VK_S:
+//                    System.out.println("mosso in basso");
+//                    this.pgDir = DOWN;
+//                    break;
+//                case KeyEvent.VK_D:
+//                    System.out.println("mosso a dx");
+//                    this.pgDir = RIGHT;
+//                    break;
+//                default:
+//                }
+//            }
+//            switch (keyCode) { 
+//            case KeyEvent.VK_ESCAPE:
+//                System.out.println("show menu");
+//                this.launcher.showIt(); /* da sostituire col menu di pausa */
+//                break;
+//            case KeyEvent.VK_SPACE:
+//                System.out.println("shoot");
+//                this.pgIsShooting = true;
+//                break;
+//            default:
+//            }
+//        }    
+//    }
     
     private void doLoop() {
-        try {
-            Thread.sleep(SLEEPING_TIME);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (true) {
+            try {
+                Thread.sleep(SLEEPING_TIME);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            synchronized(this) {    /* per proteggere pgDir e pdState */
+            
+                System.out.println(this.keys);
+                /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
+                this.pgDir = Direction.NONE; /* dopo l'utilizzo reinizializzo tutto */
+                this.pgIsShooting = false;
+            }
+            /* chiamo V e gli faccio disegnare il frame */
         }
-        synchronized(this) {    /* per proteggere pgDir e pdState */
-        
-            this.processKeys();
-            /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
-            this.pgDir = Direction.NONE; /* dopo l'utilizzo reinizializzo tutto */
-            this.pgIsShooting = false;
-        }
-        /* chiamo V e gli faccio disegnare il frame */
     }
     
     public static void main(String[] args) {

@@ -48,10 +48,10 @@ public class MainKeyListener implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        this.obsList.forEach(elem -> {
-            new Thread(() -> {
-                elem.keyTyped(e.getKeyCode());
-            }).start();
-        });
+//        this.obsList.forEach(elem -> {
+//            new Thread(() -> {
+//                elem.keyTyped(e.getKeyCode());
+//            }).start();
+//        });
     }
 }
