@@ -9,10 +9,27 @@ package it.unibo.oop.controller;
 public interface KeyboardObserver {
     
     /**
-     * Method designed for KEY_PRESSEDD events, used to process the key-Code passed.
+     * Method designed for KEY_PRESSED events, used to process the key-Code passed.
      * 
      * @param keyCode
      *          VK_Code associated with the key pressed. 
      */
-    public void processKey(int keyCode);
+    public void keyPressed(int keyCode);
+    
+    /**
+     * Method designed for KEY_RELEASED events, used to process the key-Code passed.
+     * 
+     * @param keyCode
+     *          VK_Code associated with the key pressed. 
+     */
+    public void keyReleased(int keyCode);
+   
+    /**
+     * Method designed for KEY_TYPED events, used to process the key-Char passed.
+     * 
+     * @param keyChar
+     *          char associated with the key pressed. 
+     */
+ //   public void keyPressed(char keyChar);
+    
 }

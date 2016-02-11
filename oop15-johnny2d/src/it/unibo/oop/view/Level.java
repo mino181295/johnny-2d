@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -38,7 +39,7 @@ public class Level extends JFrame {
 		gr.drawImage(mainCharacterSprites.get(0), 50, 50, null);
 	*/	
 		/* per MainKeyListener */
-        this.addKeyListener(new MainKeyListener(gLObserver));
+        this.addKeyListener(new MainKeyListener(Arrays.asList(gLObserver)));
         this.setFocusTraversalKeysEnabled(false);
         this.requestFocus(); /* per attivare il key listener */
 		
