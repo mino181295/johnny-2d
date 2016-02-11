@@ -1,10 +1,7 @@
 package it.unibo.oop.controller;
 
-import static it.unibo.oop.utilities.Direction.DOWN;
 import static it.unibo.oop.utilities.Direction.NONE;
-import static it.unibo.oop.utilities.Direction.RIGHT;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +27,15 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     
     private volatile Direction pgDir = NONE;
     private volatile boolean pgIsShooting = false;
-    private final List<Integer> keys;
+    private final List<Integer> keysPressed;
+    private final List<Character> keysTyped;
     
     public GameLoop() {
         this.launcher = new Launcher(this);
         this.level = new Level(this);
         this.options = new OptionsMenu();
-        this.keys = new ArrayList<>();
+        this.keysPressed = new ArrayList<>();
+        this.keysTyped = new ArrayList<>();
     }
     
     @Override
@@ -63,20 +62,28 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     
     @Override
     public synchronized void keyPressed(final int keyCode) {
-        if (!this.keys.contains(keyCode)) {
-            this.keys.add(keyCode);
+        if (!this.keysPressed.contains(keyCode)) {
+            this.keysPressed.add(keyCode);
         }
     }
     
     @Override
     public synchronized void keyReleased(final int keyCode) {
-//        if (this.keys.contains(keyCode)) {
-//            this.keys.remove(keyCode);
-//        }
+        if (this.keysPressed.contains(keyCode)) {
+            this.keysPressed.remove(keyCode);
+        }
+    }
+    
+    @Override
+    public synchronized void keyTyped(final char keyChar) {
+        if (this.keysTyped.contains(keyChar)) {
+            this.keysTyped.remove(keyChar);
+        }
     }
     
 //    private void processKeys() {
 //        synchronized(this) { /* per proteggere pgDir e pdState */
+//            final int keyCode
 //            if (this.pgDir == NONE) { /* ---> implemento una sorta di invokeAndWait */
 //                switch (keyCode) { /* switch for a pg move */
 //                case KeyEvent.VK_W:
@@ -121,10 +128,11 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
             }
             synchronized(this) {    /* per proteggere pgDir e pdState */
             
-                System.out.println(this.keys);
+              //  System.out.println(this.keys);
                 /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
                 this.pgDir = Direction.NONE; /* dopo l'utilizzo reinizializzo tutto */
                 this.pgIsShooting = false;
+                
             }
             /* chiamo V e gli faccio disegnare il frame */
         }

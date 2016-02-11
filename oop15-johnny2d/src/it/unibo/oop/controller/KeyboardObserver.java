@@ -30,6 +30,6 @@ public interface KeyboardObserver {
      * @param keyChar
      *          char associated with the key pressed. 
      */
- //   public void keyPressed(char keyChar);
+    public void keyTyped(char keyChar);
     
 }

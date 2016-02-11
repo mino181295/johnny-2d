@@ -35,6 +35,7 @@ public class MainKeyListener implements KeyListener {
                 elem.keyPressed(e.getKeyCode());
             }).start();
         });
+        System.out.println("pressed");
     }
 
     @Override
@@ -44,6 +45,7 @@ public class MainKeyListener implements KeyListener {
                 elem.keyReleased(e.getKeyCode());
             }).start();
         });
+        System.out.println("released");
     }
 
     @Override
@@ -53,5 +55,6 @@ public class MainKeyListener implements KeyListener {
 //                elem.keyTyped(e.getKeyCode());
 //            }).start();
 //        });
+        System.out.println("pressed");
     }
 }
