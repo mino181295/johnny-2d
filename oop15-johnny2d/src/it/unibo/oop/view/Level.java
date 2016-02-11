@@ -1,15 +1,6 @@
 package it.unibo.oop.view;
 
-<<<<<<< local
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.util.Arrays;
-import java.util.List;
-
-=======
->>>>>>> other
 import javax.swing.JFrame;
 import it.unibo.oop.controller.KeyboardObserver;
 import static it.unibo.oop.utilities.Settings.*;

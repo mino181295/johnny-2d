@@ -2,6 +2,7 @@ package it.unibo.oop.controller;
 
 import static it.unibo.oop.utilities.Direction.NONE;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     private volatile boolean pgIsShooting = false;
     private final List<Integer> keysPressed;
     private final List<Character> keysTyped;
+    private final KeysProcessor Kproc;
     
     public GameLoop() {
         this.launcher = new Launcher(this);
@@ -36,6 +38,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
         this.options = new OptionsMenu();
         this.keysPressed = new ArrayList<>();
         this.keysTyped = new ArrayList<>();
+        
     }
     
     @Override
@@ -81,7 +84,12 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
         }
     }
     
-//    private void processKeys() {
+    private void processKeys() {
+        synchronized(this) { /* per proteggere pgDir e pdIsShooting */
+            this.pgDir = 
+            this.pgIsShooting = this.keysPressed.contains(KeyEvent.VK_SPACE) || this.keysTyped.contains(KeyEvent.VK_SPACE);
+        }
+    }
 //        synchronized(this) { /* per proteggere pgDir e pdState */
 //            final int keyCode
 //            if (this.pgDir == NONE) { /* ---> implemento una sorta di invokeAndWait */
@@ -117,7 +125,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
 //            default:
 //            }
 //        }    
-//    }
+
     
     private void doLoop() {
         while (true) {
