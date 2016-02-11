@@ -7,7 +7,13 @@ public enum Direction {
 	DOWN(0,1),
 	LEFT(-1,0),
 	RIGHT(1,0),
-    NONE(0,0);
+	
+    NONE(0,0),
+    
+    RIGHTUP(-1,1),    
+	LEFTUP(-1,-1),
+	RIGHTDOWN(1,1),
+	LEFTDOWN(-1,1);
 	
 	private int x;
 	private int y;
