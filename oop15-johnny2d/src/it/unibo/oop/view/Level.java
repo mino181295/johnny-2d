@@ -1,5 +1,15 @@
 package it.unibo.oop.view;
 
+<<<<<<< local
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.List;
+
+=======
+>>>>>>> other
 import javax.swing.JFrame;
 import it.unibo.oop.controller.KeyboardObserver;
 import static it.unibo.oop.utilities.Settings.*;
@@ -24,7 +34,7 @@ public class Level extends JFrame {
 		this.getContentPane().add(new LevelPanel());
 		
 		/* per MainKeyListener */
-        this.addKeyListener(new MainKeyListener(gLObserver));
+        this.addKeyListener(new MainKeyListener(Arrays.asList(gLObserver)));
         this.setFocusTraversalKeysEnabled(false);
         this.requestFocus(); /* per attivare il key listener */
 		
