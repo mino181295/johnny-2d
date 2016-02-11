@@ -2,6 +2,7 @@ package it.unibo.oop.view;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 import it.unibo.oop.controller.GameLoop;
 import it.unibo.oop.controller.KeyboardObserver;
@@ -15,7 +16,7 @@ import it.unibo.oop.controller.KeyboardObserver;
  */
 public class MainKeyListener implements KeyListener {
 
-    private final KeyboardObserver gLObserver;
+    private final List<KeyboardObserver> obsList;
     
     /**
      * 
@@ -23,20 +24,34 @@ public class MainKeyListener implements KeyListener {
      *          a {@link GameLoop} instance
      * 
      */
-    public MainKeyListener(final KeyboardObserver gL) {
-        this.gLObserver = gL;
+    public MainKeyListener(final List<KeyboardObserver> obs) {
+        this.obsList = obs;
     }
     
     @Override
     public void keyPressed(KeyEvent e) {
-        new Thread(() -> {
-            this.gLObserver.processKey(e.getKeyCode());
-        }).start();
+        this.obsList.forEach(elem -> {
+            new Thread(() -> {
+                elem.keyPressed(e.getKeyCode());
+            }).start();
+        });
     }
 
     @Override
-    public void keyReleased(KeyEvent e) { }
+    public void keyReleased(KeyEvent e) {
+        this.obsList.forEach(elem -> {
+            new Thread(() -> {
+                elem.keyReleased(e.getKeyCode());
+            }).start();
+        });
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) {
+        this.obsList.forEach(elem -> {
+            new Thread(() -> {
+                elem.keyTyped(e.getKeyCode());
+            }).start();
+        });
+    }
 }

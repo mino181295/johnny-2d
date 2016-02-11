@@ -1,10 +1,17 @@
 package it.unibo.oop.controller;
 
+import static it.unibo.oop.utilities.Direction.DOWN;
+import static it.unibo.oop.utilities.Direction.NONE;
+import static it.unibo.oop.utilities.Direction.RIGHT;
+
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 import it.unibo.oop.utilities.Direction;
-import static it.unibo.oop.utilities.Direction.*;
 import it.unibo.oop.view.Launcher;
 import it.unibo.oop.view.Level;
+import it.unibo.oop.view.OptionsMenu;
 import it.unibo.oop.view.Showable;
 
 /**
@@ -18,18 +25,23 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
     private final static int FRAMES_PER_SECOND = 60;
     private final static int SLEEPING_TIME = 1/FRAMES_PER_SECOND;
     private final Showable launcher;
+    private final Showable options;
     private final Level level; /* da associarvi un'interfaccia */
+    
     private volatile Direction pgDir = NONE;
     private volatile boolean pgIsShooting = false;
+    private final List<Integer> keys;
     
     public GameLoop() {
         this.launcher = new Launcher(this);
         this.level = new Level(this);
+        this.options = new OptionsMenu();
+        this.keys = new ArrayList<>();
     }
     
     @Override
     public void start() {
-        this.launcher.showIt();
+        // this.launcher.showIt();
     }
     
     @Override 
@@ -42,14 +54,27 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
             System.exit(0);
             break;
         case OPTIONS:
+            this.options.showIt();
             break;
         default:
         }
     }
     
     @Override
-    public void processKey(final int keyCode) {
-        
+    public synchronized void keyPressed(final int keyCode) {
+        if (!this.keys.contains(keyCode)) {
+            this.keys.add(keyCode);
+        }
+    }
+    
+    @Override
+    public synchronized void keyReleased(final int keyCode) {
+//        if (this.keys.contains(keyCode)) {
+//            this.keys.remove(keyCode);
+//        }
+    }
+    
+    private void processKeys() {
         synchronized(this) { /* per proteggere pgDir e pdState */
             if (this.pgDir == NONE) { /* ---> implemento una sorta di invokeAndWait */
                 switch (keyCode) { /* switch for a pg move */
@@ -83,9 +108,8 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
                 break;
             default:
             }
-        }
+        }    
     }
-    
     
     private void doLoop() {
         try {
@@ -95,6 +119,7 @@ public class GameLoop implements Controller, KeyboardObserver, StateObserver {
         }
         synchronized(this) {    /* per proteggere pgDir e pdState */
         
+            this.processKeys();
             /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
             this.pgDir = Direction.NONE; /* dopo l'utilizzo reinizializzo tutto */
             this.pgIsShooting = false;
