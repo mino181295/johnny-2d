@@ -15,11 +15,11 @@ public abstract class AbstractEntity implements Entity {
 	}
 	
 	public int getX(){
-		return envPosition.getX();
+		return envPosition.getIntX();
 	}
 	
 	public int getY(){
-		return envPosition.getY();
+		return envPosition.getIntY();
 	}
 	
 	public boolean equalsPosition(Position newPosition){
@@ -34,7 +34,7 @@ public abstract class AbstractEntity implements Entity {
 		int tmpWidth = this.getEntityWidth();
 		int tmpHeight = this.getEntityHeight();
 		Dimension tmpDim = new Dimension(tmpWidth,tmpHeight);
-		Point topLeftCorner = new Point(envPosition.getX() - this.getEntityWidth()/2, envPosition.getY() - this.getEntityHeight()/2);
+		Point topLeftCorner = new Point(envPosition.getIntX() - this.getEntityWidth()/2, envPosition.getIntY() - this.getEntityHeight()/2);
 		return new Rectangle(topLeftCorner,tmpDim);
 	}
 	

@@ -1,7 +1,5 @@
 package it.unibo.oop.utilities;
 
-import java.awt.Point;
-
 /**
  * 
  * @author Matteo Minardi
@@ -9,18 +7,22 @@ import java.awt.Point;
  * This class rappresents the position in the screen of every single {@link Entity}
  *
  */
-public class Position implements Point2D{
+public class Position implements Point2{
 	
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	/**
 	 * Constructor that creates a position with X and Y
 	 * @param x Integer value of the X
 	 * @param y Integer value of the Y
 	 */
-	public Position(final int x, final int y){
+	public Position(final double x, final double y){
 		this.x = x;
 		this.y = y;		
+	}
+	
+	public Position(final int x, final int y){
+		this((double)x,(double)y);
 	}
 	/**
 	 * Constructor that creates a position with a precedent position
@@ -31,21 +33,32 @@ public class Position implements Point2D{
 		this(p.getX(),p.getY());		
 	}
 	
-	public int getX(){
-		int valCopy = this.x;
+	public double getX(){
+		final double valCopy = this.x;
 		return valCopy;
 	}
 	
-	public int getY(){
-		int valCopy = this.y;
+	public int getIntX(){
+		final double valCopy = this.x;
+		return (int)valCopy;
+	}
+	
+	public double getY(){
+		final double valCopy = this.y;
 		return valCopy;
 	}
 	
-	public void setX(int newX){
+	public int getIntY(){
+		final double valCopy = this.y;
+		return (int)valCopy;
+	}
+
+	
+	public void setX(double newX){
 		this.x = newX;
 	}
 	
-	public void setY(int newY){
+	public void setY(double newY){
 		this.y = newY;
 	}
 	/**
@@ -54,8 +67,8 @@ public class Position implements Point2D{
 	 * @param secondY second Y value
 	 * @return Returns the new Position of the summed vector
 	 */
-	public Position sumVectors(int secondX, int secondY){
-		return new Position(this.getX()+ secondX, this.getY()+ secondY);		
+	public Position sumVector(Vector2 movement){
+		return new Position((int)(this.getX()+ movement.getX()), (int)(this.getY()+ movement.getY()));		
 	}
 	/**
 	 * Distance between 2 points 
@@ -64,18 +77,9 @@ public class Position implements Point2D{
 	 * @return the distance between 2 points
 	 */
 	public static double pointsDistance(Position a, Position b){
-		final int xDistance = Math.abs(a.getX()-b.getX());
-		final int yDistance = Math.abs(a.getY()-b.getY());
+		final double xDistance = Math.abs(a.getX()-b.getX());
+		final double yDistance = Math.abs(a.getY()-b.getY());
 		return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance, 2));
-	}
-	
-	@Override 
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + x;
-		result = prime * result + y;
-		return result;
 	}
 
 	@Override

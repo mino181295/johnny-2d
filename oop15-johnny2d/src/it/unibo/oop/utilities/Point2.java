@@ -1,16 +1,13 @@
 package it.unibo.oop.utilities;
-
-import java.awt.Point;
-
 /**
  * Interface that rappresents a single point in the screen
  * @author Matteo Minardi
  * 
  */
-public interface Point2D {
+public interface Point2 {
 	
-	int getX();
+	double getX();
 	
-	int getY();
+	double getY();
 	
 }

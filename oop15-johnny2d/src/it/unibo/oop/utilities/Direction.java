@@ -23,4 +23,8 @@ public enum Direction {
 		this.y = y;
 	}
 	
+	public Vector2 getVector(){
+		return new Vector2(this.x,this.y);
+	}
+	
 }
