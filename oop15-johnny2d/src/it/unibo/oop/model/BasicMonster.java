@@ -1,28 +1,29 @@
 package it.unibo.oop.model;
 
+import java.awt.Dimension;
 import java.awt.Rectangle;
 
 public class BasicMonster extends MovableEntity implements Enemy{
+	
+	private static final int BasicMonster_HEIGHT = 32;
+	private static final int BasicMonster_WIDTH = 32;	
+	
+	public static final Dimension BasicMonster_DIMENSION = new Dimension(BasicMonster_WIDTH,BasicMonster_HEIGHT);
 
-	@Override
 	public void move() {
 	}
 
-	@Override
 	public void checkCollision() {
 	}
 
-	@Override
 	public Rectangle getBounds() {
 		return null;
 	}
 
-	@Override
 	protected int getEntityHeight() {
 		return 0;
 	}
 
-	@Override
 	protected int getEntityWidth() {
 		return 0;
 	}

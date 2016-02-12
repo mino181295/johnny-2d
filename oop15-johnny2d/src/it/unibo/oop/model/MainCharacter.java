@@ -20,34 +20,27 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		this.isShooting = isShooting;
 	}
 	
-	public void moveHero(Direction newDirection , boolean isShooting){
+	public void move() {
+	}
+	
+	public void moveMainCharacter(Direction newDirection , boolean isShooting){
 		this.setInput(newDirection, isShooting);
 		this.move();
 	}
 	
-	@Override
-	public void move() {
-	}
-	
-	
-
-	@Override
 	public void checkCollision() {		
 	}
 
-	@Override
 	protected int getEntityHeight() {
 		return 0;
 	}
 
-	@Override
 	protected int getEntityWidth() {
 		return 0;
 	}
 
-	@Override
 	public void shoot() {
-		//gameEnvironment.addShoot(envPosition, creatureDirection);		
+		//gameEnvironment.addShoot(this.envPosition, this.creatureDirection);		
 	}
 
 }

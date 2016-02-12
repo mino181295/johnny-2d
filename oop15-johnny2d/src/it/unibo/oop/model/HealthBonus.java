@@ -1,16 +1,8 @@
 package it.unibo.oop.model;
 
-import java.awt.Rectangle;
+public class HealthBonus extends AbstractEntity implements Collectable{
 
-public class HealthBonus extends AbstractBonus{
 	
-	void applyBonus() {		
-	}
-
-	public Rectangle getBounds() {
-		return null;
-	}
-
 	protected int getEntityHeight() {
 		return 0;
 	}
@@ -19,8 +11,8 @@ public class HealthBonus extends AbstractBonus{
 		return 0;
 	}
 
+	public void collect(MainCharacter bonusCollector) {
+		
+	}
 	
-	
-	
-
 }
