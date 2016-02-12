@@ -16,4 +16,15 @@ public class Wall extends AbstractEntity{
 		return null;
 	}
 
+	@Override
+	protected int getEntityHeight() {
+		return 0;
+	}
+
+	@Override
+	protected int getEntityWidth() {
+		
+		return 0;
+	}
+
 }

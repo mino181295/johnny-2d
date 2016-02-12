@@ -1,8 +1,13 @@
 package it.unibo.oop.model;
 
 public interface Enemy {
+	/*
+	public void attachAI(EnemyStrategy enemyBehavior);
 	
-	//public void setBehavior(EnemyAI enemyBehavior);
+	public void useAI();
 	
+	public Position getNextPosition();	
+	
+	*/
 
 }

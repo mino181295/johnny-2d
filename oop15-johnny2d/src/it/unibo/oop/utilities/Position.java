@@ -1,5 +1,7 @@
 package it.unibo.oop.utilities;
 
+import java.awt.Point;
+
 /**
  * 
  * @author Matteo Minardi
@@ -66,6 +68,7 @@ public class Position implements Point2D{
 		final int yDistance = Math.abs(a.getY()-b.getY());
 		return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance, 2));
 	}
+	
 	@Override 
 	public int hashCode() {
 		final int prime = 31;

@@ -1,25 +1,33 @@
 package it.unibo.oop.model;
 
-import java.awt.Rectangle;
 
 public class Bullet extends MovableEntity implements Shot {
 
+	private int distancePercurred;
+	
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void checkCollision() {
-		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+	protected int getEntityHeight() {
+		return 0;
 	}
+
+	@Override
+	protected int getEntityWidth() {
+		return 0;
+	}
+
+	@Override
+	public int getDistancePercurred() {
+		return this.distancePercurred;
+	}
+	
+	
 
 }

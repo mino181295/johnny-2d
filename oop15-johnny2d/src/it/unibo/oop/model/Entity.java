@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 import it.unibo.oop.utilities.Position;
 
 /**
- * The interface of every object in the environment with a position 
+ * The interface of every object in the environment with a position. 
  * @author Matteo Minardi
  *
  */
@@ -16,15 +16,15 @@ public interface Entity {
 	 */
 	Position getPosition();
 	/**
-	 * 
+	 * Checks if the position is the same of the passed one.
 	 * @param newPosition
-	 * @return True if the position is the same
+	 * @return True if the position is the same.
 	 */
-	boolean isHere(Position newPosition);
+	boolean equalsPosition(Position newPosition);
 	
 	/**
-	 * 
-	 * @return The 
+	 * It return and calculates the bounds of a specific {@link Entity}.
+	 * @return The {@link Rectangle} containing the object
 	 */
 	Rectangle getBounds();
 

@@ -1,11 +1,13 @@
 package it.unibo.oop.model;
 
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Rectangle;
 import it.unibo.oop.utilities.Position;
 
 public abstract class AbstractEntity implements Entity {
 	
-	Position envPosition;
+	Position envPosition; 
 	
 	public Position getPosition() {
 		return this.envPosition;
@@ -19,10 +21,20 @@ public abstract class AbstractEntity implements Entity {
 		return envPosition.getY();
 	}
 	
-	public boolean isHere(Position newPosition){
+	public boolean equalsPosition(Position newPosition){
 		return envPosition.equals(newPosition);		
 	}
 	
-	public abstract Rectangle getBounds();
+	protected abstract int getEntityHeight();
+
+	protected abstract int getEntityWidth();
+	
+	public Rectangle getBounds(){
+		int tmpWidth = this.getEntityWidth();
+		int tmpHeight = this.getEntityHeight();
+		Dimension tmpDim = new Dimension(tmpWidth,tmpHeight);
+		Point topLeftCorner = new Point(envPosition.getX() - this.getEntityWidth()/2, envPosition.getY() - this.getEntityHeight()/2);
+		return new Rectangle(topLeftCorner,tmpDim);
+	}
 
 }

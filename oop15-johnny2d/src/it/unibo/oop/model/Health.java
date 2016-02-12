@@ -5,7 +5,8 @@ import it.unibo.oop.exceptions.OutOfHealthException;
 public class Health implements Feature {
 	
 	private final String HEALTH_TAG = "Health";
-	
+	public static final int DEFAULT_HEALTH = 3;
+	public static final int DEFAULT_MIN_HEALTH = 0;	
 		
 	private final int maxHealth;
 	private final int minHealth;
@@ -16,6 +17,14 @@ public class Health implements Feature {
 		this.minHealth = minHealth;
 		this.maxHealth = maxHealth;
 		this.currentHealth = initialHealth;
+	}
+	
+	public Health(int maxHealth){
+		this(DEFAULT_MIN_HEALTH,maxHealth,maxHealth);
+	}
+	
+	public Health(){
+		this(DEFAULT_HEALTH);
 	}
 
 	public String getName() {
