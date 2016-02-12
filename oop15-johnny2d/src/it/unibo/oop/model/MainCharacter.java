@@ -16,7 +16,7 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	boolean isShooting;
 	
 	private void setInput(Direction newDirection , boolean isShooting){
-		this.creatureDirection = newDirection;
+		this.movementVector = newDirection.getVector();
 		this.isShooting = isShooting;
 	}
 	
