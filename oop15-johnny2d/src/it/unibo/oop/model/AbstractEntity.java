@@ -8,6 +8,7 @@ import it.unibo.oop.utilities.Position;
 public abstract class AbstractEntity implements Entity {
 	
 	Position envPosition; 
+	//GameState gameEnvironment = GameState.getInstance();
 	
 	public Position getPosition() {
 		return this.envPosition;
@@ -36,5 +37,9 @@ public abstract class AbstractEntity implements Entity {
 		Point topLeftCorner = new Point(envPosition.getX() - this.getEntityWidth()/2, envPosition.getY() - this.getEntityHeight()/2);
 		return new Rectangle(topLeftCorner,tmpDim);
 	}
-
+	/*
+	public void remove(){
+		gameEnvironment.removeItem(this);
+	}
+	*/
 }

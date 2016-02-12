@@ -1,7 +1,13 @@
 package it.unibo.oop.model;
 
+import java.awt.Dimension;
 
 public class Bullet extends MovableEntity implements Shot {
+	
+	private static final int SHOT_HEIGHT = 32;
+	private static final int SHOT_WIDTH = 32;	
+	
+	public static final Dimension SHOT_DIMENSION = new Dimension(SHOT_WIDTH,SHOT_HEIGHT);
 
 	private int distancePercurred;
 	
