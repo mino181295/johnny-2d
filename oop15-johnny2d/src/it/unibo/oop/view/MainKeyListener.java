@@ -2,6 +2,7 @@ package it.unibo.oop.view;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.oop.controller.GameLoop;
@@ -26,6 +27,14 @@ public class MainKeyListener implements KeyListener {
      */
     public MainKeyListener(final List<KeyboardObserver> obs) {
         this.obsList = obs;
+    }
+    
+    public MainKeyListener() {
+        this.obsList = new ArrayList<>();
+    }
+    
+    public void addObserver(final KeyboardObserver obs) {
+        this.obsList.add(obs);
     }
     
     @Override

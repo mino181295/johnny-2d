@@ -1,34 +1,67 @@
 package it.unibo.oop.view;
 
-import java.util.Arrays;
+import static it.unibo.oop.utilities.Settings.SCREEN_DIMENSION;
+import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import it.unibo.oop.controller.KeyboardObserver;
-import static it.unibo.oop.utilities.Settings.*;
 
 /**
  * The main frame containing the game's main level.
  */
-public class Level extends JFrame {
-
-	private static final long serialVersionUID = 3472179234994682358L;
+public class Level implements LevelInterface {
 	
 	/**
 	 * Builds the frame.
 	 */
-	public Level(final KeyboardObserver gLObserver) {
-		super("Johnny 2D");
-		
-		this.setSize(SCREEN_DIMENSION);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
-		this.getContentPane().add(new LevelPanel());
+    private static final String TITLE = "Johnny2D";
+    private final JFrame frame;
+    private final MainKeyListener keyListener;
+    
+	public Level() {
+	    this.frame = new JFrame(TITLE);
+		this.frame.setSize(SCREEN_DIMENSION);
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setLocationRelativeTo(null);
+		this.frame.setResizable(false);
+		this.frame.getContentPane().add(new LevelPanel());
 		
 		/* per MainKeyListener */
-        this.addKeyListener(new MainKeyListener(Arrays.asList(gLObserver)));
-        this.setFocusTraversalKeysEnabled(false);
-        this.requestFocus(); /* per attivare il key listener */
-		
-		this.setVisible(true);
+		this.keyListener = new MainKeyListener();
+        this.frame.addKeyListener(this.keyListener);
+        this.frame.setFocusTraversalKeysEnabled(false);
+        this.frame.requestFocus(); /* per attivare il key listener */
 	}
+	
+	public void addObserver(final KeyboardObserver obs) {
+	    this.keyListener.addObserver(obs);
+	}
+	
+	@Override
+    public void showIt() {
+	    this.frame.setVisible(true);
+//        try {
+//            SwingUtilities.invokeAndWait(()->this.frame.setVisible(true));
+//            this.frame.repaint();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } 
+    }
+    
+    @Override
+    public void hideIt() {
+        this.frame.setVisible(false);
+//        try {
+//            SwingUtilities.invokeAndWait(()->this.frame.setVisible(false));
+//            // this.frame.repaint();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+    }
+	
 }

@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import it.unibo.oop.controller.KeyCommands;
 import it.unibo.oop.controller.KeyboardObserver;
+import it.unibo.oop.view.MainKeyListener;
 
 /**
  * 
@@ -15,20 +16,26 @@ import it.unibo.oop.controller.KeyboardObserver;
  *
  * class used by the controller to process the key list.
  */
-public class KeysManager<T> implements KeyboardObserver {
+public class KeysManager implements KeyboardObserver {
 
+    private static final KeysManager SINGLETON = new KeysManager();
+    
     private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length; 
     private final List<KeyCommands> keysPressed; /* elementi rimossi da KeyRelease event: indica tasti premuti PROLUNGATAMENTE */
     private List<KeyCommands> keysTyped;         /* svuotata ad ogni frame: indica tasti premuti NON prolungatamente*/
     private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
     
-    public KeysManager() {
+    private KeysManager() {
         this.keysPressed = new ArrayList<>();
         this.keysTyped = new ArrayList<>();     /*lista perché più tasti alla volta potrebbero essere typed p.e. M tasti direzione e 1 spara */
         this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
         for (final KeyCommands cmd: KeyCommands.class.getEnumConstants()) {
             this.mapVKCodeToKeyCmd.put(cmd.getVkCode(), cmd);
         }
+    }
+    
+    public static KeysManager getKeysManager() {
+        return SINGLETON;
     }
     
     /*

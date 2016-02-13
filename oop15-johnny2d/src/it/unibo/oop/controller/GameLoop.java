@@ -5,10 +5,8 @@ import static it.unibo.oop.utilities.Direction.NONE;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.KeysManager;
 import it.unibo.oop.utilities.Pair;
-import it.unibo.oop.view.Launcher;
-import it.unibo.oop.view.Level;
-import it.unibo.oop.view.OptionsMenu;
-import it.unibo.oop.view.Showable;
+import it.unibo.oop.view.MenuEnum;
+import it.unibo.oop.view.ViewsManager;
 
 /**
  * 
@@ -16,71 +14,65 @@ import it.unibo.oop.view.Showable;
  *
  *  class implementing the Controller of the MVC model.
  */
-public class GameLoop implements Controller, StateObserver {
+public class GameLoop implements Controller {
 
     private final static double FPS = 10;
     private final static int TO_SECONDS = 1000;
     private final static int SLEEPING_TIME = (int)(1/FPS * TO_SECONDS);
-    private final Showable launcher;
-    private final Showable options;
-    private final Level level; /* da associarvi un'interfaccia */
     private volatile Pair<Direction, Direction> pgDir;
     private volatile boolean pgIsShooting;
-    private final KeysManager<Direction> keysMan;
+    private volatile boolean loop;
+    private final KeysManager keysMan;
+    private final ViewsManager viewMan;
     
     public GameLoop() {
-        this.launcher = new Launcher(this);
-        this.options = new OptionsMenu();
-        this.keysMan = new KeysManager<>();
-        this.level = new Level(this.keysMan);
+        this.viewMan = ViewsManager.getViewsManager();
+        this.viewMan.setController(this);
+        this.keysMan = KeysManager.getKeysManager();
+        this.viewMan.show(MenuEnum.LAUNCHER);
     }
     
     @Override
     public void start() {
-        // this.launcher.showIt();
-        this.doLoop();
+        new Thread(()-> { /* attenzione a creazione di multi thread */
+            this.loop = true;
+            this.doLoop();
+        }).start();
+    }
+    
+    public void stop() {
+        this.loop = false;
     }
     
     /* GAME LOOP */
     private void doLoop() {
-        while (true) {
+        while (loop) {
+            /* valutare l'aggiunta di una wait per far eseguire eventuali eventi di key releasing (onde evitare che un tasto sia processato
+             * più volte in caso di un tasso di FPS elevato)
+             */
+            /* CHECK GIOCO FINITO/DA INIZIARE */
+            this.processKeys();
+            this.dbgKeysMan();        /* per debugging */
+            /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
+            /* chiamo V e gli faccio disegnare il frame */
             try {
                 Thread.sleep(SLEEPING_TIME);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            /* valutare l'aggiunta di una wait per far eseguire eventuali eventi di key releasing (onde evitare che un tasto sia processato
-             * più volte in caso di un tasso di FPS elevato)
-             */
-            this.processKeys();
-            this.dbgKeysMan();        
-            /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
-            /* chiamo V e gli faccio disegnare il frame */
         }
     }
     
     private void processKeys() {
-        this.pgIsShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
-        this.pgDir = this.keysMan.getDirection();       
-    }
-    
-    /* valutare incapsulamento della seguente logica in componente ad hoc */
-    @Override 
-    public void stateAction(final State state) {
-        switch (state) {
-        case PLAY:
-            this.doLoop();
-            break;
-        case EXIT:
-            System.exit(0);
-            break;
-        case OPTIONS:
-            this.options.showIt();
-            break;
-        default:
+        if (this.keysMan.isAKeyPressed(KeyCommands.ESC)) {
+            this.viewMan.show(MenuEnum.PAUSE);
+            this.stop(); /* forse meglio una wait */
         }
+        this.pgIsShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
+        this.pgDir = this.keysMan.getDirection(); 
     }
-    
+
+    /* per debug */
     private void dbgKeysMan() {
         if (this.pgDir.getX() != NONE || this.pgDir.getY() != NONE) {
             System.out.println("Dir 1: " + this.pgDir.getX() + " Dir 2: " + this.pgDir.getY());

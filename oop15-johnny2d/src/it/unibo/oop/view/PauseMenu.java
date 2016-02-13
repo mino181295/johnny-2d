@@ -1,11 +1,11 @@
 package it.unibo.oop.view;
 
-public class PauseMenu implements Showable {
+public class PauseMenu extends BaseMenu {
 
-    @Override
-    public void showIt() {
-        // TODO Auto-generated method stub
-
+    private static final String TITLE = "Pause";
+    
+    public PauseMenu() {
+        super(TITLE);
     }
 
 }
