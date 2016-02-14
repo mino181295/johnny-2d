@@ -14,7 +14,7 @@ import it.unibo.oop.utilities.Position;
 public abstract class AbstractEntity implements Entity {
 	
 	protected Position entityPosition; 
-	private Optional<GameState> gameEnvironment;
+	protected Optional<GameState> gameEnvironment;
 
 	public AbstractEntity(int startingX, int startingY){
 		this.entityPosition = new Position(startingX,startingY);

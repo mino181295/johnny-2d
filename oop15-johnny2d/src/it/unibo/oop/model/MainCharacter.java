@@ -7,14 +7,10 @@ import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Settings;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;
+import static it.unibo.oop.utilities.CharactersSettings.*;
 
 public class MainCharacter extends MovableEntity implements Shooter{
 
-	private static final int MainCharacter_HEIGHT = 32;
-	private static final int MainCharacter_WIDTH = 32;	
-	
-	public static final Dimension MainCharacter_DIMENSION = new Dimension(MainCharacter_WIDTH,MainCharacter_HEIGHT);
-	
 	Health currentHealth;
 	Score currentScore;
 	boolean isShooting;
@@ -37,14 +33,15 @@ public class MainCharacter extends MovableEntity implements Shooter{
 
 	public boolean checkCollision(Position newPosition) {	
 		return true;
+		//TODO
 	}
 
 	protected int getEntityHeight() {
-		return 0;
+		return MAIN_CHARACTER.getHeight();
 	}
 
 	protected int getEntityWidth() {
-		return 0;
+		return MAIN_CHARACTER.getWidth();
 	}
 
 	public void shoot() {

@@ -1,14 +1,12 @@
 package it.unibo.oop.utilities;
 
 public class Velocity{
-	
-	private static final int VELOCITY_SCALE = 10;
 
-	
 	private int maxVelocity;
 	private int minVelocity;
+	private int time;
 	
-	public Velocity(int velocityScale, int min, int max){
+	public Velocity(int min, int max, int velocityScale){
 	
 		this.minVelocity=min;
 		this.maxVelocity=max;

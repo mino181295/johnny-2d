@@ -1,17 +1,12 @@
 package it.unibo.oop.model;
 
-import java.awt.Dimension;
+import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
 
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
-import it.unibo.oop.utilities.Velocity;
+import it.unibo.oop.utilities.Velocity;;
 
 public class BasicMonster extends MovableEntity implements Enemy{
-
-	protected static final int BasicMonster_HEIGHT = 32;
-	protected static final int BasicMonster_WIDTH = 32;	
-	
-	public static final Dimension BasicMonster_DIMENSION = new Dimension(BasicMonster_WIDTH,BasicMonster_HEIGHT);
 
 	public BasicMonster(int startingX, int startingY, Vector2 movementVector, Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
@@ -26,11 +21,11 @@ public class BasicMonster extends MovableEntity implements Enemy{
 	}
 
 	protected int getEntityHeight() {
-		return BasicMonster_HEIGHT;
+		return BASIC_ENEMY.getHeight();
 	}
 
 	protected int getEntityWidth() {
-		return BasicMonster_WIDTH;
+		return BASIC_ENEMY.getWidth();
 	}
 
 	

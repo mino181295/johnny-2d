@@ -1,6 +1,6 @@
 package it.unibo.oop.model;
 
-import it.unibo.oop.utilities.Position;
+import static it.unibo.oop.utilities.CharactersSettings.*;
 
 public class HealthBonus extends AbstractEntity implements Collectable{
 
@@ -10,11 +10,11 @@ public class HealthBonus extends AbstractEntity implements Collectable{
 	}
 
 	protected int getEntityHeight() {
-		return 0;
+		return BONUS.getHeight();
 	}
 
 	protected int getEntityWidth() {
-		return 0;
+		return BONUS.getWidth();
 	}
 
 	public void collect(MainCharacter bonusCollector) {
