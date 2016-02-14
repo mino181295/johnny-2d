@@ -15,8 +15,13 @@ public enum KeyCommands {
     A(KeyEvent.VK_A, LEFT),
     S(KeyEvent.VK_S, DOWN),
     D(KeyEvent.VK_D, RIGHT),
-    SPACE(KeyEvent.VK_SPACE, NONE),
-    ESC(KeyEvent.VK_ESCAPE, NONE); /* to pause the game */
+    WD(KeyEvent.VK_UNDEFINED, RIGHTUP),    
+    WA(KeyEvent.VK_UNDEFINED,LEFTUP),
+    SD(KeyEvent.VK_UNDEFINED,RIGHTDOWN),
+    SA(KeyEvent.VK_UNDEFINED,LEFTDOWN),
+    SPACE(KeyEvent.VK_SPACE, Direction.NONE),
+    ESC(KeyEvent.VK_ESCAPE, Direction.NONE), /* to pause the game */
+    NONE(KeyEvent.VK_UNDEFINED, Direction.NONE);
     
     private final int vkCode;
     private final Direction dir;
@@ -35,6 +40,6 @@ public enum KeyCommands {
     }
     
     public boolean isMovement() {
-        return this.dir != NONE;
+        return this.dir != Direction.NONE;
     }
 }

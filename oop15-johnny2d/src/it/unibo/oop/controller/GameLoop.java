@@ -21,7 +21,7 @@ public class GameLoop implements Controller {
     private final static double FPS = 10;
     private final static int TO_SECONDS = 1000;
     private final static int SLEEPING_TIME = (int)(1/FPS * TO_SECONDS);
-    private volatile Pair<Direction, Direction> pgDir;
+    private volatile Direction pgDir;
     private volatile boolean pgIsShooting;
     private volatile boolean loop;
     private final KeysManager keysMan;
@@ -81,8 +81,8 @@ public class GameLoop implements Controller {
 
     /* per debug */
     private void dbgKeysMan() {
-        if (this.pgDir.getX() != NONE || this.pgDir.getY() != NONE) {
-            System.out.println("Dir 1: " + this.pgDir.getX() + " Dir 2: " + this.pgDir.getY());
+        if (this.pgDir != NONE) {
+            System.out.println("Dir 1: " + this.pgDir);
         }
         System.out.println(this.pgIsShooting ? "SHOOT!" : "");
     }

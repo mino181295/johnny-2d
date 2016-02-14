@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.oop.controller.KeyCommands;
+import static it.unibo.oop.controller.KeyCommands.*;
 import it.unibo.oop.controller.KeyboardObserver;
-import it.unibo.oop.view.MainKeyListener;
 
 /**
  * 
@@ -51,32 +51,83 @@ public class KeysManager implements KeyboardObserver {
      * 
      */
     /* eventualmente parametizzare Pair */
-    public synchronized Pair<Direction, Direction> getDirection() {
-        final Pair<Direction, Direction> out = new Pair<>(Direction.NONE, Direction.NONE);      
+//    public synchronized Pair<Direction, Direction> getDirection() {
+//        final Pair<Direction, Direction> out = new Pair<>(Direction.NONE, Direction.NONE);      
+//        
+////        System.out.println("PRESSED: " + this.keysPressed);
+////        System.out.println("TYPED: " + this.keysTyped);
+//        
+//        this.processOutPair(this.keysPressed, out);
+//        this.processOutPair(this.keysTyped, out);
+//        this.keysTyped = new ArrayList<>(); /* resetto le keysTyped */
+//        
+//        
+//            
+//        return out;
+//    }
+//
+//    private void processOutPair(final List<KeyCommands> inList, final Pair<Direction, Direction> outPair) {
+//        for (final KeyCommands key: inList) {
+//            if (key.isMovement()) {
+//                if (outPair.getX() == Direction.NONE) {
+//                    outPair.setX(key.getDir());
+//                } else if (outPair.getY() == Direction.NONE && outPair.getX() != key.getDir()) { /* do priorità a dir 2 diverse da dir 1 */
+//                    outPair.setY(key.getDir());
+//                } else
+//                    break;
+//            }
+//        }
+//    }
+    
+    
+/* ALTERNATIVA */
+    public synchronized Direction getDirection() {
+        final List<KeyCommands> tmpList = new ArrayList<>();      
+        KeyCommands out = NONE;
         
 //        System.out.println("PRESSED: " + this.keysPressed);
 //        System.out.println("TYPED: " + this.keysTyped);
         
-        this.processOutPair(this.keysPressed, out);
-        this.processOutPair(this.keysTyped, out);
+        this.processKeys(this.keysPressed, tmpList);
+        this.processKeys(this.keysTyped, tmpList);
         this.keysTyped = new ArrayList<>(); /* resetto le keysTyped */
+        switch (tmpList.size()) {
+        case 1:
+            out = tmpList.get(0);
+            break;
+        case 2:
+            if (tmpList.contains(W)) {
+                if (tmpList.contains(D)) {
+                    out = WD;
+                } else {
+                    out = WA;
+                }
+            } else if (tmpList.contains(S)) {
+                if (tmpList.contains(D)) {
+                    out = SD;
+                } else {
+                    out = SA;
+                }
+            }
+            break;
+        }
         
-        Direction.class.getField(out.gg)
-        return out;
+        return out.getDir();
     }
 
-    private void processOutPair(final List<KeyCommands> inList, final Pair<Direction, Direction> outPair) {
+    private void processKeys(final List<KeyCommands> inList, final List<KeyCommands> outList) {
         for (final KeyCommands key: inList) {
             if (key.isMovement()) {
-                if (outPair.getX() == Direction.NONE) {
-                    outPair.setX(key.getDir());
-                } else if (outPair.getY() == Direction.NONE && outPair.getX() != key.getDir()) { /* do priorità a dir 2 diverse da dir 1 */
-                    outPair.setY(key.getDir());
+                if (outList.isEmpty()) {
+                    outList.add(key);
+                } else if (outList.size() == 1 && outList.get(0) != key) { /* do priorità a dir 2 diverse da dir 1 */
+                    outList.add(key);
                 } else
                     break;
             }
         }
     }
+/* FINE ALTERNATIVA */
     
     /* per filtrare(da cui l'Optional)/mappare i tasti su i comandi */
     private Optional<KeyCommands> vk_CodeToKeyCommand(final int vk_Code) { 
