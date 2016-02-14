@@ -35,7 +35,7 @@ public abstract class AbstractEntity implements Entity {
 		return entityPosition.getIntY();
 	}
 	
-	public boolean equalsPosition(Position newPosition){
+	public boolean equalsPosition(final Position newPosition){
 		return entityPosition.equals(newPosition);		
 	}
 	/**
@@ -57,6 +57,9 @@ public abstract class AbstractEntity implements Entity {
 		Point topLeftCorner = new Point(entityPosition.getIntX() - this.getEntityWidth()/2, entityPosition.getIntY() - this.getEntityHeight()/2);
 		return new Rectangle(topLeftCorner,tmpDim);
 	}
+	public boolean intersecate(final Entity secondEntity){
+		return this.getBounds().intersects(secondEntity.getBounds());
+	}
 	
 	/*
 	public attachEnvironment(GameState newEnvironment){
@@ -65,6 +68,12 @@ public abstract class AbstractEntity implements Entity {
 	
 	public removeEnvironment(){
 		this.gameEnvironment = Optional.empty();
+	}
+	
+	public void checkEnvirnment() throws EnvirnmentNotFoundException {
+		if (!this.gameEnvirnment.ifPresent()){
+			throw new EnvirnmentNotFoundException();
+		}
 	}
 	
 	public Optional<GameState> getEnvironment(){

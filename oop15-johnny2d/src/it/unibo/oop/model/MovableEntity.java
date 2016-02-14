@@ -1,5 +1,6 @@
 package it.unibo.oop.model;
 import it.unibo.oop.utilities.Direction;
+import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;
 
@@ -9,11 +10,16 @@ public abstract class MovableEntity extends AbstractEntity implements Movable {
 	protected Velocity speedValues;
 
 	public void move(){
-		checkCollision();
-		this.entityPosition.sumVector(movementVector);
+		
+		Position tmpPosition = this.entityPosition.sumVector(movementVector);
+		if ( ! checkCollision(tmpPosition) ){
+			this.entityPosition = tmpPosition;
+		} else {
+			//this.removeFromEnvirnment();
+		}
 	}
 	
-	public abstract void checkCollision();
+	public abstract boolean checkCollision(Position newPosition);
 	
 	public void setDirection(Vector2 newMovement){
 		this.movementVector = newMovement;

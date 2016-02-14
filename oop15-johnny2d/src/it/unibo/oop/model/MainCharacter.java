@@ -3,6 +3,7 @@ package it.unibo.oop.model;
 import java.awt.Dimension;
 
 import it.unibo.oop.utilities.Direction;
+import it.unibo.oop.utilities.Position;
 
 public class MainCharacter extends MovableEntity implements Shooter{
 	
@@ -16,7 +17,7 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	boolean isShooting;
 	
 	private void setInput(Direction newDirection , boolean isShooting){
-		this.movementVector = newDirection.getVector();
+		this.movementVector = newDirection.getVector2();
 		this.isShooting = isShooting;
 	}
 	
@@ -28,7 +29,8 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		this.move();
 	}
 	
-	public void checkCollision() {		
+	public boolean checkCollision(Position newPosition) {	
+		return true;
 	}
 
 	protected int getEntityHeight() {

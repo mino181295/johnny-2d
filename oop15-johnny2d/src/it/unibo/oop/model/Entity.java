@@ -27,5 +27,9 @@ public interface Entity {
 	 * @return The {@link Rectangle} containing the object
 	 */
 	Rectangle getBounds();
-
+	/**
+	 * 
+	 * @return True if the entity intersecate the secondEntity
+	 */
+	boolean intersecate(Entity secondEntity);
 }

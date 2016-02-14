@@ -22,8 +22,8 @@ public class Score implements Feature, Serializable {
 	
 	public void writeScoreOnFile(String filePath){
 		try(
-				ObjectOutputStream oos = new ObjectOutputStream(
-											new FileOutputStream(filePath));				
+			FileOutputStream fos = new FileOutputStream(filePath);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);				
 		){
 			oos.writeObject(this);
 		}catch(Exception e){
