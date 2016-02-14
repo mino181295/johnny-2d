@@ -9,15 +9,26 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.utilities.KeysManager;
 
+/**
+ * 
+ * @author Paolo
+ *
+ * class which manages all the game views.
+ */
+
+/*
+ *  NOTE: aggiungere contatore schede aperte per corretta terminazione app o soluzione analoga. 
+ */
+
 public class ViewsManager implements StateObserver {
 
     private static final ViewsManager SINGLETON = new ViewsManager();
-    private final Set<MenuEnum> menu;
+    private final Set<MenuEnum> menu; 
     private final LevelInterface level;
     private Controller ctrl;
     
     private ViewsManager() {
-        this.menu = new HashSet<>(Arrays.asList(MenuEnum.values()));
+        this.menu = new HashSet<>(Arrays.asList(MenuEnum.values())); /* se non crea una copia allora posso usare direttamente la Enum */
         this.menu.forEach(e -> e.getView().addObserver(this));
         this.level = new Level();
         level.addObserver(KeysManager.getKeysManager());     
@@ -39,9 +50,9 @@ public class ViewsManager implements StateObserver {
     public void stateAction(final State state) {
         this.hideAll();
         switch (state) {
-        case PLAY:
+        case PLAY:              /* a parte PLAY tutti i rami possono essere eseguiti da EDT */
             this.level.showIt();
-           // this.ctrl.start();
+            this.ctrl.start();
             break;
         case EXIT:
             System.exit(0);
@@ -54,7 +65,7 @@ public class ViewsManager implements StateObserver {
     }
     
     private void hideAll() {
-        for (final MenuEnum menu: MenuEnum.values()) {
+        for (final MenuEnum menu: this.menu) {
             menu.getView().hideIt();
         }
     }

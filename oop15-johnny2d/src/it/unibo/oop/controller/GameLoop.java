@@ -2,6 +2,8 @@ package it.unibo.oop.controller;
 
 import static it.unibo.oop.utilities.Direction.NONE;
 
+import java.util.Optional;
+
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.KeysManager;
 import it.unibo.oop.utilities.Pair;
@@ -24,20 +26,25 @@ public class GameLoop implements Controller {
     private volatile boolean loop;
     private final KeysManager keysMan;
     private final ViewsManager viewMan;
+    private Optional<Thread> executor;
     
     public GameLoop() {
+        this.executor = Optional.empty();
         this.viewMan = ViewsManager.getViewsManager();
         this.viewMan.setController(this);
         this.keysMan = KeysManager.getKeysManager();
-        this.viewMan.show(MenuEnum.LAUNCHER);
+        this.viewMan.show(MenuEnum.LAUNCHER); /* farlo fare all'EDT */
     }
     
     @Override
     public void start() {
-        new Thread(()-> { /* attenzione a creazione di multi thread */
-            this.loop = true;
-            this.doLoop();
-        }).start();
+        if (!this.executor.isPresent()) {
+            this.executor = Optional.ofNullable(new Thread(()-> { /* attenzione a creazione di multi thread */
+                this.loop = true;
+                this.doLoop();
+            }));
+        }
+        this.executor.get().start();
     }
     
     public void stop() {
@@ -81,6 +88,6 @@ public class GameLoop implements Controller {
     }
     
     public static void main(String[] args) {
-        new GameLoop().start();
+        new GameLoop();
     }
 }
