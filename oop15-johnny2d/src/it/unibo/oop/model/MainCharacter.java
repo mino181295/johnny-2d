@@ -21,14 +21,16 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		this.isShooting = isShooting;
 	}
 	
-	public void move() {
+	public void move(Direction newDirection) {
+		this.setInput(newDirection, isShooting);
+		super.move();
 	}
-	
+	/*
 	public void moveMainCharacter(Direction newDirection , boolean isShooting){
 		this.setInput(newDirection, isShooting);
 		this.move();
 	}
-	
+	*/
 	public boolean checkCollision(Position newPosition) {	
 		return true;
 	}

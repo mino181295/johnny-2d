@@ -46,17 +46,22 @@ public abstract class AbstractEntity implements Entity {
 	 * Gets the shape Width of the current Object
 	 */
 	protected abstract int getEntityWidth();
+	
+	public Position getTopLeftPos(){
+		return new Position(entityPosition.getIntX() - this.getEntityWidth()/2, entityPosition.getIntY() - this.getEntityHeight()/2);
+	}
 	/**
 	 * Method that generate a {@link Rectangle} that delimits the current {@link Entity}.
 	 * @return A rectangle containing, in the center, the {@link Entity}
-	 */
+	 */	
 	public Rectangle getBounds(){
 		int tmpWidth = this.getEntityWidth();
 		int tmpHeight = this.getEntityHeight();
 		Dimension tmpDim = new Dimension(tmpWidth,tmpHeight);
 		Point topLeftCorner = new Point(entityPosition.getIntX() - this.getEntityWidth()/2, entityPosition.getIntY() - this.getEntityHeight()/2);
 		return new Rectangle(topLeftCorner,tmpDim);
-	}
+	}	
+	
 	public boolean intersecate(final Entity secondEntity){
 		return this.getBounds().intersects(secondEntity.getBounds());
 	}

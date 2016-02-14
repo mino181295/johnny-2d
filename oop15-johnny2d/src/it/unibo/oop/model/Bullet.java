@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.Random;
 
 import it.unibo.oop.utilities.Position;
+import it.unibo.oop.utilities.Vector2;
 
 public class Bullet extends MovableEntity implements Shot {
 	
@@ -15,10 +16,6 @@ public class Bullet extends MovableEntity implements Shot {
 	private int distancePercurred;
 	private final int maxBulletDistance = 10 + new Random().nextInt(10);
 	
-	@Override
-	public void move() {
-	}
-
 	@Override
 	public boolean checkCollision(Position newPosition) {
 		return true;		
@@ -37,6 +34,8 @@ public class Bullet extends MovableEntity implements Shot {
 	public int getDistancePercurred() {
 		return this.distancePercurred;
 	}
+
+	
 	
 	
 
