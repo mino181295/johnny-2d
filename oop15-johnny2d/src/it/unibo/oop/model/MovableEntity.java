@@ -10,13 +10,11 @@ public abstract class MovableEntity extends AbstractEntity implements Movable {
 	protected Velocity speedValues;
 
 	public void move(){
-		
-		Position tmpPosition = this.entityPosition.sumVector(movementVector);
-		if ( ! checkCollision(tmpPosition) ){
-			this.entityPosition = tmpPosition;
-		} else {
-			//this.removeFromEnvirnment();
-		}
+		this.entityPosition = this.getPosition().sumVector(movementVector); 
+	}
+	
+	public void setInput(Vector2 newMovement){
+		this.movementVector = newMovement;
 	}
 	
 	public abstract boolean checkCollision(Position newPosition);

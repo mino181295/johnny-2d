@@ -11,9 +11,9 @@ public class BasicMonster extends MovableEntity implements Enemy{
 	
 	public static final Dimension BasicMonster_DIMENSION = new Dimension(BasicMonster_WIDTH,BasicMonster_HEIGHT);
 
-	public void move() {
+	public void update(){
+		this.move();
 	}
-
 	public boolean checkCollision(Position newPosition) {
 		return false;
 	}
