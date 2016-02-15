@@ -2,11 +2,15 @@ package it.unibo.oop.view;
 
 import javax.swing.JButton;
 
+import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.StateObserver;
+
 public class OptionsMenu extends BaseMenu {
     
-    public OptionsMenu() {
-        super("Options");
-        
+    private static final String TITLE = "Options";
+    public OptionsMenu(final StateObserver stateObs) {
+        super(TITLE);
+        this.addObserver(stateObs);
         /*
          * BUTTONS CREATION
          */
@@ -28,13 +32,7 @@ public class OptionsMenu extends BaseMenu {
         this.addComponent(textures);
         this.addComponent(back);
         
-//        /* ACTIONS */
-//        quit.addActionListener(e -> {
-//            final int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
-//                    "Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//            if (response == JOptionPane.YES_OPTION) {
-//            //    this.doObsAction(obs -> obs.stateAction(State.EXIT));
-//            }
-//        });
+        /* ACTIONS */
+        back.addActionListener(e -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(State.LAUNCHING)).start()));
     }  
 }

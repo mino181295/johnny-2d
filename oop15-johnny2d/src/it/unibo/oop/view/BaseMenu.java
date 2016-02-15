@@ -35,25 +35,10 @@ public abstract class BaseMenu implements MenuInterface {
     @Override
     public void showIt() {
         this.frame.setVisible(true);
-//        try {
-//            SwingUtilities.invokeAndWait(()->this.frame.setVisible(true));
-//            this.frame.repaint();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } 
     }
     
     @Override
     public void hideIt() {
         this.frame.setVisible(false);
-//        try {
-//            SwingUtilities.invokeAndWait(()->this.frame.setVisible(false));
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
     }
 }

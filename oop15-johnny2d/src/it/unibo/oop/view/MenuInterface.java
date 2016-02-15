@@ -11,7 +11,7 @@ import it.unibo.oop.controller.StateObserver;
  * Interface implemented by menu views.
  *       
  */
-public interface MenuInterface {
+public interface MenuInterface extends Showable {
 
     /**
      * @param cmp
@@ -24,18 +24,4 @@ public interface MenuInterface {
      *          observer to attach to the view.
      */
     public void addObserver(StateObserver obs);
-    
-    /**
-     * shows the component i.e. set it visible.
-     */
-    public void showIt();
-    
-    /**
-     * hides the component i.e. set it not visible.
-     */
-    public void hideIt();
-    
-    
-    
-    
 }

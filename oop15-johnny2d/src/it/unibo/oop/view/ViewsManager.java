@@ -1,10 +1,8 @@
 package it.unibo.oop.view;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.lang.reflect.InvocationTargetException;
 
-import it.unibo.oop.controller.Controller;
+import javax.swing.SwingUtilities;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.utilities.KeysManager;
@@ -23,50 +21,47 @@ import it.unibo.oop.utilities.KeysManager;
 public class ViewsManager implements StateObserver {
 
     private static final ViewsManager SINGLETON = new ViewsManager();
-    private final Set<MenuEnum> menu; 
     private final LevelInterface level;
-    private Controller ctrl;
     
     private ViewsManager() {
-        this.menu = new HashSet<>(Arrays.asList(MenuEnum.values())); /* se non crea una copia allora posso usare direttamente la Enum */
-        this.menu.forEach(e -> e.getView().addObserver(this));
-        this.level = new Level();
-        level.addObserver(KeysManager.getKeysManager());     
+        this.level = new Level(KeysManager.getInstance());
+        level.addObserver(KeysManager.getInstance());     
     }
     
-    public static ViewsManager getViewsManager() {
+    public static ViewsManager getInstance() {
         return SINGLETON;
     }
     
-    public void setController(final Controller ctrl) {
-        this.ctrl = ctrl;
+    public LevelInterface getLevel() {
+        return this.level;
     }
     
-    public void show(final MenuEnum menu) {
-        menu.getView().showIt();
+    public void showView(final State state) {
+        try {
+            SwingUtilities.invokeAndWait(() -> state.getView().ifPresent(Showable::showIt));
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void hideView(final State state) {
+        try {
+            SwingUtilities.invokeAndWait(() -> state.getView().ifPresent(Showable::hideIt));
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }   
     }
     
     @Override 
     public void stateAction(final State state) {
         this.hideAll();
-        switch (state) {
-        case PLAY:              /* a parte PLAY tutti i rami possono essere eseguiti da EDT */
-            this.level.showIt();
-            this.ctrl.start();
-            break;
-        case EXIT:
-            System.exit(0);
-            break;
-        case OPTIONS:
-            MenuEnum.OPTIONS.getView().showIt();
-            break;
-        default:
-        }
+        state.doAction();
+        this.showView(state);
     }
     
     private void hideAll() {
-        for (final MenuEnum menu: this.menu) {
-            menu.getView().hideIt();
+        for (final State stateView: State.values()) {
+            this.hideView(stateView);
         }
     }
 

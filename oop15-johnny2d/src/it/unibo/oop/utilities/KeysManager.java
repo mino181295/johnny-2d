@@ -34,7 +34,7 @@ public class KeysManager implements KeyboardObserver {
         }
     }
     
-    public static KeysManager getKeysManager() {
+    public static KeysManager getInstance() {
         return SINGLETON;
     }
     
@@ -96,6 +96,9 @@ public class KeysManager implements KeyboardObserver {
             out = tmpList.get(0);
             break;
         case 2:
+            if(tmpList.contains(W) && tmpList.contains(S)) {
+                break;
+            }
             if (tmpList.contains(W)) {
                 if (tmpList.contains(D)) {
                     out = WD;

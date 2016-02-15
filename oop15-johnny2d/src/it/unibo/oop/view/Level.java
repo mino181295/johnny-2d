@@ -19,7 +19,7 @@ public class Level implements LevelInterface {
     private final JFrame frame;
     private final MainKeyListener keyListener;
     
-	public Level() {
+	public Level(final KeyboardObserver obs) {
 	    this.frame = new JFrame(TITLE);
 		this.frame.setSize(SCREEN_DIMENSION);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,6 +29,7 @@ public class Level implements LevelInterface {
 		
 		/* per MainKeyListener */
 		this.keyListener = new MainKeyListener();
+		this.keyListener.addObserver(obs);
         this.frame.addKeyListener(this.keyListener);
         this.frame.setFocusTraversalKeysEnabled(false);
         this.frame.requestFocus(); /* per attivare il key listener */
@@ -40,28 +41,12 @@ public class Level implements LevelInterface {
 	
 	@Override
     public void showIt() {
-	    this.frame.setVisible(true);
-//        try {
-//            SwingUtilities.invokeAndWait(()->this.frame.setVisible(true));
-//            this.frame.repaint();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } 
+	    this.frame.setVisible(true); 
     }
     
     @Override
     public void hideIt() {
         this.frame.setVisible(false);
-//        try {
-//            SwingUtilities.invokeAndWait(()->this.frame.setVisible(false));
-//            // this.frame.repaint();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
     }
 	
 }
