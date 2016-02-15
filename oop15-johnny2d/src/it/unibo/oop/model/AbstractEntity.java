@@ -63,15 +63,18 @@ public abstract class AbstractEntity implements Entity {
 		int tmpWidth = this.getEntityWidth();
 		int tmpHeight = this.getEntityHeight();
 		Dimension tmpDim = new Dimension(tmpWidth,tmpHeight);
-		Point topLeftCorner = new Point(entityPosition.getIntX() - this.getEntityWidth()/2, entityPosition.getIntY() - this.getEntityHeight()/2);
+		Point topLeftCorner = new Point(this.getTopLeftPos().getIntX(), this.getTopLeftPos().getIntY());
 		return new Rectangle(topLeftCorner,tmpDim);
 	}	
-	
+	/**
+	 * Returns true if this entity intersecate another one passed as param.
+	 */
 	public boolean intersecate(final Entity secondEntity){
 		return this.getBounds().intersects(secondEntity.getBounds());
 	}
-	
-	
+	/**
+	 * Attaches another Envirnment to the current Entity.
+	 */
 	public void attachEnvironment(GameState newEnvironment){
 	  this.gameEnvironment = Optional.of(newEnvironment);
 	}
@@ -80,19 +83,16 @@ public abstract class AbstractEntity implements Entity {
 		if (this.gameEnvironment.isPresent()){
 			this.gameEnvironment = Optional.empty();
 		}
-	}
-	
+	}	
 	public boolean hasEnvirnment(){
 		if (this.gameEnvironment.isPresent() ){
 			return true;
 		}
 		return false;
-	}
-	
-	public Optional<GameState> getEnvironment(){
-		return this.gameEnvironment;
-	}
-	 
+	}	
+	public GameState getEnvironment(){
+		return this.gameEnvironment.get();
+	}	 
 	public void removeFromEnvirnment(){
 		gameEnvironment.get().removeEntity(this);
 	}

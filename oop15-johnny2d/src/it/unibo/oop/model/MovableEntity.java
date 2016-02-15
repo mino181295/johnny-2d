@@ -1,4 +1,5 @@
 package it.unibo.oop.model;
+import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
@@ -27,7 +28,7 @@ public abstract class MovableEntity extends AbstractEntity implements Movable {
 		this.movementVector = newMovement;
 	}
 	
-	public abstract boolean checkCollision(Position newPosition);
+	public abstract void checkCollision(Position newPosition) throws CollisionHandlingException;
 	
 	public void setDirection(Vector2 newMovement){
 		this.movementVector = newMovement;
@@ -36,11 +37,7 @@ public abstract class MovableEntity extends AbstractEntity implements Movable {
 	public Vector2 getDirection(){
 		return this.movementVector;
 	}
-	
-	public void setVelocity(Velocity newVelocity){
-		this.speedValues = newVelocity;
-	}
-	
+		
 	public Velocity getVelocity(){
 		return this.speedValues;
 	}

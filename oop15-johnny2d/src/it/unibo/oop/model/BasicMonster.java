@@ -16,8 +16,7 @@ public class BasicMonster extends MovableEntity implements Enemy{
 	public void update(){
 		this.move();
 	}
-	public boolean checkCollision(Position newPosition) {
-		return false;
+	public void checkCollision(Position newPosition) {
 	}
 
 	protected int getEntityHeight() {
