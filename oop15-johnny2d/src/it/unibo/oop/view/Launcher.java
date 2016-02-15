@@ -3,12 +3,14 @@ package it.unibo.oop.view;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Optional;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.StateObserver;
 
 public class Launcher extends BaseMenu {
   
@@ -17,9 +19,9 @@ public class Launcher extends BaseMenu {
     private final JButton options;
     private final JButton quit;
     
-	public Launcher() {
-	    
-		super(TITLE);
+    public Launcher(final StateObserver stateObs) {
+        super(TITLE);
+        this.addObserver(stateObs);
 		
 		/*
 		 * BUTTONS CREATION
@@ -52,18 +54,20 @@ public class Launcher extends BaseMenu {
         @Override
         public void actionPerformed(ActionEvent e) {
             final Object src = e.getSource();
+            Optional<State> state = Optional.empty();
             if (src == Launcher.this.quit) {
                 final int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
                                      "Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.YES_OPTION) {
-                    Launcher.this.doObsAction(obs -> obs.stateAction(State.EXIT));
+                    state = Optional.of(State.EXIT);
                 }
             } else if (src == Launcher.this.options) {
-                Launcher.this.doObsAction(obs -> obs.stateAction(State.OPTIONS));
-            } else if (src == Launcher.this.play) {
-                Launcher.this.doObsAction(obs -> obs.stateAction(State.PLAY));
+                state = Optional.of(State.OPTIONS);
+            } else if (src == Launcher.this.play){
+                state = Optional.of(State.PLAY);
             }
+            state.ifPresent(st -> Launcher.this.doObsAction(
+                            obs -> new Thread(()-> obs.stateAction(st)).start()));
         }
-	
 	}
 }
