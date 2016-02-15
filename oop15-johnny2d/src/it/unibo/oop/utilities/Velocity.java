@@ -20,4 +20,14 @@ public class Velocity{
 		
 	}
 
+	public int getMaxVelocity() {
+		return this.maxVelocity;
+	}
+
+	public int getMinVelocity() {
+		return this.minVelocity;
+	}
+	
+	
+
 }

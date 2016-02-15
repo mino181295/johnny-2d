@@ -26,6 +26,7 @@ public class Bullet extends MovableEntity implements Shot {
 	public Bullet(MainCharacter heroPosition) {
 		this(heroPosition.getX(), heroPosition.getY(), heroPosition.getDirection());
 		this.setInput(heroPosition.getDirection());
+		this.getDirection().norm().scl(this.getVelocity().getMinVelocity());
 	}
 	
 	public void checkCollision(Position newPosition) throws CollisionHandlingException {
@@ -44,24 +45,23 @@ public class Bullet extends MovableEntity implements Shot {
 																	.collect(Collectors.toList());
 		//If collides a wall the bullet dies and gets removed																	
 		if (numWallCollisions > 0){
-			this.removeFromEnvirnment();
+			this.removeFromEnvironment();
 			throw new CollisionHandlingException();
 		}
 		//If the bullet collides with an enemy both die
 		if (enemyCollisions.size() > 0){
 			//Calculates the score obtained killing the monsters
 			int tmpScore = enemyCollisions.stream().map(x -> x.getScoreValue())
-												   .reduce((x,y)->x+y)
+												   .reduce((x,y) -> x+y)
 												   .get();
 			this.getEnvironment().getMainChar().getScore().increaseScore(tmpScore);
+			
 			//Removes the monsters from the envirnoment
-			enemyCollisions.stream().forEach(x -> ((AbstractEntity) x).removeFromEnvirnment());
-			this.removeFromEnvirnment();
+			enemyCollisions.stream().forEach(x -> ((AbstractEntity) x).removeFromEnvironment());
+			this.removeFromEnvironment();
 			//Throws the exception avoiding the next movement
 			throw new CollisionHandlingException();
-		}
-
-		
+		}		
 	}
 	
 	public void update(){
@@ -70,7 +70,7 @@ public class Bullet extends MovableEntity implements Shot {
 			this.move();
 			this.remainingDistance -= this.movementVector.length();
 			if (remainingDistance <= 0){
-				this.removeFromEnvirnment();
+				this.removeFromEnvironment();
 			}
 		} catch (CollisionHandlingException e){
 			System.out.println("Il proiettile ha colliso ed è stato rimosso");

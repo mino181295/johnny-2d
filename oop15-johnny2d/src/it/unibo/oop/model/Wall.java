@@ -2,8 +2,6 @@ package it.unibo.oop.model;
 
 import java.awt.Dimension;
 
-import it.unibo.oop.utilities.Position;
-
 public class Wall extends AbstractEntity{
 	
 	protected final static int WALL_HEIGHT = 32;

@@ -93,7 +93,7 @@ public abstract class AbstractEntity implements Entity {
 	public GameState getEnvironment(){
 		return this.gameEnvironment.get();
 	}	 
-	public void removeFromEnvirnment(){
+	public void removeFromEnvironment(){
 		gameEnvironment.get().removeEntity(this);
 	}
 	

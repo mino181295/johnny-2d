@@ -1,7 +1,5 @@
 package it.unibo.oop.model;
 
-import it.unibo.oop.exceptions.OutOfHealthException;
-
 public class Health implements Feature {
 	
 	private final String HEALTH_TAG = "Health";
@@ -31,12 +29,9 @@ public class Health implements Feature {
 		return this.HEALTH_TAG;
 	}
 	
-	public void decreaseHealth(int damage) throws OutOfHealthException{
+	public void decreaseHealth(int damage){
 		this.currentHealth -= damage; 
-		if (currentHealth < 0){			
-			currentHealth = 0;
-			throw new OutOfHealthException();			
-		}
+		currentHealth = (currentHealth < minHealth ? minHealth : currentHealth);
 	}
 	
 	public void increaseHealth(int heal){
@@ -47,6 +42,14 @@ public class Health implements Feature {
 	public int computePercentage(){
 		double tmp = currentHealth/ (maxHealth-minHealth);
 		return (int)(tmp*100);
+	}
+	
+	public int getCurrentHealth(){
+		return this.currentHealth;
+	}
+	
+	public boolean isDead(){
+		return (this.currentHealth == minHealth);
 	}
 	
 	
