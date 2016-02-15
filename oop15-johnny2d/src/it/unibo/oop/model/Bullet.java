@@ -23,9 +23,7 @@ public class Bullet extends MovableEntity implements Shot {
 		this.setInput(heroPosition.getDirection());
 	}
 
-
-	private int distancePercurred;
-	private final int maxBulletDistance = 10 + new Random().nextInt(10);
+	private double remainingDistance = 10 + new Random().nextInt(10);
 
 	
 	@Override
@@ -61,6 +59,7 @@ public class Bullet extends MovableEntity implements Shot {
 		try {
 			this.checkCollision(this.getPosition().sumVector(movementVector));
 			this.move();
+			this.remainingDistance -= this.movementVector.length();
 		} catch (CollisionHandlingException e){
 			System.out.println("Il proiettile ha colliso ed è stato rimosso");
 		}
@@ -74,13 +73,5 @@ public class Bullet extends MovableEntity implements Shot {
 		return BULLET.getWidth();
 	}
 
-	@Override
-	public int getDistancePercurred() {
-		return this.distancePercurred;
-	}
-
-	
-	
-	
 
 }
