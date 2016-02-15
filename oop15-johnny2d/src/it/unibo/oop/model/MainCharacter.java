@@ -15,6 +15,8 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	
 	public MainCharacter(int startingX, int startingY, Vector2 movementVector, Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
+		currentHealth = new Health(3);
+		currentScore = new Score(0);
 	}
 	
 	public MainCharacter(Vector2 movementVector, Velocity speedValue) {
@@ -46,6 +48,10 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		return MAIN_CHARACTER.getWidth();
 	}
 
+	public Score getScore(){
+		return this.currentScore;
+	}
+	
 	public void shoot() {
 		this.getEnvironment().addShoot(new Bullet(this));		
 	}

@@ -8,6 +8,8 @@ import it.unibo.oop.utilities.Velocity;;
 
 public class BasicMonster extends MovableEntity implements Enemy{
 
+	private static final int SCORE_VALUE = 10;
+	
 	public BasicMonster(int startingX, int startingY, Vector2 movementVector, Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
 		// TODO Auto-generated constructor stub
@@ -25,6 +27,11 @@ public class BasicMonster extends MovableEntity implements Enemy{
 
 	protected int getEntityWidth() {
 		return BASIC_ENEMY.getWidth();
+	}
+
+	@Override
+	public int getScoreValue() {
+		return this.SCORE_VALUE;
 	}
 
 	

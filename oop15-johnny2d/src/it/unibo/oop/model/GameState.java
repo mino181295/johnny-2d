@@ -34,6 +34,8 @@ public interface GameState {
     
     public List<AbstractEntity> getMovableList(); 
     
+    public MainCharacter getMainChar();
+    
     public void updatePositions();
     
 }

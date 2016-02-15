@@ -50,5 +50,9 @@ public class GameStateImpl implements GameState {
 	public List<AbstractEntity> getMovableList() {
 		return new ArrayList<>(this.movableList);
 	}
+	
+	public MainCharacter getMainChar() {
+		return this.johnnyCharacter;
+	}
     
 }

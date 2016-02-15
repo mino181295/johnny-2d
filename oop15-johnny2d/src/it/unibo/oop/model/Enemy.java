@@ -9,5 +9,7 @@ public interface Enemy {
 	public Position getNextPosition();	
 	
 	*/
+	
+	int getScoreValue();
 
 }
