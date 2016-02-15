@@ -10,7 +10,6 @@ public class BasicMonster extends AbstractEnemy{
 
 	public BasicMonster(int startingX, int startingY, Vector2 movementVector, Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
-		// TODO Auto-generated constructor stub
 	}
 
 	private final int SCORE_VALUE = 10;
@@ -38,8 +37,6 @@ public class BasicMonster extends AbstractEnemy{
 	@Override
 	public int getDamage() {
 		return this.DMG;
-	}
-
-	
+	}	
 
 }
