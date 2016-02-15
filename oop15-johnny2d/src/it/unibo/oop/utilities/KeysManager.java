@@ -21,13 +21,12 @@ public class KeysManager implements KeyboardObserver {
     private static final KeysManager SINGLETON = new KeysManager();
     
     private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length; 
-    private final List<KeyCommands> keysPressed; /* elementi rimossi da KeyRelease event: indica tasti premuti PROLUNGATAMENTE */
+    private List<KeyCommands> keysPressed; /* elementi rimossi da KeyRelease event: indica tasti premuti PROLUNGATAMENTE */
     private List<KeyCommands> keysTyped;         /* svuotata ad ogni frame: indica tasti premuti NON prolungatamente*/
     private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
     
     private KeysManager() {
-        this.keysPressed = new ArrayList<>();
-        this.keysTyped = new ArrayList<>();     /*lista perché più tasti alla volta potrebbero essere typed p.e. M tasti direzione e 1 spara */
+        this.reset();    
         this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
         for (final KeyCommands cmd: KeyCommands.class.getEnumConstants()) {
             this.mapVKCodeToKeyCmd.put(cmd.getVkCode(), cmd);
@@ -36,6 +35,11 @@ public class KeysManager implements KeyboardObserver {
     
     public static KeysManager getInstance() {
         return SINGLETON;
+    }
+    
+    public void reset() {
+        this.keysPressed = new ArrayList<>();
+        this.keysTyped = new ArrayList<>(); /*lista perché più tasti alla volta potrebbero essere typed p.e. M tasti direzione e 1 spara */
     }
     
     /*

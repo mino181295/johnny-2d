@@ -2,6 +2,7 @@ package it.unibo.oop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import it.unibo.oop.utilities.Direction;
 
@@ -10,12 +11,12 @@ public class GameStateImpl implements GameState {
     private static final GameState SINGLETON = new GameStateImpl();
     private List<MovableEntity> movableList;
     private List<AbstractEntity> stableList;
-    private final MainCharacter johnnyCharacter;
+    private Optional<MainCharacter> johnnyCharacter;
     
     private GameStateImpl() {
         this.movableList = new ArrayList<>();
         this.stableList = new ArrayList<>();
-        johnnyCharacter = new MainCharacter();
+        johnnyCharacter = Optional.of(new MainCharacter());
      
     }
     
@@ -36,7 +37,7 @@ public class GameStateImpl implements GameState {
     }
 
     public void updateHeroPos(final Direction newDirection, final boolean isShooting ) {
-        johnnyCharacter.update(newDirection, isShooting);
+        johnnyCharacter.ifPresent(c -> c.update(newDirection, isShooting));
     }
 
 	public void addShoot(Bullet newBullet) {
@@ -51,7 +52,7 @@ public class GameStateImpl implements GameState {
 		return new ArrayList<>(this.movableList);
 	}
 	
-	public MainCharacter getMainChar() {
+	public Optional<MainCharacter> getMainChar() {
 		return this.johnnyCharacter;
 	}
     

@@ -1,13 +1,9 @@
 package it.unibo.oop.view;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
-
 import it.unibo.oop.controller.StateObserver;
 
 public abstract class BaseMenu implements MenuInterface {

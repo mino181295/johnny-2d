@@ -21,8 +21,9 @@ public class GameLoopAgent implements Runnable {
         this.loop = true;
     }
     
-    public void start() {
+    public synchronized void play() {
         this.loop = true;
+        this.notify();
     }
     
     public void stop() {
@@ -34,18 +35,28 @@ public class GameLoopAgent implements Runnable {
     }
     
     @Override
-    public void run() {
+    public synchronized void run() {
         /* GAME LOOP */
-        while (loop) {
-            /* valutare l'aggiunta di una wait per far eseguire eventuali eventi di key releasing (onde evitare che un tasto sia processato
+        while (true) {
+          
+            while(!loop) {
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            /* valutare l'aggiunta di un ulteriore wait per far eseguire eventuali eventi di key releasing (onde evitare che un tasto sia processato
              * più volte in caso di un tasso di FPS elevato)
              */
+            
             /* CHECK GIOCO FINITO/DA INIZIARE */
             this.processKeys();
             this.dbgKeysMan();        /* per debugging */
             /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
             /* chiamo V che si aggiorna e disegna frame*/
             this.viewsMan.getLevel().showIt();
+            this.checkPause();
             try {
                 Thread.sleep(SLEEPING_TIME);
             } catch (InterruptedException e) {
@@ -55,11 +66,14 @@ public class GameLoopAgent implements Runnable {
     }
     
     private void processKeys() {
+        this.pgIsShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
+        this.pgDir = this.keysMan.getDirection(); 
+    }
+    
+    private void checkPause() {
         if (this.keysMan.isAKeyPressed(KeyCommands.ESC)) {
             this.viewsMan.stateAction(State.PAUSE);
         }
-        this.pgIsShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
-        this.pgDir = this.keysMan.getDirection(); 
     }
     
     /* per debug */

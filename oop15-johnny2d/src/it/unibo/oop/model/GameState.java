@@ -1,6 +1,7 @@
 package it.unibo.oop.model;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -34,7 +35,7 @@ public interface GameState {
     
     public List<AbstractEntity> getMovableList(); 
     
-    public MainCharacter getMainChar();
+    public Optional<MainCharacter> getMainChar();
     
     public void updatePositions();
     
