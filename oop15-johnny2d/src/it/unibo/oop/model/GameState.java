@@ -1,6 +1,6 @@
 package it.unibo.oop.model;
 
-import it.unibo.oop.utilities.Direction;
+import java.util.List;
 
 /**
  * 
@@ -28,7 +28,12 @@ public interface GameState {
      */
     public void removeEntity(final Entity entity);
     
+    public void addShoot(Bullet newBullet);
+    
+    public List<AbstractEntity> getStableList();
+    
+    public List<AbstractEntity> getMovableList(); 
+    
     public void updatePositions();
     
-    public void updateHeroPos(final Direction d);
 }

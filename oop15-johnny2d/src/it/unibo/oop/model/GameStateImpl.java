@@ -8,13 +8,14 @@ import it.unibo.oop.utilities.Direction;
 public class GameStateImpl implements GameState {
 
     private static final GameState SINGLETON = new GameStateImpl();
-    private List<MovableEntity> entyList;
-    private List<AbstractEntity> absEntyList;
-    private final MainCharacter johnny;
+    private List<MovableEntity> movableList;
+    private List<AbstractEntity> stableList;
+    private final MainCharacter johnnyCharacter;
     
     private GameStateImpl() {
-        this.entyList = new ArrayList<>();
-        this.absEntyList = new ArrayList<>();
+        this.movableList = new ArrayList<>();
+        this.stableList = new ArrayList<>();
+        johnnyCharacter = new MainCharacter();
      
     }
     
@@ -23,32 +24,31 @@ public class GameStateImpl implements GameState {
     }
     
     @Override
-    public void initialize(int level) {
-        // TODO Auto-generated method stub
-
+    public void initialize(int levelNumber) {
     }
 
     @Override
     public void removeEntity(Entity entity) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void updatePositions() {
-        // TODO Auto-generated method stub
-
     }
 
-    @Override
-    public void updateHeroPos(final Direction d) {
-        johnny.
+    public void updateHeroPos(final Direction newDirection, final boolean isShooting ) {
+        johnnyCharacter.update(newDirection, isShooting);
     }
-    
-//    @Override
-//    public void updateHeroPos(final Direction d) {
-//            
-//    }
-    
 
+	public void addShoot(Bullet newBullet) {
+		this.movableList.add(newBullet);
+	}
+
+	public List<AbstractEntity> getStableList() {
+		return new ArrayList<>(this.stableList);
+	}
+	
+	public List<AbstractEntity> getMovableList() {
+		return new ArrayList<>(this.movableList);
+	}
+    
 }
