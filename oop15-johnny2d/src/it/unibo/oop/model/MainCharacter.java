@@ -40,7 +40,7 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	}
 
 	public void checkCollision(Position newPosition) throws CollisionHandlingException {	
-		MainCharacter tmpJohnny = new MainCharacter(newPosition.getIntX(), newPosition.getIntY(),this.movementVector, this.speedValues);
+		MainCharacter tmpJohnny = new MainCharacter(newPosition.getIntX(), newPosition.getIntY(),this.getMovement(), this.getVelocity());
 		//Counting the number of collided walls (Usually 1)
 		long numWallCollisions = this.getEnvironment().getStableList().stream()
 				  													  .filter(x -> x instanceof Wall)

@@ -1,6 +1,6 @@
 package it.unibo.oop.model;
 
-public class Health implements Feature {
+public class Health {
 	
 	private final String HEALTH_TAG = "Health";
 	public static final int DEFAULT_HEALTH = 3;

@@ -5,7 +5,7 @@ import static it.unibo.oop.utilities.CharactersSettings.*;
 public class HealthBonus extends AbstractEntity implements Collectable{
 
 
-	public HealthBonus(int startingX, int startingY) {
+	public HealthBonus(double startingX, double startingY) {
 		super(startingX, startingY);
 	}
 

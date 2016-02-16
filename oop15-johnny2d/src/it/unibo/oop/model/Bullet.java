@@ -18,7 +18,7 @@ public class Bullet extends MovableEntity implements Shot {
 
 	private double remainingDistance = 10 + new Random().nextInt(10);
 	
-	public Bullet(int startingX, int startingY, Vector2 movementVector) {
+	public Bullet(double startingX, double startingY, Vector2 movementVector) {
 		super(startingX, startingY, movementVector, BULLET.getSpeed());
 		this.setMovement(movementVector);
 	}
@@ -32,8 +32,8 @@ public class Bullet extends MovableEntity implements Shot {
 	}
 	
 	public void checkCollision(Position newPosition) throws CollisionHandlingException {
-		// Creation of the bullet in the next position
-		Bullet tmpBullet = new Bullet(newPosition.getIntX(),newPosition.getIntY(),this.movementVector);
+		// Creation of the bullet in the next position (TODO Factory)
+		Bullet tmpBullet = new Bullet(newPosition.getIntX(),newPosition.getIntY(),this.getMovement());
 		//Counting how mutch walls it collides (Usually 1)
 		long numWallCollisions = this.getEnvironment().getStableList().stream()
 											 						  .filter(x -> x instanceof Wall)
@@ -72,10 +72,10 @@ public class Bullet extends MovableEntity implements Shot {
 			Vector2 newMovement = this.getMovement().setLength(this.getVelocity().accelerate(this.getMovement().length()));			
 			this.setMovement(newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity()));
 			//Check if there are collision in the new position
-			this.checkCollision(this.getPosition().sumVector(movementVector));
+			this.checkCollision(this.getPosition().sumVector(this.getMovement()));
 			//moves if no exception
 			this.move();
-			this.remainingDistance -= this.movementVector.length();
+			this.remainingDistance -= this.getMovement().length();
 			if (remainingDistance <= 0){
 				this.removeFromEnvironment();
 			}
