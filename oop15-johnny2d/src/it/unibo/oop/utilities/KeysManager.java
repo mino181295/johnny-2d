@@ -94,7 +94,7 @@ public class KeysManager implements KeyboardObserver {
         
         this.processKeys(this.keysPressed, tmpList);
         this.processKeys(this.keysTyped, tmpList);
-        this.keysTyped = new ArrayList<>(); /* resetto le keysTyped */
+       
         switch (tmpList.size()) {
         case 1:
             out = tmpList.get(0);
@@ -118,7 +118,9 @@ public class KeysManager implements KeyboardObserver {
             }
             break;
         }
-        
+       
+        this.keysTyped = new ArrayList<>(); /* resetto le keysTyped */
+        // System.out.println("esc pressed: " + this.isAKeyPressed(ESC));
         return out.getDir();
     }
 
@@ -164,6 +166,7 @@ public class KeysManager implements KeyboardObserver {
         if (cmd.isPresent() && this.keysPressed.contains(cmd.get())) {
             this.keysPressed.remove(cmd.get()); /* rimuovo solo le keys premute a lungo; se era typed rimane in lista finché
             non viene disegnato il frame */
+           // System.out.println(cmd.get() + " removed.");
         }
     }
     

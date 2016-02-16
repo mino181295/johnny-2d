@@ -15,7 +15,7 @@ public class GameLoopAgent implements Runnable {
     private final ViewsManager viewsMan = ViewsManager.getInstance();
     private volatile Direction pgDir;
     private volatile boolean pgIsShooting;
-    private volatile boolean loop;
+    private volatile boolean loop; /* default false */
     
     public GameLoopAgent() {
         this.loop = true;
@@ -30,17 +30,13 @@ public class GameLoopAgent implements Runnable {
         this.loop = false;
     }
     
-    public boolean isPaused() {
-        return !this.loop;
-    }
-    
     @Override
     public synchronized void run() {
         /* GAME LOOP */
         while (true) {
-          
             while(!loop) {
                 try {
+                    this.viewsMan.stateAction(State.PAUSE);
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -56,7 +52,6 @@ public class GameLoopAgent implements Runnable {
             /* chiamo C passandogli la direzione del pg e l'azione (spara o no) */
             /* chiamo V che si aggiorna e disegna frame*/
             this.viewsMan.getLevel().showIt();
-            this.checkPause();
             try {
                 Thread.sleep(SLEEPING_TIME);
             } catch (InterruptedException e) {
@@ -66,13 +61,14 @@ public class GameLoopAgent implements Runnable {
     }
     
     private void processKeys() {
+        this.checkPause();
         this.pgIsShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
-        this.pgDir = this.keysMan.getDirection(); 
+        this.pgDir = this.keysMan.getDirection(); // rimuovo le KeysTyped.
     }
     
     private void checkPause() {
         if (this.keysMan.isAKeyPressed(KeyCommands.ESC)) {
-            this.viewsMan.stateAction(State.PAUSE);
+            this.loop = false;
         }
     }
     

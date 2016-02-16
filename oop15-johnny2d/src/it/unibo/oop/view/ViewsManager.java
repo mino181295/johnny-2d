@@ -40,6 +40,13 @@ public class ViewsManager implements StateObserver {
         return this.level;
     }
     
+    @Override 
+    public void stateAction(final State state) {
+        this.hideAll();
+        state.doAction();
+        this.showView(state);
+    }
+    
     public void showView(final State state) {
         if (state.getView().isPresent()) {
             final Showable view = state.getView().get();
@@ -66,13 +73,6 @@ public class ViewsManager implements StateObserver {
                 e.printStackTrace();
             }
         }
-    }
-    
-    @Override 
-    public void stateAction(final State state) {
-        this.hideAll();
-        state.doAction();
-        this.showView(state);
     }
     
     private void hideAll() {

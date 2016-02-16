@@ -64,7 +64,7 @@ public class Launcher extends BaseMenu {
             } else if (src == Launcher.this.options) {
                 state = Optional.of(State.OPTIONS);
             } else if (src == Launcher.this.play){
-                state = Optional.of(State.PLAY);
+                state = Optional.of(State.START);
             }
             state.ifPresent(st -> Launcher.this.doObsAction(
                             obs -> new Thread(()-> obs.stateAction(st)).start()));

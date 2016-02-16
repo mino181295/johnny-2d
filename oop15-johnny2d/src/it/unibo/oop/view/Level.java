@@ -1,6 +1,8 @@
 package it.unibo.oop.view;
 
 import static it.unibo.oop.utilities.Settings.SCREEN_DIMENSION;
+
+import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -21,7 +23,7 @@ public class Level implements LevelInterface {
     
 	public Level(final KeyboardObserver obs) {
 	    this.frame = new JFrame(TITLE);
-		this.frame.setSize(SCREEN_DIMENSION);
+	    this.frame.setSize(SCREEN_DIMENSION);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
