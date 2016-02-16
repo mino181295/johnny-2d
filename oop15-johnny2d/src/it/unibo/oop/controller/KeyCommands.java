@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
  * @author Paolo
  *
  * Enum defining which keys can be pressed during the gameplay.
- * each keys could be customize simply modifying the first param.
+ * NOTE: the keyboard layout can be customize simply modifying the VK_Code of the keys.
  *  
  */
 public enum KeyCommands {
