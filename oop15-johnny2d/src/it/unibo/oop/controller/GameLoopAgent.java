@@ -1,13 +1,12 @@
 package it.unibo.oop.controller;
 
 import static it.unibo.oop.utilities.Direction.NONE;
-
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.KeysManager;
 import it.unibo.oop.view.ViewsManager;
 
-public class GameLoopAgent implements Runnable {
-    
+public class GameLoopAgent implements AgentInterface {
+
     private final static double FPS = 10;
     private final static int TO_SECONDS = 1000;
     private final static int SLEEPING_TIME = (int)(1/FPS * TO_SECONDS);
@@ -16,20 +15,16 @@ public class GameLoopAgent implements Runnable {
     private volatile Direction pgDir;
     private volatile boolean pgIsShooting;
     private volatile boolean loop; /* default false */
-    
+
     public GameLoopAgent() {
         this.loop = true;
     }
-    
+
     public synchronized void play() {
         this.loop = true;
         this.notify();
     }
-    
-    public void stop() {
-        this.loop = false;
-    }
-    
+
     @Override
     public synchronized void run() {
         /* GAME LOOP */
@@ -45,7 +40,7 @@ public class GameLoopAgent implements Runnable {
             /* valutare l'aggiunta di un ulteriore wait per far eseguire eventuali eventi di key releasing (onde evitare che un tasto sia processato
              * più volte in caso di un tasso di FPS elevato)
              */
-            
+
             /* CHECK GIOCO FINITO/DA INIZIARE */
             this.processKeys();
             this.dbgKeysMan();        /* per debugging */
@@ -59,19 +54,13 @@ public class GameLoopAgent implements Runnable {
             }
         }        
     }
-    
+
     private void processKeys() {
-        this.checkPause();
+        this.loop = !this.keysMan.isAKeyPressed(KeyCommands.ESC);
         this.pgIsShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
         this.pgDir = this.keysMan.getDirection(); // rimuovo le KeysTyped.
     }
-    
-    private void checkPause() {
-        if (this.keysMan.isAKeyPressed(KeyCommands.ESC)) {
-            this.loop = false;
-        }
-    }
-    
+
     /* per debug */
     private void dbgKeysMan() {
         if (this.pgDir != NONE) {

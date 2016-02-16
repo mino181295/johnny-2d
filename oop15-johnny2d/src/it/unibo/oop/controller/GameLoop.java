@@ -14,7 +14,7 @@ import it.unibo.oop.view.ViewsManager;
 public class GameLoop implements Controller {
 
     private static final GameLoop SINGLETON = new GameLoop();
-    private Optional<GameLoopAgent> gLAgent = Optional.empty();
+    private Optional<AgentInterface> gLAgent = Optional.empty();
 
     private GameLoop() {
         ViewsManager.getInstance().showView(State.LAUNCHING);
@@ -31,6 +31,7 @@ public class GameLoop implements Controller {
         this.play();
     }
  
+    @Override
     public void play() { // pause -> play                       
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());

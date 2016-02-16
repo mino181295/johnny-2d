@@ -29,7 +29,6 @@ public class ViewsManager implements StateObserver {
     
     private ViewsManager() {
         this.level = new Level(KeysManager.getInstance());
-        level.addObserver(KeysManager.getInstance()); 
     }
     
     public static ViewsManager getInstance() {
@@ -47,6 +46,7 @@ public class ViewsManager implements StateObserver {
         this.showView(state);
     }
     
+    /* show/hide view da fattorizzare */
     public void showView(final State state) {
         if (state.getView().isPresent()) {
             final Showable view = state.getView().get();

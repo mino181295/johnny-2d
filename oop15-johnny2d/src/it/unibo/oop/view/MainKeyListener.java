@@ -18,52 +18,42 @@ import it.unibo.oop.controller.KeyboardObserver;
 public class MainKeyListener implements KeyListener {
 
     private final List<KeyboardObserver> obsList;
-    
+
     /**
-     * 
      * @param gL
      *          a {@link GameLoop} instance
-     * 
      */
     public MainKeyListener(final List<KeyboardObserver> obs) {
         this.obsList = obs;
     }
-    
+
     public MainKeyListener() {
         this.obsList = new ArrayList<>();
     }
-    
+
     public void addObserver(final KeyboardObserver obs) {
         this.obsList.add(obs);
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) {
-        this.obsList.forEach(elem -> {
-            new Thread(() -> {
-                elem.keyPressed(e.getKeyCode());
-            }).start();
-        });
-      //  System.out.println("-----------------> pressed");
+        this.action(e.getKeyCode(), e.getID());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        this.obsList.forEach(elem -> {
-            new Thread(() -> {
-                elem.keyReleased(e.getKeyCode());
-            }).start();
-        });
-  //      System.out.println("released");
+        this.action(e.getKeyCode(), e.getID());
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-//        this.obsList.forEach(elem -> {
-//            new Thread(() -> {
-//                elem.keyTyped(e.getKeyChar());
-//            }).start();
-//        });
-//        System.out.println("-----------------> typed");
+    }
+
+    private void action(final int keyCode, final int eventID) {
+        this.obsList.forEach(elem -> {
+            new Thread(() -> {
+                elem.keyAction(keyCode, eventID);
+            }).start();
+        });
     }
 }
