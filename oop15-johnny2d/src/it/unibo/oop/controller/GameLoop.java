@@ -20,28 +20,24 @@ public class GameLoop implements Controller {
         ViewsManager.getInstance().showView(State.LAUNCHING);
     }
     
-    public static GameLoop getInstance() {
+    public static Controller getInstance() {
         return SINGLETON;
     }
 
     @Override
     public void start() { // launcher -> play / pause -> replay
-        // GameStateImpl.getInstance().initialize(0);
+        // GameStateImpl.getInstance().initialize(0); deve implicare l'inizializzazione anche della view Level.
         KeysManager.getInstance().reset();
         this.play();
     }
-
-    // generando sempre un nuovo thread anziché usare wait e signal ottengo una gestione più semplice 
+ 
     public void play() { // pause -> play                       
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
             new Thread(this.gLAgent.get()).start();
+        } else {
+            this.gLAgent.get().play(); 
         }
-        this.gLAgent.get().play();
-    }
-    
-    public void stop() {
-        this.gLAgent.get().stop();
     }
 
     public static void main(String[] args) {

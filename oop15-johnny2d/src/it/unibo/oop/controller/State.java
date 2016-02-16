@@ -25,7 +25,7 @@ public enum State {
     LAUNCHING(Optional.of(new Launcher(ViewsManager.getInstance())), Optional.of(() -> 
                                        ViewsManager.getInstance().getLevel().hideIt())),
     OPTIONS(Optional.of(new OptionsMenu(ViewsManager.getInstance())), Optional.empty()),
-    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.of(() -> GameLoop.getInstance().stop())),
+    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.empty()),/*of(() -> GameLoop.getInstance().stop())),*/
     BACK(Optional.empty(), Optional.of(() -> ViewsManager.getInstance().showLast()));
     
     

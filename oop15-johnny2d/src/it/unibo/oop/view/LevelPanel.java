@@ -1,5 +1,7 @@
 package it.unibo.oop.view;
 
+import static it.unibo.oop.utilities.Settings.SCREEN_DIMENSION;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
