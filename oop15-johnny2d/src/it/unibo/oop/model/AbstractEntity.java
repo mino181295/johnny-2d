@@ -13,10 +13,10 @@ import it.unibo.oop.utilities.Position;
  */
 public abstract class AbstractEntity implements Entity {
 	
-	protected Position entityPosition; 
-	protected Optional<GameState> gameEnvironment;
+	private Position entityPosition; 
+	private Optional<GameState> gameEnvironment; //TODO assegnamento alla getInstance statica
 
-	public AbstractEntity(int startingX, int startingY){
+	public AbstractEntity(double startingX, double startingY){
 		this.entityPosition = new Position(startingX,startingY);
 	}
 	/**
@@ -26,31 +26,29 @@ public abstract class AbstractEntity implements Entity {
 		return this.entityPosition;
 	}
 	/**
+	 * Setter of the position of the {@link Entity}
+	 */
+	public void setPosition(Position newPosition) {
+		this.entityPosition = newPosition;
+	}
+	/**
 	 * Get the X position of an entity
 	 * @return
 	 */
-	public int getX(){
-		return entityPosition.getIntX();
+	public double getX(){
+		return entityPosition.getX();
 	}
 	/**
 	 * Get the Y position of an entity
 	 * @return
 	 */
-	public int getY(){
-		return entityPosition.getIntY();
+	public double getY(){
+		return entityPosition.getY();
 	}
 	
 	public boolean equalsPosition(final Position newPosition){
 		return entityPosition.equals(newPosition);		
 	}
-	/**
-	 * Gets the shape Height of the current Object
-	 */
-	protected abstract int getEntityHeight();
-	/**
-	 * Gets the shape Width of the current Object
-	 */
-	protected abstract int getEntityWidth();
 	
 	public Position getTopLeftPos(){
 		return new Position(entityPosition.getIntX() - this.getEntityWidth()/2, entityPosition.getIntY() - this.getEntityHeight()/2);
@@ -72,6 +70,14 @@ public abstract class AbstractEntity implements Entity {
 	public boolean intersecate(final Entity secondEntity){
 		return this.getBounds().intersects(secondEntity.getBounds());
 	}
+	/**
+	 * Gets the shape Height of the current Object
+	 */
+	protected abstract int getEntityHeight();
+	/**
+	 * Gets the shape Width of the current Object
+	 */
+	protected abstract int getEntityWidth();
 	/**
 	 * Attaches another Envirnment to the current Entity.
 	 */

@@ -1,10 +1,8 @@
 package it.unibo.oop.model;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class Score implements Feature, Serializable {
+public class Score implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,17 +16,6 @@ public class Score implements Feature, Serializable {
 	
 	public void increaseScore(int value){
 		this.currentScore += value;
-	}
-	
-	public void writeScoreOnFile(String filePath){
-		try(
-			FileOutputStream fos = new FileOutputStream(filePath);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);				
-		){
-			oos.writeObject(this);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 	
 	public String getName() {

@@ -39,7 +39,7 @@ public class GameStateImpl implements GameState {
     			((Bullet) currentE).update();
     		}
     		if (currentE instanceof Enemy){
-    			((Bullet) currentE).update();
+    			//TODO ((Enemy) currentE).update();
     		}
     	}
     	//this.updateHeroPos(newDirection, isShooting);

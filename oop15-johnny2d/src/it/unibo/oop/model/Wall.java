@@ -4,7 +4,7 @@ import static it.unibo.oop.utilities.CharactersSettings.*;
 
 public class Wall extends AbstractEntity{
 	
-	public Wall(int startingX, int startinY) {
+	public Wall(double startingX, double startinY) {
 		super(startingX, startinY);
 	}
 	
