@@ -56,7 +56,7 @@ public class Bullet extends MovableEntity implements Shot {
 			int tmpScore = enemyCollisions.stream().map(x -> x.getScoreValue())
 												   .reduce((x,y) -> x+y)
 												   .get();
-			this.getEnvironment().getMainChar().getScore().increaseScore(tmpScore);
+			this.getEnvironment().getMainChar().get().getScore().increaseScore(tmpScore);
 			
 			//Removes the monsters from the envirnoment
 			enemyCollisions.stream().forEach(x -> ((AbstractEntity) x).removeFromEnvironment());

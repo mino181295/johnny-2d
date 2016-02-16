@@ -72,5 +72,8 @@ public class GameStateImpl implements GameState {
 	public Optional<MainCharacter> getMainChar() {
 		return this.johnnyCharacter;
 	}
-    
+	
+    public void killMainChar(){
+    	this.johnnyCharacter = Optional.empty();
+    }
 }

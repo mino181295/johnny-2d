@@ -21,7 +21,7 @@ public class BasicMonster extends AbstractEnemy{
 	
 	
 	public void update(){
-		this.setMovement(this.getBehavior().getNextMove(this.getEnvironment().getMainChar().getPosition()));
+		this.setMovement(this.getBehavior().getNextMove(this.getEnvironment().getMainChar().get().getPosition()));
 			try {
 				this.checkCollision(this.getPosition().sumVector(movementVector));
 				this.move();

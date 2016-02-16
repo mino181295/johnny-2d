@@ -35,6 +35,8 @@ public interface GameState {
     
     public void addStableEntity(AbstractEntity newEntity);
     
+    public void killMainChar();
+    
     public List<AbstractEntity> getStableList();
     
     public List<AbstractEntity> getMovableList(); 
