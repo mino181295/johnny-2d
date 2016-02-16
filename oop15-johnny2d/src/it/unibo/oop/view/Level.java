@@ -32,7 +32,7 @@ public class Level implements LevelInterface {
 		this.keyListener.addObserver(obs);
         this.frame.addKeyListener(this.keyListener);
         this.frame.setFocusTraversalKeysEnabled(false);
-        this.frame.requestFocus(); /* per attivare il key listener */
+       // this.frame.requestFocus(); /* per attivare il key listener */
 	}
 	
 	public void addObserver(final KeyboardObserver obs) {

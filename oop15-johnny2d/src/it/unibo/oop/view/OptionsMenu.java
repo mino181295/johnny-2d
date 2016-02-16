@@ -33,6 +33,6 @@ public class OptionsMenu extends BaseMenu {
         this.addComponent(back);
         
         /* ACTIONS */
-        back.addActionListener(e -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(State.LAUNCHING)).start()));
+        back.addActionListener(e -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(State.BACK)).start()));
     }  
 }

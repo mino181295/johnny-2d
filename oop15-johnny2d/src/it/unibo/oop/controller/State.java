@@ -22,9 +22,12 @@ public enum State {
     EXIT(Optional.empty(), Optional.of(() -> System.exit(0))),
     
     /* With View */
-    LAUNCHING(Optional.of(new Launcher(ViewsManager.getInstance())), Optional.empty()),
+    LAUNCHING(Optional.of(new Launcher(ViewsManager.getInstance())), Optional.of(() -> 
+                                       ViewsManager.getInstance().getLevel().hideIt())),
     OPTIONS(Optional.of(new OptionsMenu(ViewsManager.getInstance())), Optional.empty()),
-    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.of(() -> GameLoop.getInstance().stop()));
+    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.of(() -> GameLoop.getInstance().stop())),
+    BACK(Optional.empty(), Optional.of(() -> ViewsManager.getInstance().showLast()));
+    
     
     private Optional<Showable> view = Optional.empty();
     private Optional<Runnable> action = Optional.empty();

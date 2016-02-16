@@ -1,12 +1,6 @@
 package it.unibo.oop.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Optional;
-
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
@@ -38,6 +32,12 @@ public class PauseMenu extends BaseMenu {
         this.addComponent(resume);
         this.addComponent(options);
         this.addComponent(mainMenu);
+        
+        replay.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.START)).start()));
+        resume.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.PLAY)).start()));
+        options.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.OPTIONS)).start()));
+        mainMenu.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.LAUNCHING)).start()));
+        
     }
     
 //    /* ACTIONS */
