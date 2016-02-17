@@ -33,9 +33,9 @@ public class LevelPanel extends BackgroundPanel {
 	public LevelPanel() {
 		super("/background.jpg");
 		this.mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
-		this.mainCharacterSprites = mainCharacterSheet.split(SPRITES_WIDTH, SPRITES_HEIGHT);
+		this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
 		this.enemySheet = new SpriteSheet("/enemy.png");
-		this.enemySprites = enemySheet.split(SPRITES_WIDTH, SPRITES_HEIGHT);
+		this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
 		this.stats = new JLabel();
 		this.stats.setFont(new Font("Verdana", 1, 20));
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
