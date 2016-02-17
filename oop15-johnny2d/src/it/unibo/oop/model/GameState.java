@@ -5,7 +5,7 @@ import java.util.Optional;
 
 /**
  * 
- * @author Paolo + Matteo
+ * @author Paolo Venturi + Matteo Minardi
  *
  * Interface for game state 
  */
