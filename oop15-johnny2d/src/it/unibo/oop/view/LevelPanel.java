@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import static it.unibo.oop.utilities.CharactersSettings.*;
 
 /**
  * The panel containing the graphics elements of the
@@ -16,8 +16,6 @@ import javax.swing.JPanel;
 public class LevelPanel extends BackgroundPanel {
 
 	private static final long serialVersionUID = 8057405927611227670L;
-	private static final int SPRITES_WIDTH = 32;
-	private static final int SPRITES_HEIGHT = 48;
 	private static final int FRONT_INDEX = 0;
 	private static final int LEFT_INDEX = 1;
 	private static final int RIGHT_INDEX = 2;
@@ -32,7 +30,7 @@ public class LevelPanel extends BackgroundPanel {
 	/**
 	 * Builds the panel.
 	 */
-	public LevelPanel(String name) {
+	public LevelPanel() {
 		super("/background.jpg");
 		this.mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
 		this.mainCharacterSprites = mainCharacterSheet.split(SPRITES_WIDTH, SPRITES_HEIGHT);
