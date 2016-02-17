@@ -29,7 +29,11 @@ public class Velocity{
 	 */
 	public double accelerate(double currentVelocity){
 		double newVelocity = currentVelocity + velocityScale;
-		return newVelocity>maxVelocity?maxVelocity:newVelocity;
+		//If it goes over the top speed it caps to it
+		newVelocity = newVelocity>maxVelocity?maxVelocity:newVelocity;
+		//If it's unde the min speed it starts form the min speed
+		newVelocity = newVelocity<minVelocity?minVelocity:newVelocity;
+		return newVelocity;
 	}
 	/**
 	 * Getter for the maxVelocity of the {@link Entity}

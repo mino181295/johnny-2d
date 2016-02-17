@@ -11,7 +11,11 @@ import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Settings;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;
-
+/**
+ * 
+ * @author Matteo Minardi
+ *
+ */
 public class MainCharacter extends MovableEntity implements Shooter{
 
 	private Health currentHealth;
@@ -32,14 +36,29 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	}
 	
 	public void update(Direction newDirection , boolean isShooting){
-		this.setMovement(newDirection.getVector2());
-		this.move();
-		if (isShooting){
-			this.shoot();
+		//If the main character is accelerating
+		Vector2 newMovement;
+		try {
+			if (newDirection != Direction.NONE){
+				newMovement = this.getMovement().setLength(this.getVelocity().accelerate(this.getMovement().length()));
+			} else {
+				newMovement = this.getMovement().setLength(this.getVelocity().slow(this.getMovement().length()));
+			}
+			this.setMovement(newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity()));
+			this.checkCollision(this.getPosition().sumVector(this.getMovement()));
+			this.move();	
+		} catch (CollisionHandlingException e) {
+			
+		} finally {
+			if (isShooting && !this.currentHealth.isDead()){
+				this.shoot();
+			}
 		}
+		
 	}
 
 	public void checkCollision(Position newPosition) throws CollisionHandlingException {	
+		//TODO Mettere factory
 		MainCharacter tmpJohnny = new MainCharacter(newPosition.getIntX(), newPosition.getIntY(),this.getMovement(), this.getVelocity());
 		//Counting the number of collided walls (Usually 1)
 		long numWallCollisions = this.getEnvironment().getStableList().stream()
@@ -57,7 +76,7 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
 																					.filter(x -> x instanceof AbstractEnemy)
 																					.filter(tmpJohnny::intersecate)
-																					.map(x -> (AbstractEnemy)x)
+																					.map(x -> (AbstractEnemy)x )
 																					.collect(Collectors.toList());
 	
 		//If the character collides with a wall in the next move it can't move there
@@ -69,8 +88,7 @@ public class MainCharacter extends MovableEntity implements Shooter{
 			collectablesCollided.stream()
 								.forEach(x -> x.collect(this));
 			collectablesCollided.stream()
-								.forEach(x -> ((AbstractEntity) x)
-								.removeFromEnvironment());
+								.forEach(x -> ((AbstractEntity) x).removeFromEnvironment());
 		}
 		//Checks the collision with the collided enemies. Damage the hero and kills the monsters (temporary)
 		if (enemyCollisions.size() > 0){			
@@ -78,8 +96,13 @@ public class MainCharacter extends MovableEntity implements Shooter{
 						   				  .map(x -> x.getDamage())	
 						   				  .reduce((x,y) -> x+y)
 						   				  .get();
+			int scoreGained = enemyCollisions.stream()
+	   				  						 .map(x -> x.getScoreValue())	
+	   				  						 .reduce((x,y) -> x+y)
+	   				  						 .get();
 			
 			this.currentHealth.decreaseHealth(dmgDealt);
+			this.currentScore.increaseScore(scoreGained);
 			
 			enemyCollisions.stream()
 						   .forEach(x -> x.removeFromEnvironment());

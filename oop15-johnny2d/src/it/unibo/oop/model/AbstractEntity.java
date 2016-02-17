@@ -14,8 +14,8 @@ import it.unibo.oop.utilities.Position;
 public abstract class AbstractEntity implements Entity {
 	
 	private Position entityPosition; 
-	private Optional<GameState> gameEnvironment; //TODO assegnamento alla getInstance statica
-
+	private Optional<GameState> gameEnvironment = Optional.ofNullable(GameStateImpl.getInstance()); 
+	
 	public AbstractEntity(double startingX, double startingY){
 		this.entityPosition = new Position(startingX,startingY);
 	}
