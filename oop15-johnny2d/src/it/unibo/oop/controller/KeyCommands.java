@@ -11,6 +11,13 @@ import java.awt.event.KeyEvent;
  * Enum defining which keys can be pressed during the gameplay.
  * NOTE: the keyboard layout can be customize simply modifying the VK_Code of the keys.
  *  
+ *  W-UP,
+ *  A-LEFT,
+ *  S-DOWN,
+ *  D-RIGHT,
+ *  SPACE,
+ *  ESC-PAUSE.
+ *  
  */
 public enum KeyCommands {
     W(KeyEvent.VK_W, UP),

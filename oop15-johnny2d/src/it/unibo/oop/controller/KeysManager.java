@@ -1,4 +1,13 @@
-package it.unibo.oop.utilities;
+package it.unibo.oop.controller;
+
+import static it.unibo.oop.controller.KeyCommands.D;
+import static it.unibo.oop.controller.KeyCommands.NONE;
+import static it.unibo.oop.controller.KeyCommands.S;
+import static it.unibo.oop.controller.KeyCommands.SA;
+import static it.unibo.oop.controller.KeyCommands.SD;
+import static it.unibo.oop.controller.KeyCommands.W;
+import static it.unibo.oop.controller.KeyCommands.WA;
+import static it.unibo.oop.controller.KeyCommands.WD;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -7,9 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.oop.controller.KeyCommands;
-import static it.unibo.oop.controller.KeyCommands.*;
-import it.unibo.oop.controller.KeyboardObserver;
+import it.unibo.oop.utilities.Direction;
 
 /**
  * 
@@ -38,7 +45,7 @@ public class KeysManager implements KeyboardObserver {
         return SINGLETON;
     }
 
-    public void reset() {
+    public synchronized void reset() {
         this.keysPressed = new ArrayList<>();
         this.keysTyped = new ArrayList<>(); /*lista perché più tasti alla volta potrebbero essere typed p.e. M tasti direzione e 1 spara */
     }
@@ -113,9 +120,10 @@ public class KeysManager implements KeyboardObserver {
         if (cmd.isPresent()) { /* ignoro eventi provenienti da tasti non significativi */
             switch (eventID) {
             case KeyEvent.KEY_PRESSED:
-                if (!this.keysPressed.contains(cmd.get())) {
-                    this.keysPressed.add(cmd.get());
+                if (!this.keysPressed.contains(cmd.get()) && cmd.get() != KeyCommands.ESC) {
+                    this.keysPressed.add(cmd.get());                    
                 }
+                /* in caso di pressione prolungata viene inserito solo la prima volta */
                 if (!this.keysTyped.contains(cmd.get())) {
                     this.keysTyped.add(cmd.get());
                 }

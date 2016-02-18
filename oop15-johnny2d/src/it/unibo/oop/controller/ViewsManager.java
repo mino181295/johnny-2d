@@ -1,13 +1,13 @@
-package it.unibo.oop.view;
+package it.unibo.oop.controller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 import javax.swing.SwingUtilities;
 
-import it.unibo.oop.controller.State;
-import it.unibo.oop.controller.StateObserver;
-import it.unibo.oop.utilities.KeysManager;
+import it.unibo.oop.view.Level;
+import it.unibo.oop.view.LevelInterface;
+import it.unibo.oop.view.Showable;
 
 /**
  * 
