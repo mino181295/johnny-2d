@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import static it.unibo.oop.utilities.CharactersSettings.*;
 
 /**
- * The panel containing the graphics elements of the
- * game's main level.
+ * The {@link javax.swing.JPanel} containing the graphics elements
+ * of the game's main level.
  */
 public class LevelPanel extends BackgroundPanel {
 
@@ -28,7 +28,8 @@ public class LevelPanel extends BackgroundPanel {
 	private final JLabel stats;
 	
 	/**
-	 * Builds the panel.
+	 * Builds the {@link javax.swing.JPanel} and loads every
+	 * {@link it.unibo.oop.view.SpriteSheet}.
 	 */
 	public LevelPanel() {
 		super("/background.jpg");
@@ -46,7 +47,8 @@ public class LevelPanel extends BackgroundPanel {
 	protected void paintComponent(final Graphics g) {
 		super.paintComponent(g);
 		this.drawMainCharacter(g);
-		this.drawEnemies(g);
+		this.drawMovables(g);
+		this.drawStables(g);
 		this.drawStats(g);
 	}
 	
@@ -61,11 +63,21 @@ public class LevelPanel extends BackgroundPanel {
 	}
 	
 	/**
-	 * Draws the enemies.
+	 * Draws the movable entities.
 	 * @param g
 	 * 		the {@link java.awt.Graphics} object
 	 */
-	private void drawEnemies(final Graphics g) {
+	private void drawMovables(final Graphics g) {
+		g.drawImage(this.enemySprites.get(FRONT_INDEX),
+				(this.getX() + 200), (this.getY() + 200), null);
+	}
+	
+	/**
+	 * Draws the stable entities.
+	 * @param g
+	 * 		the {@link java.awt.Graphics} object
+	 */
+	private void drawStables(final Graphics g) {
 		g.drawImage(this.enemySprites.get(FRONT_INDEX),
 				(this.getX() + 200), (this.getY() + 200), null);
 	}
