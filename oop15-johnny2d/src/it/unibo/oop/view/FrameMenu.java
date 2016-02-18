@@ -35,6 +35,8 @@ public class FrameMenu extends JFrame {
         this.cnst.gridy = 0;
         this.setSize(500, 500); 
         // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); gestire terminazione solo con chiusura dell'ultima view
+/**/    this.setUndecorated(true);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 

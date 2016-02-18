@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Optional;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -14,6 +15,20 @@ import it.unibo.oop.controller.StateObserver;
 
 public class Launcher extends BaseMenu {
   
+    private enum Button {
+        PLAY("Play", State.START),
+        OPTIONS("Options", State.OPTIONS),
+        QUIT("Quit", State.EXIT);
+        
+        private final String name;
+        private final State state;
+        
+        private Button(final String name, final State state) {
+            this.name = name;
+            this.state = state;
+        }
+    }
+    
     private static final String TITLE = "Johnny2D Launcher";
     private final JButton play; /* fare una mappa da JButton a State */
     private final JButton options;
@@ -47,6 +62,12 @@ public class Launcher extends BaseMenu {
 		this.play.addActionListener(new MyActionListener());
 		this.options.addActionListener(new MyActionListener());
 		this.quit.addActionListener(new MyActionListener());
+		
+//		for (final Button btn: Button.values()) {
+//            final JButton jBtn = new JButton(btn.name);
+//            this.addComponent(jBtn);
+//            jBtn.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(btn.state)).start()));
+//        }
 	}
 	
 	private class MyActionListener implements ActionListener {

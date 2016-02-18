@@ -1,11 +1,34 @@
 package it.unibo.oop.view;
 
-import javax.swing.JButton;
+import java.util.Arrays;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 public class PauseMenu extends BaseMenu {
 
+    private enum Button implements StateButton {
+        REPLAY("Replay", State.START),
+        RESUME("Resume", State.PLAY),
+        OPTIONS("Options", State.OPTIONS),
+        MAIN_MENU("Main Menu", State.LAUNCHING);
+        
+        private final String name;
+        private final State state;
+        
+        private Button(final String name, final State state) {
+            this.name = name;
+            this.state = state;
+        }
+        
+        public String getName() {
+            return this.name;
+        }
+        
+        public State getState() {
+            return this.state;
+        }
+    }
+    
     private static final String TITLE = "Pause";
 
     public PauseMenu(final StateObserver stateObs) {
@@ -15,28 +38,30 @@ public class PauseMenu extends BaseMenu {
         /*
          * BUTTONS CREATION
          */
-
-        /* MUSIC */
-        final JButton replay = new JButton("Replay");
-
-        /* RESUME */
-        final JButton resume = new JButton("Resume");
-
-        /* OPTIONS */
-        final JButton options = new JButton("Options");
-
-        /* MAIN MENU */
-        final JButton mainMenu = new JButton("Main Menu");
-
-        this.addComponent(replay);
-        this.addComponent(resume);
-        this.addComponent(options);
-        this.addComponent(mainMenu);
+        this.addStateButton(Arrays.asList(Button.values()));
+        // this.setFrameFeature(customization);
         
-        replay.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.START)).start()));
-        resume.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.PLAY)).start()));
-        options.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.OPTIONS)).start()));
-        mainMenu.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.LAUNCHING)).start()));
+//        /* MUSIC */
+//        final JButton replay = new JButton("Replay");
+//
+//        /* RESUME */
+//        final JButton resume = new JButton("Resume");
+//
+//        /* OPTIONS */
+//        final JButton options = new JButton("Options");
+//
+//        /* MAIN MENU */
+//        final JButton mainMenu = new JButton("Main Menu");
+//
+//        this.addComponent(replay);
+//        this.addComponent(resume);
+//        this.addComponent(options);
+//        this.addComponent(mainMenu);
+//        
+//        replay.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.START)).start()));
+//        resume.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.PLAY)).start()));
+//        options.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.OPTIONS)).start()));
+//        mainMenu.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.LAUNCHING)).start()));
         
     }
     

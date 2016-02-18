@@ -1,12 +1,10 @@
 package it.unibo.oop.controller;
 
 import java.util.Optional;
-
 import it.unibo.oop.view.Launcher;
 import it.unibo.oop.view.OptionsMenu;
 import it.unibo.oop.view.PauseMenu;
 import it.unibo.oop.view.Showable;
-import it.unibo.oop.view.ViewsManager;
 
 /**
  * 

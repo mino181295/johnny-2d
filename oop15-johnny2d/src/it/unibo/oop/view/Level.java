@@ -21,7 +21,9 @@ public class Level implements LevelInterface {
 	public Level(final KeyboardObserver obs) {
 	    this.frame = new JFrame(TITLE);
 	    this.frame.setSize(SCREEN_DIMENSION);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+/**/    frame.setUndecorated(true);
+	//	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
 		this.frame.getContentPane().add(new LevelPanel());
