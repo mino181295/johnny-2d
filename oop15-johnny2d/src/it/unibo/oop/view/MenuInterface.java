@@ -15,9 +15,11 @@ public interface MenuInterface extends Showable {
 
     /**
      * @param cmp
-     *           component to attach.
+     *            component to attach.
+     * @param customize
+     *            true to apply custom constraints.
      */
-    public void addComponent(JComponent cmp);
+    public void addComponent(JComponent cmp, boolean customize);
     
     /**
      * @param obs

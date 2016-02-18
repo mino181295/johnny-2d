@@ -16,7 +16,7 @@ public class GameLoop implements Controller {
     private GameLoop() {
         ViewsManager.getInstance().showView(State.LAUNCHING);
     }
-    
+
     public static Controller getInstance() {
         return SINGLETON;
     }
@@ -27,7 +27,7 @@ public class GameLoop implements Controller {
         KeysManager.getInstance().reset();
         this.play();
     }
- 
+
     @Override
     public void play() { // pause -> play                       
         if (!this.gLAgent.isPresent()) {
@@ -37,6 +37,14 @@ public class GameLoop implements Controller {
             this.gLAgent.get().play(); 
         }
     }
+
+//    public double getStatFromFile() {
+//
+//    }
+//
+//    public double addStatToFile() {
+//
+//    }
 
     public static void main(String[] args) {
         new GameLoop();

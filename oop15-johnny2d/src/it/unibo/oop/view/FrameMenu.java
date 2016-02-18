@@ -25,13 +25,13 @@ public class FrameMenu extends JFrame {
     
     private static final long serialVersionUID = -6224390548062243879L;
     private static final Color BUTTONS_COLOR = new Color(255, 220, 130);
-    private final Dimension prefButtonSize = new Dimension(200, 50);
+    private final Dimension prefButtonSize = new Dimension(160, 40);
     private final GridBagConstraints cnst = new GridBagConstraints();
 
     public FrameMenu(final String label) {
         super(label);
 
-        this.cnst.insets = new Insets(3, 3, 3, 3);
+        this.cnst.insets = new Insets(5,5,5,5);
         this.cnst.gridy = 0;
         this.setSize(500, 500); 
         // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); gestire terminazione solo con chiusura dell'ultima view
@@ -42,15 +42,15 @@ public class FrameMenu extends JFrame {
 
         final URL imgURL = Launcher.class.getResource("/background.jpg");
         final ImageIcon img = new ImageIcon(imgURL);
-
+        
         final JPanel menuPanel = new ImagePanel(img.getImage()); 
         menuPanel.setLayout(new GridBagLayout());
 
         this.setContentPane(menuPanel);
     }
 
-    public void addComponent(final JComponent cmp) {
-        if (cmp instanceof JButton) {
+    public void addComponent(final JComponent cmp, final boolean customize) {
+        if (customize) {
             cmp.setPreferredSize(this.prefButtonSize);
             cmp.setBackground(BUTTONS_COLOR);
         }

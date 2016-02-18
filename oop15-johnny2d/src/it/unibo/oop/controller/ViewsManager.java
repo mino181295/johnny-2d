@@ -24,8 +24,8 @@ public class ViewsManager implements StateObserver {
 
     private static final ViewsManager SINGLETON = new ViewsManager();
     private final LevelInterface level;
-    private Optional<State> prevState = Optional.empty();
-    private Optional<State> currState = Optional.empty();
+    private volatile Optional<State> prevState = Optional.empty();
+    private volatile Optional<State> currState = Optional.empty();
     
     private ViewsManager() {
         this.level = new Level(KeysManager.getInstance());
@@ -40,14 +40,14 @@ public class ViewsManager implements StateObserver {
     }
     
     @Override 
-    public void stateAction(final State state) {
+    public synchronized void stateAction(final State state) {
         this.hideAll();
         state.doAction();
         this.showView(state);
     }
     
     /* show/hide view da fattorizzare */
-    public void showView(final State state) {
+    public synchronized void showView(final State state) {
         if (state.getView().isPresent()) {
             final Showable view = state.getView().get();
             try {

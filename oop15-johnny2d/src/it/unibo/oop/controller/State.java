@@ -2,6 +2,7 @@ package it.unibo.oop.controller;
 
 import java.util.Optional;
 
+import it.unibo.oop.view.CreditsMenu;
 import it.unibo.oop.view.Launcher;
 import it.unibo.oop.view.OptionsMenu;
 import it.unibo.oop.view.PauseMenu;
@@ -15,10 +16,7 @@ import it.unibo.oop.view.Showable;
  * Enum with each game states together with views and actions.
  */
 public enum State {
-    
-    LAUNCHING(Optional.of(new Launcher(ViewsManager.getInstance())), Optional.empty()),
-                                                                     /* Optional.of(() -> 
-                                       ViewsManager.getInstance().getLevel().hideIt() */
+                            
     /* With Action */
     START(Optional.empty(), Optional.of(() -> GameLoop.getInstance().start())),
     PLAY(Optional.empty(), Optional.of(() -> GameLoop.getInstance().play())),
@@ -26,9 +24,11 @@ public enum State {
     BACK(Optional.empty(), Optional.of(() -> ViewsManager.getInstance().showLast())),
     
     /* With View */
+    LAUNCHING(Optional.of(new Launcher(ViewsManager.getInstance())), Optional.empty()),
     QUIT(Optional.of(new QuitMenu(ViewsManager.getInstance())), Optional.empty()),
     OPTIONS(Optional.of(new OptionsMenu(ViewsManager.getInstance())), Optional.empty()),
-    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.empty());
+    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.empty()),
+    CREDITS(Optional.of(new CreditsMenu(ViewsManager.getInstance())), Optional.empty());
     
     private Optional<Showable> view = Optional.empty();
     private Optional<Runnable> action = Optional.empty();

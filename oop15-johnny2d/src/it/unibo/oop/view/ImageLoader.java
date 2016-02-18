@@ -5,11 +5,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * A simple class to load an image.
+ * A simple utility class to load an image.
  */
 public class ImageLoader {
 
-	private BufferedImage image;
+	// private BufferedImage image;
 	
 	/**
 	 * Loads the image with the specified name.
@@ -20,8 +20,7 @@ public class ImageLoader {
 	 * @throws IOException
 	 * 		if the image name is invalid
 	 */
-	public BufferedImage load(String name) throws IOException{
-		this.image = ImageIO.read(getClass().getResourceAsStream(name));	
-		return this.image;
+	public static BufferedImage load(String name) throws IOException{
+		return ImageIO.read(ImageLoader.class.getResourceAsStream(name));	
 	}
 }

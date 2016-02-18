@@ -1,24 +1,20 @@
 package it.unibo.oop.view;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 public class Launcher extends BaseMenu {
   
-    private enum Button {
+    private enum Button implements StateButton {
         PLAY("Play", State.START),
         OPTIONS("Options", State.OPTIONS),
-        QUIT("Quit", State.EXIT);
+        QUIT("Quit", State.QUIT);
         
         private final String name;
         private final State state;
@@ -26,6 +22,14 @@ public class Launcher extends BaseMenu {
         private Button(final String name, final State state) {
             this.name = name;
             this.state = state;
+        }
+        
+        public String getName() {
+            return this.name;
+        }
+        
+        public State getState() {
+            return this.state;
         }
     }
     
@@ -38,36 +42,30 @@ public class Launcher extends BaseMenu {
         super(TITLE);
         this.addObserver(stateObs);
 		
+        /* ICON SETTING */
+        this.setIcon("/launcher.png"); 
+        
+       // this.addStateButton(Arrays.asList(Button.values()));
+        
 		/*
 		 * BUTTONS CREATION
 		 */
 		
+        final ActionListener aL = new MyActionListener();
 		/* PLAY */
 		this.play = new JButton("Play");
+		this.play.addActionListener(aL);
+		this.addComponent(this.play, true);
 		
 		/* OPTIONS */
 		this.options = new JButton("Options");
+		this.options.addActionListener(aL);
+		this.addComponent(this.options, true);
 		
 		/* QUIT */
 	    this.quit = new JButton("Quit");
-	    
-	    final JLabel label = new JLabel("!!!!!!!!!!!!!!!!!!!!!!! QUI IL LOGO !!!!!!!!!!!!!!!!!!!!!!!!!");
-	    label.setPreferredSize(new Dimension(200, 200));
-		this.addComponent(label);
-		this.addComponent(this.play);
-		this.addComponent(this.options);
-		this.addComponent(this.quit);
-		
-		/* ACTIONS da fattorizzare meglio */
-		this.play.addActionListener(new MyActionListener());
-		this.options.addActionListener(new MyActionListener());
-		this.quit.addActionListener(new MyActionListener());
-		
-//		for (final Button btn: Button.values()) {
-//            final JButton jBtn = new JButton(btn.name);
-//            this.addComponent(jBtn);
-//            jBtn.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(btn.state)).start()));
-//        }
+	    this.quit.addActionListener(aL);
+	    this.addComponent(this.quit, true);
 	}
 	
 	private class MyActionListener implements ActionListener {
@@ -77,11 +75,7 @@ public class Launcher extends BaseMenu {
             final Object src = e.getSource();
             Optional<State> state = Optional.empty();
             if (src == Launcher.this.quit) {
-//                final int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?",
-//                                     "Quit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//                if (response == JOptionPane.YES_OPTION) {
                     state = Optional.of(State.QUIT);
-                
             } else if (src == Launcher.this.options) {
                 state = Optional.of(State.OPTIONS);
             } else if (src == Launcher.this.play){

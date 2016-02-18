@@ -1,20 +1,12 @@
 package it.unibo.oop.view;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.util.Arrays;
-
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
-public class OptionsMenu extends BaseMenu {
+public class CreditsMenu extends BaseMenu {
     
     private enum Button implements StateButton {
-        CREDITS("Credits", State.CREDITS),
         BACK("Back", State.BACK);
         
         private final String name;
@@ -34,27 +26,14 @@ public class OptionsMenu extends BaseMenu {
         }
     }
     
-    private static final String TITLE = "Options";
+    private static final String TITLE = "Credits";
     
-    public OptionsMenu(final StateObserver stateObs) {
+    public CreditsMenu(final StateObserver stateObs) {
         super(TITLE);
         this.addObserver(stateObs);
         
         /* ICON SETTING */
-        this.setIcon("/options.png");
-        
-        /* MUSIC */
-        final JPanel musicPane = new JPanel(new FlowLayout());
-        final JLabel label = new JLabel("Music");
-        final JCheckBox check = new JCheckBox();
-        // check.setBackground(new Color(255, 220, 130));
-        musicPane.add(label);
-        musicPane.add(check);
-        this.addComponent(musicPane, false);
-//        /* DIFFICULTY */
-//        final JButton diff = new JButton("Difficulty");
-
-//        this.addComponent(diff);
+        this.setIcon("/credits.png");
         
         /* BUTTONS CREATION */
         this.addStateButton(Arrays.asList(Button.values()));

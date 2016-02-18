@@ -1,7 +1,6 @@
 package it.unibo.oop.view;
 
 import java.util.Arrays;
-
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
@@ -33,11 +32,11 @@ public class QuitMenu extends BaseMenu {
     public QuitMenu(final StateObserver stateObs) {
         super(TITLE);
         this.addObserver(stateObs);
+        
+        /* ICON SETTING */
+        this.setIcon("/exit.png");
 
-        /*
-         * BUTTONS CREATION
-         */
+        /* BUTTONS CREATION */
         this.addStateButton(Arrays.asList(Button.values()));
-        this.setFrameFeature(f -> f.setSize(300, 300));
     }
 }

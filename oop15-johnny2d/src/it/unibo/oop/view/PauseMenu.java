@@ -34,13 +34,18 @@ public class PauseMenu extends BaseMenu {
     public PauseMenu(final StateObserver stateObs) {
         super(TITLE);
         this.addObserver(stateObs);
-
-        /*
-         * BUTTONS CREATION
-         */
-        this.addStateButton(Arrays.asList(Button.values()));
-        // this.setFrameFeature(customization);
+      
+        /* ICON SETTING */
+        this.setIcon("/pause.png");
         
+        /* BUTTONS CREATION */
+        this.addStateButton(Arrays.asList(Button.values()));
+    }
+}    
+
+//
+//          this.setFrameFeature(customization);
+//        
 //        /* MUSIC */
 //        final JButton replay = new JButton("Replay");
 //
@@ -62,9 +67,9 @@ public class PauseMenu extends BaseMenu {
 //        resume.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.PLAY)).start()));
 //        options.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.OPTIONS)).start()));
 //        mainMenu.addActionListener((e) -> this.doObsAction(obs -> new Thread(()-> obs.stateAction(State.LAUNCHING)).start()));
-     
-    }
-    
+//     
+//    }
+//    
 //    /* ACTIONS */
 //    private class MyActionListener implements ActionListener {
 //
@@ -87,4 +92,4 @@ public class PauseMenu extends BaseMenu {
 //                            obs -> new Thread(()-> obs.stateAction(st)).start()));
 //        }
 //    }
-}
+//}
