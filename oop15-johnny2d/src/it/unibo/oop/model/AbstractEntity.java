@@ -14,7 +14,7 @@ import it.unibo.oop.utilities.Position;
 public abstract class AbstractEntity implements Entity {
 	
 	private Position entityPosition; 
-	private Optional<GameState> gameEnvironment = Optional.ofNullable(GameStateImpl.getInstance()); 
+	private Optional<GameStateImpl> gameEnvironment = Optional.ofNullable(GameStateImpl.getInstance()); 
 	
 	public AbstractEntity(double startingX, double startingY){
 		this.entityPosition = new Position(startingX,startingY);
@@ -81,7 +81,7 @@ public abstract class AbstractEntity implements Entity {
 	/**
 	 * Attaches another Envirnment to the current Entity.
 	 */
-	public void attachEnvironment(GameState newEnvironment){
+	public void attachEnvironment(GameStateImpl newEnvironment){
 	  this.gameEnvironment = Optional.of(newEnvironment);
 	}
 	
@@ -96,7 +96,7 @@ public abstract class AbstractEntity implements Entity {
 		}
 		return false;
 	}	
-	public GameState getEnvironment(){
+	public GameStateImpl getEnvironment(){
 		return this.gameEnvironment.get();
 	}	 
 	public void removeFromEnvironment(){

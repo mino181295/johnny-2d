@@ -8,7 +8,7 @@ import it.unibo.oop.utilities.Direction;
 
 public class GameStateImpl implements GameState {
 
-    private static final GameState SINGLETON = new GameStateImpl();
+    private static final GameStateImpl SINGLETON = new GameStateImpl();
     private List<MovableEntity> movableList;
     private List<AbstractEntity> stableList;
     private Optional<MainCharacter> johnnyCharacter;
@@ -20,40 +20,37 @@ public class GameStateImpl implements GameState {
      
     }
     
-    public static GameState getInstance() {
+    public static GameStateImpl getInstance() {
         return SINGLETON;
     }
     
-    @Override
-    public void initialize(int levelNumber) {
+    protected void initialize(int levelNumber) {
     }
 
-    @Override
-    public void removeEntity(Entity entity) {
+    protected void removeEntity(Entity entity) {
     }
 
-    @Override
-    public void updatePositions(final Direction newDirection, final boolean isShooting ) {
+    public void updatePositions(final Direction newDirection, final boolean isShooting) {
     	for (MovableEntity currentE : movableList){
     		if (currentE instanceof Bullet){
     			((Bullet) currentE).update();
     		}
-    		if (currentE instanceof Enemy){
-    			//TODO ((Enemy) currentE).update();
+    		if (currentE instanceof BasicMonster){
+    			((BasicMonster) currentE).update();
     		}
     	}
     	this.updateHeroPos(newDirection, isShooting);
     }
 
-    private void updateHeroPos(final Direction newDirection, final boolean isShooting ) {
+    protected void updateHeroPos(final Direction newDirection, final boolean isShooting ) {
         johnnyCharacter.ifPresent(c -> c.update(newDirection, isShooting));
     }
 
-	public void addShoot(Bullet newBullet) {
+    protected void addShoot(Bullet newBullet) {
 		this.movableList.add(newBullet);
 	}
 	
-	public void addMovableEntity(MovableEntity newEntity){
+	protected void addMovableEntity(MovableEntity newEntity){
 		this.movableList.add(newEntity);
 	}
 	
@@ -73,7 +70,7 @@ public class GameStateImpl implements GameState {
 		return this.johnnyCharacter;
 	}
 	
-    public void killMainChar(){
+    protected void killMainChar(){
     	this.johnnyCharacter = Optional.empty();
     }
 }
