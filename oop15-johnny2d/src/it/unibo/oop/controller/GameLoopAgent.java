@@ -2,10 +2,7 @@ package it.unibo.oop.controller;
 
 import static it.unibo.oop.utilities.Direction.NONE;
 
-import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
-import it.unibo.oop.utilities.KeysManager;
-import it.unibo.oop.view.ViewsManager;
 
 public class GameLoopAgent implements AgentInterface {
 
@@ -16,22 +13,23 @@ public class GameLoopAgent implements AgentInterface {
     private final ViewsManager viewsMan = ViewsManager.getInstance();
     private volatile Direction mainCharDir;
     private volatile boolean isMainCharShooting;
-    private volatile boolean loop; /* default false */
+    private volatile boolean pause; /* default false */
 
     public GameLoopAgent() {
-        this.loop = true;
+        this.pause = false;
     }
 
     public synchronized void play() {
-        this.loop = true;
+        this.pause = false;
         this.notify();
     }
 
     @Override
     public synchronized void run() {
+        
         /* GAME LOOP */
         while (true) {
-            while(!loop) {
+            while(this.pause) {
                 try {
                     this.viewsMan.stateAction(State.PAUSE);
                     this.wait();
@@ -58,7 +56,7 @@ public class GameLoopAgent implements AgentInterface {
     }
 
     private void processKeys() {
-        this.loop = !this.keysMan.isAKeyPressed(KeyCommands.ESC);
+        this.pause = this.keysMan.isAKeyPressed(KeyCommands.ESC);
         this.isMainCharShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
         this.mainCharDir = this.keysMan.getDirection(); // rimuovo le KeysTyped.
     }
@@ -66,7 +64,7 @@ public class GameLoopAgent implements AgentInterface {
     /* per debugging */
     private void dbgKeysMan() {
         if (this.mainCharDir != NONE) {
-            System.out.println("Dir 1: " + this.mainCharDir);
+            System.out.println("Dir : " + this.mainCharDir);
         }
         System.out.println(this.isMainCharShooting ? "SHOOT!" : "");
     }

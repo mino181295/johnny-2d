@@ -2,9 +2,6 @@ package it.unibo.oop.controller;
 
 import java.util.Optional;
 
-import it.unibo.oop.utilities.KeysManager;
-import it.unibo.oop.view.ViewsManager;
-
 /**
  * 
  * @author Paolo
