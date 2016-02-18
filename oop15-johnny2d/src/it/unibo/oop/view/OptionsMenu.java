@@ -7,6 +7,26 @@ import it.unibo.oop.controller.StateObserver;
 
 public class OptionsMenu extends BaseMenu {
     
+    private enum Button implements StateButton {
+        BACK("Back", State.BACK);
+        
+        private final String name;
+        private final State state;
+        
+        private Button(final String name, final State state) {
+            this.name = name;
+            this.state = state;
+        }
+        
+        public String getName() {
+            return this.name;
+        }
+        
+        public State getState() {
+            return this.state;
+        }
+    }
+    
     private static final String TITLE = "Options";
     public OptionsMenu(final StateObserver stateObs) {
         super(TITLE);
