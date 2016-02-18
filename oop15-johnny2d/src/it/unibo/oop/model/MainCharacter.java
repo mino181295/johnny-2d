@@ -27,8 +27,8 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		currentScore = new Score(0);
 	}
 	
-	public MainCharacter(Vector2 movementVector, Velocity speedValue) {
-		this(Settings.SCREEN_WIDTH/2, Settings.SCREEN_HEIGHT/2, movementVector, speedValue);
+	public MainCharacter(int startingX, int startingY) {
+		this(startingX, startingY, new Vector2(), MAIN_CHARACTER.getSpeed());
 	}
 	
 	public MainCharacter() {
