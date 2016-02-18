@@ -2,6 +2,7 @@ package it.unibo.oop.view;
 
 import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
 import static it.unibo.oop.utilities.CharactersSettings.MAIN_CHARACTER;
+import static it.unibo.oop.utilities.Direction.*;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -11,6 +12,8 @@ import java.util.Map;
 
 import javax.swing.JLabel;
 
+import it.unibo.oop.model.GameState;
+import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
 
 /**
@@ -26,6 +29,7 @@ public class LevelPanel extends BackgroundPanel {
 	private Map<Direction, BufferedImage> mainCharacterSprites;
 	private Map<Direction, BufferedImage> enemySprites;
 	private final JLabel stats;
+	private final GameState gs;
 	
 	/**
 	 * Builds the {@link javax.swing.JPanel} and loads every
@@ -33,6 +37,7 @@ public class LevelPanel extends BackgroundPanel {
 	 */
 	public LevelPanel() {
 		super("/background.jpg");
+		this.gs = GameStateImpl.getInstance();
 		this.mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
 		this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
 		this.enemySheet = new SpriteSheet("/enemy.png");
@@ -47,8 +52,8 @@ public class LevelPanel extends BackgroundPanel {
 	protected void paintComponent(final Graphics g) {
 		super.paintComponent(g);
 		this.drawMainCharacter(g);
-		this.drawMovables(g);
-		this.drawStables(g);
+		/*this.drawMovables(g);
+		this.drawStables(g);*/
 		this.drawStats(g);
 	}
 	
@@ -58,8 +63,8 @@ public class LevelPanel extends BackgroundPanel {
 	 * 		the {@link java.awt.Graphics} object
 	 */
 	private void drawMainCharacter(final Graphics g) {
-		g.drawImage(this.mainCharacterSprites.get(FRONT_INDEX),
-				(this.getX() + 100), (this.getY() + 100), null);
+		g.drawImage(this.mainCharacterSprites.get(gs.getMainChar().get().getFaceDirection()),
+				(gs.getMainChar().get().getPosition().getIntX()), (gs.getMainChar().get().getPosition().getIntY()), this);
 	}
 	
 	/**
@@ -67,20 +72,20 @@ public class LevelPanel extends BackgroundPanel {
 	 * @param g
 	 * 		the {@link java.awt.Graphics} object
 	 */
-	private void drawMovables(final Graphics g) {
+	/*private void drawMovables(final Graphics g) {
 		g.drawImage(this.enemySprites.get(FRONT_INDEX),
-				(this.getX() + 200), (this.getY() + 200), null);
-	}
+				(this.getX() + 200), (this.getY() + 200), this);
+	}*/
 	
 	/**
 	 * Draws the stable entities.
 	 * @param g
 	 * 		the {@link java.awt.Graphics} object
 	 */
-	private void drawStables(final Graphics g) {
+	/*private void drawStables(final Graphics g) {
 		g.drawImage(this.enemySprites.get(FRONT_INDEX),
-				(this.getX() + 200), (this.getY() + 200), null);
-	}
+				(this.getX() + 200), (this.getY() + 200), this);
+	}*/
 	
 	/**
 	 * Draws the stats for the main character.
@@ -88,8 +93,8 @@ public class LevelPanel extends BackgroundPanel {
 	 * 		the {@link java.awt.Graphics} object
 	 */
 	private void drawStats(final Graphics g) {
-		g.drawImage(this.mainCharacterSprites.get(FRONT_INDEX),
-				this.getX(), this.getY(), null);
+		g.drawImage(this.mainCharacterSprites.get(DOWN),
+				this.getX(), this.getY(), this);
 		this.stats.setText("    Life: 100    Score: 0");
 	}
 }

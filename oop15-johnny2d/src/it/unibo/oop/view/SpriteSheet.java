@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.oop.utilities.Direction;
-
 import static it.unibo.oop.utilities.Direction.*;
 
 /**
@@ -55,21 +54,20 @@ public class SpriteSheet {
 		isSplitted = ((sheet.getHeight() % imagesHeight == 0) &&
 				(sheet.getWidth() % imagesWidth == 0)) ? true : false;
 		if ((sheet != null) && isSplitted) {
-			for (int y = 0; y < sheet.getHeight(); y += imagesHeight) {
-				for(int x = 0; x < imagesWidth; x += imagesWidth) {
-					switch(x) {
-						case 0: sprites.put(UP, grabSprite(x, y, imagesWidth, imagesHeight));
+			for (int y = 0, currentRow = 0; y < sheet.getHeight(); y += imagesHeight, currentRow++) {
+				for (int x = 0; x < imagesWidth; x += imagesWidth) {
+					switch (currentRow) {
+						case 0: sprites.put(DOWN, grabSprite(x, y, imagesWidth, imagesHeight));
 								break;
 						case 1: sprites.put(LEFT, grabSprite(x, y, imagesWidth, imagesHeight));
 								break;
 						case 2: sprites.put(RIGHT, grabSprite(x, y, imagesWidth, imagesHeight));
 								break;
-						case 3: sprites.put(DOWN, grabSprite(x, y, imagesWidth, imagesHeight));
+						case 3: sprites.put(UP, grabSprite(x, y, imagesWidth, imagesHeight));
 								break;
-						default: sprites.put(UP, grabSprite(x, y, imagesWidth, imagesHeight));
+						default: sprites.put(DOWN, grabSprite(x, y, imagesWidth, imagesHeight));
 								break;
 					}
-					
 				}
 			}
 		}
@@ -80,7 +78,7 @@ public class SpriteSheet {
 	 * Returns the sprite in the {@link java.util.map} corresponding to the given
 	 * {@link it.unibo.oop.utilities.Direction}.
 	 * @param key
-	 * 		the direction of the sprite
+	 * 		the {@link it.unibo.oop.utilities.Direction} of the sprite
 	 * @return
 	 * 		the corresponding sprite
 	 */
