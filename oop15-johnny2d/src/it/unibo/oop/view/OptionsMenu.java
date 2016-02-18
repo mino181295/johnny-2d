@@ -1,7 +1,9 @@
 package it.unibo.oop.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.util.Arrays;
 
 import javax.swing.JCheckBox;
@@ -44,10 +46,16 @@ public class OptionsMenu extends BaseMenu {
         this.setIcon("/options.png");
         
         /* MUSIC */
-        final JPanel musicPane = new JPanel(new FlowLayout());
         final JLabel label = new JLabel("Music");
+        label.setFont(new Font("MusicStyle", Font.PLAIN, 30));
+        label.setForeground(Color.WHITE);
+        
         final JCheckBox check = new JCheckBox();
-        // check.setBackground(new Color(255, 220, 130));
+        check.setOpaque(false);
+        
+        final JPanel musicPane = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 10));
+        musicPane.setPreferredSize(new Dimension(160, 100));
+        musicPane.setOpaque(false);
         musicPane.add(label);
         musicPane.add(check);
         this.addComponent(musicPane, false);
