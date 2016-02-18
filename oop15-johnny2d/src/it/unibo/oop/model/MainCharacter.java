@@ -44,8 +44,9 @@ public class MainCharacter extends MovableEntity implements Shooter{
 			} else {
 				newMovement = this.getMovement().setLength(this.getVelocity().slow(this.getMovement().length()));
 			}
-			this.setMovement(newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity()));
-			this.checkCollision(this.getPosition().sumVector(this.getMovement()));
+			//newMovement = newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity());
+			this.checkCollision(this.getPosition().sumVector(newMovement));
+			this.setMovement(newMovement);
 			this.move();	
 		} catch (CollisionHandlingException e) {
 			

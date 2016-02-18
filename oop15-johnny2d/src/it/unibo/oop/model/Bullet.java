@@ -70,10 +70,11 @@ public class Bullet extends MovableEntity implements Shot {
 		try {
 			//Calculates the new movement vector
 			Vector2 newMovement = this.getMovement().setLength(this.getVelocity().accelerate(this.getMovement().length()));			
-			this.setMovement(newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity()));
+			//newMovement = newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity());
 			//Check if there are collision in the new position
-			this.checkCollision(this.getPosition().sumVector(this.getMovement()));
+			this.checkCollision(this.getPosition().sumVector(newMovement));
 			//moves if no exception
+			this.setMovement(newMovement);
 			this.move();
 			this.remainingDistance -= this.getMovement().length();
 			if (remainingDistance <= 0){

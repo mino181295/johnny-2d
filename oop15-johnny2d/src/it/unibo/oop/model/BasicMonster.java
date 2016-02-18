@@ -12,22 +12,30 @@ import it.unibo.oop.utilities.Velocity;;
 
 public class BasicMonster extends AbstractEnemy{
 
-	public BasicMonster(int startingX, int startingY, Vector2 movementVector, Velocity speedValue) {
-		super(startingX, startingY, movementVector, speedValue);
-	}
-
-	private final int SCORE_VALUE = 10;
-	private final int DMG = 1;
+	private static final int SCORE_VALUE = 10;
+	private final static int DMG = 1;
 	
+	private Position oldPosition;
+	
+	public BasicMonster(double startingX, double startingY, Vector2 movementVector, Velocity speedValue, MovementBehavior movBeh) {
+		super(startingX, startingY, movementVector, speedValue, movBeh);
+	}
+	
+	public BasicMonster(double startingX, double startingY, Vector2 movementVector, Velocity speedValue) {
+		super(startingX, startingY, movementVector, speedValue);
+		this.attachBehavior(new BasicEnemyBehavior(this));
+	}
 	
 	public void update(){
-		this.setMovement(this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition()));
-			try {
-				this.checkCollision(this.getPosition().sumVector(this.getMovement()));
-				this.move();
-			} catch (CollisionHandlingException e) {
-
-			}
+		
+		Vector2 newMovement = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
+		//newMovement = newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity());
+		try {
+			this.checkCollision(this.getPosition().sumVector(newMovement));
+			this.setMovement(newMovement);
+			this.move();
+		} catch (CollisionHandlingException e) {
+		}
 		
 	}
 	public void checkCollision(Position newPosition) throws CollisionHandlingException{
@@ -60,11 +68,11 @@ public class BasicMonster extends AbstractEnemy{
 
 	@Override
 	public int getScoreValue() {
-		return this.SCORE_VALUE;
+		return BasicMonster.SCORE_VALUE;
 	}
 	@Override
 	public int getDamage() {
-		return this.DMG;
+		return BasicMonster.DMG;
 	}	
 
 }
