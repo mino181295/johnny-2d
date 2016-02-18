@@ -48,7 +48,8 @@ public class SpriteSheet {
 	 * 		the height of each sprite in the {@link it.unibo.oop.view.SpriteSheet}
 	 * @return
 	 * 		a {@link java.util.Map} of {@link java.awt.image.BufferedImage} with
-	 * 		all the sprites in the {@link it.unibo.oop.view.SpriteSheet}
+	 * 		all the sprites in the {@link it.unibo.oop.view.SpriteSheet} mapped
+	 * 		with their {@link it.unibo.oop.utilities.Direction}
 	 */
 	public Map<Direction, BufferedImage> split(int imagesWidth, int imagesHeight) {
 		isSplitted = ((sheet.getHeight() % imagesHeight == 0) &&
@@ -56,7 +57,19 @@ public class SpriteSheet {
 		if ((sheet != null) && isSplitted) {
 			for (int y = 0; y < sheet.getHeight(); y += imagesHeight) {
 				for(int x = 0; x < imagesWidth; x += imagesWidth) {
-					sprites.put(grabSprite(x, y, imagesWidth, imagesHeight));
+					switch(x) {
+						case 0: sprites.put(UP, grabSprite(x, y, imagesWidth, imagesHeight));
+								break;
+						case 1: sprites.put(LEFT, grabSprite(x, y, imagesWidth, imagesHeight));
+								break;
+						case 2: sprites.put(RIGHT, grabSprite(x, y, imagesWidth, imagesHeight));
+								break;
+						case 3: sprites.put(DOWN, grabSprite(x, y, imagesWidth, imagesHeight));
+								break;
+						default: sprites.put(UP, grabSprite(x, y, imagesWidth, imagesHeight));
+								break;
+					}
+					
 				}
 			}
 		}
