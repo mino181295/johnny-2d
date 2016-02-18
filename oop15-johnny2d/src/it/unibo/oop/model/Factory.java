@@ -5,8 +5,6 @@ import static it.unibo.oop.utilities.CharactersSettings.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibo.oop.utilities.Vector2;
-
 public class Factory {
 	
 	public static class WallFactory {
