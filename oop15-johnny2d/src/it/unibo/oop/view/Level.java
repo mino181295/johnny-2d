@@ -17,16 +17,17 @@ public class Level implements LevelInterface {
     private static final String TITLE = "Johnny2D";
     private final JFrame frame;
     private final MainKeyListener keyListener;
+    private final LevelPanel mainLevel;
     
 	public Level(final KeyboardObserver obs) {
 	    this.frame = new JFrame(TITLE);
 	    this.frame.setSize(SCREEN_DIMENSION);
-/**/    frame.setUndecorated(true);
-	//	this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setUndecorated(true);
         this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
-		this.frame.getContentPane().add(new LevelPanel());
+		mainLevel = new LevelPanel();
+		this.frame.getContentPane().add(mainLevel);
 		
 		/* per MainKeyListener */
 		this.keyListener = new MainKeyListener();
@@ -34,6 +35,10 @@ public class Level implements LevelInterface {
         this.frame.addKeyListener(this.keyListener);
         this.frame.setFocusTraversalKeysEnabled(false);
        // this.frame.requestFocus(); /* per attivare il key listener */
+	}
+	
+	public void updateLevel() {
+		this.mainLevel.repaint();
 	}
 	
 	public void addObserver(final KeyboardObserver obs) {
