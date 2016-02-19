@@ -62,6 +62,14 @@ public class ViewsManager implements StateObserver {
         }
     }
 
+    public void hideView() {
+        try {
+            SwingUtilities.invokeAndWait(() -> this.mainFrame.setVisible(false));
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void showLast() {
         this.showView(this.prevState.get());
     }

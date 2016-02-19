@@ -29,7 +29,8 @@ public class GameLoop implements Controller {
     }
 
     @Override
-    public void play() { // pause -> play                       
+    public void play() { // pause -> play  
+        ViewsManager.getInstance().hideView();
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
             new Thread(this.gLAgent.get()).start();

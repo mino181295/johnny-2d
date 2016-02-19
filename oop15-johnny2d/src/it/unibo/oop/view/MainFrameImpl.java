@@ -1,7 +1,6 @@
 package it.unibo.oop.view;
 
 import java.util.Objects;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,7 +20,11 @@ public class MainFrameImpl implements MainFrame {
     @Override
     public void setPanel(final JPanel panel) {
         this.frame.setContentPane(Objects.requireNonNull(panel));
-        this.frame.setVisible(true);
         this.frame.repaint();
+        this.frame.setVisible(true);
+    }
+
+    public void setVisible(final boolean val) {
+        this.frame.setVisible(val);
     }
 }
