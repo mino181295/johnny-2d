@@ -13,8 +13,13 @@ import javax.swing.JPanel;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
-public class OptionsMenu extends BaseMenu {
+public class OptionsMenu extends MenuPanel {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4689323418673684324L;
+
     private enum Button implements StateButton {
         CREDITS("Credits", State.CREDITS),
         BACK("Back", State.BACK);
@@ -36,10 +41,7 @@ public class OptionsMenu extends BaseMenu {
         }
     }
     
-    private static final String TITLE = "Options";
-    
     public OptionsMenu(final StateObserver stateObs) {
-        super(TITLE);
         this.addObserver(stateObs);
         
         /* ICON SETTING */

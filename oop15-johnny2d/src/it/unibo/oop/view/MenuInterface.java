@@ -11,7 +11,7 @@ import it.unibo.oop.controller.StateObserver;
  * Interface implemented by menu views.
  *       
  */
-public interface MenuInterface extends Showable {
+public interface MenuInterface {
 
     /**
      * @param cmp

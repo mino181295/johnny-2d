@@ -4,8 +4,13 @@ import java.util.Arrays;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
-public class QuitMenu extends BaseMenu {
+public class QuitMenu extends MenuPanel {
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8073693943984907077L;
+
     private enum Button implements StateButton {
         YES("yes", State.EXIT),
         NO("No", State.BACK);
@@ -26,11 +31,8 @@ public class QuitMenu extends BaseMenu {
             return this.state;
         }
     }
-    
-    private static final String TITLE = "Exiting";
 
     public QuitMenu(final StateObserver stateObs) {
-        super(TITLE);
         this.addObserver(stateObs);
         
         /* ICON SETTING */

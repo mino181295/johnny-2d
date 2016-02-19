@@ -9,8 +9,13 @@ import javax.swing.JButton;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
-public class Launcher extends BaseMenu {
+public class Launcher extends MenuPanel {
   
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6835079187244547916L;
+
     private enum Button implements StateButton {
         PLAY("Play", State.START),
         OPTIONS("Options", State.OPTIONS),
@@ -33,13 +38,11 @@ public class Launcher extends BaseMenu {
         }
     }
     
-    private static final String TITLE = "Johnny2D Launcher";
     private final JButton play; /* fare una mappa da JButton a State */
     private final JButton options;
     private final JButton quit;
     
     public Launcher(final StateObserver stateObs) {
-        super(TITLE);
         this.addObserver(stateObs);
 		
         /* ICON SETTING */
