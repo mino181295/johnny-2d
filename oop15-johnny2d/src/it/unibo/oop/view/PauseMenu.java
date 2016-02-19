@@ -4,7 +4,12 @@ import java.util.Arrays;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
-public class PauseMenu extends BaseMenu {
+public class PauseMenu extends MenuPanel {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1074304062110360844L;
 
     private enum Button implements StateButton {
         REPLAY("Replay", State.START),
@@ -28,11 +33,8 @@ public class PauseMenu extends BaseMenu {
             return this.state;
         }
     }
-    
-    private static final String TITLE = "Pause";
 
     public PauseMenu(final StateObserver stateObs) {
-        super(TITLE);
         this.addObserver(stateObs);
       
         /* ICON SETTING */

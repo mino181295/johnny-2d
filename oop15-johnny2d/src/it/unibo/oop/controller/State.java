@@ -2,12 +2,13 @@ package it.unibo.oop.controller;
 
 import java.util.Optional;
 
+import javax.swing.JPanel;
+
 import it.unibo.oop.view.CreditsMenu;
 import it.unibo.oop.view.Launcher;
 import it.unibo.oop.view.OptionsMenu;
 import it.unibo.oop.view.PauseMenu;
 import it.unibo.oop.view.QuitMenu;
-import it.unibo.oop.view.Showable;
 
 /**
  * 
@@ -30,15 +31,15 @@ public enum State {
     PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.empty()),
     CREDITS(Optional.of(new CreditsMenu(ViewsManager.getInstance())), Optional.empty());
     
-    private Optional<Showable> view = Optional.empty();
+    private Optional<JPanel> view = Optional.empty();
     private Optional<Runnable> action = Optional.empty();
     
-    private State(final Optional<Showable> view, Optional<Runnable> action) {
+    private State(final Optional<JPanel> view, Optional<Runnable> action) {
         this.view = view;
         this.action = action;
     }
     
-    public Optional<Showable> getView() {
+    public Optional<JPanel> getView() {
         return this.view;
     }
     
