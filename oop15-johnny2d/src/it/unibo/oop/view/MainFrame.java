@@ -1,14 +1,15 @@
 package it.unibo.oop.view;
 
-import javax.swing.JPanel;
+import it.unibo.oop.controller.State;
 
 public interface MainFrame {
     
     /**
-     * @param panel
-     *              panel to view.
+     * 
+     * @param state
+     *              state used to define the view to show.
      */
-    public void setPanel(JPanel panel);
+    public void changeView(final State state);
 
     /**
      * @param val

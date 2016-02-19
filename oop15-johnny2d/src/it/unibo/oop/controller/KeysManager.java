@@ -26,8 +26,7 @@ import it.unibo.oop.utilities.Direction;
  */
 public class KeysManager implements KeyboardObserver {
 
-    private static final KeysManager SINGLETON = new KeysManager();
-
+    private static Optional<KeysManager> SINGLETON = Optional.empty();
     private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length; 
     private List<KeyCommands> keysPressed; /* elementi rimossi da KeyRelease event: indica tasti premuti PROLUNGATAMENTE */
     private List<KeyCommands> keysTyped;         /* svuotata ad ogni frame: indica tasti premuti NON prolungatamente*/
@@ -41,8 +40,11 @@ public class KeysManager implements KeyboardObserver {
         }
     }
 
-    public static KeysManager getInstance() {
-        return SINGLETON;
+    public synchronized static KeysManager getInstance() {
+        if (!SINGLETON.isPresent()) {
+            SINGLETON = Optional.of(new KeysManager());
+        }
+        return SINGLETON.get();
     }
 
     public synchronized void reset() {

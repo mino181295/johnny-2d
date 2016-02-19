@@ -10,15 +10,18 @@ import java.util.Optional;
  */
 public class GameLoop implements Controller {
 
-    private static final GameLoop SINGLETON = new GameLoop();
+    private static Optional<GameLoop> SINGLETON = Optional.empty();
     private Optional<AgentInterface> gLAgent = Optional.empty();
 
     private GameLoop() {
         ViewsManager.getInstance().showView(State.LAUNCHING);
     }
 
-    public static Controller getInstance() {
-        return SINGLETON;
+    public synchronized static Controller getInstance() {
+        if (!SINGLETON.isPresent()) {
+            SINGLETON = Optional.of(new GameLoop());
+        }
+        return SINGLETON.get();
     }
 
     @Override

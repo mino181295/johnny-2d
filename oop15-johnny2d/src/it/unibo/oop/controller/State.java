@@ -2,45 +2,37 @@ package it.unibo.oop.controller;
 
 import java.util.Optional;
 
-import javax.swing.JPanel;
-
-import it.unibo.oop.view.CreditsMenu;
-import it.unibo.oop.view.Launcher;
-import it.unibo.oop.view.OptionsMenu;
-import it.unibo.oop.view.PauseMenu;
-import it.unibo.oop.view.QuitMenu;
-
 /**
  * 
  * @author Paolo
  *
- * Enum with each game states together with views and actions.
+ * Enum with each game states together with actions.
  */
 public enum State {
                             
     /* With Action */
-    START(Optional.empty(), Optional.of(() -> GameLoop.getInstance().start())),
-    PLAY(Optional.empty(), Optional.of(() -> GameLoop.getInstance().play())),
-    EXIT(Optional.empty(), Optional.of(() -> System.exit(0))),
-    BACK(Optional.empty(), Optional.of(() -> ViewsManager.getInstance().showLast())),
+    START(Optional.of(() -> GameLoop.getInstance().start()), false),
+    PLAY(Optional.of(() -> GameLoop.getInstance().play()), false),
+    EXIT(Optional.of(() -> System.exit(0)), false),
+    BACK(Optional.of(() -> ViewsManager.getInstance().showLast()), false),
+    PAUSE(Optional.of(() -> ViewsManager.getInstance().reset()), true),
     
     /* With View */
-    LAUNCHING(Optional.of(new Launcher(ViewsManager.getInstance())), Optional.empty()),
-    QUIT(Optional.of(new QuitMenu(ViewsManager.getInstance())), Optional.empty()),
-    OPTIONS(Optional.of(new OptionsMenu(ViewsManager.getInstance())), Optional.empty()),
-    PAUSE(Optional.of(new PauseMenu(ViewsManager.getInstance())), Optional.empty()),
-    CREDITS(Optional.of(new CreditsMenu(ViewsManager.getInstance())), Optional.empty());
+    LAUNCHING(Optional.empty(), true),
+    QUIT(Optional.empty(), true),
+    OPTIONS(Optional.empty(), true),
+    CREDITS(Optional.empty(), true);
     
-    private Optional<JPanel> view = Optional.empty();
-    private Optional<Runnable> action = Optional.empty();
+    private final Optional<Runnable> action;
+    private final boolean drawable;
     
-    private State(final Optional<JPanel> view, Optional<Runnable> action) {
-        this.view = view;
+    private State(final Optional<Runnable> action, final boolean drawable) {
         this.action = action;
+        this.drawable = drawable;
     }
     
-    public Optional<JPanel> getView() {
-        return this.view;
+    public boolean isDrawable() {
+        return this.drawable;
     }
     
     public void doAction() {

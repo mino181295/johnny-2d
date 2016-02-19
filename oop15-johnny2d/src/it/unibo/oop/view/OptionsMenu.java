@@ -15,9 +15,6 @@ import it.unibo.oop.controller.StateObserver;
 
 public class OptionsMenu extends MenuPanel {
     
-    /**
-     * 
-     */
     private static final long serialVersionUID = -4689323418673684324L;
 
     private enum Button implements StateButton {

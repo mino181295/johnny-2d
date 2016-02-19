@@ -1,8 +1,6 @@
 package it.unibo.oop.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Optional;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 
@@ -11,9 +9,6 @@ import it.unibo.oop.controller.StateObserver;
 
 public class Launcher extends MenuPanel {
   
-    /**
-     * 
-     */
     private static final long serialVersionUID = 6835079187244547916L;
 
     private enum Button implements StateButton {
@@ -38,9 +33,9 @@ public class Launcher extends MenuPanel {
         }
     }
     
-    private final JButton play; /* fare una mappa da JButton a State */
-    private final JButton options;
-    private final JButton quit;
+//    private final JButton play; /* fare una mappa da JButton a State */
+//    private final JButton options;
+//    private final JButton quit;
     
     public Launcher(final StateObserver stateObs) {
         this.addObserver(stateObs);
@@ -48,44 +43,45 @@ public class Launcher extends MenuPanel {
         /* ICON SETTING */
         this.setIcon("/launcher.png"); 
         
-       // this.addStateButton(Arrays.asList(Button.values()));
-        
-		/*
-		 * BUTTONS CREATION
-		 */
-		
-        final ActionListener aL = new MyActionListener();
-		/* PLAY */
-		this.play = new JButton("Play");
-		this.play.addActionListener(aL);
-		this.addComponent(this.play, true);
-		
-		/* OPTIONS */
-		this.options = new JButton("Options");
-		this.options.addActionListener(aL);
-		this.addComponent(this.options, true);
-		
-		/* QUIT */
-	    this.quit = new JButton("Quit");
-	    this.quit.addActionListener(aL);
-	    this.addComponent(this.quit, true);
-	}
-	
-	private class MyActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            final Object src = e.getSource();
-            Optional<State> state = Optional.empty();
-            if (src == Launcher.this.quit) {
-                    state = Optional.of(State.QUIT);
-            } else if (src == Launcher.this.options) {
-                state = Optional.of(State.OPTIONS);
-            } else if (src == Launcher.this.play){
-                state = Optional.of(State.START);
-            }
-            state.ifPresent(st -> Launcher.this.doObsAction(
-                            obs -> new Thread(()-> obs.stateAction(st)).start()));
-        }
-	}
+       this.addStateButton(Arrays.asList(Button.values()));
+    }
+//        
+//		/*
+//		 * BUTTONS CREATION
+//		 */
+//		
+//        final ActionListener aL = new MyActionListener();
+//		/* PLAY */
+//		this.play = new JButton("Play");
+//		this.play.addActionListener(aL);
+//		this.addComponent(this.play, true);
+//		
+//		/* OPTIONS */
+//		this.options = new JButton("Options");
+//		this.options.addActionListener(aL);
+//		this.addComponent(this.options, true);
+//		
+//		/* QUIT */
+//	    this.quit = new JButton("Quit");
+//	    this.quit.addActionListener(aL);
+//	    this.addComponent(this.quit, true);
+//	}
+//	
+//	private class MyActionListener implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            final Object src = e.getSource();
+//            Optional<State> state = Optional.empty();
+//            if (src == Launcher.this.quit) {
+//                    state = Optional.of(State.QUIT);
+//            } else if (src == Launcher.this.options) {
+//                state = Optional.of(State.OPTIONS);
+//            } else if (src == Launcher.this.play){
+//                state = Optional.of(State.START);
+//            }
+//            state.ifPresent(st -> Launcher.this.doObsAction(
+//                            obs -> new Thread(()-> obs.stateAction(st)).start()));
+//        }
+//	}
 }

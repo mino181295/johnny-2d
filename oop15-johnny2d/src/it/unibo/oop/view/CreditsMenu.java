@@ -6,9 +6,6 @@ import it.unibo.oop.controller.StateObserver;
 
 public class CreditsMenu extends MenuPanel {
     
-    /**
-     * 
-     */
     private static final long serialVersionUID = 7436402336801219924L;
 
     private enum Button implements StateButton {

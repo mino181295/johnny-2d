@@ -1,7 +1,8 @@
 package it.unibo.oop.controller;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import it.unibo.oop.view.Level;
 import it.unibo.oop.view.LevelInterface;
@@ -21,22 +22,22 @@ import it.unibo.oop.view.MainFrameImpl;
 
 public class ViewsManager implements StateObserver {
 
-    private static ViewsManager SINGLETON;
+    private static Optional<ViewsManager> SINGLETON = Optional.empty();
     private final LevelInterface level;
     private final MainFrame mainFrame;
-    private volatile Optional<State> prevState = Optional.empty();
-    private volatile Optional<State> currState = Optional.empty();
+    private List<State> history;
 
     private ViewsManager() {
+        this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
         this.level = new Level(KeysManager.getInstance());
     }
 
-    public static ViewsManager getInstance() {
-        if (SINGLETON == null) {
-            SINGLETON = new ViewsManager();
+    public synchronized static ViewsManager getInstance() {
+        if (!SINGLETON.isPresent()) {
+            SINGLETON = Optional.of(new ViewsManager());
         }
-        return SINGLETON;
+        return SINGLETON.get();
     }
 
     public LevelInterface getLevel() {
@@ -46,19 +47,19 @@ public class ViewsManager implements StateObserver {
     @Override 
     public synchronized void stateAction(final State state) {
         state.doAction();
-        this.showView(state);
+        if (state.isDrawable()) {
+            this.showView(state); 
+        }
     }
 
     public synchronized void showView(final State state) {
-        if (state.getView().isPresent()) {
-            final JPanel view = state.getView().get();
-            try {
-                SwingUtilities.invokeAndWait(() -> this.mainFrame.setPanel(view));
-                prevState = currState;
-                currState = Optional.of(state);
-            } catch (InterruptedException | InvocationTargetException e) {
-                e.printStackTrace();
+        try {
+            SwingUtilities.invokeAndWait(() -> this.mainFrame.changeView(state));
+            if (!this.history.contains(state)) {
+                this.history.add(state);
             }
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
 
@@ -70,7 +71,13 @@ public class ViewsManager implements StateObserver {
         }
     }
 
-    public void showLast() {
-        this.showView(this.prevState.get());
+    public synchronized void showLast() {
+        final int lastIndex = this.history.size() - 1;
+        this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
+        this.showView(this.history.get(lastIndex-1)); /* mostro quella che la precedeva */               
+    }
+    
+    public synchronized void reset() { /* per evitare di sovraffollare la history */ 
+        this.history = new ArrayList<>();
     }
 }

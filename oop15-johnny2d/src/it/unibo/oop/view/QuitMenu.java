@@ -6,9 +6,6 @@ import it.unibo.oop.controller.StateObserver;
 
 public class QuitMenu extends MenuPanel {
     
-    /**
-     * 
-     */
     private static final long serialVersionUID = -8073693943984907077L;
 
     private enum Button implements StateButton {
