@@ -16,16 +16,13 @@ import it.unibo.oop.view.MainFrameImpl;
  * class which manages all the game views.
  */
 
-/*
- *  NOTE: aggiungere stack schede aperte per corretta terminazione app o soluzione analoga. 
- */
 
 public class ViewsManager implements StateObserver {
 
     private static Optional<ViewsManager> SINGLETON = Optional.empty();
     private final LevelInterface level;
-    private final MainFrame mainFrame;
-    private List<State> history;
+    private final MainFrame mainFrame; // class which contains all the menu-views.
+    private List<State> history; // stack view aperte.
 
     private ViewsManager() {
         this.history = new ArrayList<>();
@@ -63,7 +60,7 @@ public class ViewsManager implements StateObserver {
         }
     }
 
-    public void hideView() {
+    public synchronized void hideView() {
         try {
             SwingUtilities.invokeAndWait(() -> this.mainFrame.setVisible(false));
         } catch (InterruptedException | InvocationTargetException e) {
@@ -77,7 +74,7 @@ public class ViewsManager implements StateObserver {
         this.showView(this.history.get(lastIndex-1)); /* mostro quella che la precedeva */               
     }
     
-    public synchronized void reset() { /* per evitare di sovraffollare la history */ 
+    public synchronized void reset() { /* per evitare di sovraffollare inutilmente la history */ 
         this.history = new ArrayList<>();
     }
 }
