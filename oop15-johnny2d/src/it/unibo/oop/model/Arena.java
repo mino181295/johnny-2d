@@ -5,6 +5,7 @@ import static it.unibo.oop.utilities.CharactersSettings.WALL;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import it.unibo.oop.utilities.Position;
 
@@ -31,7 +32,7 @@ public class Arena {
 		//Creation of externs walls
 		for (int offsetX = EMPTY_SPACES; offsetX < widthBlocks-EMPTY_SPACES; offsetX++){
 			for (int offsetY = EMPTY_SPACES; offsetY < heightBlocks-EMPTY_SPACES; offsetY++){
-				if (offsetX==EMPTY_SPACES || offsetY==EMPTY_SPACES){
+				if (offsetX==EMPTY_SPACES || offsetY==EMPTY_SPACES || offsetX==widthBlocks-1-EMPTY_SPACES || offsetY == heightBlocks-1-EMPTY_SPACES){
 					this.boundsList.add(new Wall(widthRest/2 + offsetX * WALL.getWidth() + WALL.getWidth()/2, 
 											hudDimension + heightRest/2 +offsetY * WALL.getHeight() + WALL.getHeight()/2 ));
 				}
@@ -64,5 +65,12 @@ public class Arena {
 	public void addSpawnPoint(Position spawnPosition){
 		this.spawnPoints.add(spawnPosition);
 	}
+	
+	public Position getRandomSpawnPoint(){
+		Random tmpRandom = new Random(this.spawnPoints.size());
+		return this.spawnPoints.get(tmpRandom.nextInt());
+	}
+	
+	
 
 }
