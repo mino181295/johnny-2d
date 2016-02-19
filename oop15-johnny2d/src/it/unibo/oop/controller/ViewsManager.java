@@ -45,7 +45,6 @@ public class ViewsManager implements StateObserver {
 
     @Override 
     public synchronized void stateAction(final State state) {
-        //  this.hideAll();
         state.doAction();
         this.showView(state);
     }
