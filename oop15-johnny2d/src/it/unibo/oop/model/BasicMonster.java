@@ -35,7 +35,10 @@ public class BasicMonster extends AbstractEnemy{
 	}
 	public void checkCollision(final Position newPosition) throws CollisionHandlingException{
 		final BasicMonster tmpEnemy = new BasicMonster(newPosition.getIntX(), newPosition.getIntY(), this.getMovement(), this.getVelocity());
-		
+		//Checks if the entity in the next move is inside the rectanuglar Arena
+		if (!this.getEnvironment().getArena().isInside(tmpEnemy)){
+			throw new CollisionHandlingException();
+		}
 		final long numWallCollisions = this.getEnvironment().getStableList().stream()
 				  													  .filter(x -> x instanceof Wall)
 				  													  .filter(tmpEnemy::intersecate)

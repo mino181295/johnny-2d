@@ -33,6 +33,10 @@ public class Bullet extends MovableEntity implements Shot {
 	public void checkCollision(final Position newPosition) throws CollisionHandlingException {
 		// Creation of the bullet in the next position (TODO Factory)
 		final Bullet tmpBullet = new Bullet(newPosition.getIntX(),newPosition.getIntY(),this.getMovement());
+		//Checks if the entity in the next move is inside the rectanuglar Arena
+		if (!this.getEnvironment().getArena().isInside(tmpBullet)){
+			throw new CollisionHandlingException();
+		}
 		//Counting how mutch walls it collides (Usually 1)
 		final long numWallCollisions = this.getEnvironment().getStableList().stream()
 											 						  .filter(x -> x instanceof Wall)

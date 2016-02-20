@@ -16,13 +16,6 @@ public interface Entity {
 	Position getPosition();
 	
 	/**
-	 * Checks if the position is the same of the passed one.
-	 * @param newPosition
-	 * @return true if the position is the same.
-	 */
-	boolean equalsPosition(Position newPosition);
-	
-	/**
 	 * It return and calculates the bounds of a specific {@link Entity}.
 	 * @return the {@link Rectangle} containing the object
 	 */
