@@ -8,13 +8,21 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.controller.ViewsManager;
 
+/**
+ * Implementation of {@link MainFrame} interface.
+ */
 public class MainFrameImpl implements MainFrame {
 
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 500;
     private final JFrame frame;
-    
+
+    /**
+     * Class's constructor.
+     */
     public MainFrameImpl() {
         this.frame = new JFrame();
-        this.frame.setSize(500, 500);
+        this.frame.setSize(WIDTH, HEIGHT);
         this.frame.setUndecorated(true);
         this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.frame.setLocationRelativeTo(null);
@@ -33,24 +41,25 @@ public class MainFrameImpl implements MainFrame {
         this.setVisible(true);
     }
 
+    @Override
     public void setVisible(final boolean val) {
         this.frame.setVisible(val);
     }
-    
-    static private class MenuPanelFactory {
-        
+
+    private static class MenuPanelFactory {
+
         static Optional<MenuPanel> makePanel(final State state) throws InstantiationException, IllegalAccessException,
-            IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-            
+                IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+
             Class<? extends MenuPanel> outPanel;
-            
+
             switch (state) {
             case LAUNCHING:
                 outPanel = Launcher.class;
                 break;
             case QUIT:
                 outPanel = QuitMenu.class;
-                break; 
+                break;
             case OPTIONS:
                 outPanel = OptionsMenu.class;
                 break;
@@ -67,4 +76,3 @@ public class MainFrameImpl implements MainFrame {
         }
     }
 }
-

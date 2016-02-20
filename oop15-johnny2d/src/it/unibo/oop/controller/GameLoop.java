@@ -27,8 +27,8 @@ public final class GameLoop implements Controller {
 
     @Override
     public void start() { // launcher -> play / pause -> replay
-        // GameStateImpl.getInstance().initialize(0); deve implicare l'inizializzazione anche della view Level.
-        KeysManager.getInstance().reset();
+        // GameStateImpl.getInstance().initialize(0);
+        KeysManager.getInstance().reset(); 
         this.play();
     }
 

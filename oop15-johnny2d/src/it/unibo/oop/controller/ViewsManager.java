@@ -12,8 +12,6 @@ import it.unibo.oop.view.MainFrameImpl;
 /**
  * class which manages all the game views.
  */
-
-
 public final class ViewsManager implements StateObserver {
 
     private static Optional<ViewsManager> singleton = Optional.empty();
@@ -44,16 +42,33 @@ public final class ViewsManager implements StateObserver {
 
     @Override 
     public synchronized void stateAction(final State state) {
-        state.doAction();
-        // this.doStateAction(state);
+        // state.doAction();
+        this.doStateAction(state);
         if (state.isDrawable()) {
             this.showView(state); 
         }
     }
 
-//    private void doStateAction(final State state) {
-//
-//    }
+    private void doStateAction(final State state) {
+        switch (state) {
+        case START:
+            GameLoop.getInstance().start();
+            break;
+        case PLAY:
+            GameLoop.getInstance().play();
+            break;
+        case PAUSE:
+            this.reset();
+            break;
+        case BACK:
+            this.showLast();
+            break;
+        case EXIT:
+            System.exit(0);
+            break;
+        default:
+        }
+    }
 
     public synchronized void showView(final State state) {
         try {
@@ -74,10 +89,12 @@ public final class ViewsManager implements StateObserver {
         }
     }
 
-    public synchronized void showLast() {
+    private synchronized void showLast() {
         final int lastIndex = this.history.size() - 1;
-        this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
-        this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
+        if (lastIndex > 0 ) {
+            this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
+            this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
+        }
     }
 
     public synchronized void reset() { /* per evitare di sovraffollare inutilmente la history */ 
