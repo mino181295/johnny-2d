@@ -8,13 +8,19 @@ import it.unibo.oop.controller.KeyboardObserver;
 public interface LevelInterface extends Showable {
 
     /**
+     * repaints the panel.
+     */
+    void updateLevel();
+
+    /**
      * @param obs
      *            observer to attach.
      */
     void addObserver(final KeyboardObserver obs);
 
     /**
-     * repaints the panel.
+     * @param val
+     *            to enable(true)/disable(false) music.
      */
-    void updateLevel();
+    void enableMusic(final boolean val);
 }

@@ -18,10 +18,11 @@ public class Level implements LevelInterface {
     private final JFrame frame;
     private final MainKeyListener keyListener;
     private final LevelPanel mainLevel;
+    private boolean musicEnabled;
 
     /**
      * @param obs
-     *          observer of the keyboard.
+     *            observer of the keyboard.
      */
     public Level(final KeyboardObserver obs) {
         this.frame = new JFrame(TITLE);
@@ -32,19 +33,21 @@ public class Level implements LevelInterface {
         this.frame.setResizable(false);
         mainLevel = new LevelPanel();
         this.frame.getContentPane().add(mainLevel);
+        this.musicEnabled = true;
 
         /* per MainKeyListener */
         this.keyListener = new MainKeyListener();
         this.keyListener.addObserver(obs);
         this.frame.addKeyListener(this.keyListener);
         this.frame.setFocusTraversalKeysEnabled(false);
-        // this.frame.requestFocus(); /* per attivare il key listener */
     }
 
+    @Override
     public void updateLevel() {
         this.mainLevel.repaint();
     }
 
+    @Override
     public void addObserver(final KeyboardObserver obs) {
         this.keyListener.addObserver(obs);
     }
@@ -57,6 +60,11 @@ public class Level implements LevelInterface {
     @Override
     public void hideIt() {
         this.frame.setVisible(false);
+    }
+
+    @Override
+    public void enableMusic(final boolean val) {
+        this.musicEnabled = val;
     }
 
 }

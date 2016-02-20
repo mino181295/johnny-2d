@@ -7,8 +7,6 @@ import it.unibo.oop.utilities.Direction;
 /**
  * Enum defining which keys can be pressed during the gameplay. NOTE: the
  * keyboard layout can be customize simply modifying the VK_Code of the keys.
- * 
- * A-LEFT, S-DOWN, D-RIGHT, SPACE, ESC-PAUSE.
  */
 public enum KeyCommands {
     /**

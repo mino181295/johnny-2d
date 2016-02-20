@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
+import it.unibo.oop.controller.ViewsManager;
 
 /**
  * Panel for Options Menu-view.
@@ -60,6 +61,8 @@ public class OptionsMenu extends MenuPanel {
 
         final JCheckBox check = new JCheckBox();
         check.setOpaque(false);
+        check.setSelected(true);
+        check.addActionListener(e -> ViewsManager.getInstance().getLevel().enableMusic(check.isSelected()));
 
         final JPanel musicPane = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 10));
         musicPane.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
