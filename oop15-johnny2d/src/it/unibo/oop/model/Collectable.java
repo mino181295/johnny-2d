@@ -8,6 +8,6 @@ public interface Collectable {
 	/**
 	 * In case of collision with the {@link MainCharacter} this {@link Collectable} gets collected
 	 */
-	public void collect(MainCharacter bonusCollector);
+	void collect(MainCharacter bonusCollector);
 
 }

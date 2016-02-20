@@ -30,7 +30,7 @@ public final class GameStateImpl implements GameState {
     	
     	//TODO Migliorare la creazione delle posizioni
     	
-    	this.gameArena= Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
+    	this.gameArena = Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
     	this.johnnyCharacter = Optional.ofNullable(Factory.MainCharacterFactory.generateCentredCharacter(SCREEN_HEIGHT, SCREEN_WIDTH));
     	for (int nMonsters = 0; nMonsters < levelNumber*10; nMonsters++){
     		final Position randomPos = Factory.PositionFactory.generateRandomPsition(SCREEN_WIDTH, SCREEN_WIDTH);
