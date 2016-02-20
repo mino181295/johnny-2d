@@ -71,7 +71,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     }
 
     @Override
-    public void setIcon(final String path) {
+    public final void setIcon(final String path) {
         final URL imgURL = this.getClass().getResource(path);
         final ImageIcon icon = new ImageIcon(imgURL);
         final JLabel label = new JLabel(icon);
