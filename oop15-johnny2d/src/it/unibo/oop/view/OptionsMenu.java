@@ -13,57 +13,66 @@ import javax.swing.JPanel;
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
+/**
+ * Panel for Options Menu-view.
+ */
 public class OptionsMenu extends MenuPanel {
-    
+
     private static final long serialVersionUID = -4689323418673684324L;
+    private static final int FONT_SIZE = 30;
+    private static final int PANEL_WIDTH = 160;
+    private static final int PANEL_HEIGHT = 100;
 
     private enum Button implements StateButton {
-        CREDITS("Credits", State.CREDITS),
-        BACK("Back", State.BACK);
-        
+        CREDITS("Credits", State.CREDITS), BACK("Back", State.BACK);
+
         private final String name;
         private final State state;
-        
-        private Button(final String name, final State state) {
+
+        Button(final String name, final State state) {
             this.name = name;
             this.state = state;
         }
-        
+
         public String getName() {
             return this.name;
         }
-        
+
         public State getState() {
             return this.state;
         }
     }
-    
+
+    /**
+     * @param stateObs
+     *            a {@link StateObserver} object to send "messages".
+     */
     public OptionsMenu(final StateObserver stateObs) {
         this.addObserver(stateObs);
-        
+
         /* ICON SETTING */
         this.setIcon("/options.png");
-        
+
         /* MUSIC */
         final JLabel label = new JLabel("Music");
-        label.setFont(new Font("MusicStyle", Font.PLAIN, 30));
+        label.setFont(new Font("MusicStyle", Font.PLAIN, FONT_SIZE));
         label.setForeground(Color.WHITE);
-        
+
         final JCheckBox check = new JCheckBox();
         check.setOpaque(false);
-        
+
         final JPanel musicPane = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 10));
-        musicPane.setPreferredSize(new Dimension(160, 100));
+        musicPane.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         musicPane.setOpaque(false);
         musicPane.add(label);
         musicPane.add(check);
         this.addComponent(musicPane, false);
-//        /* DIFFICULTY */
-//        final JButton diff = new JButton("Difficulty");
+        // /* DIFFICULTY */
+        // final JButton diff = new JButton("Difficulty");
 
-//        this.addComponent(diff);
-        
+        // this.addComponent(diff);
+
         /* BUTTONS CREATION */
         this.addStateButton(Arrays.asList(Button.values()));
-    }  
+    }
 }

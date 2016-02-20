@@ -14,24 +14,24 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy{
 
 	private Optional<MovementBehavior> behavior;
 
-	public AbstractEnemy(double startingX, double startingY, Vector2 movementVector, Velocity speedValue) {
+	public AbstractEnemy(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
 	}
 	
-	public AbstractEnemy(double startingX, double startingY, Vector2 movementVector, Velocity speedValue, MovementBehavior movBeh) {
+	public AbstractEnemy(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue, final MovementBehavior movBeh) {
 		this(startingX, startingY, movementVector, speedValue);
 		this.attachBehavior(movBeh);
 	}
 	/**
 	 * Changes the behavior with a new one passed as argument
 	 */
-	public void attachBehavior(MovementBehavior movBeh){
+	public void attachBehavior(final MovementBehavior movBeh){
 		this.behavior = Optional.of(movBeh);
 	}
 	/**
 	 * Checks if the {@link MovementBehavior} is present and gets the next move from it.
 	 */
-	public void useBehavior(Position targetPosition){
+	public void useBehavior(final Position targetPosition){
 		behavior.ifPresent(x -> this.setMovement(x.getNextMove(targetPosition)));
 	}
 	/**

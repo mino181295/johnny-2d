@@ -16,7 +16,7 @@ public abstract class AbstractEntity implements Entity {
 	private Position entityPosition; 
 	private Optional<GameStateImpl> gameEnvironment = Optional.ofNullable(GameStateImpl.getInstance()); 
 	
-	public AbstractEntity(double startingX, double startingY){
+	public AbstractEntity(final double startingX, final double startingY){
 		this.entityPosition = new Position(startingX,startingY);
 	}
 	/**
@@ -28,7 +28,7 @@ public abstract class AbstractEntity implements Entity {
 	/**
 	 * Setter of the position of the {@link Entity}
 	 */
-	public void setPosition(Position newPosition) {
+	public void setPosition(final Position newPosition) {
 		this.entityPosition = newPosition;
 	}
 	/**
@@ -58,10 +58,10 @@ public abstract class AbstractEntity implements Entity {
 	 * @return A rectangle containing, in the center, the {@link Entity}
 	 */	
 	public Rectangle getBounds(){
-		int tmpWidth = this.getEntityWidth();
-		int tmpHeight = this.getEntityHeight();
-		Dimension tmpDim = new Dimension(tmpWidth,tmpHeight);
-		Point topLeftCorner = new Point(this.getTopLeftPos().getIntX(), this.getTopLeftPos().getIntY());
+		final int tmpWidth = this.getEntityWidth();
+		final int tmpHeight = this.getEntityHeight();
+		final Dimension tmpDim = new Dimension(tmpWidth,tmpHeight);
+		final Point topLeftCorner = new Point(this.getTopLeftPos().getIntX(), this.getTopLeftPos().getIntY());
 		return new Rectangle(topLeftCorner,tmpDim);
 	}	
 	/**
@@ -81,7 +81,7 @@ public abstract class AbstractEntity implements Entity {
 	/**
 	 * Attaches another Envirnment to the current Entity.
 	 */
-	public void attachEnvironment(GameStateImpl newEnvironment){
+	public void attachEnvironment(final GameStateImpl newEnvironment){
 	  this.gameEnvironment = Optional.of(newEnvironment);
 	}
 	
@@ -102,5 +102,4 @@ public abstract class AbstractEntity implements Entity {
 	public void removeFromEnvironment(){
 		gameEnvironment.get().removeEntity(this);
 	}
-	
 }

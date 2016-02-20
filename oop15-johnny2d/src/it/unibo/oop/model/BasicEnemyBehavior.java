@@ -9,17 +9,17 @@ import it.unibo.oop.utilities.Vector2;
  */
 public class BasicEnemyBehavior implements MovementBehavior{
 	
-	private MovableEntity playerPosition;
+	private final MovableEntity playerPosition;
 	
-	public BasicEnemyBehavior(MovableEntity player){
+	public BasicEnemyBehavior(final MovableEntity player){
 		this.playerPosition = player;
 	}
 	
 	/**
 	 * Returns a vector that indicates where the {@link Enemy} should go to follow the {@link MainCharacter}
 	 */
-	public Vector2 getNextMove(Position targetPosition) {
-		Vector2 newMovement = new Vector2(targetPosition.getX() - playerPosition.getX(), targetPosition.getY() - playerPosition.getY());
+	public Vector2 getNextMove(final Position targetPosition) {
+		final Vector2 newMovement = new Vector2(targetPosition.getX() - playerPosition.getX(), targetPosition.getY() - playerPosition.getY());
 		return newMovement.setLength(playerPosition.getVelocity().getMaxVelocity());
 	}
 }

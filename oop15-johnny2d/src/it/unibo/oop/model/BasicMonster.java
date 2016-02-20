@@ -12,18 +12,18 @@ public class BasicMonster extends AbstractEnemy{
 	private static final int SCORE_VALUE = 10;
 	private final static int DMG = 1;
 	
-	public BasicMonster(double startingX, double startingY, Vector2 movementVector, Velocity speedValue, MovementBehavior movBeh) {
+	public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue, final MovementBehavior movBeh) {
 		super(startingX, startingY, movementVector, speedValue, movBeh);
 	}
 	
-	public BasicMonster(double startingX, double startingY, Vector2 movementVector, Velocity speedValue) {
+	public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
 		this.attachBehavior(new BasicEnemyBehavior(this));
 	}
 	
 	public void update(){
 		
-		Vector2 newMovement = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
+		final Vector2 newMovement = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
 		//newMovement = newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity());
 		try {
 			this.checkCollision(this.getPosition().sumVector(newMovement));
@@ -33,10 +33,10 @@ public class BasicMonster extends AbstractEnemy{
 		}
 		
 	}
-	public void checkCollision(Position newPosition) throws CollisionHandlingException{
-		BasicMonster tmpEnemy = new BasicMonster(newPosition.getIntX(), newPosition.getIntY(), this.getMovement(), this.getVelocity());
+	public void checkCollision(final Position newPosition) throws CollisionHandlingException{
+		final BasicMonster tmpEnemy = new BasicMonster(newPosition.getIntX(), newPosition.getIntY(), this.getMovement(), this.getVelocity());
 		
-		long numWallCollisions = this.getEnvironment().getStableList().stream()
+		final long numWallCollisions = this.getEnvironment().getStableList().stream()
 				  													  .filter(x -> x instanceof Wall)
 				  													  .filter(tmpEnemy::intersecate)
 				  													  .count();

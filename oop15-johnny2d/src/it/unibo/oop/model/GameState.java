@@ -29,11 +29,11 @@ public interface GameState {
      */
     
     
-    public List<AbstractEntity> getStableList();
+    List<AbstractEntity> getStableList();
     
-    public List<AbstractEntity> getMovableList(); 
+    List<AbstractEntity> getMovableList(); 
     
-    public Optional<MainCharacter> getMainChar();
+    Optional<MainCharacter> getMainChar();
     
     
 }

@@ -28,7 +28,7 @@ public class GameLoopAgent implements AgentInterface {
     @Override
     public synchronized void play() {
         this.pause = false;
-        this.notify();
+        this.notifyAll();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GameLoopAgent implements AgentInterface {
             /*
              * valutare l'aggiunta di un ulteriore wait per far eseguire
              * eventuali eventi di key releasing (onde evitare che un tasto sia
-             * processato più volte in caso di un tasso di FPS elevato)
+             * processato piï¿½ volte in caso di un tasso di FPS elevato)
              */
 
             /* CHECK GIOCO FINITO/DA INIZIARE */

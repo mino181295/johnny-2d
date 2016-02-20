@@ -8,5 +8,5 @@ public interface StateObserver {
      * @param state
      *              state of the game.
      */
-    public void stateAction(State state);
+    void stateAction(State state);
 }

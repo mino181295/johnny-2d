@@ -10,7 +10,7 @@ import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 /**
- * Class rappresnting the Bullet fired from an {@link Entity} that implements a {@link Shooter}.
+ * Class representing the Bullet fired from an {@link Entity} that implements a {@link Shooter}.
  * @author Matteo Minardi
  *
  */
@@ -18,12 +18,12 @@ public class Bullet extends MovableEntity implements Shot {
 
 	private double remainingDistance = 200 + new Random().nextInt(50);
 	
-	public Bullet(double startingX, double startingY, Vector2 movementVector) {
+	public Bullet(final double startingX, final double startingY, final Vector2 movementVector) {
 		super(startingX, startingY, movementVector, BULLET.getSpeed());
 		this.setMovement(movementVector);
 	}
 
-	public Bullet(MainCharacter heroPosition) {
+	public Bullet(final MainCharacter heroPosition) {
 		this(heroPosition.getX(), heroPosition.getY(), heroPosition.getMovement());
 		//Takes the hero position
 		this.setMovement(heroPosition.getMovement());
@@ -31,16 +31,16 @@ public class Bullet extends MovableEntity implements Shot {
 		this.getMovement().setLength(this.getVelocity().getMinVelocity());
 	}
 	
-	public void checkCollision(Position newPosition) throws CollisionHandlingException {
+	public void checkCollision(final Position newPosition) throws CollisionHandlingException {
 		// Creation of the bullet in the next position (TODO Factory)
-		Bullet tmpBullet = new Bullet(newPosition.getIntX(),newPosition.getIntY(),this.getMovement());
+		final Bullet tmpBullet = new Bullet(newPosition.getIntX(),newPosition.getIntY(),this.getMovement());
 		//Counting how mutch walls it collides (Usually 1)
-		long numWallCollisions = this.getEnvironment().getStableList().stream()
+		final long numWallCollisions = this.getEnvironment().getStableList().stream()
 											 						  .filter(x -> x instanceof Wall)
 											 						  .filter(tmpBullet::intersecate)
 											 						  .count();
 		//Collectr all the Enemies collided (usually 1)
-		List<Enemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
+		final List<Enemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
 																	.filter(x -> x instanceof Enemy)
 																	.filter(tmpBullet::intersecate)
 																	.map(x -> (Enemy)x)
@@ -51,9 +51,9 @@ public class Bullet extends MovableEntity implements Shot {
 			throw new CollisionHandlingException();
 		}
 		//If the bullet collides with an enemy both die
-		if (enemyCollisions.size() > 0){
+		if (!enemyCollisions.isEmpty()){
 			//Calculates the score obtained killing the monsters
-			int tmpScore = enemyCollisions.stream().map(x -> x.getScoreValue())
+			final int tmpScore = enemyCollisions.stream().map(x -> x.getScoreValue())
 												   .reduce((x,y) -> x+y)
 												   .get();
 			this.getEnvironment().getMainChar().get().getScore().increaseScore(tmpScore);
@@ -69,7 +69,7 @@ public class Bullet extends MovableEntity implements Shot {
 	public void update(){
 		try {
 			//Calculates the new movement vector
-			Vector2 newMovement = this.getMovement().setLength(this.getVelocity().accelerate(this.getMovement().length()));			
+			final Vector2 newMovement = this.getMovement().setLength(this.getVelocity().accelerate(this.getMovement().length()));			
 			//newMovement = newMovement.clamp(this.getVelocity().getMinVelocity(), this.getVelocity().getMaxVelocity());
 			//Check if there are collision in the new position
 			this.checkCollision(this.getPosition().sumVector(newMovement));
@@ -81,7 +81,7 @@ public class Bullet extends MovableEntity implements Shot {
 				this.removeFromEnvironment();
 			}
 		} catch (CollisionHandlingException e){
-			System.out.println("Il proiettile ha colliso ed è stato rimosso");
+			System.out.println("Il proiettile ha colliso ed ï¿½ stato rimosso");
 		}
 	}
 	protected int getEntityHeight() {

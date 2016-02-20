@@ -16,19 +16,19 @@ public class Arena {
 	private final List<Wall> boundsList;
 	private final Rectangle playableRectangle;
 	
-	private List<Position> spawnPoints;
+	private final List<Position> spawnPoints;
 		
 
-	public Arena(int panelHeight, int panelWidth, int hudDimension) {
+	public Arena(final int panelHeight, final int panelWidth, final int hudDimension) {
 		//Settings the arena walls
 		this.boundsList = new ArrayList<>();
-		int drawableAreaHeight = panelHeight - hudDimension;
+		final int drawableAreaHeight = panelHeight - hudDimension;
 		
-		int heightRest = drawableAreaHeight%WALL.getHeight();
-		int widthRest = panelWidth%WALL.getWidth();
+		final int heightRest = drawableAreaHeight%WALL.getHeight();
+		final int widthRest = panelWidth%WALL.getWidth();
 		
-		int heightBlocks = drawableAreaHeight/WALL.getHeight();
-		int widthBlocks = panelWidth/WALL.getWidth();
+		final int heightBlocks = drawableAreaHeight/WALL.getHeight();
+		final int widthBlocks = panelWidth/WALL.getWidth();
 		//Creation of externs walls
 		for (int offsetX = EMPTY_SPACES; offsetX < widthBlocks-EMPTY_SPACES; offsetX++){
 			for (int offsetY = EMPTY_SPACES; offsetY < heightBlocks-EMPTY_SPACES; offsetY++){
@@ -39,7 +39,7 @@ public class Arena {
 			}
 		}
 		//Getting playable rectangle
-		Position topLeftCorner = this.boundsList.get(0).getPosition();				
+		final Position topLeftCorner = this.boundsList.get(0).getPosition();				
 		this.playableRectangle = new Rectangle(topLeftCorner.getIntX()+(int)WALL.getWidth()/2,topLeftCorner.getIntY()+(int)WALL.getHeight()/2
 										, (int)(widthBlocks-2*EMPTY_SPACES)*WALL.getWidth(), (int)(heightBlocks-2*EMPTY_SPACES)*WALL.getHeight());
 		
@@ -62,12 +62,12 @@ public class Arena {
 		return this.spawnPoints;
 	}
 	
-	public void addSpawnPoint(Position spawnPosition){
+	public void addSpawnPoint(final Position spawnPosition){
 		this.spawnPoints.add(spawnPosition);
 	}
 	
 	public Position getRandomSpawnPoint(){
-		Random tmpRandom = new Random(this.spawnPoints.size());
+		final Random tmpRandom = new Random(this.spawnPoints.size());
 		return this.spawnPoints.get(tmpRandom.nextInt());
 	}
 	
@@ -88,22 +88,21 @@ public class Arena {
 	}
 	
 	public Position getPositionInside(){
-		Random randX = new Random((long) playableRectangle.getWidth());
-		Random randY = new Random((long) playableRectangle.getHeight());
+		final Random randX = new Random((long) playableRectangle.getWidth());
+		final Random randY = new Random((long) playableRectangle.getHeight());
 		
 		return new Position(randX.nextInt()+ this.playableRectangle.getX(), randY.nextInt() + this.playableRectangle.getY());
 	}	
-	public boolean isInside(Entity entity){
+	public boolean isInside(final Entity entity){
 		boolean isInside = true;
 		if (!this.playableRectangle.intersects(entity.getBounds())){
 			return false;
 		}
-		for(Wall block : this.boundsList){
+		for(final Wall block : this.boundsList){
 			if (block.intersecate(entity)){
 				isInside = false;
 			}
 		}
 		return isInside;
 	}
-
 }
