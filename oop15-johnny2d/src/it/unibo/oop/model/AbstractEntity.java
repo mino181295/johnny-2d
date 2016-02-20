@@ -7,7 +7,7 @@ import java.util.Optional;
 import it.unibo.oop.utilities.Position;
 
 /**
- * This abstract class shapes the standard {@link Entity} of the game. Every entity
+ * This abstract class shapes the standard {@link Entity} of the game. Every {@link Entity}
  * has got its own {@link Position}, and its own Environment where it's placed.
  */
 public abstract class AbstractEntity implements Entity {
@@ -88,37 +88,32 @@ public abstract class AbstractEntity implements Entity {
 	public void attachEnvironment(final GameStateImpl newEnvironment){
 	  this.gameEnvironment = Optional.of(newEnvironment);
 	}
+	
 	/**
-	 * Removes the environment if it's necessary
+	 * Removes the environment if it's necessary.
 	 */
 	public void removeEnvironment(){
 		if (this.gameEnvironment.isPresent()){
 			this.gameEnvironment = Optional.empty();
 		}
-<<<<<<< local
 	}	
+	
+	/**
+	 * @return true if the {@link Entity} has got an environment.
+	 */
 	public boolean hasEnvironment(){
 		return this.gameEnvironment.isPresent();
-=======
 	}
-	/**
-	 * @return True if the Entity has got an environment
-	 */
-	public boolean hasEnvirnment(){
-		if (this.gameEnvironment.isPresent() ){
-			return true;
-		}
-		return false;
->>>>>>> other
-	}	
+	
 	/** 
-	 * @return The environment of the Entity as an object to manipulate
+	 * @return the environment of an {@link Entity} as an object to manipulate.
 	 */
 	public GameStateImpl getEnvironment(){
 		return this.gameEnvironment.get();
 	}
+	
 	/**
-	 * Removes an Entity from the environment to avoid new updates and new draws in the screen
+	 * Removes an {@link Entity} from the environment to avoid new updates and new draws in the screen.
 	 */
 	public void removeFromEnvironment(){
 		gameEnvironment.get().removeEntity(this);
