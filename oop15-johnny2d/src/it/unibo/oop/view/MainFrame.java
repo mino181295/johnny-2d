@@ -3,7 +3,7 @@ package it.unibo.oop.view;
 import it.unibo.oop.controller.State;
 
 /**
- * Interface menus-frame, which "contains" each panel.
+ * Interface for a mainframe, which "contains" each panel.
  */
 public interface MainFrame {
 

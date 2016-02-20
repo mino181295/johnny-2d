@@ -3,7 +3,7 @@ package it.unibo.oop.view;
 import it.unibo.oop.controller.KeyboardObserver;
 
 /**
- * Interface for Level, should be factored.
+ * Interface for {@link Level}.
  */
 public interface LevelInterface extends Showable {
 
@@ -14,7 +14,7 @@ public interface LevelInterface extends Showable {
     void addObserver(final KeyboardObserver obs);
 
     /**
-     * repaints the panel.
+     * Repaints the {@link LevelPanel}.
      */
     void updateLevel();
 }

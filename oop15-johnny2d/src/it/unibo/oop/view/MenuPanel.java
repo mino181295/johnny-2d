@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 import it.unibo.oop.controller.StateObserver;
 
 /**
- * Custom JPanel used as template for game's menu. It defines standard JButtons
- * layout, LayoutManager and background image.
+ * Custom {@link javax.swing.JPanel} used as template for game's menu. It defines standard buttons,
+ * layout and background image.
  */
 public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
@@ -33,7 +33,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private final List<StateObserver> obsList;
 
     /**
-     * Class's constructor.
+     * Creates a new panel.
      */
     public MenuPanel() {
         super("/background.jpg");

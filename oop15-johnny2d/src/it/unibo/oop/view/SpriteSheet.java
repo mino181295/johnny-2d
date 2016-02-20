@@ -17,7 +17,7 @@ public class SpriteSheet {
     private final Map<Direction, BufferedImage> sprites;
 
     /**
-     * Constructs a new sprite sheet.
+     * Constructs a new {@link SpriteSheet}.
      * 
      * @param sheetName
      *            the name of the sprite sheet
@@ -36,19 +36,19 @@ public class SpriteSheet {
     }
 
     /**
-     * Splits every sprite in the {@link it.unibo.oop.view.SpriteSheet}. It
-     * considers only the first sprite for every row in the sheet (only one
+     * Splits every sprite in the {@link SpriteSheet}. It
+     * considers only the first sprite for every row (only one
      * animation).
      * 
      * @param imagesWidth
      *            the width of each sprite in the
-     *            {@link it.unibo.oop.view.SpriteSheet}
+     *            {@link SpriteSheet}
      * @param imagesHeight
      *            the height of each sprite in the
-     *            {@link it.unibo.oop.view.SpriteSheet}
-     * @return a {@link java.util.Map} of {@link java.awt.image.BufferedImage}
-     *         with all the sprites in the {@link it.unibo.oop.view.SpriteSheet}
-     *         mapped with their {@link it.unibo.oop.utilities.Direction}
+     *            {@link SpriteSheet}
+     * @return a {@link Map} of {@link BufferedImage}
+     *         with all the sprites in the {@link SpriteSheet}
+     *         mapped with their {@link Direction}
      */
     public Map<Direction, BufferedImage> split(final int imagesWidth, final int imagesHeight) {
         final boolean isSplitted = ((sheet.getHeight() % imagesHeight == 0) && (sheet.getWidth() % imagesWidth == 0))
@@ -80,11 +80,11 @@ public class SpriteSheet {
     }
 
     /**
-     * Returns the sprite in the {@link java.util.map} corresponding to the
-     * given {@link it.unibo.oop.utilities.Direction}.
+     * Returns the sprite in the {@link Map} corresponding to the
+     * given {@link Direction}.
      * 
      * @param dir
-     *            the {@link it.unibo.oop.utilities.Direction} of the sprite
+     *            the {@link Direction} of the sprite
      * @return the corresponding sprite
      */
     public BufferedImage getSprite(final Direction dir) {

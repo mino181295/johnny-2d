@@ -10,7 +10,7 @@ import it.unibo.oop.controller.KeyboardObserver;
 
 /**
  * Simple custom class implementing {@link KeyListener} that should be attached to
- * the main view (where will show the game).
+ * the main view.
  */
 public class MainKeyListener implements KeyListener {
 
@@ -25,7 +25,7 @@ public class MainKeyListener implements KeyListener {
     }
 
     /**
-     * Empty class's constructor.
+     * Empty constructor.
      */
     public MainKeyListener() {
         this.obsList = new ArrayList<>();

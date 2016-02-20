@@ -5,7 +5,7 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 /**
- * Panel for Pause Menu-view.
+ * {@link javax.swing.JPanel} for pause Menu-view.
  */
 public class PauseMenu extends MenuPanel {
 

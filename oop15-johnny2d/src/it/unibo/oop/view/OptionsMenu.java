@@ -14,7 +14,7 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 /**
- * Panel for Options Menu-view.
+ * {@link javax.swing.JPanel} for options Menu-view.
  */
 public class OptionsMenu extends MenuPanel {
 

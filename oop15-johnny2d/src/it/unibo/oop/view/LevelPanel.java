@@ -31,7 +31,7 @@ public class LevelPanel extends BackgroundPanel {
 
     /**
      * Builds the {@link javax.swing.JPanel} and loads every
-     * {@link it.unibo.oop.view.SpriteSheet}.
+     * {@link SpriteSheet}.
      */
     public LevelPanel() {
         super("/background.jpg");
@@ -60,7 +60,7 @@ public class LevelPanel extends BackgroundPanel {
      * Draws the main character.
      * 
      * @param g
-     *            the {@link java.awt.Graphics} object
+     *            the {@link Graphics} object
      */
     private void drawMainCharacter(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(gs.getMainChar().get().getFaceDirection()),
@@ -72,7 +72,7 @@ public class LevelPanel extends BackgroundPanel {
      * Draws the movable entities.
      * 
      * @param g
-     *            the {@link java.awt.Graphics} object
+     *            the {@link Graphics} object
      */
     /*
      * private void drawMovables(final Graphics g) {
@@ -84,7 +84,7 @@ public class LevelPanel extends BackgroundPanel {
      * Draws the stable entities.
      * 
      * @param g
-     *            the {@link java.awt.Graphics} object
+     *            the {@link Graphics} object
      */
     /*
      * private void drawStables(final Graphics g) {
@@ -96,7 +96,7 @@ public class LevelPanel extends BackgroundPanel {
      * Draws the stats for the main character.
      * 
      * @param g
-     *            the {@link java.awt.Graphics} object
+     *            the {@link Graphics} object
      */
     private void drawStats(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX(), this.getY(), this);

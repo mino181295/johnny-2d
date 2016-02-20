@@ -5,7 +5,7 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 /**
- * Panel for Quit Menu-view.
+ * {@link javax.swing.JPanel} for quit Menu-view.
  */
 public class QuitMenu extends MenuPanel {
 

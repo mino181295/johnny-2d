@@ -1,6 +1,6 @@
 package it.unibo.oop.utilities;
 /**
- * Rapresents the speed and the acceleration of an {@link Entity}
+ * Represents the speed and the acceleration of an {@link Entity}
  * @author Matteo Minardi
  *
  */

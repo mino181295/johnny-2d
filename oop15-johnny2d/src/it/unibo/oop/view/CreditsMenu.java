@@ -10,7 +10,7 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 /**
- * Panel for Credits Menu-view.
+ * {@link javax.swing.JPanel} for credits Menu-view.
  */
 public class CreditsMenu extends MenuPanel {
 

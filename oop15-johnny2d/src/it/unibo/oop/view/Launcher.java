@@ -5,7 +5,7 @@ import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 
 /**
- * Panel for Launcher Menu-view.
+ * {@link javax.swing.JPanel} for launcher Menu-view.
  */
 public class Launcher extends MenuPanel {
 
