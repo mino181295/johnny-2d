@@ -21,6 +21,7 @@ public class Level implements LevelInterface {
 
     /**
      * @param obs
+     *          observer of the keyboard.
      */
     public Level(final KeyboardObserver obs) {
         this.frame = new JFrame(TITLE);
