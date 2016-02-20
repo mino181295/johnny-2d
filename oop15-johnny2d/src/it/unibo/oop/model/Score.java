@@ -1,11 +1,10 @@
 package it.unibo.oop.model;
 
 import java.io.Serializable;
+
 /**
- * Rapresents the score based on how many {@link Enemy} has the {@link MainCharacter} killed.
- * Class implementing {@link Serializable} that can be writed and saved by the user.
- * @author Matteo Minardi
- *
+ * Represents the score based on how many {@link Enemy} the {@link MainCharacter} has killed.
+ * Class implementing {@link java.io.Serializable} that can be wrote and saved by the user.
  */
 public class Score implements Serializable {
 
@@ -20,8 +19,9 @@ public class Score implements Serializable {
 	public Score(){
 		this(DEFAULT_SCORE);
 	}
+	
 	/**
-	 * Increase the current score
+	 * Increases the current score.
 	 */
 	public void increaseScore(final int value){
 		this.currentScore += value;

@@ -1,8 +1,7 @@
 package it.unibo.oop.model;
+
 /**
- * Class that model the health of the {@link MainCharacter}
- * @author Matteo Minardi
- *
+ * Class that models the health of the {@link MainCharacter}.
  */
 public class Health {
 	

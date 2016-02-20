@@ -11,11 +11,7 @@ import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Settings;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;
-/**
- * 
- * @author Matteo Minardi
- *
- */
+
 public class MainCharacter extends MovableEntity implements Shooter{
 
 	private Health currentHealth;

@@ -9,10 +9,9 @@ import java.util.stream.Collectors;
 import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
+
 /**
  * Class representing the Bullet fired from an {@link Entity} that implements a {@link Shooter}.
- * @author Matteo Minardi
- *
  */
 public class Bullet extends MovableEntity implements Shot {
 
