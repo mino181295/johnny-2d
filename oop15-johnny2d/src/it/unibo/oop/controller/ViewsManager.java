@@ -91,7 +91,7 @@ public final class ViewsManager implements StateObserver {
 
     private synchronized void showLast() {
         final int lastIndex = this.history.size() - 1;
-        if (lastIndex > 0 ) {
+        if (lastIndex > 0) {
             this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
             this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
         }

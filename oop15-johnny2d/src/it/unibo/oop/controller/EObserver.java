@@ -6,11 +6,10 @@ package it.unibo.oop.controller;
 public interface EObserver {
 
     /**
-     * 
-     * @param source
-     *              object which generates the event.
      * @param args
      *              arguments for the observer.
+     * throw new IllegalArgumentException
+     *                  if args passed doesn't fit the method implementation.
      */
-    void update(Object source, Object... args);
+    void update(Object... args);
 }
