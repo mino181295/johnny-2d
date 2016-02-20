@@ -8,11 +8,11 @@ public class Velocity{
 
 	private final double stillVelocity = 0;
 	
-	private double maxVelocity;
-	private double minVelocity;
-	private double velocityScale;
+	private final double maxVelocity;
+	private final double minVelocity;
+	private final double velocityScale;
 	
-	public Velocity(double min, double max, double accelerationTime){	
+	public Velocity(final double min, final double max, final double accelerationTime){	
 		this.minVelocity = min;
 		this.maxVelocity = max;
 		this.velocityScale = (this.maxVelocity - this.minVelocity) / accelerationTime;
@@ -20,14 +20,14 @@ public class Velocity{
 	/**
 	 * Accelerate the currentVelocity to his new velocity basing on the velocityScale
 	 */
-	public double slow(double currentVelocity){		 
-		double newVelocity = currentVelocity - velocityScale;
+	public double slow(final double currentVelocity){		 
+		final double newVelocity = currentVelocity - velocityScale;
 		return newVelocity<minVelocity?stillVelocity:newVelocity;
 	}
 	/**
 	 * Decelerate the currentVelocity to his new velocity basing on the velocityScale
 	 */
-	public double accelerate(double currentVelocity){
+	public double accelerate(final double currentVelocity){
 		double newVelocity = currentVelocity + velocityScale;
 		//If it goes over the top speed it caps to it
 		newVelocity = newVelocity>maxVelocity?maxVelocity:newVelocity;

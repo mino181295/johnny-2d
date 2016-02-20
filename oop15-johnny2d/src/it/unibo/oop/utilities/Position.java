@@ -29,36 +29,32 @@ public class Position implements Point2{
 	 * @param x Integer value of the X
 	 * @param y Integer value of the Y
 	 */
-	public Position(Position p){
+	public Position(final Position p){
 		this(p.getX(),p.getY());		
 	}
 	
 	public double getX(){
-		final double valCopy = this.x;
-		return valCopy;
+		return this.x;
 	}
 	
 	public int getIntX(){
-		final double valCopy = this.x;
-		return (int)valCopy;
+		return (int)this.x;
 	}
 	
 	public double getY(){
-		final double valCopy = this.y;
-		return valCopy;
+		return this.y;
 	}
 	
 	public int getIntY(){
-		final double valCopy = this.y;
-		return (int)valCopy;
+		return (int)this.y;
 	}
 
 	
-	public void setX(double newX){
+	public void setX(final double newX){
 		this.x = newX;
 	}
 	
-	public void setY(double newY){
+	public void setY(final double newY){
 		this.y = newY;
 	}
 	/**
@@ -67,7 +63,7 @@ public class Position implements Point2{
 	 * @param secondY second Y value
 	 * @return Returns the new Position of the summed vector
 	 */
-	public Position sumVector(Vector2 movement){
+	public Position sumVector(final Vector2 movement){
 		return new Position((int)(this.getX()+ movement.getX()), (int)(this.getY()+ movement.getY()));		
 	}
 	/**
@@ -76,21 +72,21 @@ public class Position implements Point2{
 	 * @param b point 2
 	 * @return the distance between 2 points
 	 */
-	public static double pointsDistance(Position a, Position b){
+	public static double pointsDistance(final Position a, final Position b){
 		final double xDistance = Math.abs(a.getX()-b.getX());
 		final double yDistance = Math.abs(a.getY()-b.getY());
 		return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance, 2));
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Position other = (Position) obj;
+		final Position other = (Position) obj;
 		if (x != other.x)
 			return false;
 		if (y != other.y)

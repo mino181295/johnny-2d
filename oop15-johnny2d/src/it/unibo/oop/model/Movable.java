@@ -8,6 +8,6 @@ public interface Movable{
 	/**
 	 * Moves the current {@link MovableEntity} to his next position.
 	 */
-	public void move();
+	void move();
 	
 }

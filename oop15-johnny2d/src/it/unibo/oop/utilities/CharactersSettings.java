@@ -13,7 +13,7 @@ public enum CharactersSettings {
 	int height;
 	Optional<Velocity> speed;
 	
-	private CharactersSettings(int width, int height, Velocity speed){
+	private CharactersSettings(final int width, final int height, final Velocity speed){
 		this.width = width;
 		this.height = height;
 		this.speed = Optional.ofNullable(speed);

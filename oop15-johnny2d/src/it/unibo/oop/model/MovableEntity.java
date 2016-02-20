@@ -8,9 +8,9 @@ import it.unibo.oop.utilities.Velocity;
 public abstract class MovableEntity extends AbstractEntity implements Movable {
 
 	private Vector2 movementVector;
-	private Velocity speedValues;
+	private final Velocity speedValues;
 	
-	public MovableEntity(double startingX, double startingY, Vector2 movementVector, Velocity speedValue) {
+	public MovableEntity(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue) {
 		super(startingX,startingY);
 		this.movementVector = movementVector;
 		this.speedValues = speedValue;		
@@ -20,7 +20,7 @@ public abstract class MovableEntity extends AbstractEntity implements Movable {
 		this.setPosition(this.getPosition().sumVector(movementVector)); 
 	}
 	
-	public void setMovement(Vector2 newMovement){
+	public void setMovement(final Vector2 newMovement){
 		this.movementVector = newMovement;
 	}
 	

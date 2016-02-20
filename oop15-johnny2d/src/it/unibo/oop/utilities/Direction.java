@@ -11,22 +11,22 @@ public enum Direction {
 	
     NONE(0, 0),
     
-    RIGHTUP(-Direction.trigonometricConstant, Direction.trigonometricConstant),    
-	LEFTUP(-Direction.trigonometricConstant, -Direction.trigonometricConstant),
-	RIGHTDOWN(Direction.trigonometricConstant, Direction.trigonometricConstant),
-	LEFTDOWN(-Direction.trigonometricConstant, Direction.trigonometricConstant);
+    RIGHTUP(-Direction.TRIGONOMETRIC_CONSTANT, Direction.TRIGONOMETRIC_CONSTANT),    
+	LEFTUP(-Direction.TRIGONOMETRIC_CONSTANT, -Direction.TRIGONOMETRIC_CONSTANT),
+	RIGHTDOWN(Direction.TRIGONOMETRIC_CONSTANT, Direction.TRIGONOMETRIC_CONSTANT),
+	LEFTDOWN(-Direction.TRIGONOMETRIC_CONSTANT, Direction.TRIGONOMETRIC_CONSTANT);
 	
-	static final double trigonometricConstant = sin(PI/2);
+	private static final double TRIGONOMETRIC_CONSTANT = sin(PI/2);
 	
 	private double x;
 	private double y;
 	
-	private Direction(int x, int y) {
+	private Direction(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 	}
 	
-	private Direction(double x, double y) {
+	private Direction(final double x, final double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -34,5 +34,4 @@ public enum Direction {
 	public Vector2 getVector2() {
 		return new Vector2(this.x,this.y);
 	}
-	
 }

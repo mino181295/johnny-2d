@@ -14,13 +14,13 @@ public class Health {
 
 	private int currentHealth;
 	
-	public Health(int minHealth, int maxHealth, int initialHealth){
+	public Health(final int minHealth, final int maxHealth, final int initialHealth){
 		this.minHealth = minHealth;
 		this.maxHealth = maxHealth;
 		this.currentHealth = initialHealth;
 	}
 	
-	public Health(int maxHealth){
+	public Health(final int maxHealth){
 		this(DEFAULT_MIN_HEALTH,maxHealth,maxHealth);
 	}
 	
@@ -31,7 +31,7 @@ public class Health {
 	 * Decrease the {@link Health} of the {@link MainCharacter} if it gets damaged by an {@link Enemy}
 	 * @param damage The damage taken
 	 */
-	public void decreaseHealth(int damage){
+	public void decreaseHealth(final int damage){
 		this.currentHealth -= damage; 
 		currentHealth = (currentHealth < minHealth ? minHealth : currentHealth);
 	}
@@ -39,7 +39,7 @@ public class Health {
 	 * Increase the {@link Health} of the {@link MainCharacter} if he collects a special {@link Collectable}
 	 * @param damage The damage taken
 	 */
-	public void increaseHealth(int heal){
+	public void increaseHealth(final int heal){
 		this.currentHealth += heal;
 		currentHealth = (currentHealth > maxHealth ? maxHealth : currentHealth);
 	}
@@ -48,7 +48,7 @@ public class Health {
 	 * @return
 	 */
 	public int computePercentage(){
-		double tmp = currentHealth/ (maxHealth-minHealth);
+		final double tmp = currentHealth/ (maxHealth-minHealth);
 		return (int)(tmp*100);
 	}
 	
@@ -61,7 +61,4 @@ public class Health {
 	public boolean isDead(){
 		return (this.currentHealth <= minHealth);
 	}
-	
-	
-
 }

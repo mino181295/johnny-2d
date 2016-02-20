@@ -6,7 +6,6 @@ public class TestClass {
 	
 	@Test
 	private void testUtilities(){
-			
+		
 	}
-
 }

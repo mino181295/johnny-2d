@@ -4,7 +4,7 @@ package it.unibo.oop.model;
  */
 public interface Shot {
 	
-	public double getRemainingDistance();
+	double getRemainingDistance();
 	
 	// public double getDamageDealt();
 	

@@ -21,17 +21,17 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	private Health currentHealth;
 	private Score currentScore;
 	
-	public MainCharacter(double startingX, double startingY, Vector2 movementVector, Velocity speedValue) {
+	public MainCharacter(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
 		currentHealth = new Health(3);
 		currentScore = new Score(0);
 	}
 	
-	public MainCharacter(double startingX, double startingY, Vector2 startingMovement) {
+	public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
 		this(startingX, startingY, startingMovement, MAIN_CHARACTER.getSpeed());
 	}
 	
-	public MainCharacter(double startingX, double startingY) {
+	public MainCharacter(final double startingX, final double startingY) {
 		this(startingX, startingY, new Vector2(), MAIN_CHARACTER.getSpeed());
 	}
 	
@@ -39,7 +39,7 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		this(Settings.SCREEN_WIDTH/2, Settings.SCREEN_HEIGHT/2, new Vector2(), MAIN_CHARACTER.getSpeed());
 	}
 	
-	public void update(Direction newDirection , boolean isShooting){
+	public void update(final Direction newDirection , final boolean isShooting){
 		//Takes the new frame direction
 		Vector2 newMovement = newDirection.getVector2();
 		//If the main character is accelerating
@@ -62,23 +62,23 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		
 	}
 
-	public void checkCollision(Position newPosition) throws CollisionHandlingException {	
+	public void checkCollision(final Position newPosition) throws CollisionHandlingException {	
 		
-		MainCharacter tmpJohnny = Factory.MainCharacterFactory.generateStillCharacter(newPosition.getX(), newPosition.getY());
+		final MainCharacter tmpJohnny = Factory.MainCharacterFactory.generateStillCharacter(newPosition.getX(), newPosition.getY());
 		//Counting the number of collided walls (Usually 1)
-		long numWallCollisions = this.getEnvironment().getStableList().stream()
+		final long numWallCollisions = this.getEnvironment().getStableList().stream()
 				  													  .filter(x -> x instanceof Wall)
 				  													  .filter(tmpJohnny::intersecate)
 				  													  .count();
 		//Collecting the collectables item ( like score bonuses, health recharge or others..)
-		List<Collectable> collectablesCollided = this.getEnvironment().getStableList().stream()
+		final List<Collectable> collectablesCollided = this.getEnvironment().getStableList().stream()
 																					  .filter(x -> x instanceof Collectable)
 																					  .filter(tmpJohnny::intersecate)
 																					  .map(x -> (Collectable)x )
 																					  .collect(Collectors.toList());
 																					  
 		//Checking if collided some enemies																			  
-		List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
+		final List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
 																					.filter(x -> x instanceof AbstractEnemy)
 																					.filter(tmpJohnny::intersecate)
 																					.map(x -> (AbstractEnemy)x )
@@ -89,21 +89,21 @@ public class MainCharacter extends MovableEntity implements Shooter{
 			throw new CollisionHandlingException();
 		}
 		//If it collides with one or more bonus it takes them and apply it;
-		if (collectablesCollided.size() > 0){
+		if (!collectablesCollided.isEmpty()){
 			collectablesCollided.stream()
 								.forEach(x -> x.collect(this));
 			collectablesCollided.stream()
 								.forEach(x -> ((AbstractEntity) x).removeFromEnvironment());
 		}
 		//Checks the collision with the collided enemies. Damage the hero and kills the monsters (temporary)
-		if (enemyCollisions.size() > 0){			
-			int dmgDealt = enemyCollisions.stream()
+		if (!enemyCollisions.isEmpty()){			
+			final int dmgDealt = enemyCollisions.stream()
 						   				  .map(x -> x.getDamage())	
 						   				  .reduce((x,y) -> x+y)
 						   				  .get();
 			this.currentHealth.decreaseHealth(dmgDealt);
 			
-			int scoreGained = enemyCollisions.stream()
+			final int scoreGained = enemyCollisions.stream()
 	   				  						 .map(x -> x.getScoreValue())	
 	   				  						 .reduce((x,y) -> x+y)
 	   				  						 .get();			

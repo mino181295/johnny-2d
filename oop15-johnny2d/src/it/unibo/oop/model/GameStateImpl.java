@@ -6,14 +6,13 @@ import java.util.Optional;
 
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
-import it.unibo.oop.utilities.Settings;
 import static it.unibo.oop.utilities.Settings.*;
 
-public class GameStateImpl implements GameState {
+public final class GameStateImpl implements GameState {
 
     private static final GameStateImpl SINGLETON = new GameStateImpl();
-    private List<MovableEntity> movableList;
-    private List<AbstractEntity> stableList;
+    private final List<MovableEntity> movableList;
+    private final List<AbstractEntity> stableList;
     private Optional<MainCharacter> johnnyCharacter;
     private Arena gameArena;
     
@@ -21,33 +20,32 @@ public class GameStateImpl implements GameState {
         this.movableList = new ArrayList<>();
         this.stableList = new ArrayList<>();
         johnnyCharacter = Optional.of(new MainCharacter());
-     
     }
     
     public static GameStateImpl getInstance() {
         return SINGLETON;
     }
     
-    protected void initialize(int levelNumber) {
+    protected void initialize(final int levelNumber) {
     	
     	//TODO Migliorare la creazione delle posizioni
     	
     	this.gameArena= Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
     	this.johnnyCharacter = Optional.ofNullable(Factory.MainCharacterFactory.generateCentredCharacter(SCREEN_HEIGHT, SCREEN_WIDTH));
     	for (int nMonsters = 0; nMonsters < levelNumber*10; nMonsters++){
-    		Position randomPos = Factory.PositionFactory.generateRandomPsition(SCREEN_WIDTH, SCREEN_WIDTH);
+    		final Position randomPos = Factory.PositionFactory.generateRandomPsition(SCREEN_WIDTH, SCREEN_WIDTH);
     		this.addMovableEntity(Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(), randomPos.getY()));
     	}
     	    
     }
 
-    protected void removeEntity(Entity entity) {
+    protected void removeEntity(final Entity entity) {
     	movableList.remove(entity);
     	stableList.remove(entity);
     }
 
     public void updatePositions(final Direction newDirection, final boolean isShooting) {
-    	for (MovableEntity currentE : movableList){
+    	for (final MovableEntity currentE : movableList){
     		if (currentE instanceof Bullet){
     			((Bullet) currentE).update();
     		}
@@ -62,15 +60,15 @@ public class GameStateImpl implements GameState {
         johnnyCharacter.ifPresent(c -> c.update(newDirection, isShooting));
     }
 
-    protected void addShoot(Bullet newBullet) {
+    protected void addShoot(final Bullet newBullet) {
 		this.movableList.add(newBullet);
 	}
 	
-	protected void addMovableEntity(MovableEntity newEntity){
+	protected void addMovableEntity(final MovableEntity newEntity){
 		this.movableList.add(newEntity);
 	}
 	
-	public void addStableEntity(AbstractEntity newEntity){
+	public void addStableEntity(final AbstractEntity newEntity){
 		this.stableList.add(newEntity);
 	}
 

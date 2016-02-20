@@ -11,14 +11,14 @@ public class Vector2 extends Position{
 	 * @param x X value
 	 * @param y Y value
 	 */
-	public Vector2(double x, double y) {
+	public Vector2(final double x, final double y) {
 		super(x, y);
 	}
 	/**
 	 * Constructs a vector from the given vector
 	 * @param newVector
 	 */
-	public Vector2(Vector2 newVector){
+	public Vector2(final Vector2 newVector){
 		super(newVector.getX(),newVector.getY());
 	}
 	public Vector2(){
@@ -27,19 +27,19 @@ public class Vector2 extends Position{
 	/**
 	 * Adds the given components to this vector
 	 */
-	public Vector2 add(double x, double y){
+	public Vector2 add(final double x, final double y){
 		return new Vector2(this.getX()+x, this.getY()+y);
 	}
 	/**
 	 * Adds the given vector to this vector
 	 */
-	public Vector2 add(Vector2 secondVector){
+	public Vector2 add(final Vector2 secondVector){
 		return new Vector2(this.getX() + secondVector.getX(), this.getY()+ secondVector.getY());
 	}
 	/**
 	 * Multiplies this vector by a scalar
 	 */
-	public Vector2 scl(double scale){
+	public Vector2 scl(final double scale){
 		return new Vector2(this.getX()*scale, this.getY()*scale);
 	}
 	/**
@@ -58,7 +58,7 @@ public class Vector2 extends Position{
 	/**
 	 * Clamps this vector's length to given min and max values.
 	 */
-	public Vector2 clamp(double min, double max){
+	public Vector2 clamp(final double min, final double max){
 		if (this.length() < min ){
 			return this.setLength(min);
 		}
@@ -70,7 +70,7 @@ public class Vector2 extends Position{
 	/**
 	 * Returns a new vector resized to a specific newLength
 	 */
-	public Vector2 setLength(double newLength){
+	public Vector2 setLength(final double newLength){
 		return new Vector2(this.norm().scl(newLength));
 	}
 

@@ -14,7 +14,7 @@ public class Score implements Serializable {
 	
 	private int currentScore;
 	
-	public Score(int initialScore){
+	public Score(final int initialScore){
 		this.currentScore = initialScore;
 	}
 	public Score(){
@@ -23,7 +23,7 @@ public class Score implements Serializable {
 	/**
 	 * Increase the current score
 	 */
-	public void increaseScore(int value){
+	public void increaseScore(final int value){
 		this.currentScore += value;
 	}
 

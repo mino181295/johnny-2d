@@ -52,7 +52,7 @@ public class SpriteSheet {
 				(sheet.getWidth() % imagesWidth == 0)) ? true : false;
 		if ((sheet != null) && isSplitted) {
 			for (int y = 0, currentRow = 0; y < sheet.getHeight(); y += imagesHeight, currentRow++) {
-				for (int x = 0; x < imagesWidth; x += imagesWidth) {
+				for (int x = 0; x < sheet.getWidth(); x += imagesWidth) {
 					switch (currentRow) {
 						case 0: sprites.put(DOWN, grabSprite(x, y, imagesWidth, imagesHeight));
 								break;

@@ -10,7 +10,6 @@ import java.awt.Toolkit;
  */
 public final class Settings {
 	
-	private Settings() {};	
 	/**
 	 * Home directory.
 	 */
@@ -41,4 +40,6 @@ public final class Settings {
 	 */
 	public static final String HIGHSCORE_FOLDER = MY_FOLDER + FILE_SEPARATOR + "Highscores" + FILE_SEPARATOR;
 
+	private Settings() {
+	};	
 }

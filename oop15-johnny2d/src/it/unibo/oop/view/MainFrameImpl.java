@@ -37,7 +37,7 @@ public class MainFrameImpl implements MainFrame {
         this.frame.setVisible(val);
     }
     
-    static private class MenuPanelFactory {
+    private static class MenuPanelFactory {
     	
     	private MenuPanelFactory() {
     	}
