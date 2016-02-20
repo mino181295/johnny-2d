@@ -10,16 +10,13 @@ import it.unibo.oop.view.MainFrame;
 import it.unibo.oop.view.MainFrameImpl;
 
 /**
- * 
- * @author Paolo
- *
  * class which manages all the game views.
  */
 
 
-public class ViewsManager implements StateObserver {
+public final class ViewsManager implements StateObserver {
 
-    private static Optional<ViewsManager> SINGLETON = Optional.empty();
+    private static Optional<ViewsManager> singleton = Optional.empty();
     private final LevelInterface level;
     private final MainFrame mainFrame; // class which contains all the menu-views.
     private List<State> history; // stack view aperte.
@@ -30,11 +27,15 @@ public class ViewsManager implements StateObserver {
         this.level = new Level(KeysManager.getInstance());
     }
 
-    public synchronized static ViewsManager getInstance() {
-        if (!SINGLETON.isPresent()) {
-            SINGLETON = Optional.of(new ViewsManager());
+    /**
+     * @return
+     *          the singleton instance of the class.
+     */
+    public static synchronized ViewsManager getInstance() {
+        if (!singleton.isPresent()) {
+            singleton = Optional.of(new ViewsManager());
         }
-        return SINGLETON.get();
+        return singleton.get();
     }
 
     public LevelInterface getLevel() {
@@ -44,10 +45,15 @@ public class ViewsManager implements StateObserver {
     @Override 
     public synchronized void stateAction(final State state) {
         state.doAction();
+        // this.doStateAction(state);
         if (state.isDrawable()) {
             this.showView(state); 
         }
     }
+
+//    private void doStateAction(final State state) {
+//
+//    }
 
     public synchronized void showView(final State state) {
         try {
@@ -71,9 +77,9 @@ public class ViewsManager implements StateObserver {
     public synchronized void showLast() {
         final int lastIndex = this.history.size() - 1;
         this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
-        this.showView(this.history.get(lastIndex-1)); /* mostro quella che la precedeva */               
+        this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
     }
-    
+
     public synchronized void reset() { /* per evitare di sovraffollare inutilmente la history */ 
         this.history = new ArrayList<>();
     }

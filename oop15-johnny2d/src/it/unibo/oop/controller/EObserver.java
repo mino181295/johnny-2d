@@ -1,9 +1,6 @@
 package it.unibo.oop.controller;
 
 /**
- * 
- * @author Paolo
- *
  * Interface for events observers.
  */
 public interface EObserver {
@@ -15,5 +12,5 @@ public interface EObserver {
      * @param args
      *              arguments for the observer.
      */
-    public void update(Object source, Object... args);
+    void update(Object source, Object... args);
 }

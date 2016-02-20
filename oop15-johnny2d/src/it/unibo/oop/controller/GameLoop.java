@@ -3,25 +3,26 @@ package it.unibo.oop.controller;
 import java.util.Optional;
 
 /**
- * 
- * @author Paolo
- *
  *  class implementing the Controller of the MVC model.
  */
-public class GameLoop implements Controller {
+public final class GameLoop implements Controller {
 
-    private static Optional<GameLoop> SINGLETON = Optional.empty();
+    private static Optional<GameLoop> singleton = Optional.empty();
     private Optional<AgentInterface> gLAgent = Optional.empty();
 
     private GameLoop() {
         ViewsManager.getInstance().showView(State.LAUNCHING);
     }
 
-    public synchronized static Controller getInstance() {
-        if (!SINGLETON.isPresent()) {
-            SINGLETON = Optional.of(new GameLoop());
+    /**
+     * @return
+     *          the SINGLETON instance of the class.
+     */
+    public static synchronized Controller getInstance() {
+        if (!singleton.isPresent()) {
+            singleton = Optional.of(new GameLoop());
         }
-        return SINGLETON.get();
+        return singleton.get();
     }
 
     @Override
@@ -32,7 +33,7 @@ public class GameLoop implements Controller {
     }
 
     @Override
-    public void play() { // pause -> play  
+    public void play() { // pause -> play
         ViewsManager.getInstance().hideView();
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
@@ -50,7 +51,11 @@ public class GameLoop implements Controller {
 //
 //    }
 
-    public static void main(String[] args) {
+    /**
+     * @param args
+     *            ignored.
+     */
+    public static void main(final String... args) {
         new GameLoop();
     }
 }

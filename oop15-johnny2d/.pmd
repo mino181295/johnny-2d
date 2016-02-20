@@ -6,74 +6,6 @@
     <includePatterns/>
     <rules>
         <rule>
-            <name>CallSuperFirst</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>CallSuperLast</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotHardCodeSDCard</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AssignmentInOperand</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>ForLoopsMustUseBraces</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>IfElseStmtsMustUseBraces</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>IfStmtsMustUseBraces</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>WhileLoopsMustUseBraces</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>CloneMethodMustImplementCloneable</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>CloneThrowsCloneNotSupportedException</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidUsingShortType</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>BooleanInversion</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>DefaultPackage</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotCallGarbageCollectionExplicitly</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>OneDeclarationPerLine</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryConstructor</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>LooseCoupling</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
             <name>AbstractClassWithoutAbstractMethod</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
@@ -82,7 +14,39 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>AddEmptyString</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AppendCharacterWithChar</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>ArrayIsStoredDirectly</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AssignmentInOperand</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>AssignmentToNonFinalStatic</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidArrayLoops</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidAssertAsIdentifier</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidCallingFinalize</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidCatchingThrowable</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -90,7 +54,31 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>AvoidDollarSigns</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidDuplicateLiterals</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidEnumAsIdentifier</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidFieldNameMatchingMethodName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidFieldNameMatchingTypeName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>AvoidInstanceofChecksInCatchClause</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidLosingExceptionInformation</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -106,7 +94,47 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>AvoidRethrowingException</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidThrowingNewInstanceOfSameException</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidThrowingNullPointerException</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidUsingShortType</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>BadComparison</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>BooleanGetMethodName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>BooleanInversion</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>ByteInstantiation</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>CallSuperFirst</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>CallSuperLast</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>ClassNamingConventions</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -122,7 +150,7 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>ConfusingTernary</name>
+            <name>ConsecutiveLiteralAppends</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -134,111 +162,39 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>EmptyMethodInAbstractClassShouldBeAbstract</name>
+            <name>DefaultPackage</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>EqualsNull</name>
+            <name>DoNotCallGarbageCollectionExplicitly</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>FieldDeclarationsShouldBeAtStartOfClass</name>
+            <name>DoNotExtendJavaLangError</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>IdempotentOperations</name>
+            <name>DoNotHardCodeSDCard</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>ImmutableField</name>
+            <name>DoNotThrowExceptionInFinally</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>InstantiationToGetClass</name>
+            <name>DontImportJavaLang</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>LogicInversion</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MissingStaticMethodInNonInstantiatableClass</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>NonThreadSafeSingleton</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>OptimizableToArrayCall</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>PositionLiteralsFirstInCaseInsensitiveComparisons</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>PositionLiteralsFirstInComparisons</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>PreserveStackTrace</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SimpleDateFormatNeedsLocale</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SimplifyBooleanExpressions</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SimplifyBooleanReturns</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SimplifyConditional</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SingularField</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SwitchStmtsShouldHaveDefault</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryLocalBeforeReturn</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UnsynchronizedStaticDateFormatter</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseCollectionIsEmpty</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseLocaleWithCaseConversions</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseNotifyAllInsteadOfNotify</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseUtilityClass</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseVarargs</name>
+            <name>DuplicateImports</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
             <name>EmptyCatchBlock</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyFinalizer</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -274,11 +230,15 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>AvoidCallingFinalize</name>
+            <name>EqualsNull</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>EmptyFinalizer</name>
+            <name>ExceptionAsFlowControl</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>FieldDeclarationsShouldBeAtStartOfClass</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -298,11 +258,27 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>DontImportJavaLang</name>
+            <name>ForLoopsMustUseBraces</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>DuplicateImports</name>
+            <name>GenericsNaming</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>IdempotentOperations</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>IfElseStmtsMustUseBraces</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>IfStmtsMustUseBraces</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>ImmutableField</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -310,75 +286,19 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>UnnecessaryFullyQualifiedName</name>
+            <name>InefficientEmptyStringCheck</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>UnusedImports</name>
+            <name>InefficientStringBuffering</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>AvoidPrintStackTrace</name>
+            <name>InstantiationToGetClass</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>LoggerIsNotStaticFinal</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MoreThanOneLogger</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>JUnitSpelling</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>JUnitStaticSuite</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>JUnitTestsShouldIncludeAssert</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SimplifyBooleanAssertion</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>TestClassWithoutTestCases</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryBooleanAssertion</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseAssertEqualsInsteadOfAssertTrue</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseAssertNullInsteadOfAssertTrue</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseAssertSameInsteadOfAssertTrue</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseAssertTrueInsteadOfAssertEquals</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidAssertAsIdentifier</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidEnumAsIdentifier</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>ByteInstantiation</name>
+            <name>InsufficientStringBufferDeclaration</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -402,11 +322,91 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>JUnitSpelling</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>JUnitStaticSuite</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>JUnitTestsShouldIncludeAssert</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>JUnitUseExpected</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>LocalVariableCouldBeFinal</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>LoggerIsNotStaticFinal</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>LogicInversion</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>LongInstantiation</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>LooseCoupling</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MethodArgumentCouldBeFinal</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MethodNamingConventions</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MethodReturnsInternalArray</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MethodWithSameNameAsEnclosingClass</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MisleadingVariableName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MissingStaticMethodInNonInstantiatableClass</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>MoreThanOneLogger</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>NonThreadSafeSingleton</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>NoPackage</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>OptimizableToArrayCall</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>PackageCase</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>PrematureDeclaration</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>RedundantFieldInitializer</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -426,183 +426,31 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>AbstractNaming</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidDollarSigns</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidFieldNameMatchingMethodName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidFieldNameMatchingTypeName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>BooleanGetMethodName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>ClassNamingConventions</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>GenericsNaming</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MethodNamingConventions</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MethodWithSameNameAsEnclosingClass</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MisleadingVariableName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>NoPackage</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>PackageCase</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SuspiciousConstantFieldName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SuspiciousEqualsMethodName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SuspiciousHashcodeMethodName</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>VariableNamingConventions</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AddEmptyString</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidArrayLoops</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>LocalVariableCouldBeFinal</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MethodArgumentCouldBeFinal</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>PrematureDeclaration</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>RedundantFieldInitializer</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>SimplifyStartsWith</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryWrapperObjectCreation</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseArrayListInsteadOfVector</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseArraysAsList</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseStringBufferForStringAppends</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>ArrayIsStoredDirectly</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>MethodReturnsInternalArray</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidCatchingThrowable</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidLosingExceptionInformation</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidRethrowingException</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingNewInstanceOfSameException</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingNullPointerException</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingRawExceptionTypes</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotExtendJavaLangError</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotThrowExceptionInFinally</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>ExceptionAsFlowControl</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
             <name>SignatureDeclareThrowsException</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>AppendCharacterWithChar</name>
+            <name>SimpleDateFormatNeedsLocale</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>AvoidDuplicateLiterals</name>
+            <name>SimplifyBooleanAssertion</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>ConsecutiveLiteralAppends</name>
+            <name>SimplifyBooleanExpressions</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>InefficientEmptyStringCheck</name>
+            <name>SimplifyBooleanReturns</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>InefficientStringBuffering</name>
+            <name>SimplifyConditional</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>InsufficientStringBufferDeclaration</name>
+            <name>SingularField</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -618,23 +466,31 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>SuspiciousConstantFieldName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>SuspiciousHashcodeMethodName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>SwitchStmtsShouldHaveDefault</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>TestClassWithoutTestCases</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryBooleanAssertion</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>UnnecessaryCaseChange</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>UseEqualsToCompareStrings</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseIndexOfChar</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UselessStringValueOf</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UseStringBufferLength</name>
+            <name>UnnecessaryConstructor</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -646,23 +502,31 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>UnnecessaryFullyQualifiedName</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryLocalBeforeReturn</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>UnnecessaryReturn</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>UnusedNullCheckInEquals</name>
+            <name>UnnecessaryWrapperObjectCreation</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
-            <name>UselessOperationOnImmutable</name>
-            <ruleset>pmd-eclipse</ruleset>
-        </rule>
-        <rule>
-            <name>UselessOverridingMethod</name>
+            <name>UnsynchronizedStaticDateFormatter</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
             <name>UnusedFormalParameter</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedImports</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
@@ -674,11 +538,91 @@
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
+            <name>UnusedNullCheckInEquals</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
             <name>UnusedPrivateField</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
         <rule>
             <name>UnusedPrivateMethod</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseArrayListInsteadOfVector</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseArraysAsList</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseAssertEqualsInsteadOfAssertTrue</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseAssertNullInsteadOfAssertTrue</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseAssertSameInsteadOfAssertTrue</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseAssertTrueInsteadOfAssertEquals</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseCollectionIsEmpty</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseEqualsToCompareStrings</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseIndexOfChar</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UselessOperationOnImmutable</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UselessOverridingMethod</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UselessStringValueOf</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseLocaleWithCaseConversions</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseNotifyAllInsteadOfNotify</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseStringBufferLength</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseUtilityClass</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>UseVarargs</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>VariableNamingConventions</name>
+            <ruleset>pmd-eclipse</ruleset>
+        </rule>
+        <rule>
+            <name>WhileLoopsMustUseBraces</name>
             <ruleset>pmd-eclipse</ruleset>
         </rule>
     </rules>

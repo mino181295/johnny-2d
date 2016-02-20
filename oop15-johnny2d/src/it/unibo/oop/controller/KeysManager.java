@@ -19,32 +19,33 @@ import java.util.Optional;
 import it.unibo.oop.utilities.Direction;
 
 /**
- * 
- * @author Paolo
- *
  * class used by the controller to process the key list.
  */
-public class KeysManager implements KeyboardObserver {
+public final class KeysManager implements KeyboardObserver {
 
-    private static Optional<KeysManager> SINGLETON = Optional.empty();
+    private static Optional<KeysManager> singleton = Optional.empty();
     private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length; 
     private List<KeyCommands> keysPressed; /* elementi rimossi da KeyRelease event: indica tasti premuti PROLUNGATAMENTE */
     private List<KeyCommands> keysTyped;         /* svuotata ad ogni frame: indica tasti premuti NON prolungatamente*/
     private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
 
     private KeysManager() {
-        this.reset();    
+        this.reset();
         this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
         for (final KeyCommands cmd: KeyCommands.class.getEnumConstants()) {
             this.mapVKCodeToKeyCmd.put(cmd.getVkCode(), cmd);
         }
     }
 
-    public synchronized static KeysManager getInstance() {
-        if (!SINGLETON.isPresent()) {
-            SINGLETON = Optional.of(new KeysManager());
+    /**
+     * @return
+     *          the singleton instance of the class.
+     */
+    public static synchronized KeysManager getInstance() {
+        if (!singleton.isPresent()) {
+            singleton = Optional.of(new KeysManager());
         }
-        return SINGLETON.get();
+        return singleton.get();
     }
 
     public synchronized void reset() {
@@ -55,9 +56,9 @@ public class KeysManager implements KeyboardObserver {
     public synchronized boolean isAKeyPressed(final KeyCommands cmd) {
         return this.keysPressed.contains(cmd) || this.keysTyped.contains(cmd);
     }
-    
+
     /*
-     * FUNZIONAMENTO:   
+     * FUNZIONAMENTO:
      * Scorro la lista keysPressed e cerco i primi due tasti di direzione; gli eventuali "posti liberi" vengono riemipi
      * da max 2 tasti di direzione presi dalla keysTyped.
      * NOTE: 
@@ -70,9 +71,9 @@ public class KeysManager implements KeyboardObserver {
      */
 
     public synchronized Direction getDirection() {
-        final List<KeyCommands> tmpList = new ArrayList<>();      
+        final List<KeyCommands> tmpList = new ArrayList<>();
         KeyCommands out = NONE;
-        
+
         this.processKeys(this.keysPressed, tmpList);
         this.processKeys(this.keysTyped, tmpList);
         switch (tmpList.size()) {
@@ -80,7 +81,7 @@ public class KeysManager implements KeyboardObserver {
             out = tmpList.get(0);
             break;
         case 2:
-            if(tmpList.contains(W) && tmpList.contains(S)) {
+            if (tmpList.contains(W) && tmpList.contains(S)) {
                 break;
             }
             if (tmpList.contains(W)) {
@@ -97,9 +98,10 @@ public class KeysManager implements KeyboardObserver {
                 }
             }
             break;
+        default:
         }
         this.keysTyped = new ArrayList<>(); /* resetto le keysTyped */
-        
+
         return out.getDir();
     }
 
@@ -110,12 +112,13 @@ public class KeysManager implements KeyboardObserver {
                     outList.add(key);
                 } else if (outList.size() == 1 && outList.get(0) != key) { /* do priorità a dir 2 diverse da dir 1 */
                     outList.add(key);
-                } else
+                } else {
                     break;
+                }
             }
         }
     }
-   
+
     @Override 
     public synchronized void keyAction(final int keyCode, final int eventID) {
         final Optional<KeyCommands> cmd = this.vk_CodeToKeyCommand(keyCode);
@@ -123,7 +126,7 @@ public class KeysManager implements KeyboardObserver {
             switch (eventID) {
             case KeyEvent.KEY_PRESSED:
                 if (!this.keysPressed.contains(cmd.get()) && cmd.get() != KeyCommands.ESC) {
-                    this.keysPressed.add(cmd.get());                    
+                    this.keysPressed.add(cmd.get());
                 }
                 /* in caso di pressione prolungata viene inserito solo la prima volta */
                 if (!this.keysTyped.contains(cmd.get())) {
@@ -135,12 +138,14 @@ public class KeysManager implements KeyboardObserver {
                     this.keysPressed.remove(cmd.get()); /* rimuovo solo le keys premute a lungo; se era typed rimane in lista finché
                     non viene disegnato il frame */
                 }
+                break;
+            default:
             }
         }
     }
-    
+
     /* per filtrare(da cui l'Optional)/mappare i tasti su i comandi */
-    private Optional<KeyCommands> vk_CodeToKeyCommand(final int vk_Code) { 
-        return Optional.ofNullable(this.mapVKCodeToKeyCmd.get(vk_Code));
+    private Optional<KeyCommands> vk_CodeToKeyCommand(final int vkCode) {
+        return Optional.ofNullable(this.mapVKCodeToKeyCmd.get(vkCode));
     }
 }
