@@ -1,4 +1,5 @@
 package it.unibo.oop.model;
+
 import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;

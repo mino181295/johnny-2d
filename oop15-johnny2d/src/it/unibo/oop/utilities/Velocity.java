@@ -1,8 +1,7 @@
 package it.unibo.oop.utilities;
+
 /**
- * Represents the speed and the acceleration of an {@link Entity}
- * @author Matteo Minardi
- *
+ * Represents the speed and the acceleration of an {@link Entity}.
  */
 public class Velocity{
 
@@ -17,15 +16,17 @@ public class Velocity{
 		this.maxVelocity = max;
 		this.velocityScale = (this.maxVelocity - this.minVelocity) / accelerationTime;
 	}
+	
 	/**
-	 * Accelerate the currentVelocity to his new velocity basing on the velocityScale
+	 * Accelerates the currentVelocity to his new velocity basing on the velocityScale.
 	 */
 	public double slow(final double currentVelocity){		 
 		final double newVelocity = currentVelocity - velocityScale;
 		return newVelocity<minVelocity?stillVelocity:newVelocity;
 	}
+	
 	/**
-	 * Decelerate the currentVelocity to his new velocity basing on the velocityScale
+	 * Decelerates the currentVelocity to his new velocity basing on the velocityScale.
 	 */
 	public double accelerate(final double currentVelocity){
 		double newVelocity = currentVelocity + velocityScale;
@@ -35,21 +36,20 @@ public class Velocity{
 		newVelocity = newVelocity<minVelocity?minVelocity:newVelocity;
 		return newVelocity;
 	}
+	
 	/**
-	 * Getter for the maxVelocity of the {@link Entity}
+	 * Getter for the maxVelocity of the {@link Entity}.
 	 * @return
 	 */
 	public double getMaxVelocity() {
 		return this.maxVelocity;
 	}
+	
 	/**
-	 * Getter for the minVelocity of the {@link Entity}
+	 * Getter for the minVelocity of the {@link Entity}.
 	 * @return
 	 */
 	public double getMinVelocity() {
 		return this.minVelocity;
 	}
-	
-	
-
 }

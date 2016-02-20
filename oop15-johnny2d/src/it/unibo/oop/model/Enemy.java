@@ -1,10 +1,9 @@
 package it.unibo.oop.model;
 
 import it.unibo.oop.utilities.Position;
+
 /**
- * Interface for an enemy 
- * @author Matteo Minardi
- *
+ * Interface for an enemy .
  */
 public interface Enemy {
 	

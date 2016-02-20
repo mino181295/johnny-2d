@@ -1,18 +1,15 @@
 package it.unibo.oop.utilities;
 
 /**
- * 
- * @author Matteo Minardi
- * 
- * This class rappresents the position in the screen of every single {@link Entity}
- *
+ * This class represents the position in the screen of every single {@link Entity}.
  */
 public class Position implements Point2{
 	
 	private double x;
 	private double y;
+	
 	/**
-	 * Constructor that creates a position with X and Y
+	 * Constructor that creates a {@link Position} with X and Y.
 	 * @param x Integer value of the X
 	 * @param y Integer value of the Y
 	 */
@@ -24,8 +21,9 @@ public class Position implements Point2{
 	public Position(final int x, final int y){
 		this((double)x,(double)y);
 	}
+	
 	/**
-	 * Constructor that creates a position with a precedent position
+	 * Constructor that creates a position with a precedent {@link Position}.
 	 * @param x Integer value of the X
 	 * @param y Integer value of the Y
 	 */
@@ -57,8 +55,9 @@ public class Position implements Point2{
 	public void setY(final double newY){
 		this.y = newY;
 	}
+	
 	/**
-	 * Sum to the current point 
+	 * Sums to the current point.
 	 * @param secondX second X value
 	 * @param secondY second Y value
 	 * @return Returns the new Position of the summed vector
@@ -66,8 +65,9 @@ public class Position implements Point2{
 	public Position sumVector(final Vector2 movement){
 		return new Position((int)(this.getX()+ movement.getX()), (int)(this.getY()+ movement.getY()));		
 	}
+	
 	/**
-	 * Distance between 2 points 
+	 * Calculates the distance between 2 points.
 	 * @param a point 1
 	 * @param b point 2
 	 * @return the distance between 2 points
