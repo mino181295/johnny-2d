@@ -61,6 +61,10 @@ public class MainCharacter extends MovableEntity implements Shooter{
 	public void checkCollision(final Position newPosition) throws CollisionHandlingException {	
 		
 		final MainCharacter tmpJohnny = Factory.MainCharacterFactory.generateStillCharacter(newPosition.getX(), newPosition.getY());
+		//Checks if in the next move the character is inside the Arena 
+		if (!this.getEnvironment().getArena().isInside(tmpJohnny)){
+			throw new CollisionHandlingException();
+		}
 		//Counting the number of collided walls (Usually 1)
 		final long numWallCollisions = this.getEnvironment().getStableList().stream()
 				  													  .filter(x -> x instanceof Wall)
@@ -128,6 +132,10 @@ public class MainCharacter extends MovableEntity implements Shooter{
 		return this.currentScore;
 	}
 	
+	public Health getHealth() {
+		return this.currentHealth;
+	}
+
 	public void shoot() {
 		this.getEnvironment().addShoot(new Bullet(this));		
 	}

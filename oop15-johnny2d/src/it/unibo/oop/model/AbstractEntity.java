@@ -48,11 +48,7 @@ public abstract class AbstractEntity implements Entity {
 	public double getY(){
 		return entityPosition.getY();
 	}
-	
-	public boolean equalsPosition(final Position newPosition){
-		return entityPosition.equals(newPosition);		
-	}
-	
+		
 	public Position getTopLeftPos(){
 		return new Position(entityPosition.getIntX() - this.getEntityWidth()/2, entityPosition.getIntY() - this.getEntityHeight()/2);
 	}
@@ -92,21 +88,32 @@ public abstract class AbstractEntity implements Entity {
 	public void attachEnvironment(final GameStateImpl newEnvironment){
 	  this.gameEnvironment = Optional.of(newEnvironment);
 	}
-	
+	/**
+	 * Removes the environment if it's necessary
+	 */
 	public void removeEnvironment(){
 		if (this.gameEnvironment.isPresent()){
 			this.gameEnvironment = Optional.empty();
 		}
-	}	
+	}
+	/**
+	 * @return True if the Entity has got an environment
+	 */
 	public boolean hasEnvirnment(){
 		if (this.gameEnvironment.isPresent() ){
 			return true;
 		}
 		return false;
 	}	
+	/** 
+	 * @return The environment of the Entity as an object to manipulate
+	 */
 	public GameStateImpl getEnvironment(){
 		return this.gameEnvironment.get();
-	}	 
+	}
+	/**
+	 * Removes an Entity from the environment to avoid new updates and new draws in the screen
+	 */
 	public void removeFromEnvironment(){
 		gameEnvironment.get().removeEntity(this);
 	}

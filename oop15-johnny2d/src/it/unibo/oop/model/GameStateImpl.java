@@ -1,12 +1,14 @@
 package it.unibo.oop.model;
 
+import static it.unibo.oop.utilities.Settings.SCREEN_HEIGHT;
+import static it.unibo.oop.utilities.Settings.SCREEN_WIDTH;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
-import static it.unibo.oop.utilities.Settings.*;
 
 public final class GameStateImpl implements GameState {
 
@@ -28,13 +30,17 @@ public final class GameStateImpl implements GameState {
     }
     
     protected void initialize(final int levelNumber) {
-
-    	this.gameArena = Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
+    	this.movableList.clear();
+    	this.stableList.clear();
+    	this.stableList.addAll(this.gameArena.getBoundsList());
     	this.johnnyCharacter = Optional.ofNullable(Factory.MainCharacterFactory.generateCentredCharacter(SCREEN_HEIGHT, SCREEN_WIDTH));
     	for (int nMonsters = 0; nMonsters < levelNumber*10; nMonsters++){
-    		//MonsterGeneration
-    	}
-    	    
+    		Position randomPos = this.gameArena.getPositionInside();
+    		BasicMonster tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(),randomPos.getY());
+    		if (this.gameArena.isInside(tmpMonster)){
+    			this.addMovableEntity(tmpMonster);
+    		}
+    	}    	    
     }
 
     protected void removeEntity(final Entity entity) {
@@ -80,6 +86,10 @@ public final class GameStateImpl implements GameState {
 	
 	public Optional<MainCharacter> getMainChar() {
 		return this.johnnyCharacter;
+	}
+	
+	public Arena getArena() {
+		return this.gameArena;
 	}
 	
     protected void killMainChar(){
