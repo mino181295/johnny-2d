@@ -55,7 +55,7 @@ public class SpriteSheet {
         if (isSplitted) {
             for (int y = 0, currentRow = 0; y < this.sheet.getHeight(); y += spritesHeight, currentRow++) {
             	switch (currentRow) {
-                	case 0:
+                    case 0:
                         sprites.put(DOWN, this.grabSprite(0, y, spritesWidth, spritesHeight));
                         break;
                     case 1:

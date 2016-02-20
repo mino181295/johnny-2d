@@ -48,7 +48,7 @@ public class Factory {
 			return new MainCharacter();
 		}
 		
-		public static MainCharacter generateCentredCharacter(Position centerPos){
+		public static MainCharacter generateCentredCharacter(final Position centerPos){
 			return new MainCharacter(centerPos.getX(), centerPos.getY());
 		}
 		public static MainCharacter generateStillCharacter(final double startingX, final double startingY){

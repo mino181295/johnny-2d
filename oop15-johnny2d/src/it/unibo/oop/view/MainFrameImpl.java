@@ -47,8 +47,11 @@ public class MainFrameImpl implements MainFrame {
     }
 
     private static class MenuPanelFactory {
+        
+        private MenuPanelFactory() {
+        }
 
-        static Optional<MenuPanel> makePanel(final State state) throws InstantiationException, IllegalAccessException,
+        private static Optional<MenuPanel> makePanel(final State state) throws InstantiationException, IllegalAccessException,
                 IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 
             Class<? extends MenuPanel> outPanel;

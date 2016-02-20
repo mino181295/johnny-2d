@@ -16,7 +16,7 @@ public final class GameStateImpl implements GameState {
     private final List<MovableEntity> movableList;
     private final List<AbstractEntity> stableList;
     private Optional<MainCharacter> johnnyCharacter;
-    private Arena gameArena;
+    private final Arena gameArena;
     
     private GameStateImpl() {
         this.movableList = new ArrayList<>();
@@ -35,8 +35,8 @@ public final class GameStateImpl implements GameState {
     	this.stableList.addAll(this.gameArena.getBoundsList());
     	this.johnnyCharacter = Optional.ofNullable(Factory.MainCharacterFactory.generateCentredCharacter(SCREEN_HEIGHT, SCREEN_WIDTH));
     	for (int nMonsters = 0; nMonsters < levelNumber*10; nMonsters++){
-    		Position randomPos = this.gameArena.getPositionInside();
-    		BasicMonster tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(),randomPos.getY());
+    	        final Position randomPos = this.gameArena.getPositionInside();
+    		final BasicMonster tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(),randomPos.getY());
     		if (this.gameArena.isInside(tmpMonster)){
     			this.addMovableEntity(tmpMonster);
     		}
