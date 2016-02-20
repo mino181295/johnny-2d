@@ -6,7 +6,6 @@ import static it.unibo.oop.utilities.CharactersSettings.WALL;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;

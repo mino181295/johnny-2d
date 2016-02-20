@@ -19,7 +19,8 @@ public final class GameStateImpl implements GameState {
     private GameStateImpl() {
         this.movableList = new ArrayList<>();
         this.stableList = new ArrayList<>();
-        johnnyCharacter = Optional.of(new MainCharacter());
+        this.johnnyCharacter = Optional.of(new MainCharacter());
+        this.gameArena= Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
     }
     
     public static GameStateImpl getInstance() {
@@ -28,14 +29,10 @@ public final class GameStateImpl implements GameState {
     
     protected void initialize(final int levelNumber) {
     	
-    	//TODO Migliorare la creazione delle posizioni
-    	
-    	this.gameArena= Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
+    	//TODO Migliorare la creazione delle posizioni  
     	this.johnnyCharacter = Optional.ofNullable(Factory.MainCharacterFactory.generateCentredCharacter(new Position(this.gameArena.getPlayableRectangle().getCenterX(),this.gameArena.getPlayableRectangle().getCenterY())));
     	for (int nMonsters = 0; nMonsters < levelNumber*10; nMonsters++){
-
     		//MonsterGeneration
-
     	}
     	    
     }
