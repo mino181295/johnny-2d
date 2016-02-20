@@ -8,11 +8,11 @@ public interface StateButton {
      * @return
      *          name of button.
      */
-    public String getName();
+    String getName();
     
     /**
      * @return
      *          {@link State} of button.
      */
-    public State getState();
+    State getState();
 }

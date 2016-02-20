@@ -2,8 +2,6 @@ package it.unibo.oop.view;
 
 import java.util.Arrays;
 
-import javax.swing.JButton;
-
 import it.unibo.oop.controller.State;
 import it.unibo.oop.controller.StateObserver;
 

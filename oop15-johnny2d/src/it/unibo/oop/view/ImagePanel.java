@@ -9,13 +9,13 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel {
     
 	private static final long serialVersionUID = -992912248972775131L;
-	private Image image;
+	private final Image image;
 
-    public ImagePanel(Image image) {
+    public ImagePanel(final Image image) {
         this.image = Objects.requireNonNull(image);
     }
 
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
         
         /* 

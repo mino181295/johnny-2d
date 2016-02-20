@@ -11,10 +11,10 @@ public interface Showable {
     /**
      * shows the component i.e. set it visible.
      */
-    public void showIt();
+    void showIt();
     
     /**
      * hides the component i.e. set it not visible.
      */
-    public void hideIt();
+    void hideIt();
 }

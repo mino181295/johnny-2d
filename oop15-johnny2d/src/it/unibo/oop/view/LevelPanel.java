@@ -24,10 +24,8 @@ public class LevelPanel extends BackgroundPanel {
 
 	private static final long serialVersionUID = 8057405927611227670L;
 	
-	private final SpriteSheet mainCharacterSheet;
-	private final SpriteSheet enemySheet;
-	private Map<Direction, BufferedImage> mainCharacterSprites;
-	private Map<Direction, BufferedImage> enemySprites;
+	private final Map<Direction, BufferedImage> mainCharacterSprites;
+	private final Map<Direction, BufferedImage> enemySprites;
 	private final JLabel stats;
 	private final GameState gs;
 	
@@ -38,9 +36,9 @@ public class LevelPanel extends BackgroundPanel {
 	public LevelPanel() {
 		super("/background.jpg");
 		this.gs = GameStateImpl.getInstance();
-		this.mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
+		final SpriteSheet mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
 		this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
-		this.enemySheet = new SpriteSheet("/enemy.png");
+		final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
 		this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
 		this.stats = new JLabel();
 		this.stats.setFont(new Font("Verdana", 1, 20));

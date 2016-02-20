@@ -15,7 +15,6 @@ public class BackgroundPanel extends JPanel {
 
 	private static final long serialVersionUID = -5152861659918746222L;
 	private Image background;
-	private final ImageLoader loader;
 	
 	/**
 	 * Builds the {@link javax.swing.JPanel} with the specified
@@ -23,16 +22,15 @@ public class BackgroundPanel extends JPanel {
 	 * @param name
 	 * 		the name of the background to use
 	 */
-	public BackgroundPanel(String name) {
-		this.loader = new ImageLoader();
+	public BackgroundPanel(final String name) {
 		try {
-			this.background = this.loader.load(name);
+			this.background = ImageLoader.load(name);
 		} catch(IOException e) {
 		System.out.println("Background not found");
 		}
 	}
 	
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
         g.drawImage(this.background, 0, 0, this.getWidth(), this.getHeight(), this);
     }

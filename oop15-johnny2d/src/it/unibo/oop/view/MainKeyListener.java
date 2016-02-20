@@ -36,17 +36,17 @@ public class MainKeyListener implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
         this.action(e.getKeyCode(), e.getID());
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
         this.action(e.getKeyCode(), e.getID());
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
     }
 
     private void action(final int keyCode, final int eventID) {

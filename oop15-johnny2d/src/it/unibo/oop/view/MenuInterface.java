@@ -19,11 +19,11 @@ public interface MenuInterface {
      * @param customize
      *            true to apply custom constraints.
      */
-    public void addComponent(JComponent cmp, boolean customize);
+    void addComponent(JComponent cmp, boolean customize);
     
     /**
      * @param obs
      *          observer to attach to the view.
      */
-    public void addObserver(StateObserver obs);
+    void addObserver(StateObserver obs);
 }

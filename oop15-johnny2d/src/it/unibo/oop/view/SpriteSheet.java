@@ -14,26 +14,23 @@ import static it.unibo.oop.utilities.Direction.*;
 public class SpriteSheet {
 	
 	private BufferedImage sheet;
-	private Map<Direction, BufferedImage> sprites;
-	private final ImageLoader loader;
-	private boolean isSplitted = false;
+	private final Map<Direction, BufferedImage> sprites;
 	
 	/**
 	 * Constructs a new sprite sheet.
 	 * @param sheetName
 	 * 		the name of the sprite sheet
 	 */
-	public SpriteSheet(String sheetName) {
-		this.loader = new ImageLoader();
+	public SpriteSheet(final String sheetName) {
 		try {
-			this.sheet = this.loader.load(sheetName);
+			this.sheet = ImageLoader.load(sheetName);
 		} catch (IOException e) {
 			System.out.println("Sheet not found");
 		}
 		this.sprites = new HashMap<>();
 	}
 	
-	private BufferedImage grabSprite(int x, int y, int width, int height) {
+	private BufferedImage grabSprite(final int x, final int y, final int width, final int height) {
 		return sheet.getSubimage(x, y, width, height);
 	}
 	
@@ -50,8 +47,8 @@ public class SpriteSheet {
 	 * 		all the sprites in the {@link it.unibo.oop.view.SpriteSheet} mapped
 	 * 		with their {@link it.unibo.oop.utilities.Direction}
 	 */
-	public Map<Direction, BufferedImage> split(int imagesWidth, int imagesHeight) {
-		isSplitted = ((sheet.getHeight() % imagesHeight == 0) &&
+	public Map<Direction, BufferedImage> split(final int imagesWidth, final int imagesHeight) {
+		final boolean isSplitted = ((sheet.getHeight() % imagesHeight == 0) &&
 				(sheet.getWidth() % imagesWidth == 0)) ? true : false;
 		if ((sheet != null) && isSplitted) {
 			for (int y = 0, currentRow = 0; y < sheet.getHeight(); y += imagesHeight, currentRow++) {
@@ -82,7 +79,7 @@ public class SpriteSheet {
 	 * @return
 	 * 		the corresponding sprite
 	 */
-	public BufferedImage getSprite(Direction dir) {
+	public BufferedImage getSprite(final Direction dir) {
 		return sprites.get(dir);
 	}
 }

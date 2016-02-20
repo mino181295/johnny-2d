@@ -13,10 +13,10 @@ public interface LevelInterface extends Showable {
      * @param obs
      *          observer to attach.
      */
-    public void addObserver(final KeyboardObserver obs);
+    void addObserver(final KeyboardObserver obs);
 
     /**
      * repaints the panel.
      */
-    public void updateLevel();
+    void updateLevel();
 }

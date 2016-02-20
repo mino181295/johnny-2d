@@ -7,9 +7,10 @@ import javax.imageio.ImageIO;
 /**
  * A simple utility class to load an image.
  */
-public class ImageLoader {
-
-	// private BufferedImage image;
+public final class ImageLoader {
+	
+	private ImageLoader() {
+	}
 	
 	/**
 	 * Loads the image with the specified name.
@@ -20,7 +21,7 @@ public class ImageLoader {
 	 * @throws IOException
 	 * 		if the image name is invalid
 	 */
-	public static BufferedImage load(String name) throws IOException{
+	public static BufferedImage load(final String name) throws IOException {
 		return ImageIO.read(ImageLoader.class.getResourceAsStream(name));	
 	}
 }
