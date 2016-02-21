@@ -37,8 +37,8 @@ public class LevelPanel extends BackgroundPanel {
     private final GameState gs;
 
     /**
-     * Builds the {@link javax.swing.JPanel} and loads every
-     * {@link SpriteSheet}.
+     * Builds the {@link javax.swing.JPanel} and loads every {@link SpriteSheet}
+     * .
      */
     public LevelPanel() {
         super("/background.jpg");
@@ -70,31 +70,34 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawMainCharacter(final Graphics g) {
-        g.drawImage(this.mainCharacterSprites.get(gs.getMainChar().get().getFaceDirection()), (gs.getMainChar().get().getPosition().getIntX()),
-        		(gs.getMainChar().get().getPosition().getIntY()), this);
+        g.drawImage(this.mainCharacterSprites.get(gs.getMainChar().get().getFaceDirection()),
+                (gs.getMainChar().get().getPosition().getIntX()), (gs.getMainChar().get().getPosition().getIntY()), this);
     }
 
-    	
     private void drawMovables(final Graphics g) {
-    	gs.getMovableList().forEach(e -> {
-    	    if (e instanceof Enemy) {
-    	        g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
-    	    }
-    	    if (e instanceof Bullet) {
-    	        g.drawImage(this.bullet, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
-    	    }
-    	});
+        if (!gs.getMovableList().isEmpty()) {
+            gs.getMovableList().forEach(e -> {
+                if (e instanceof Enemy) {
+                    g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+                }
+                if (e instanceof Bullet) {
+                    g.drawImage(this.bullet, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+                }
+            });
+        }
     }
 
     private void drawStables(final Graphics g) {
-        gs.getStableList().forEach(e -> {
-            if (e instanceof Wall) {
-                g.drawRect(e.getPosition().getIntX(), e.getPosition().getIntY(), WALL.getWidth(), WALL.getHeight());
-            }
-            if (e instanceof Collectable) {
-                g.drawImage(this.bonus, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
-            }
-        });
+        if (!gs.getStableList().isEmpty()) {
+            gs.getStableList().forEach(e -> {
+                if (e instanceof Wall) {
+                    g.drawRect(e.getPosition().getIntX(), e.getPosition().getIntY(), WALL.getWidth(), WALL.getHeight());
+                }
+                if (e instanceof Collectable) {
+                    g.drawImage(this.bonus, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+                }
+            });
+        }
     }
 
     private void drawStats(final Graphics g) {
