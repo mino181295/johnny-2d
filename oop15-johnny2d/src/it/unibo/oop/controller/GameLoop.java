@@ -11,7 +11,7 @@ public final class GameLoop implements Controller {
     private Optional<AgentInterface> gLAgent = Optional.empty();
 
     private GameLoop() {
-        ViewsManager.getInstance().showView(AppState.LAUNCHING);
+        ViewsManagerImpl.getInstance().showView(AppState.LAUNCHING);
     }
 
     /**
@@ -34,7 +34,7 @@ public final class GameLoop implements Controller {
 
     @Override
     public void play() { // pause -> play
-        ViewsManager.getInstance().hideView();
+        ViewsManagerImpl.getInstance().hideView();
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
             new Thread(this.gLAgent.get()).start();

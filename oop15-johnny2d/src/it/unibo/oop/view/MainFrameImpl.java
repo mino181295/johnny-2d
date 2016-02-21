@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.swing.JFrame;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
-import it.unibo.oop.controller.ViewsManager;
+import it.unibo.oop.controller.ViewsManagerImpl;
 
 /**
  * Implementation of {@link MainFrame} interface.
@@ -75,7 +75,7 @@ public class MainFrameImpl implements MainFrame {
             default:
                 return Optional.empty();
             }
-            return Optional.of(outPanel.getConstructor(StateObserver.class).newInstance(ViewsManager.getInstance()));
+            return Optional.of(outPanel.getConstructor(StateObserver.class).newInstance(ViewsManagerImpl.getInstance()));
         }
     }
 }

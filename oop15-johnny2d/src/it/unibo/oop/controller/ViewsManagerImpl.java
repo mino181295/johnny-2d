@@ -12,14 +12,14 @@ import it.unibo.oop.view.MainFrameImpl;
 /**
  * class which manages all the game views.
  */
-public final class ViewsManager implements StateObserver {
+public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppState>, StateObserver {
 
-    private static Optional<ViewsManager> singleton = Optional.empty();
+    private static Optional<ViewsManager<LevelInterface, AppState>> singleton = Optional.empty();
     private final LevelInterface level;
     private final MainFrame mainFrame; // class which contains all the menu-views.
     private List<AppState> history; // stack view aperte.
 
-    private ViewsManager() {
+    private ViewsManagerImpl() {
         this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
         this.level = new Level(KeysManagerImpl.getInstance());
@@ -29,20 +29,54 @@ public final class ViewsManager implements StateObserver {
      * @return
      *          the singleton instance of the class.
      */
-    public static synchronized ViewsManager getInstance() {
+    public static synchronized ViewsManager<LevelInterface, AppState> getInstance() {
         if (!singleton.isPresent()) {
-            singleton = Optional.of(new ViewsManager());
+            singleton = Optional.of(new ViewsManagerImpl());
         }
         return singleton.get();
     }
 
-    public LevelInterface getLevel() {
+    @Override
+    public synchronized void reset() { /* per evitare di sovraffollare inutilmente la history */ 
+        this.history = new ArrayList<>();
+    }
+    
+    @Override
+    public LevelInterface getView() {
         return this.level;
     }
 
+    @Override
+    public synchronized void showView(final AppState state) {
+        try {
+            SwingUtilities.invokeAndWait(() -> this.mainFrame.changeView(state));
+            if (!this.history.contains(state)) {
+                this.history.add(state);
+            }
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public synchronized void hideView() {
+        try {
+            SwingUtilities.invokeAndWait(() -> this.mainFrame.setVisible(false));
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private synchronized void showLast() {
+        final int lastIndex = this.history.size() - 1;
+        if (lastIndex > 0) {
+            this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
+            this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
+        }
+    }
+    
     @Override 
     public synchronized void stateAction(final AppState state) {
-        // state.doAction();
         this.doStateAction(state);
         if (state.isDrawable()) {
             this.showView(state); 
@@ -68,36 +102,5 @@ public final class ViewsManager implements StateObserver {
             break;
         default:
         }
-    }
-
-    public synchronized void showView(final AppState state) {
-        try {
-            SwingUtilities.invokeAndWait(() -> this.mainFrame.changeView(state));
-            if (!this.history.contains(state)) {
-                this.history.add(state);
-            }
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public synchronized void hideView() {
-        try {
-            SwingUtilities.invokeAndWait(() -> this.mainFrame.setVisible(false));
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private synchronized void showLast() {
-        final int lastIndex = this.history.size() - 1;
-        if (lastIndex > 0) {
-            this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
-            this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
-        }
-    }
-
-    public synchronized void reset() { /* per evitare di sovraffollare inutilmente la history */ 
-        this.history = new ArrayList<>();
     }
 }

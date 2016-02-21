@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
-import it.unibo.oop.controller.ViewsManager;
+import it.unibo.oop.controller.ViewsManagerImpl;
 
 /**
  * {@link javax.swing.JPanel} for options Menu-view.
@@ -39,7 +39,7 @@ public class OptionsMenu extends MenuPanel {
         final JCheckBox check = new JCheckBox();
         check.setOpaque(false);
         check.setSelected(true);
-        check.addActionListener(e -> ViewsManager.getInstance().getLevel().enableMusic(check.isSelected()));
+        check.addActionListener(e -> ViewsManagerImpl.getInstance().getView().enableMusic(check.isSelected()));
 
         final JPanel musicPane = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 10));
         musicPane.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
