@@ -20,7 +20,7 @@ public class Launcher extends MenuPanel {
         /* ICON SETTING */
         this.setIcon("/launcher.png");
 
-        /* AUTTONS ADDING */
+        /* BUTTONS ADDING */
         this.addStateButton(new MenuPanel.StateButton("Play", AppState.START),
                             new MenuPanel.StateButton("Options", AppState.OPTIONS),
                             new MenuPanel.StateButton("Quit", AppState.QUIT));
