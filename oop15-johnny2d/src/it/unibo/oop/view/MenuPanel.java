@@ -68,8 +68,8 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     public void addStateButton(final StateButton... btns) {
         Arrays.asList(btns).forEach(btn -> {
             final JButton jBtn = new JButton(btn.getName());
-            jBtn.addActionListener(
-                    (e) -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(btn.getState())).start()));
+            jBtn.addActionListener((e) -> this.doObsAction(obs -> new Thread(() -> 
+                                        obs.stateAction(btn.getState())).start()));
             this.addComponent(jBtn, true);
         });
     }

@@ -8,7 +8,7 @@ package it.unibo.oop.controller;
  * @param <O>
  *            output type.
  */
-public interface KeysManager<I, O> extends KeyboardObserver {
+public interface KeysManager<I, O> extends Manager, KeyboardObserver {
 
     /**
      * @param cmd

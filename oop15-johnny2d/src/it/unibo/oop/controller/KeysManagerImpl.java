@@ -54,6 +54,7 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
         return singleton.get();
     }
 
+    @Override
     public synchronized void reset() {
         this.keysPressed = new ArrayList<>();
         this.keysTyped = new ArrayList<>();
