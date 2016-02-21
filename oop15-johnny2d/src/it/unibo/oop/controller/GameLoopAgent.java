@@ -6,7 +6,7 @@ import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
 
 /**
- * Agent used by {@link GameLoop} to perform the game loop.
+ * Agent used by {@link ControllerImpl} to perform the game loop.
  */
 public class GameLoopAgent implements AgentInterface {
 

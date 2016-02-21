@@ -22,10 +22,10 @@ public class StateObserverImpl implements StateObserver {
     private void doStateAction(final AppState state) {
         switch (state) {
         case START:
-            GameLoop.getInstance().start();
+            ControllerImpl.getInstance().start();
             break;
         case PLAY:
-            GameLoop.getInstance().play();
+            ControllerImpl.getInstance().play();
             break;
         case PAUSE:
             this.man.reset();
