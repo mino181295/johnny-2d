@@ -80,7 +80,7 @@ public final class GameStateImpl implements GameState {
 		return new ArrayList<>(this.stableList);
 	}
 	
-	public List<AbstractEntity> getMovableList() {
+	public List<MovableEntity> getMovableList() {
 		return new ArrayList<>(this.movableList);
 	}
 	

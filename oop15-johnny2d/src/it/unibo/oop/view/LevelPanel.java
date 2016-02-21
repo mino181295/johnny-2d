@@ -1,9 +1,9 @@
 package it.unibo.oop.view;
 
-import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
-import static it.unibo.oop.utilities.CharactersSettings.MAIN_CHARACTER;
+import static it.unibo.oop.utilities.CharactersSettings.*;
 import static it.unibo.oop.utilities.Direction.*;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,8 +12,10 @@ import java.util.Map;
 
 import javax.swing.JLabel;
 
+import it.unibo.oop.model.Collectable;
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
+import it.unibo.oop.model.Wall;
 import it.unibo.oop.utilities.Direction;
 
 /**
@@ -49,9 +51,10 @@ public class LevelPanel extends BackgroundPanel {
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
+        g.setColor(new Color(255, 255, 255));
         this.drawMainCharacter(g);
-        //this.drawMovables(g);
-        //this.drawStables(g);
+        this.drawMovables(g);
+        this.drawStables(g);
         this.drawStats(g);
     }
 
@@ -62,11 +65,20 @@ public class LevelPanel extends BackgroundPanel {
 
     	
     private void drawMovables(final Graphics g) {
-    	
+    	gs.getMovableList().forEach(e -> {
+    	    g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+    	});
     }
 
     private void drawStables(final Graphics g) {
-    	
+        gs.getStableList().forEach(e -> {
+            if (e instanceof Wall) {
+                g.drawRect(e.getPosition().getIntX(), e.getPosition().getIntY(), WALL.getWidth(), WALL.getHeight());
+            }
+            if (e instanceof Collectable) {
+                g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+            }
+        });
     }
 
     private void drawStats(final Graphics g) {
