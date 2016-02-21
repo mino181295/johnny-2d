@@ -43,11 +43,7 @@ public class Factory {
 		
 		private MainCharacterFactory() {
 		}
-		
-		public static MainCharacter generateCentredCharacter(final double panelHeight, final double panelWidth){
-			return new MainCharacter();
-		}
-		
+	
 		public static MainCharacter generateCentredCharacter(final Position centerPos){
 			return new MainCharacter(centerPos.getX(), centerPos.getY());
 		}
@@ -77,6 +73,9 @@ public class Factory {
 		
 		public static Bullet shootBulletFromCharacter(final MainCharacter mainChar){
 			return new Bullet(mainChar);
+		}
+		public static Bullet createBullet(final double startingX, final double startingY, final Vector2 movementVector){
+			return new Bullet(startingX, startingY, movementVector);
 		}
 	}
 

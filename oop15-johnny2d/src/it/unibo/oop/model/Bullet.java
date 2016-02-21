@@ -34,10 +34,10 @@ public class Bullet extends MovableEntity implements Shot {
 
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         // Creation of the bullet in the next position (TODO Factory)
-        final Bullet tmpBullet = new Bullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
+        final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
         // Checks if the entity in the next move is inside the rectanuglar Arena
         if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
-            throw new CollisionHandlingException();
+        	throw new CollisionHandlingException("Next movement not inside the arena");
         }
         // Counting how mutch walls it collides (Usually 1)
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
@@ -49,7 +49,7 @@ public class Bullet extends MovableEntity implements Shot {
         // If collides a wall the bullet dies and gets removed
         if (numWallCollisions > 0) {
             this.removeFromEnvironment();
-            throw new CollisionHandlingException();
+            throw new CollisionHandlingException("Next movement collides a wall");
         }
         // If the bullet collides with an enemy both die
         if (!enemyCollisions.isEmpty()) {
@@ -61,7 +61,7 @@ public class Bullet extends MovableEntity implements Shot {
             enemyCollisions.stream().forEach(x -> ((AbstractEntity) x).removeFromEnvironment());
             this.removeFromEnvironment();
             // Throws the exception avoiding the next movement
-            throw new CollisionHandlingException();
+            throw new CollisionHandlingException("This bullet collided an enemy");
         }
     }
 
@@ -83,7 +83,7 @@ public class Bullet extends MovableEntity implements Shot {
                 this.removeFromEnvironment();
             }
         } catch (CollisionHandlingException e) {
-            System.out.println("Il proiettile ha colliso ed � stato rimosso");
+            e.printStackTrace();
         }
     }
 

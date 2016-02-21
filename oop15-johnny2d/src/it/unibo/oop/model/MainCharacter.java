@@ -20,7 +20,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
     public MainCharacter(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
-        currentHealth = new Health(3);
+        currentHealth = new Health();
         currentScore = new Score(0);
     }
 
@@ -53,6 +53,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
             this.setMovement(newMovement);
             this.move();
         } catch (CollisionHandlingException e) {
+        	e.printStackTrace();
         } finally {
             if (isShooting && !this.currentHealth.isDead()) {
                 this.shoot();
@@ -67,7 +68,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
                 newPosition.getY());
         // Checks if in the next move the character is inside the Arena
         if (!this.getEnvironment().getArena().isInside(tmpJohnny)) {
-            throw new CollisionHandlingException();
+        	throw new CollisionHandlingException("Next movement not inside the arena");
         }
         // Counting the number of collided walls (Usually 1)
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
@@ -86,7 +87,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
         // If the character collides with a wall in the next move it can't move
         // there
         if (numWallCollisions > 0) {
-            throw new CollisionHandlingException();
+            throw new CollisionHandlingException("Next move collides a Wall");
         }
         // If it collides with one or more bonus it takes them and apply it;
         if (!collectablesCollided.isEmpty()) {
@@ -106,7 +107,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
             if (this.currentHealth.isDead()) {
                 this.getEnvironment().killMainChar();
-                throw new CollisionHandlingException();
+                throw new CollisionHandlingException("The main character died");
             }
         }
     }
