@@ -7,12 +7,16 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+
+import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 
 /**
@@ -61,8 +65,8 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     }
 
     @Override
-    public void addStateButton(final List<StateButton> btns) {
-        btns.forEach(btn -> {
+    public void addStateButton(final StateButton... btns) {
+        Arrays.asList(btns).forEach(btn -> {
             final JButton jBtn = new JButton(btn.getName());
             jBtn.addActionListener(
                     (e) -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(btn.getState())).start()));
@@ -81,5 +85,23 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     @Override
     public void doObsAction(final Consumer<StateObserver> action) {
         this.obsList.forEach(action);
+    }
+    
+    public static class StateButton {
+        private final String name;
+        private final AppState state;
+
+        public StateButton(final String name, final AppState state) {
+            this.name = name;
+            this.state = state;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public AppState getState() {
+            return this.state;
+        }
     }
 }

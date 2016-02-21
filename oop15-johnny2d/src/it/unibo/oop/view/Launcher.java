@@ -1,6 +1,5 @@
 package it.unibo.oop.view;
 
-import java.util.Arrays;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 
@@ -10,26 +9,6 @@ import it.unibo.oop.controller.StateObserver;
 public class Launcher extends MenuPanel {
 
     private static final long serialVersionUID = 6835079187244547916L;
-
-    private enum Button implements StateButton {
-        PLAY("Play", AppState.START), OPTIONS("Options", AppState.OPTIONS), QUIT("Quit", AppState.QUIT);
-
-        private final String name;
-        private final AppState state;
-
-        Button(final String name, final AppState state) {
-            this.name = name;
-            this.state = state;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public AppState getState() {
-            return this.state;
-        }
-    }
 
     /**
      * @param stateObs
@@ -42,6 +21,8 @@ public class Launcher extends MenuPanel {
         this.setIcon("/launcher.png");
 
         /* AUTTONS ADDING */
-        this.addStateButton(Arrays.asList(Button.values()));
+        this.addStateButton(new MenuPanel.StateButton("Play", AppState.START),
+                            new MenuPanel.StateButton("Optins", AppState.OPTIONS),
+                            new MenuPanel.StateButton("Quit", AppState.QUIT));
     }
 }

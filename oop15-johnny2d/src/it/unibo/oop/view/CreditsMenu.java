@@ -20,26 +20,6 @@ public class CreditsMenu extends MenuPanel {
     private static final List<String> MAKERS = Arrays.asList("Model: Matteo Minardi",
                                                              "View: Pasini Giacomo",
                                                              "Controller: Paolo Venturi");
-    private enum Button implements StateButton {
-        BACK("Back", AppState.BACK);
-
-        private final String name;
-        private final AppState state;
-
-        Button(final String name, final AppState state) {
-            this.name = name;
-            this.state = state;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public AppState getState() {
-            return this.state;
-        }
-    }
-
     /**
      * @param stateObs
      *            a {@link StateObserver} object to send "messages".
@@ -59,6 +39,6 @@ public class CreditsMenu extends MenuPanel {
         }
 
         /* BUTTONS CREATION */
-        this.addStateButton(Arrays.asList(Button.values()));
+        this.addStateButton(new MenuPanel.StateButton("Back", AppState.BACK));
     }
 }

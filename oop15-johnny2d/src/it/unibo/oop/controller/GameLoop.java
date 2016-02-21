@@ -28,7 +28,7 @@ public final class GameLoop implements Controller {
     @Override
     public void start() { // launcher -> play / pause -> replay
         // GameStateImpl.getInstance().initialize(0);
-        KeysManager.getInstance().reset(); 
+        KeysManagerImpl.getInstance().reset(); 
         this.play();
     }
 

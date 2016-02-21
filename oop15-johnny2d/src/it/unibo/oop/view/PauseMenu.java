@@ -1,6 +1,5 @@
 package it.unibo.oop.view;
 
-import java.util.Arrays;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 
@@ -10,29 +9,6 @@ import it.unibo.oop.controller.StateObserver;
 public class PauseMenu extends MenuPanel {
 
     private static final long serialVersionUID = 1074304062110360844L;
-
-    private enum Button implements StateButton {
-        REPLAY("Replay", AppState.START),
-        RESUME("Resume", AppState.PLAY), 
-        OPTIONS("Options", AppState.OPTIONS), 
-        QUIT("Quit", AppState.QUIT);
-
-        private final String name;
-        private final AppState state;
-
-        Button(final String name, final AppState state) {
-            this.name = name;
-            this.state = state;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public AppState getState() {
-            return this.state;
-        }
-    }
 
     /**
      * @param stateObs
@@ -45,6 +21,9 @@ public class PauseMenu extends MenuPanel {
         this.setIcon("/pause.png");
 
         /* BUTTONS CREATION */
-        this.addStateButton(Arrays.asList(Button.values()));
+        this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START),
+                            new MenuPanel.StateButton("Resume", AppState.PLAY), 
+                            new MenuPanel.StateButton("Options", AppState.OPTIONS), 
+                            new MenuPanel.StateButton("Quit", AppState.QUIT));
     }
 }

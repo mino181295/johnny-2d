@@ -22,7 +22,7 @@ public final class ViewsManager implements StateObserver {
     private ViewsManager() {
         this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
-        this.level = new Level(KeysManager.getInstance());
+        this.level = new Level(KeysManagerImpl.getInstance());
     }
 
     /**

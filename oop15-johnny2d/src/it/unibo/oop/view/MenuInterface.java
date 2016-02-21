@@ -1,9 +1,9 @@
 package it.unibo.oop.view;
 
-import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.JComponent;
 import it.unibo.oop.controller.StateObserver;
+import it.unibo.oop.view.MenuPanel.StateButton;
 
 /**
  * Interface implemented by menu views.
@@ -22,7 +22,7 @@ public interface MenuInterface extends ESource<StateObserver> {
      * @param btns
      *            buttons to add.
      */
-    void addStateButton(final List<StateButton> btns);
+    void addStateButton(final StateButton... btns);
 
     /**
      * @param path

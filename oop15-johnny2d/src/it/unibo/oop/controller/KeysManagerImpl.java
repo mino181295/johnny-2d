@@ -21,9 +21,9 @@ import it.unibo.oop.utilities.Direction;
 /**
  * class used by the controller to process the key list.
  */
-public final class KeysManager implements KeyboardObserver {
+public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction> {
 
-    private static Optional<KeysManager> singleton = Optional.empty();
+    private static Optional<KeysManager<KeyCommands, Direction>> singleton = Optional.empty();
     private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length;
     private List<KeyCommands> keysPressed; /*
                                             * elementi rimossi da KeyRelease
@@ -36,7 +36,7 @@ public final class KeysManager implements KeyboardObserver {
                                           */
     private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
 
-    private KeysManager() {
+    private KeysManagerImpl() {
         this.reset();
         this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
         for (final KeyCommands cmd : KeyCommands.class.getEnumConstants()) {
@@ -47,9 +47,9 @@ public final class KeysManager implements KeyboardObserver {
     /**
      * @return the singleton instance of the class.
      */
-    public static synchronized KeysManager getInstance() {
+    public static synchronized KeysManager<KeyCommands, Direction> getInstance() {
         if (!singleton.isPresent()) {
-            singleton = Optional.of(new KeysManager());
+            singleton = Optional.of(new KeysManagerImpl());
         }
         return singleton.get();
     }
@@ -59,6 +59,7 @@ public final class KeysManager implements KeyboardObserver {
         this.keysTyped = new ArrayList<>();
     }
 
+    @Override
     public synchronized boolean isAKeyPressed(final KeyCommands cmd) {
         return this.keysPressed.contains(cmd) || this.keysTyped.contains(cmd);
     }
@@ -76,12 +77,13 @@ public final class KeysManager implements KeyboardObserver {
      * 
      */
 
-    public synchronized Direction getDirection() {
+    @Override
+    public synchronized Direction processKeys() {
         final List<KeyCommands> tmpList = new ArrayList<>();
         KeyCommands out = NONE;
 
-        this.processKeys(this.keysPressed, tmpList);
-        this.processKeys(this.keysTyped, tmpList);
+        this.process(this.keysPressed, tmpList);
+        this.process(this.keysTyped, tmpList);
         switch (tmpList.size()) {
         case 1:
             out = tmpList.get(0);
@@ -112,7 +114,7 @@ public final class KeysManager implements KeyboardObserver {
         return out.getDir();
     }
 
-    private void processKeys(final List<KeyCommands> inList, final List<KeyCommands> outList) {
+    private void process(final List<KeyCommands> inList, final List<KeyCommands> outList) {
         for (final KeyCommands key : inList) {
             if (key.isMovement()) {
                 if (outList.isEmpty()) {
