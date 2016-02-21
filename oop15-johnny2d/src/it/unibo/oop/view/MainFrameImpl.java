@@ -3,9 +3,12 @@ package it.unibo.oop.view;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.Optional;
+
 import javax.swing.JFrame;
+
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
+import it.unibo.oop.controller.StateObserverImpl;
 import it.unibo.oop.controller.ViewsManagerImpl;
 
 /**
@@ -16,6 +19,7 @@ public class MainFrameImpl implements MainFrame {
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
     private final JFrame frame;
+    private final MenuPanelFactory factory;
 
     /**
      * Class's constructor.
@@ -27,12 +31,14 @@ public class MainFrameImpl implements MainFrame {
         this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
+        this.factory = new MenuPanelFactory();
     }
 
     @Override
     public void changeView(final AppState state) {
         try {
-            MenuPanelFactory.makePanel(Objects.requireNonNull(state)).ifPresent(p -> this.frame.setContentPane(p));
+            this.factory.makePanel(Objects.requireNonNull(state))
+                        .ifPresent(p -> this.frame.setContentPane(p));
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
@@ -47,11 +53,8 @@ public class MainFrameImpl implements MainFrame {
     }
 
     private static class MenuPanelFactory {
-        
-        private MenuPanelFactory() {
-        }
 
-        private static Optional<MenuPanel> makePanel(final AppState state) throws InstantiationException, IllegalAccessException,
+        private Optional<MenuPanel> makePanel(final AppState state) throws InstantiationException, IllegalAccessException,
                 IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 
             Class<? extends MenuPanel> outPanel;
@@ -75,7 +78,8 @@ public class MainFrameImpl implements MainFrame {
             default:
                 return Optional.empty();
             }
-            return Optional.of(outPanel.getConstructor(StateObserver.class).newInstance(ViewsManagerImpl.getInstance()));
+            return Optional.of(outPanel.getConstructor(StateObserver.class)
+                           .newInstance(new StateObserverImpl(ViewsManagerImpl.getInstance())));
         }
     }
 }

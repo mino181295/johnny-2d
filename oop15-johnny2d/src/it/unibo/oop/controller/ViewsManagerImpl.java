@@ -12,17 +12,17 @@ import it.unibo.oop.view.MainFrameImpl;
 /**
  * class which manages all the game views.
  */
-public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppState>, StateObserver {
+public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppState> {
 
     private static Optional<ViewsManager<LevelInterface, AppState>> singleton = Optional.empty();
     private final LevelInterface level;
     private final MainFrame mainFrame; // class which contains all the menu-views.
-    private List<AppState> history; // stack view aperte.
+    private List<AppState> history; // stack open-views.
 
     private ViewsManagerImpl() {
         this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
-        this.level = new Level(KeysManagerImpl.getInstance());
+        this.level = new Level(new KeyboardObserverImpl(KeysManagerImpl.getInstance()));
     }
 
     /**
@@ -67,40 +67,11 @@ public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppS
         }
     }
 
-    private synchronized void showLast() {
+    public synchronized void showLast() {
         final int lastIndex = this.history.size() - 1;
         if (lastIndex > 0) {
             this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
             this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
-        }
-    }
-    
-    @Override 
-    public synchronized void stateAction(final AppState state) {
-        this.doStateAction(state);
-        if (state.isDrawable()) {
-            this.showView(state); 
-        }
-    }
-
-    private void doStateAction(final AppState state) {
-        switch (state) {
-        case START:
-            GameLoop.getInstance().start();
-            break;
-        case PLAY:
-            GameLoop.getInstance().play();
-            break;
-        case PAUSE:
-            this.reset();
-            break;
-        case BACK:
-            this.showLast();
-            break;
-        case EXIT:
-            System.exit(0);
-            break;
-        default:
         }
     }
 }

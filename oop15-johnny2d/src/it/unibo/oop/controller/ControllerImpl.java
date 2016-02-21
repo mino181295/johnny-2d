@@ -5,12 +5,12 @@ import java.util.Optional;
 /**
  *  class implementing the Controller of the MVC model.
  */
-public final class GameLoop implements Controller {
+public final class ControllerImpl implements Controller {
 
-    private static Optional<GameLoop> singleton = Optional.empty();
+    private static Optional<ControllerImpl> singleton = Optional.empty();
     private Optional<AgentInterface> gLAgent = Optional.empty();
 
-    private GameLoop() {
+    private ControllerImpl() {
         ViewsManagerImpl.getInstance().showView(AppState.LAUNCHING);
     }
 
@@ -20,7 +20,7 @@ public final class GameLoop implements Controller {
      */
     public static synchronized Controller getInstance() {
         if (!singleton.isPresent()) {
-            singleton = Optional.of(new GameLoop());
+            singleton = Optional.of(new ControllerImpl());
         }
         return singleton.get();
     }
@@ -56,6 +56,6 @@ public final class GameLoop implements Controller {
      *            ignored.
      */
     public static void main(final String... args) {
-        new GameLoop();
+        new ControllerImpl();
     }
 }

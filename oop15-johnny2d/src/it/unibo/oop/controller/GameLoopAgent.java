@@ -6,7 +6,7 @@ import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
 
 /**
- * Agent used by {@link GameLoop} to perform the game loop.
+ * Agent used by {@link ControllerImpl} to perform the game loop.
  */
 public class GameLoopAgent implements AgentInterface {
 
@@ -15,6 +15,7 @@ public class GameLoopAgent implements AgentInterface {
     private static final int SLEEPING_TIME = (int) (1 / FPS * TO_SECONDS);
     private final KeysManager<KeyCommands, Direction> keysMan = KeysManagerImpl.getInstance();
     private final ViewsManager<LevelInterface, AppState> viewsMan = ViewsManagerImpl.getInstance();
+    private final StateObserver stateObs;
     private volatile Direction mainCharDir;
     private volatile boolean isMainCharShooting;
     private volatile boolean pause; /* default false */
@@ -24,6 +25,7 @@ public class GameLoopAgent implements AgentInterface {
      */
     public GameLoopAgent() {
         this.pause = false;
+        this.stateObs = new StateObserverImpl(this.viewsMan);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class GameLoopAgent implements AgentInterface {
         while (true) {
             while (this.pause) {
                 try {
-                    ((StateObserver)this.viewsMan).stateAction(AppState.PAUSE);
+                    this.stateObs.stateAction(AppState.PAUSE);
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

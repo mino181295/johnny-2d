@@ -8,40 +8,31 @@ import static it.unibo.oop.controller.KeyCommands.SD;
 import static it.unibo.oop.controller.KeyCommands.W;
 import static it.unibo.oop.controller.KeyCommands.WA;
 import static it.unibo.oop.controller.KeyCommands.WD;
-
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-
 import it.unibo.oop.utilities.Direction;
 
 /**
- * class used by the controller to process the key list.
+ * Class used to process the keys passed.
  */
 public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction> {
 
     private static Optional<KeysManager<KeyCommands, Direction>> singleton = Optional.empty();
-    private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length;
-    private List<KeyCommands> keysPressed; /*
-                                            * elementi rimossi da KeyRelease
-                                            * event: indica tasti premuti
-                                            * PROLUNGATAMENTE
-                                            */
-    private List<KeyCommands> keysTyped; /*
-                                          * svuotata ad ogni frame: indica tasti
-                                          * premuti NON prolungatamente
-                                          */
-    private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
+
+    /*
+     * elementi rimossi all'occorenza di un KeyRelease event: relativa a tasti
+     * premuti PROLUNGATAMENTE
+     */
+    private List<KeyCommands> keysPressed;
+
+    /*
+     * lista svuotata ad ogni frame: indica tasti premuti NON prolungatamente
+     */
+    private List<KeyCommands> keysTyped;
 
     private KeysManagerImpl() {
         this.reset();
-        this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
-        for (final KeyCommands cmd : KeyCommands.class.getEnumConstants()) {
-            this.mapVKCodeToKeyCmd.put(cmd.getVkCode(), cmd);
-        }
     }
 
     /**
@@ -60,6 +51,23 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
         this.keysTyped = new ArrayList<>();
     }
 
+    public synchronized void addKey(final KeyCommands key) {
+        if (!this.keysPressed.contains(key) && key != KeyCommands.ESC) {
+            this.keysPressed.add(key);
+        }
+        // in caso di pressione prolungata la key viene inserita
+        // solo la prima volta.
+        if (!this.keysTyped.contains(key)) {
+            this.keysTyped.add(key);
+        }
+    }
+
+    public synchronized void removeKey(final KeyCommands key) {
+        if (this.keysPressed.contains(key)) {
+            this.keysPressed.remove(key);
+        }
+    }
+
     @Override
     public synchronized boolean isAKeyPressed(final KeyCommands cmd) {
         return this.keysPressed.contains(cmd) || this.keysTyped.contains(cmd);
@@ -68,14 +76,11 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
     /*
      * FUNZIONAMENTO: Scorro la lista keysPressed e cerco i primi due tasti di
      * direzione; gli eventuali "posti liberi" vengono riemipi da max 2 tasti di
-     * direzione presi dalla keysTyped. NOTE: Al massimo vengono considerati 2
-     * tasti di direzione; i Pressed hanno priorit� maggiore di quelli Typed;
-     * eventuali altri tasti vengono ignorati per il frame da disegnare; dir1 e
-     * dir2 (i due campo della classe Pair in questo caso) servono per formare 8
-     * direzioni nello spazio: nel fare ci� non possono essere associare a
-     * dir1 e dir2 la stessa direzione (possono per� essere associare
-     * direzioni opposte).
-     * 
+     * direzione presi dalla keysTyped list. NOTE: Al massimo vengono considerati 2
+     * tasti di direzione; i Pressed hanno priorita' maggiore di quelli Typed;
+     * eventuali altri tasti vengono ignorati per il frame da disegnare; le due direzioni
+     * che servono per formare le 8 possibili direzioni nello spazio vengono inoltre scelte 
+     * evitando di scegliere per entrambe la stessa direzione.
      */
 
     @Override
@@ -110,7 +115,7 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
         default:
             break;
         }
-        this.keysTyped = new ArrayList<>(); /* resetto le keysTyped */
+        this.keysTyped = new ArrayList<>(); /* resetto la keysTyped list */
 
         return out.getDir();
     }
@@ -120,50 +125,13 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
             if (key.isMovement()) {
                 if (outList.isEmpty()) {
                     outList.add(key);
-                } else if (outList.size() == 1 && outList.get(
-                        0) != key) { /*
-                                      * do priorita' a posibili dir2 diverse da dir1
-                                      */
+                } else if (outList.size() == 1
+                        && outList.get(0) != key) { 
                     outList.add(key);
                 } else {
                     break;
                 }
             }
         }
-    }
-
-    @Override
-    public synchronized void keyAction(final int keyCode, final int eventID) {
-        final Optional<KeyCommands> cmd = this.vkCodeToKeyCommand(keyCode);
-        if (cmd.isPresent()) { // ignoro eventi provenienti da tasti non significativi.
-            switch (eventID) {
-            case KeyEvent.KEY_PRESSED:
-                if (!this.keysPressed.contains(cmd.get()) && cmd.get() != KeyCommands.ESC) {
-                    this.keysPressed.add(cmd.get());
-                }
-                // in caso di pressione prolungata la key viene inserita solo la prima volta.
-                if (!this.keysTyped.contains(cmd.get())) {
-                    this.keysTyped.add(cmd.get());
-                }
-                break;
-            /* 
-             * rimuovo solo le keys premute a lungo; se era typed rimane in lista 
-             * finche' non viene disegnato il frame
-             */
-            case KeyEvent.KEY_RELEASED:
-                if (this.keysPressed.contains(cmd.get())) {
-                    this.keysPressed.remove(
-                            cmd.get());
-                }
-                break;
-            default:
-                break;
-            }
-        }
-    }
-
-    /* per filtrare(da cui l'Optional)/mappare i tasti su i comandi */
-    private Optional<KeyCommands> vkCodeToKeyCommand(final int vkCode) {
-        return Optional.ofNullable(this.mapVKCodeToKeyCmd.get(vkCode));
     }
 }

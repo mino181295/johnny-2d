@@ -33,7 +33,6 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final int RIGHT_INSET = 5;
     private final Dimension prefComponentSize = new Dimension(160, 40);
     private final GridBagConstraints cnst = new GridBagConstraints();
-
     private final List<StateObserver> obsList;
 
     /**
@@ -76,7 +75,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
     @Override
     public void setIcon(final String path) {
-        final URL imgURL = this.getClass().getResource(path);
+        final URL imgURL = MenuPanel.class.getResource(path);
         final ImageIcon icon = new ImageIcon(imgURL);
         final JLabel label = new JLabel(icon);
         this.addComponent(label, false);

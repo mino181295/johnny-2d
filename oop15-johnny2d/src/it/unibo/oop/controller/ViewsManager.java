@@ -26,4 +26,9 @@ public interface ViewsManager<V, S> extends Manager {
      * Hides the view or some parts of it.
      */
     void hideView();
+
+    /**
+     * Shows the previous view.
+     */
+    void showLast();
 }
