@@ -59,7 +59,7 @@ public class GameLoopAgent implements AgentInterface {
             // GameStateImpl.getInstance().updatePositions(this.mainCharDir,
             // this.isMainCharShooting);
             /* chiamo V che si aggiorna e disegna frame */
-            this.viewsMan.getView().updateLevel();
+            // this.viewsMan.getView().updateLevel();
             this.viewsMan.getView().showIt();
             try {
                 Thread.sleep(SLEEPING_TIME);
