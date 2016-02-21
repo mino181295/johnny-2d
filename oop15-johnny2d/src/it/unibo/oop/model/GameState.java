@@ -23,7 +23,7 @@ public interface GameState {
     
     List<AbstractEntity> getStableList();
     
-    List<AbstractEntity> getMovableList(); 
+    List<MovableEntity> getMovableList(); 
     
     Optional<MainCharacter> getMainChar();
     
