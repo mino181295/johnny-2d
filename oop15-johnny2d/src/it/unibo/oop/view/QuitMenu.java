@@ -1,7 +1,7 @@
 package it.unibo.oop.view;
 
 import java.util.Arrays;
-import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 
 /**
@@ -12,12 +12,12 @@ public class QuitMenu extends MenuPanel {
     private static final long serialVersionUID = -8073693943984907077L;
 
     private enum Button implements StateButton {
-        YES("yes", State.EXIT), NO("No", State.BACK);
+        YES("yes", AppState.EXIT), NO("No", AppState.BACK);
 
         private final String name;
-        private final State state;
+        private final AppState state;
 
-        Button(final String name, final State state) {
+        Button(final String name, final AppState state) {
             this.name = name;
             this.state = state;
         }
@@ -26,7 +26,7 @@ public class QuitMenu extends MenuPanel {
             return this.name;
         }
 
-        public State getState() {
+        public AppState getState() {
             return this.state;
         }
     }

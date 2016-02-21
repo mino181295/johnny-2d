@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.swing.JLabel;
 
-import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 
 /**
@@ -21,12 +21,12 @@ public class CreditsMenu extends MenuPanel {
                                                              "View: Pasini Giacomo",
                                                              "Controller: Paolo Venturi");
     private enum Button implements StateButton {
-        BACK("Back", State.BACK);
+        BACK("Back", AppState.BACK);
 
         private final String name;
-        private final State state;
+        private final AppState state;
 
-        Button(final String name, final State state) {
+        Button(final String name, final AppState state) {
             this.name = name;
             this.state = state;
         }
@@ -35,7 +35,7 @@ public class CreditsMenu extends MenuPanel {
             return this.name;
         }
 
-        public State getState() {
+        public AppState getState() {
             return this.state;
         }
     }

@@ -11,7 +11,7 @@ public final class GameLoop implements Controller {
     private Optional<AgentInterface> gLAgent = Optional.empty();
 
     private GameLoop() {
-        ViewsManager.getInstance().showView(State.LAUNCHING);
+        ViewsManager.getInstance().showView(AppState.LAUNCHING);
     }
 
     /**

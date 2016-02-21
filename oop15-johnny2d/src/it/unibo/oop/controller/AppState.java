@@ -1,10 +1,10 @@
 package it.unibo.oop.controller;
 
 /**
- * Enum with each application state together with some actions, used to
+ * Enum with each application state used to
  * communicate the next state of the app.
  */
-public enum State {
+public enum AppState {
 
     /**
      * To start the game.
@@ -53,7 +53,7 @@ public enum State {
 
     private final boolean drawable;
 
-    State(final boolean drawable) {
+    AppState(final boolean drawable) {
         this.drawable = drawable;
     }
 
@@ -63,11 +63,4 @@ public enum State {
     public boolean isDrawable() {
         return this.drawable;
     }
-
-//    /**
-//     * action associated to the state of the view.
-//     */
-//    public void doAction() {
-//        this.action.ifPresent(Runnable::run);
-//    }
 }

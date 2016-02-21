@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.Optional;
 import javax.swing.JFrame;
-import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.controller.ViewsManager;
 
@@ -30,7 +30,7 @@ public class MainFrameImpl implements MainFrame {
     }
 
     @Override
-    public void changeView(final State state) {
+    public void changeView(final AppState state) {
         try {
             MenuPanelFactory.makePanel(Objects.requireNonNull(state)).ifPresent(p -> this.frame.setContentPane(p));
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -51,7 +51,7 @@ public class MainFrameImpl implements MainFrame {
         private MenuPanelFactory() {
         }
 
-        private static Optional<MenuPanel> makePanel(final State state) throws InstantiationException, IllegalAccessException,
+        private static Optional<MenuPanel> makePanel(final AppState state) throws InstantiationException, IllegalAccessException,
                 IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 
             Class<? extends MenuPanel> outPanel;

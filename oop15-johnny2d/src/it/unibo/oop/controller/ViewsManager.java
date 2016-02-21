@@ -17,7 +17,7 @@ public final class ViewsManager implements StateObserver {
     private static Optional<ViewsManager> singleton = Optional.empty();
     private final LevelInterface level;
     private final MainFrame mainFrame; // class which contains all the menu-views.
-    private List<State> history; // stack view aperte.
+    private List<AppState> history; // stack view aperte.
 
     private ViewsManager() {
         this.history = new ArrayList<>();
@@ -41,7 +41,7 @@ public final class ViewsManager implements StateObserver {
     }
 
     @Override 
-    public synchronized void stateAction(final State state) {
+    public synchronized void stateAction(final AppState state) {
         // state.doAction();
         this.doStateAction(state);
         if (state.isDrawable()) {
@@ -49,7 +49,7 @@ public final class ViewsManager implements StateObserver {
         }
     }
 
-    private void doStateAction(final State state) {
+    private void doStateAction(final AppState state) {
         switch (state) {
         case START:
             GameLoop.getInstance().start();
@@ -70,7 +70,7 @@ public final class ViewsManager implements StateObserver {
         }
     }
 
-    public synchronized void showView(final State state) {
+    public synchronized void showView(final AppState state) {
         try {
             SwingUtilities.invokeAndWait(() -> this.mainFrame.changeView(state));
             if (!this.history.contains(state)) {

@@ -38,7 +38,7 @@ public class GameLoopAgent implements AgentInterface {
         while (true) {
             while (this.pause) {
                 try {
-                    this.viewsMan.stateAction(State.PAUSE);
+                    this.viewsMan.stateAction(AppState.PAUSE);
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

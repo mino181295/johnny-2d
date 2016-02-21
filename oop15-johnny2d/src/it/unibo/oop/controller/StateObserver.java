@@ -7,9 +7,9 @@ public interface StateObserver {
 
     /**
      * 
-     * Action to do according to the {@link State} passed.
+     * Action to do according to the {@link AppState} passed.
      * @param state
      *              state of the game/app.
      */
-    void stateAction(State state);
+    void stateAction(AppState state);
 }

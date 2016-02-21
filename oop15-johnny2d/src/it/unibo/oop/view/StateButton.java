@@ -1,9 +1,9 @@
 package it.unibo.oop.view;
 
-import it.unibo.oop.controller.State;
+import it.unibo.oop.controller.AppState;
 
 /**
- * Interface for buttons with a specified {@link State}.
+ * Interface for buttons with a specified {@link AppState}.
  */
 public interface StateButton {
 
@@ -13,7 +13,7 @@ public interface StateButton {
     String getName();
 
     /**
-     * @return {@link State} of button.
+     * @return {@link AppState} of button.
      */
-    State getState();
+    AppState getState();
 }
