@@ -41,6 +41,7 @@ public class Launcher extends MenuPanel {
         /* ICON SETTING */
         this.setIcon("/launcher.png");
 
+        /* AUTTONS ADDING */
         this.addStateButton(Arrays.asList(Button.values()));
     }
 }

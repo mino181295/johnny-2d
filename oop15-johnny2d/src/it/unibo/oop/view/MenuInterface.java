@@ -8,7 +8,7 @@ import it.unibo.oop.controller.StateObserver;
 /**
  * Interface implemented by menu views.
  */
-public interface MenuInterface {
+public interface MenuInterface extends ESource<StateObserver> {
 
     /**
      * @param cmp
@@ -17,12 +17,6 @@ public interface MenuInterface {
      *            true to apply custom constraints.
      */
     void addComponent(JComponent cmp, boolean customize);
-
-    /**
-     * @param obs
-     *            observer to attach to the view.
-     */
-    void addObserver(StateObserver obs);
 
     /**
      * @param btns

@@ -10,9 +10,9 @@ import it.unibo.oop.controller.KeyboardObserver;
 
 /**
  * Simple custom class implementing {@link KeyListener} that should be attached to
- * the main view.
+ * the main view i.e. {@link Level}.
  */
-public class MainKeyListener implements KeyListener {
+public class MainKeyListener implements KeyListener, ESource<KeyboardObserver> {
 
     private final List<KeyboardObserver> obsList;
 
@@ -31,10 +31,7 @@ public class MainKeyListener implements KeyListener {
         this.obsList = new ArrayList<>();
     }
 
-    /**
-     * @param obs
-     *          observer to attach.
-     */
+    @Override
     public void addObserver(final KeyboardObserver obs) {
         this.obsList.add(obs);
     }

@@ -17,7 +17,7 @@ public class CreditsMenu extends MenuPanel {
 
     private static final long serialVersionUID = 7436402336801219924L;
     private static final int FONT_SIZE = 25;
-    private static final List<String> MAKERS = Arrays.asList("Model: Matteto Minardi",
+    private static final List<String> MAKERS = Arrays.asList("Model: Matteo Minardi",
                                                              "View: Pasini Giacomo",
                                                              "Controller: Paolo Venturi");
     private enum Button implements StateButton {

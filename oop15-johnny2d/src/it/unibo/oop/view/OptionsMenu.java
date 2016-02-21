@@ -70,6 +70,7 @@ public class OptionsMenu extends MenuPanel {
         musicPane.add(label);
         musicPane.add(check);
         this.addComponent(musicPane, false);
+        
         // /* DIFFICULTY */
         // final JButton diff = new JButton("Difficulty");
 
