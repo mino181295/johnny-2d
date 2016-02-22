@@ -39,7 +39,8 @@ public class LevelPanel extends BackgroundPanel {
     private final GameState gs;
 
     /**
-     * Builds the {@link javax.swing.JPanel} and loads every {@link SpriteSheet}.
+     * Builds the {@link javax.swing.JPanel} and loads every {@link SpriteSheet}
+     * .
      */
     public LevelPanel() {
         super("/level.jpg");
@@ -49,7 +50,7 @@ public class LevelPanel extends BackgroundPanel {
         final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
         this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
         try {
-        	this.arena = ImageLoader.load("/fields/grass/grass_template_straightpath.jpg");
+            this.arena = ImageLoader.load("/fields/grass/grass_template_straightpath.jpg");
             this.bonus = ImageLoader.load("/coin.png");
             this.bullet = ImageLoader.load("/bullet.png");
         } catch (IOException e) {
@@ -66,8 +67,9 @@ public class LevelPanel extends BackgroundPanel {
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
-        g.drawImage(this.arena, this.gs.getArena().getPlayableRectangle().x, this.gs.getArena().getPlayableRectangle().y,
-        		this.gs.getArena().getPlayableRectangle().width, this.gs.getArena().getPlayableRectangle().height, this);
+        g.drawImage(this.arena, this.gs.getArena().getPlayableRectangle().x,
+                this.gs.getArena().getPlayableRectangle().y, this.gs.getArena().getPlayableRectangle().width,
+                this.gs.getArena().getPlayableRectangle().height, this);
         this.drawMainCharacter(g);
         this.drawMovables(g);
         this.drawStables(g);
@@ -76,14 +78,16 @@ public class LevelPanel extends BackgroundPanel {
 
     private void drawMainCharacter(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
-        		this.gs.getMainChar().get().getTopLeftPos().getIntX(), this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
+                this.gs.getMainChar().get().getTopLeftPos().getIntX(),
+                this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
     }
 
     private void drawMovables(final Graphics g) {
         if (!this.gs.getMovableList().isEmpty()) {
-        	this.gs.getMovableList().forEach(e -> {
+            this.gs.getMovableList().forEach(e -> {
                 if (e instanceof BasicMonster) {
-                    g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+                    g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(),
+                            e.getTopLeftPos().getIntY(), this);
                 }
                 if (e instanceof Bullet) {
                     g.drawImage(this.bullet, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
@@ -94,9 +98,10 @@ public class LevelPanel extends BackgroundPanel {
 
     private void drawStables(final Graphics g) {
         if (!this.gs.getStableList().isEmpty()) {
-        	this.gs.getStableList().forEach(e -> {
+            this.gs.getStableList().forEach(e -> {
                 if (e instanceof Wall) {
-                    g.drawRect(e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), WALL.getWidth(), WALL.getHeight());
+                    g.drawRect(e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), WALL.getWidth(),
+                            WALL.getHeight());
                 }
                 if (e instanceof HealthBonus) {
                     g.drawImage(this.bonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
@@ -106,7 +111,8 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawStats(final Graphics g) {
-        g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX() + DEFAULT_SPACING, this.getY() + DEFAULT_SPACING, this);
+        g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX() + DEFAULT_SPACING, this.getY() + DEFAULT_SPACING,
+                this);
         this.stats.setText(this.gs.getMainChar().get().getScore().toString());
     }
 }
