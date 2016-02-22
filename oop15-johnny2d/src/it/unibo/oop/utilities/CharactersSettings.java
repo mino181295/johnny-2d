@@ -3,7 +3,7 @@ package it.unibo.oop.utilities;
 import java.util.Optional;
 
 public enum CharactersSettings {
-	MAIN_CHARACTER(32, 48, new Velocity(10, 20, 10)),
+	MAIN_CHARACTER(32, 48, new Velocity(0, 20, 60)),
 	BASIC_ENEMY(32, 48, new Velocity(7, 15, 10)),
 	BULLET(32, 32, new Velocity(20, 35, 5)),
 	BONUS(32, 32, null),
