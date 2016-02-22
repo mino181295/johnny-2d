@@ -72,7 +72,7 @@ public enum KeyCommands {
         this.dir = dir;
     }
 
-    Integer getVkCode() {
+    int getVkCode() {
         return this.vkCode;
     }
 
