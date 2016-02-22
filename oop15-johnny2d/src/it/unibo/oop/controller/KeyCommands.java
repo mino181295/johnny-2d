@@ -12,22 +12,22 @@ public enum KeyCommands {
     /**
      * Up movement of main character.
      */
-    UP(KeyEvent.VK_UP, Direction.UP),
+    UP(KeyEvent.VK_W, Direction.UP),
 
     /**
      * Left movement of main character.
      */
-    LEFT(KeyEvent.VK_LEFT, Direction.LEFT),
+    LEFT(KeyEvent.VK_A, Direction.LEFT),
 
     /**
      * Down movement of main character.
      */
-    DOWN(KeyEvent.VK_DOWN, Direction.DOWN),
+    DOWN(KeyEvent.VK_S, Direction.DOWN),
 
     /**
      * Right movement of main character.
      */
-    RIGHT(KeyEvent.VK_RIGHT, Direction.RIGHT),
+    RIGHT(KeyEvent.VK_D, Direction.RIGHT),
 
     /**
      * Right-Up movement of main character.
@@ -52,7 +52,7 @@ public enum KeyCommands {
     /**
      * Shooting action of main character.
      */
-    SPACE(KeyEvent.VK_SPACE, Direction.NONE),
+    SPACE(KeyEvent.VK_ENTER, Direction.NONE),
 
     /**
      * To pause the game.

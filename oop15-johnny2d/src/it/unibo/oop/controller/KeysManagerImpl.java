@@ -63,8 +63,8 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
 
     @Override
     public synchronized boolean isAKeyPressed(final KeyCommands cmd) {
-        System.out.println(this.keysPressed);
-        System.out.println(this.keysTyped);
+//        System.out.println(this.keysPressed);
+//        System.out.println(this.keysTyped);
         return this.keysPressed.contains(cmd) || this.keysTyped.contains(cmd);
     }
 
