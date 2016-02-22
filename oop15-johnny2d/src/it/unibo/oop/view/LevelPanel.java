@@ -42,7 +42,7 @@ public class LevelPanel extends BackgroundPanel {
      * Builds the {@link javax.swing.JPanel} and loads every {@link SpriteSheet}.
      */
     public LevelPanel() {
-        super("/background.jpg");
+        super("/level.jpg");
         this.gs = GameStateImpl.getInstance();
         final SpriteSheet mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
         this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
@@ -76,17 +76,17 @@ public class LevelPanel extends BackgroundPanel {
 
     private void drawMainCharacter(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
-        		this.gs.getMainChar().get().getPosition().getIntX(), this.gs.getMainChar().get().getPosition().getIntY(), this);
+        		this.gs.getMainChar().get().getTopLeftPos().getIntX(), this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
     }
 
     private void drawMovables(final Graphics g) {
         if (!this.gs.getMovableList().isEmpty()) {
         	this.gs.getMovableList().forEach(e -> {
                 if (e instanceof BasicMonster) {
-                    g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+                    g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
                 if (e instanceof Bullet) {
-                    g.drawImage(this.bullet, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+                    g.drawImage(this.bullet, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
             });
         }
@@ -96,10 +96,10 @@ public class LevelPanel extends BackgroundPanel {
         if (!this.gs.getStableList().isEmpty()) {
         	this.gs.getStableList().forEach(e -> {
                 if (e instanceof Wall) {
-                    g.drawRect(e.getPosition().getIntX(), e.getPosition().getIntY(), WALL.getWidth(), WALL.getHeight());
+                    g.drawRect(e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), WALL.getWidth(), WALL.getHeight());
                 }
                 if (e instanceof HealthBonus) {
-                    g.drawImage(this.bonus, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
+                    g.drawImage(this.bonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
             });
         }

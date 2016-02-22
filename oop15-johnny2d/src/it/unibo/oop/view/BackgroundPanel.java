@@ -26,7 +26,7 @@ public class BackgroundPanel extends JPanel {
         try {
             this.background = ImageLoader.load(name);
         } catch (IOException e) {
-            System.out.println("Background not found");
+            System.out.println("Error loading the background");
         }
     }
 
