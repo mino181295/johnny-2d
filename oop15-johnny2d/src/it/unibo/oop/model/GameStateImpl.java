@@ -6,6 +6,7 @@ import static it.unibo.oop.utilities.Settings.SCREEN_WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
@@ -71,6 +72,12 @@ public final class GameStateImpl implements GameState {
             }
         }
         this.updateHeroPos(newDirection, isShooting);
+        this.removeDeadEntities();
+    }
+    
+    private void removeDeadEntities(){
+    	this.stableList.removeAll(this.stableList.stream().filter(x->x.isDead()).collect(Collectors.toList()));
+        this.movableList.removeAll(this.movableList.stream().filter(x->x.isDead()).collect(Collectors.toList()));
     }
 
     /**
