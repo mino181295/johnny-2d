@@ -39,7 +39,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final int FONT_SIZE = 30;
     private static final Color FONT_COLOR = Color.WHITE;
     private static final int PANEL_WIDTH = Settings.MENU_DIMENSION.width - 10;
-    private static final int PANEL_HEIGHT = 140;
+    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/3 - 10;;
     private final Dimension prefComponentSize = new Dimension(160, 40);
     private final GridBagConstraints cnst = new GridBagConstraints();
     private final List<StateObserver> obsList;
