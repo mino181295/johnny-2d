@@ -1,13 +1,6 @@
 package it.unibo.oop.controller;
 
-import static it.unibo.oop.controller.KeyCommands.D;
 import static it.unibo.oop.controller.KeyCommands.NONE;
-import static it.unibo.oop.controller.KeyCommands.S;
-import static it.unibo.oop.controller.KeyCommands.SA;
-import static it.unibo.oop.controller.KeyCommands.SD;
-import static it.unibo.oop.controller.KeyCommands.W;
-import static it.unibo.oop.controller.KeyCommands.WA;
-import static it.unibo.oop.controller.KeyCommands.WD;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -95,20 +88,20 @@ public final class KeysManagerImpl implements KeysManager<KeyCommands, Direction
             out = tmpList.get(0);
             break;
         case 2:
-            if (tmpList.contains(W) && tmpList.contains(S)) {
+            if (tmpList.contains(KeyCommands.UP) && tmpList.contains(KeyCommands.DOWN)) {
                 break;
             }
-            if (tmpList.contains(W)) {
-                if (tmpList.contains(D)) {
-                    out = WD;
+            if (tmpList.contains(KeyCommands.UP)) {
+                if (tmpList.contains(KeyCommands.RIGHT)) {
+                    out = KeyCommands.RIGHTUP;
                 } else {
-                    out = WA;
+                    out = KeyCommands.LEFTUP;
                 }
-            } else if (tmpList.contains(S)) {
-                if (tmpList.contains(D)) {
-                    out = SD;
+            } else if (tmpList.contains(KeyCommands.DOWN)) {
+                if (tmpList.contains(KeyCommands.RIGHT)) {
+                    out = KeyCommands.RIGHTDOWN;
                 } else {
-                    out = SA;
+                    out = KeyCommands.LEFTDOWN;
                 }
             }
             break;

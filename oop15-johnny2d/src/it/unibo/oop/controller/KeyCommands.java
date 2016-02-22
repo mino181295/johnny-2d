@@ -12,42 +12,42 @@ public enum KeyCommands {
     /**
      * Up movement of main character.
      */
-    W(KeyEvent.VK_W, Direction.UP),
+    UP(KeyEvent.VK_UP, Direction.UP),
 
     /**
      * Left movement of main character.
      */
-    A(KeyEvent.VK_A, Direction.LEFT),
+    LEFT(KeyEvent.VK_LEFT, Direction.LEFT),
 
     /**
      * Down movement of main character.
      */
-    S(KeyEvent.VK_S, Direction.DOWN),
+    DOWN(KeyEvent.VK_DOWN, Direction.DOWN),
 
     /**
-     * Rigth movement of main character.
+     * Right movement of main character.
      */
-    D(KeyEvent.VK_D, Direction.RIGHT),
+    RIGHT(KeyEvent.VK_RIGHT, Direction.RIGHT),
 
     /**
-     * Left movement of main character.
+     * Right-Up movement of main character.
      */
-    WD(KeyEvent.VK_UNDEFINED, Direction.RIGHTUP),
+    RIGHTUP(KeyEvent.VK_UNDEFINED, Direction.RIGHTUP),
 
     /**
      * Left-Up movement of main character.
      */
-    WA(KeyEvent.VK_UNDEFINED, Direction.LEFTUP),
+    LEFTUP(KeyEvent.VK_UNDEFINED, Direction.LEFTUP),
 
     /**
      * Right-Down movement of main character.
      */
-    SD(KeyEvent.VK_UNDEFINED, Direction.RIGHTDOWN),
+    RIGHTDOWN(KeyEvent.VK_UNDEFINED, Direction.RIGHTDOWN),
 
     /**
      * Left-Down movement of main character.
      */
-    SA(KeyEvent.VK_UNDEFINED, Direction.LEFTDOWN),
+    LEFTDOWN(KeyEvent.VK_UNDEFINED, Direction.LEFTDOWN),
 
     /**
      * Shooting action of main character.
