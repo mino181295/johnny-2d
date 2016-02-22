@@ -13,7 +13,7 @@ public final class ControllerImpl implements Controller {
     private Optional<AgentInterface> gLAgent = Optional.empty();
 
     private ControllerImpl() {
-        ViewsManagerImpl.getInstance().showView(AppState.GAME_OVER);
+        ViewsManagerImpl.getInstance().showView(AppState.LAUNCHING);
     }
 
     /**

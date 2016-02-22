@@ -28,4 +28,10 @@ public interface GameState {
     public Optional<MainCharacter> getMainChar();
     
     public Arena getArena();
+    
+    /**
+     * @return
+     *          true if game is finished.
+     */
+    boolean isGameEnded();
 }

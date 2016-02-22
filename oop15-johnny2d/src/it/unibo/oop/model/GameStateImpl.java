@@ -144,4 +144,8 @@ public final class GameStateImpl implements GameState {
     public Arena getArena() {
         return this.gameArena;
     }
+
+    public boolean isGameEnded() {
+        return this.movableList.isEmpty() || this.johnnyCharacter.isPresent();
+    }
 }

@@ -9,7 +9,7 @@ import it.unibo.oop.view.LevelInterface;
  */
 public class GameLoopAgent implements AgentInterface {
 
-    private static final double FPS = 60;
+    private static final double FPS = 20;
     private static final int TO_SECONDS = 1000;
     private static final int SLEEPING_TIME = (int) (1 / FPS * TO_SECONDS);
     private final KeysManager<KeyCommands, Direction> keysMan = KeysManagerImpl.getInstance();
@@ -46,19 +46,25 @@ public class GameLoopAgent implements AgentInterface {
                     e.printStackTrace();
                 }
             }
-            /*
-             * valutare l'aggiunta di un ulteriore wait per far eseguire
-             * eventuali eventi di key releasing (onde evitare che un tasto sia
-             * processato pi� volte in caso di un tasso di FPS elevato)
-             */
 
-            /* CHECK GIOCO FINITO/DA INIZIARE */
+//            /* CHECK GIOCO FINITO */
+//            if (GameStateImpl.getInstance().isGameEnded()) {
+//                this.pause = true;
+//                this.stateObs.stateAction(AppState.GAME_OVER);
+//                continue;
+//            }
+            
+            /* ACQUISIZIONE TASTI PREMUTI */
             this.processKeys();
             this.dbgKeysMan(); /* per debugging */
+            
+            /* AGGIORNAMENTO GAMESTATE */
             GameStateImpl.getInstance().updatePositions(this.mainCharDir, this.isMainCharShooting);
-            /* chiamo V che si aggiorna e disegna frame */
+            
+            /* AGGIORNAMENTO PRINT DEL FRAME */
             this.viewsMan.getView().updateLevel();
             this.viewsMan.getView().showIt();
+            
             try {
                 Thread.sleep(SLEEPING_TIME);
             } catch (InterruptedException e) {
