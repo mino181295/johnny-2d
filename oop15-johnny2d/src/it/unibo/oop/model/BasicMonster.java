@@ -27,14 +27,12 @@ public class BasicMonster extends AbstractEnemy {
 
         final Vector2 newMovement = this.getBehavior().get()
                 .getNextMove(this.getEnvironment().getMainChar().get().getPosition());
-        // newMovement = newMovement.clamp(this.getVelocity().getMinVelocity(),
-        // this.getVelocity().getMaxVelocity());
         try {
             this.checkCollision(this.getPosition().sumVector(newMovement));
             this.setMovement(newMovement);
             this.move();
         } catch (CollisionHandlingException e) {
-        	e.printStackTrace();
+        	e.getMessage();
         }
 
     }
@@ -42,23 +40,15 @@ public class BasicMonster extends AbstractEnemy {
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(), newPosition.getIntY());
         // Checks if the entity in the next move is inside the rectanuglar Arena
-        if (!this.getEnvironment().getArena().isInside(tmpEnemy)) {
+        if (this.getEnvironment().getArena().isInside(tmpEnemy)) {
             throw new CollisionHandlingException("Next movement not inside the arena");
         }
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
                 .filter(tmpEnemy::intersecate).count();
-
-        // List<Enemy> enemyCollisions =
-        // this.getEnvironment().getMovableList().stream()
-        // .filter(x -> x instanceof Enemy)
-        // .filter(tmpEnemy::intersecate)
-        // .map(x -> (Enemy)x)
-        // .collect(Collectors.toList());
-
+        
         if (numWallCollisions > 0) {
             throw new CollisionHandlingException("Next movement collides a wall");
         }
-        // TODO
 
     }
 

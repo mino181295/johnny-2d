@@ -18,7 +18,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
     private Score currentScore;
 
     public MainCharacter(final double startingX, final double startingY, final Vector2 movementVector,
-            final Velocity speedValue) {
+    		final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
         currentHealth = new Health();
         currentScore = new Score(0);
@@ -39,28 +39,27 @@ public class MainCharacter extends MovableEntity implements Shooter {
     public void update(final Direction newDirection, final boolean isShooting) {
         // Takes the new frame direction
         Vector2 newMovement = newDirection.getVector2();
-        System.out.println(newMovement);
         // If the main character is accelerating
         try {
-            if (newDirection != Direction.NONE) {
+            if (!(newDirection == Direction.NONE)) {
                 newMovement = newMovement.setLength(this.getVelocity().accelerate(this.getMovement().length()));
             } else {
-                newMovement = newMovement.setLength(this.getVelocity().slow(this.getMovement().length()));
+                newMovement = this.getMovement().setLength(this.getVelocity().slow(this.getMovement().length()));
             }
             this.checkCollision(this.getPosition().sumVector(newMovement));
             this.setMovement(newMovement);
             this.move();
         } catch (CollisionHandlingException e) {
-        	e.printStackTrace();
+        	System.out.println(e.getMessage());
         } finally {
-            if (isShooting && !this.currentHealth.isDead()) {
+            if (isShooting && !this.currentHealth.isDead() && !(newDirection == Direction.NONE)) {
                 this.shoot();
             }
         }
 
     }
 
-    public void checkCollision(final Position newPosition) throws CollisionHandlingException {
+    public void checkCollision(Position newPosition) throws CollisionHandlingException {
 
         final MainCharacter tmpJohnny = Factory.MainCharacterFactory.generateStillCharacter(newPosition.getX(),
                 newPosition.getY());
@@ -85,6 +84,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
         // If the character collides with a wall in the next move it can't move
         // there
         if (numWallCollisions > 0) {
+           	System.out.println("Entrato");
             throw new CollisionHandlingException("Next move collides a Wall");
         }
         // If it collides with one or more bonus it takes them and apply it;

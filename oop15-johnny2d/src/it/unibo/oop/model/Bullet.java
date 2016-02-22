@@ -33,7 +33,6 @@ public class Bullet extends MovableEntity implements Shot {
     }
 
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
-        // Creation of the bullet in the next position (TODO Factory)
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
         // Checks if the entity in the next move is inside the rectanuglar Arena
         if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
@@ -70,20 +69,17 @@ public class Bullet extends MovableEntity implements Shot {
             // Calculates the new movement vector
             final Vector2 newMovement = this.getMovement()
                     .setLength(this.getVelocity().accelerate(this.getMovement().length()));
-            // newMovement =
-            // newMovement.clamp(this.getVelocity().getMinVelocity(),
-            // this.getVelocity().getMaxVelocity());
             // Check if there are collision in the new position
             this.checkCollision(this.getPosition().sumVector(newMovement));
             // moves if no exception
             this.setMovement(newMovement);
             this.move();
-            this.remainingDistance -= this.getMovement().length();
-            if (remainingDistance <= 0) {
-                this.removeFromEnvironment();
-            }
+//            this.remainingDistance -= this.getMovement().length();
+//            if (remainingDistance <= 0) {
+//                this.removeFromEnvironment();
+//            }
         } catch (CollisionHandlingException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 

@@ -1,7 +1,5 @@
 package it.unibo.oop.utilities;
 
-import static java.lang.Math.*;
-
 public enum Direction {
 	
 	UP(0, -1), 
@@ -11,20 +9,15 @@ public enum Direction {
 	
     NONE(0, 0),
     
-    RIGHTUP(-Direction.TRIGONOMETRIC_CONSTANT, Direction.TRIGONOMETRIC_CONSTANT),    
-	LEFTUP(-Direction.TRIGONOMETRIC_CONSTANT, -Direction.TRIGONOMETRIC_CONSTANT),
-	RIGHTDOWN(Direction.TRIGONOMETRIC_CONSTANT, Direction.TRIGONOMETRIC_CONSTANT),
-	LEFTDOWN(-Direction.TRIGONOMETRIC_CONSTANT, Direction.TRIGONOMETRIC_CONSTANT);
+    RIGHTUP(-0.85, 0.85),    
+	LEFTUP(-0.85, -0.85),
+	RIGHTDOWN(0.85, 0.85),
+	LEFTDOWN(-0.85, 0.85);
 	
-	private static final double TRIGONOMETRIC_CONSTANT = sin(PI/2);
+	//private static final double TRIGONOMETRIC_CONSTANT = sin(PI/4);
 	
 	private double x;
 	private double y;
-	
-	private Direction(final int x, final int y) {
-		this.x = x;
-		this.y = y;
-	}
 	
 	private Direction(final double x, final double y) {
 		this.x = x;

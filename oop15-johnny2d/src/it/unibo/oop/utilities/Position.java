@@ -18,10 +18,6 @@ public class Position implements Point2{
 		this.y = y;		
 	}
 	
-	public Position(final int x, final int y){
-		this((double)x,(double)y);
-	}
-	
 	/**
 	 * Constructor that creates a position with a precedent {@link Position}.
 	 * @param x Integer value of the X
@@ -63,7 +59,10 @@ public class Position implements Point2{
 	 * @return Returns the new Position of the summed vector
 	 */
 	public Position sumVector(final Vector2 movement){
-		return new Position((int)(this.getX()+ movement.getX()), (int)(this.getY()+ movement.getY()));		
+		if (movement.getX()==0 && movement.getY()==0){
+			return this;
+		}
+		return new Position((this.getX()+ movement.getX()), this.getY()+ movement.getY());		
 	}
 	
 	/**

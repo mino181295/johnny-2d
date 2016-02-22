@@ -52,14 +52,18 @@ public class Vector2 extends Position {
 	 * @return
 	 */
 	public double length(){
-		return Math.sqrt(this.getX()*this.getX() + this.getY()*this.getY());
+		double length = Math.sqrt(this.getX()*this.getX() + this.getY()*this.getY());
+		return length>=0?length:0;
 	}
 	
 	/**
 	 * Normalizes this vector.
 	 */
 	public Vector2 norm(){
-		return new Vector2((int)this.getX()/this.length(), (int)this.getY()/this.length());
+		if (this.length()<=0){
+			return new Vector2();
+		}
+		return new Vector2(this.getX()/this.length(), this.getY()/this.length());
 	}
 	
 	/**
@@ -81,5 +85,12 @@ public class Vector2 extends Position {
 	public Vector2 setLength(final double newLength){
 		return new Vector2(this.norm().scl(newLength));
 	}
+
+	@Override
+	public String toString() {
+		return "(" + getX() + "," + getY() + ")";
+	}
+	
+	
 
 }

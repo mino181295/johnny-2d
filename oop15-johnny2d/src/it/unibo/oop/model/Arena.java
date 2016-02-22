@@ -16,7 +16,7 @@ import it.unibo.oop.utilities.Position;
  */
 public class Arena {
 
-    private static final int EMPTY_SPACES = 1;
+    private static final int EMPTY_SPACES = 2;
 
     private final List<Wall> boundsList;
     private final Rectangle playableRectangle;
@@ -34,21 +34,22 @@ public class Arena {
         final int heightBlocks = drawableAreaHeight / WALL.getHeight();
         final int widthBlocks = panelWidth / WALL.getWidth();
         // Creation of externs walls
-        for (int offsetX = EMPTY_SPACES; offsetX < widthBlocks - EMPTY_SPACES-1; offsetX++) {
-            for (int offsetY = EMPTY_SPACES; offsetY < heightBlocks - EMPTY_SPACES-1; offsetY++) {
-                if (offsetX == EMPTY_SPACES || offsetY == EMPTY_SPACES || offsetX == widthBlocks - 2 - EMPTY_SPACES
-                        || offsetY == heightBlocks - 2 - EMPTY_SPACES) {
-                    this.boundsList.add(new Wall(widthRest / 2 + offsetX * WALL.getWidth() + WALL.getWidth() / 2,
-                            hudDimension + heightRest / 2 + offsetY * WALL.getHeight() + WALL.getHeight() / 2));
+        for (int offsetX = EMPTY_SPACES; offsetX < widthBlocks - EMPTY_SPACES; offsetX++) {
+            for (int offsetY = EMPTY_SPACES; offsetY < heightBlocks - EMPTY_SPACES; offsetY++) {
+                if (offsetX == EMPTY_SPACES || offsetY == EMPTY_SPACES || offsetX == widthBlocks - EMPTY_SPACES - 1
+                        || offsetY == heightBlocks - EMPTY_SPACES - 1) {
+                    this.boundsList.add(new Wall(widthRest / 2 + offsetX * WALL.getWidth() + WALL.getWidth()/2,
+                            hudDimension + heightRest / 2 + offsetY * WALL.getHeight() + WALL.getHeight()/ 2));
                 }
             }
         }
         // Getting playable rectangle
         final Position topLeftCorner = this.boundsList.get(0).getPosition();
-        this.playableRectangle = new Rectangle(topLeftCorner.getIntX() /*+ (int) WALL.getWidth() / 2*/,
-                topLeftCorner.getIntY() /*+ (int) WALL.getHeight() / 2*/,
-                (int) (widthBlocks - 2 * EMPTY_SPACES) * WALL.getWidth(),
-                (int) (heightBlocks - 2 * EMPTY_SPACES) * WALL.getHeight());
+        this.playableRectangle = new Rectangle(
+        		topLeftCorner.getIntX() + (int) WALL.getWidth()/2 ,
+                topLeftCorner.getIntY() + (int) WALL.getHeight()/2 ,
+                (int) (widthBlocks - 2 * EMPTY_SPACES - 2) * WALL.getWidth(),
+                (int) (heightBlocks - 2 * EMPTY_SPACES - 2) * WALL.getHeight());
 
         this.spawnPoints = new ArrayList<>();
     }
@@ -136,15 +137,7 @@ public class Arena {
      * Checks if the parameter is inside or outside the bounding {@link Wall}
      */
     public boolean isInside(final Entity entity) {
-        boolean isInside = true;
-        if (!this.playableRectangle.intersects(entity.getBounds())) {
-            return false;
-        }
-        for (final Wall block : this.boundsList) {
-            if (block.intersecate(entity)) {
-                isInside = false;
-            }
-        }
-        return isInside;
+    	
+        return (this.playableRectangle.contains(entity.getBounds()));
     }
 }
