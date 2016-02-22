@@ -21,8 +21,8 @@ public class PauseMenu extends MenuPanel {
         this.setIcon("/pause.png");
 
         /* BUTTONS CREATION */
-        this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START),
-                            new MenuPanel.StateButton("Resume", AppState.PLAY), 
+        this.addStateButton(new MenuPanel.StateButton("Resume", AppState.PLAY),
+                            new MenuPanel.StateButton("Replay", AppState.START),
                             new MenuPanel.StateButton("Options", AppState.OPTIONS), 
                             new MenuPanel.StateButton("Quit", AppState.QUIT));
     }

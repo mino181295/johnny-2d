@@ -18,7 +18,6 @@ public class Level implements LevelInterface {
     private final JFrame frame;
     private final MainKeyListener keyListener;
     private final LevelPanel mainLevel;
-    private boolean musicEnabled;
 
     /**
      * @param obs
@@ -33,7 +32,6 @@ public class Level implements LevelInterface {
         this.frame.setResizable(false);
         mainLevel = new LevelPanel();
         this.frame.getContentPane().add(mainLevel);
-        this.musicEnabled = true;
 
         /* per MainKeyListener */
         this.keyListener = new MainKeyListener();
@@ -64,7 +62,7 @@ public class Level implements LevelInterface {
 
     @Override
     public void enableMusic(final boolean val) {
-        this.musicEnabled = val;
+        
     }
 
 }

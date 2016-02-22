@@ -49,7 +49,12 @@ public enum AppState {
     /**
      * To show the credits of the app.
      */
-    CREDITS(true);
+    CREDITS(true),
+    
+    /**
+     * To show the menu of game over.
+     */
+    GAME_OVER(true);
 
     private final boolean drawable;
 

@@ -1,7 +1,5 @@
 package it.unibo.oop.controller;
 
-import static it.unibo.oop.utilities.Direction.NONE;
-
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
@@ -77,7 +75,7 @@ public class GameLoopAgent implements AgentInterface {
 
     /* per debugging */
     private void dbgKeysMan() {
-        if (this.mainCharDir != NONE) {
+        if (this.mainCharDir != Direction.NONE) {
             System.out.println("Dir : " + this.mainCharDir);
         }
         System.out.println(this.isMainCharShooting ? "SHOOT!" : "");

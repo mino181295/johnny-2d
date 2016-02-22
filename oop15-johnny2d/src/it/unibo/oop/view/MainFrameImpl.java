@@ -75,6 +75,9 @@ public class MainFrameImpl implements MainFrame {
             case CREDITS:
                 outPanel = CreditsMenu.class;
                 break;
+            case GAME_OVER:
+                outPanel = GameOverMenu.class;
+                break;
             default:
                 return Optional.empty();
             }
