@@ -16,7 +16,7 @@ import it.unibo.oop.utilities.Vector2;
  */
 public class Bullet extends MovableEntity implements Shot {
 
-    private double remainingDistance = 400 + new Random().nextInt(50);
+    private double remainingDistance = 600 + new Random().nextInt(400);
 
     public Bullet(final double startingX, final double startingY, final Vector2 movementVector) {
         super(startingX, startingY, movementVector, BULLET.getSpeed());
@@ -36,15 +36,19 @@ public class Bullet extends MovableEntity implements Shot {
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
     
         // Counting how mutch walls it collides (Usually 1)
+        if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
+        	this.killEntity(true);
+        	throw new CollisionHandlingException("Next movement not inside the arena");
+        }
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
                 .filter(tmpBullet::intersecate).count();
         // Collectr all the Enemies collided (usually 1)
-        final List<Enemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
-                .filter(x -> x instanceof Enemy).filter(tmpBullet::intersecate).map(x -> (Enemy) x)
+        final List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
+                .filter(x -> x instanceof AbstractEnemy).filter(tmpBullet::intersecate).map(x -> (AbstractEnemy) x)
                 .collect(Collectors.toList());
         // If collides a wall the bullet dies and gets removed
         if (numWallCollisions > 0) {
-            this.removeFromEnvironment();
+            this.killEntity(true); //this.removeFromEnvironment();
             throw new CollisionHandlingException("Next movement collides a wall");
         }
         // If the bullet collides with an enemy both die
@@ -54,8 +58,8 @@ public class Bullet extends MovableEntity implements Shot {
             this.getEnvironment().getMainChar().get().getScore().increaseScore(tmpScore);
 
             // Removes the monsters from the envirnoment
-            enemyCollisions.stream().forEach(x -> ((AbstractEntity) x).removeFromEnvironment());
-            this.removeFromEnvironment();
+            enemyCollisions.stream().forEach(x -> x.killEntity(true));
+            this.killEntity(true);
             // Throws the exception avoiding the next movement
             throw new CollisionHandlingException("This bullet collided an enemy");
         }
@@ -71,12 +75,11 @@ public class Bullet extends MovableEntity implements Shot {
             // moves if no exception
             this.setMovement(newMovement);
             this.move();
-//            this.remainingDistance -= this.getMovement().length();
-//            if (remainingDistance <= 0) {
-//                this.removeFromEnvironment();
-//            }
+            this.remainingDistance -= this.getMovement().length();
+            if (remainingDistance <= 0) {
+            	this.killEntity(true);//this.removeFromEnvironment();
+            }
         } catch (CollisionHandlingException e) {
-        	System.out.println("Eror");
             System.out.println(e.getMessage());
         }
     }

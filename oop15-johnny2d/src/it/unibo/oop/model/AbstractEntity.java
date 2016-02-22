@@ -15,9 +15,11 @@ public abstract class AbstractEntity implements Entity {
 
     private Position entityPosition;
     private Optional<GameStateImpl> gameEnvironment = Optional.ofNullable(GameStateImpl.getInstance());
+    private boolean deathFlag;
 
     public AbstractEntity(final double startingX, final double startingY) {
         this.entityPosition = new Position(startingX, startingY);
+        this.killEntity(false);
     }
 
     /**
@@ -34,7 +36,15 @@ public abstract class AbstractEntity implements Entity {
         this.entityPosition = newPosition;
     }
 
-    /**
+    public boolean isDead() {
+		return this.deathFlag;
+	}
+
+	public void killEntity(final boolean deathFlag) {
+		this.deathFlag = deathFlag;
+	}
+
+	/**
      * Getter for the X position of an {@link Entity}.
      * 
      * @return
