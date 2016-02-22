@@ -16,12 +16,17 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
     private Health currentHealth;
     private Score currentScore;
+    
+    private Direction lastDirection;
 
     public MainCharacter(final double startingX, final double startingY, final Vector2 movementVector,
     		final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
-        currentHealth = new Health();
-        currentScore = new Score(0);
+        this.currentHealth = new Health();
+        this.currentScore = new Score(0);
+        
+        this.lastDirection = Direction.UP;
+        
     }
 
     public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
@@ -42,6 +47,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
         // If the main character is accelerating
         try {
             if (!(newDirection == Direction.NONE)) {
+            	lastDirection = newDirection;
                 newMovement = newMovement.setLength(this.getVelocity().accelerate(this.getMovement().length()));
             } else {
                 newMovement = this.getMovement().setLength(this.getVelocity().slow(this.getMovement().length()));
@@ -52,7 +58,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
         } catch (CollisionHandlingException e) {
         	System.out.println(e.getMessage());
         } finally {
-            if (isShooting && !this.currentHealth.isDead() && !(newDirection == Direction.NONE)) {
+            if (isShooting && !this.currentHealth.isDead()) {
                 this.shoot();
             }
         }
@@ -110,7 +116,30 @@ public class MainCharacter extends MovableEntity implements Shooter {
         }
     }
 
-    protected int getEntityHeight() {
+    @Override
+    public Direction getFaceDirection(){
+    	switch (lastDirection) {
+    	case LEFTDOWN:
+			return Direction.DOWN;
+    	case LEFTUP:
+			return Direction.UP;
+    	case RIGHTUP:
+			return Direction.UP;
+    	case RIGHTDOWN:
+			return Direction.DOWN;
+    	case NONE:
+			return Direction.UP;
+
+		default:
+			return lastDirection;
+		} 	
+    }
+    
+    public Direction getLastDirection() {
+		return lastDirection;
+	}
+
+	protected int getEntityHeight() {
         return MAIN_CHARACTER.getHeight();
     }
 
