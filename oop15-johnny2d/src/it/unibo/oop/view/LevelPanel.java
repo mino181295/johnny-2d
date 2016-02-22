@@ -13,11 +13,11 @@ import java.util.Map;
 
 import javax.swing.JLabel;
 
+import it.unibo.oop.model.AbstractEnemy;
 import it.unibo.oop.model.Bullet;
-import it.unibo.oop.model.Collectable;
-import it.unibo.oop.model.Enemy;
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
+import it.unibo.oop.model.HealthBonus;
 import it.unibo.oop.model.Wall;
 import it.unibo.oop.utilities.Direction;
 
@@ -31,14 +31,14 @@ public class LevelPanel extends BackgroundPanel {
 
     private final Map<Direction, BufferedImage> mainCharacterSprites;
     private final Map<Direction, BufferedImage> enemySprites;
+    private BufferedImage arena;
     private BufferedImage bonus;
     private BufferedImage bullet;
     private final JLabel stats;
     private final GameState gs;
 
     /**
-     * Builds the {@link javax.swing.JPanel} and loads every {@link SpriteSheet}
-     * .
+     * Builds the {@link javax.swing.JPanel} and loads every {@link SpriteSheet}.
      */
     public LevelPanel() {
         super("/background.jpg");
@@ -48,13 +48,15 @@ public class LevelPanel extends BackgroundPanel {
         final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
         this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
         try {
+        	this.arena = ImageLoader.load("/arena.jpg");
             this.bonus = ImageLoader.load("/coin.png");
             this.bullet = ImageLoader.load("/bullet.png");
         } catch (IOException e) {
             System.out.println("Error loading the sprites");
         }
         this.stats = new JLabel();
-        this.stats.setFont(new Font("Verdana", 1, 20));
+        this.stats.setFont(new Font("Verdana", 1, 24));
+        this.stats.setForeground(Color.RED);
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.add(this.stats);
     }
@@ -62,7 +64,9 @@ public class LevelPanel extends BackgroundPanel {
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        g.setColor(new Color(255, 255, 255));
+        g.setColor(Color.BLACK);
+        //g.drawImage(this.arena, gs.getArena().getLeftX(), gs.getArena().getUpperY(),
+        //		gs.getArena(), gs.getArena(), this);
         this.drawMainCharacter(g);
         this.drawMovables(g);
         this.drawStables(g);
@@ -71,13 +75,13 @@ public class LevelPanel extends BackgroundPanel {
 
     private void drawMainCharacter(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(gs.getMainChar().get().getFaceDirection()),
-                (gs.getMainChar().get().getPosition().getIntX()), (gs.getMainChar().get().getPosition().getIntY()), this);
+        		gs.getMainChar().get().getPosition().getIntX(), gs.getMainChar().get().getPosition().getIntY(), this);
     }
 
     private void drawMovables(final Graphics g) {
         if (!gs.getMovableList().isEmpty()) {
             gs.getMovableList().forEach(e -> {
-                if (e instanceof Enemy) {
+                if (e instanceof AbstractEnemy) {
                     g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
                 }
                 if (e instanceof Bullet) {
@@ -93,7 +97,7 @@ public class LevelPanel extends BackgroundPanel {
                 if (e instanceof Wall) {
                     g.drawRect(e.getPosition().getIntX(), e.getPosition().getIntY(), WALL.getWidth(), WALL.getHeight());
                 }
-                if (e instanceof Collectable) {
+                if (e instanceof HealthBonus) {
                     g.drawImage(this.bonus, e.getPosition().getIntX(), e.getPosition().getIntY(), this);
                 }
             });
@@ -102,6 +106,6 @@ public class LevelPanel extends BackgroundPanel {
 
     private void drawStats(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX(), this.getY(), this);
-        this.stats.setText("    Life: 100    Score: 0");
+        this.stats.setText("    " + gs.getMainChar().get().getScore().toString());
     }
 }

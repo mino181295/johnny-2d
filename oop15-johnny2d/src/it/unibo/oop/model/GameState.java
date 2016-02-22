@@ -27,5 +27,5 @@ public interface GameState {
     
     Optional<MainCharacter> getMainChar();
     
-    
+    Arena getArena();
 }
