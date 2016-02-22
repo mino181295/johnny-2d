@@ -2,6 +2,8 @@ package it.unibo.oop.controller;
 
 import java.util.Optional;
 
+import it.unibo.oop.model.GameStateImpl;
+
 /**
  *  class implementing the Controller of the MVC model.
  */
@@ -27,7 +29,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void start() { // launcher -> play / pause -> replay
-        // GameStateImpl.getInstance().initialize(0);
+        GameStateImpl.getInstance().initialize(1);
         KeysManagerImpl.getInstance().reset(); 
         this.play();
     }

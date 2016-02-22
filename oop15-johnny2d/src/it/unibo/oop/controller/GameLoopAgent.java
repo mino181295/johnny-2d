@@ -2,6 +2,7 @@ package it.unibo.oop.controller;
 
 import static it.unibo.oop.utilities.Direction.NONE;
 
+import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
 
@@ -56,10 +57,9 @@ public class GameLoopAgent implements AgentInterface {
             /* CHECK GIOCO FINITO/DA INIZIARE */
             this.processKeys();
             this.dbgKeysMan(); /* per debugging */
-            // GameStateImpl.getInstance().updatePositions(this.mainCharDir,
-            // this.isMainCharShooting);
+            GameStateImpl.getInstance().updatePositions(this.mainCharDir, this.isMainCharShooting);
             /* chiamo V che si aggiorna e disegna frame */
-            // this.viewsMan.getView().updateLevel();
+            this.viewsMan.getView().updateLevel();
             this.viewsMan.getView().showIt();
             try {
                 Thread.sleep(SLEEPING_TIME);
