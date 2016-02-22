@@ -47,7 +47,9 @@ public final class GameStateImpl implements GameState {
         for (int nMonsters = 0; nMonsters < levelNumber * 10; nMonsters++) {
             final Position randomPos = this.gameArena.getPositionInside();
             final BasicMonster tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(), randomPos.getY());
-            this.addMovableEntity(tmpMonster);
+            if (this.getArena().isInside(tmpMonster)){
+            	this.addMovableEntity(tmpMonster);
+            }
         }
     }
 
@@ -94,6 +96,7 @@ public final class GameStateImpl implements GameState {
      * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
+    	System.out.println("Projkrnegre");
         this.movableList.add(newBullet);
     }
 

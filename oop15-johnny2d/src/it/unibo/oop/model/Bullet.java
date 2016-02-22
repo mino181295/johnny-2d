@@ -26,7 +26,7 @@ public class Bullet extends MovableEntity implements Shot {
     public Bullet(final MainCharacter heroPosition) {
         this(heroPosition.getX(), heroPosition.getY(), heroPosition.getMovement());
         // Takes the hero position
-        this.setMovement(heroPosition.getMovement());
+        this.setMovement(heroPosition.getLastDirection().getVector2());
         // The movement vector is in the same Hero direction but in another
         // speed values
         this.getMovement().setLength(this.getVelocity().getMinVelocity());
@@ -34,8 +34,7 @@ public class Bullet extends MovableEntity implements Shot {
 
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
-    
-        // Counting how mutch walls it collides (Usually 1)
+        // Counting how much walls it collides (Usually 1)
         if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
         	this.killEntity(true);
         	throw new CollisionHandlingException("Next movement not inside the arena");
