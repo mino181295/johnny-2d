@@ -9,7 +9,7 @@ public enum Direction {
 	
     NONE(0, 0),
     
-    RIGHTUP(-0.85, 0.85),    
+    RIGHTUP(0.85, -0.85),    
 	LEFTUP(-0.85, -0.85),
 	RIGHTDOWN(0.85, 0.85),
 	LEFTDOWN(-0.85, 0.85);

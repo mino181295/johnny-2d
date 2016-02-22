@@ -34,10 +34,7 @@ public class Bullet extends MovableEntity implements Shot {
 
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
-        // Checks if the entity in the next move is inside the rectanuglar Arena
-        if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
-        	throw new CollisionHandlingException("Next movement not inside the arena");
-        }
+    
         // Counting how mutch walls it collides (Usually 1)
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
                 .filter(tmpBullet::intersecate).count();
@@ -79,7 +76,8 @@ public class Bullet extends MovableEntity implements Shot {
 //                this.removeFromEnvironment();
 //            }
         } catch (CollisionHandlingException e) {
-            e.getMessage();
+        	System.out.println("Eror");
+            System.out.println(e.getMessage());
         }
     }
 
