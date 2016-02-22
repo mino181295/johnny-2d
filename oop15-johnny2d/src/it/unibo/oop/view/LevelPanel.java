@@ -13,7 +13,7 @@ import java.util.Map;
 
 import javax.swing.JLabel;
 
-import it.unibo.oop.model.AbstractEnemy;
+import it.unibo.oop.model.BasicMonster;
 import it.unibo.oop.model.Bullet;
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
@@ -28,6 +28,7 @@ import it.unibo.oop.utilities.Direction;
 public class LevelPanel extends BackgroundPanel {
 
     private static final long serialVersionUID = 8057405927611227670L;
+    private static final int DEFAULT_SPACING = 10;
 
     private final Map<Direction, BufferedImage> mainCharacterSprites;
     private final Map<Direction, BufferedImage> enemySprites;
@@ -55,9 +56,9 @@ public class LevelPanel extends BackgroundPanel {
             System.out.println("Error loading the sprites");
         }
         this.stats = new JLabel();
-        this.stats.setFont(new Font("Verdana", 1, 24));
+        this.stats.setFont(new Font("Verdana", 1, 30));
         this.stats.setForeground(Color.RED);
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.add(this.stats);
     }
 
@@ -65,8 +66,8 @@ public class LevelPanel extends BackgroundPanel {
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
-        //g.drawImage(this.arena, gs.getArena().getLeftX(), gs.getArena().getUpperY(),
-        //		gs.getArena(), gs.getArena(), this);
+        g.drawImage(this.arena, this.gs.getArena().getPlayableRectangle().x, this.gs.getArena().getPlayableRectangle().y,
+        		this.gs.getArena().getPlayableRectangle().width, this.gs.getArena().getPlayableRectangle().height, this);
         this.drawMainCharacter(g);
         this.drawMovables(g);
         this.drawStables(g);
@@ -74,14 +75,14 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawMainCharacter(final Graphics g) {
-        g.drawImage(this.mainCharacterSprites.get(gs.getMainChar().get().getFaceDirection()),
-        		gs.getMainChar().get().getPosition().getIntX(), gs.getMainChar().get().getPosition().getIntY(), this);
+        g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
+        		this.gs.getMainChar().get().getPosition().getIntX(), this.gs.getMainChar().get().getPosition().getIntY(), this);
     }
 
     private void drawMovables(final Graphics g) {
-        if (!gs.getMovableList().isEmpty()) {
-            gs.getMovableList().forEach(e -> {
-                if (e instanceof AbstractEnemy) {
+        if (!this.gs.getMovableList().isEmpty()) {
+        	this.gs.getMovableList().forEach(e -> {
+                if (e instanceof BasicMonster) {
                     g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getPosition().getIntX(), e.getPosition().getIntY(), this);
                 }
                 if (e instanceof Bullet) {
@@ -92,8 +93,8 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawStables(final Graphics g) {
-        if (!gs.getStableList().isEmpty()) {
-            gs.getStableList().forEach(e -> {
+        if (!this.gs.getStableList().isEmpty()) {
+        	this.gs.getStableList().forEach(e -> {
                 if (e instanceof Wall) {
                     g.drawRect(e.getPosition().getIntX(), e.getPosition().getIntY(), WALL.getWidth(), WALL.getHeight());
                 }
@@ -105,7 +106,7 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawStats(final Graphics g) {
-        g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX(), this.getY(), this);
-        this.stats.setText("    " + gs.getMainChar().get().getScore().toString());
+        g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX() + DEFAULT_SPACING, this.getY() + DEFAULT_SPACING, this);
+        this.stats.setText(this.gs.getMainChar().get().getScore().toString());
     }
 }
