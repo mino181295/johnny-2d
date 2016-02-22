@@ -10,14 +10,13 @@ import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.controller.StateObserverImpl;
 import it.unibo.oop.controller.ViewsManagerImpl;
+import it.unibo.oop.utilities.Settings;
 
 /**
  * Implementation of {@link MainFrame} interface.
  */
 public class MainFrameImpl implements MainFrame {
 
-    private static final int WIDTH = 500;
-    private static final int HEIGHT = 500;
     private final JFrame frame;
     private final MenuPanelFactory factory;
 
@@ -26,7 +25,7 @@ public class MainFrameImpl implements MainFrame {
      */
     public MainFrameImpl() {
         this.frame = new JFrame();
-        this.frame.setSize(WIDTH, HEIGHT);
+        this.frame.setSize(Settings.MENU_DIMENSION);
         this.frame.setUndecorated(true);
         this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.frame.setLocationRelativeTo(null);

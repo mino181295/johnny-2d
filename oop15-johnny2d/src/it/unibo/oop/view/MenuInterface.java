@@ -1,7 +1,9 @@
 package it.unibo.oop.view;
 
+import java.awt.FlowLayout;
 import java.util.function.Consumer;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.view.MenuPanel.StateButton;
 
@@ -13,10 +15,15 @@ public interface MenuInterface extends ESource<StateObserver> {
     /**
      * @param cmp
      *            component to attach.
-     * @param customize
-     *            true to apply custom constraints.
      */
-    void addComponent(JComponent cmp, boolean customize);
+    void addComponent(JComponent cmp);
+    
+    /**
+     * @param cmps
+     *            components to attach. NB: a {@link JPanel} with {@link FlowLayout}
+     *            is used in addition to wrap the components.
+     */
+    public void addComponents(final JComponent... cmps);
 
     /**
      * @param btns

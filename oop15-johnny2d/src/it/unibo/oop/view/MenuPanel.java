@@ -1,7 +1,9 @@
 package it.unibo.oop.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,17 +13,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
+import it.unibo.oop.utilities.Settings;
 
 /**
- * Custom {@link javax.swing.JPanel} used as template for game's menu. It defines standard buttons,
- * layout and background image.
+ * Custom {@link javax.swing.JPanel} used as template for game's menu. It
+ * defines standard buttons, layout and background image.
  */
 public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
@@ -31,6 +36,10 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final int LEFT_INSET = 5;
     private static final int BOTTOM_INSET = 5;
     private static final int RIGHT_INSET = 5;
+    private static final int FONT_SIZE = 30;
+    private static final Color FONT_COLOR = Color.WHITE;
+    private static final int PANEL_WIDTH = Settings.MENU_DIMENSION.width - 10;
+    private static final int PANEL_HEIGHT = 140;
     private final Dimension prefComponentSize = new Dimension(160, 40);
     private final GridBagConstraints cnst = new GridBagConstraints();
     private final List<StateObserver> obsList;
@@ -48,14 +57,41 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     }
 
     @Override
-    public void addComponent(final JComponent cmp, final boolean customize) {
-        if (customize) {
-            cmp.setPreferredSize(this.prefComponentSize);
-            cmp.setBackground(COMPONENTS_COLOR);
+    public void addComponent(final JComponent cmp) {
+        if (cmp instanceof JButton) {
+            this.customizeButton((JButton) cmp);
         }
         this.add(cmp, cnst);
         cnst.gridy++;
 
+    }
+
+    @Override
+    public void addComponents(final JComponent... cmps) {
+        final JPanel nestedPanel = new JPanel();
+        nestedPanel.setLayout(new BoxLayout(nestedPanel, BoxLayout.PAGE_AXIS));
+        nestedPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        nestedPanel.setOpaque(false);
+        Arrays.asList(cmps).forEach(e -> {
+            if (e instanceof JLabel) {
+                this.customizeLabel((JLabel)e);
+            }
+            e.setAlignmentX(Component.CENTER_ALIGNMENT);
+            nestedPanel.add(e);
+        });
+        this.addComponent(nestedPanel);
+    }
+
+    private JButton customizeButton(final JButton btn) {
+        btn.setPreferredSize(this.prefComponentSize);
+        btn.setBackground(COMPONENTS_COLOR);
+        return btn;
+    }
+
+    private JLabel customizeLabel(final JLabel label) {
+        label.setFont(new Font("AppStyle", Font.PLAIN, FONT_SIZE));
+        label.setForeground(FONT_COLOR);
+        return label;
     }
 
     @Override
@@ -67,9 +103,9 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     public void addStateButton(final StateButton... btns) {
         Arrays.asList(btns).forEach(btn -> {
             final JButton jBtn = new JButton(btn.getName());
-            jBtn.addActionListener((e) -> this.doObsAction(obs -> new Thread(() -> 
-                                        obs.stateAction(btn.getState())).start()));
-            this.addComponent(jBtn, true);
+            jBtn.addActionListener(
+                    (e) -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(btn.getState())).start()));
+            this.addComponent(jBtn);
         });
     }
 
@@ -78,14 +114,14 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         final URL imgURL = MenuPanel.class.getResource(path);
         final ImageIcon icon = new ImageIcon(imgURL);
         final JLabel label = new JLabel(icon);
-        this.addComponent(label, false);
+        this.addComponent(label);
     }
 
     @Override
     public void doObsAction(final Consumer<StateObserver> action) {
         this.obsList.forEach(action);
     }
-    
+
     public static class StateButton {
         private final String name;
         private final AppState state;

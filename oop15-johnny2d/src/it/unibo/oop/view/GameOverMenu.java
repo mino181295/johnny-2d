@@ -1,9 +1,6 @@
 package it.unibo.oop.view;
 
-import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JLabel;
-
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.model.GameStateImpl;
@@ -14,9 +11,6 @@ import it.unibo.oop.model.GameStateImpl;
 public class GameOverMenu extends MenuPanel {
     
     private static final long serialVersionUID = 5096699286815303104L;
-    private static final int FONT_SIZE = 30;
-//    private static final int PANEL_WIDTH = 160;
-//    private static final int PANEL_HEIGHT = 100;
 
     /**
      * @param stateObs
@@ -30,14 +24,7 @@ public class GameOverMenu extends MenuPanel {
 
         /* SCORE LABEL */
         final JLabel label = new JLabel("" + GameStateImpl.getInstance().getMainChar().get().getScore());
-        label.setFont(new Font("AppStyle", Font.PLAIN, FONT_SIZE));
-        label.setForeground(Color.WHITE);
-        
-//        final JPanel musicPane = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
-//        musicPane.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-//        musicPane.setOpaque(false);
-//        musicPane.add(label);
-        this.addComponent(label, true);
+        this.addComponents(label);
         
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START), 
