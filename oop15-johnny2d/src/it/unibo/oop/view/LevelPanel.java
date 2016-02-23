@@ -86,7 +86,6 @@ public class LevelPanel extends BackgroundPanel {
         if (!this.gs.getMovableList().isEmpty()) {
             this.gs.getMovableList().forEach(e -> {
                 if (e instanceof BasicMonster) {
-                	System.out.println("Monster Printed");
                     g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(),
                             e.getTopLeftPos().getIntY(), this);
                 }

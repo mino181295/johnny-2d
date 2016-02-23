@@ -42,7 +42,7 @@ public class Bullet extends MovableEntity implements Shot {
         }
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
                 .filter(tmpBullet::intersecate).count();
-        // Collectr all the Enemies collided (usually 1)
+        // Collects all the Enemies collided (usually 1)
         final List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
                 .filter(x -> x instanceof AbstractEnemy).filter(tmpBullet::intersecate).map(x -> (AbstractEnemy) x)
                 .collect(Collectors.toList());
