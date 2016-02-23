@@ -16,5 +16,4 @@ public interface Controller {
      * interface.
      */
     void play();
-
 }

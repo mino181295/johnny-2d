@@ -17,7 +17,8 @@ public class GameLoopAgent implements AgentInterface {
     private final StateObserver stateObs;
     private volatile Direction mainCharDir;
     private volatile boolean isMainCharShooting;
-    private volatile boolean pause; /* default false */
+    private volatile boolean pause;
+    private volatile boolean gameOver;
 
     /**
      * Class's constructor.
@@ -30,6 +31,7 @@ public class GameLoopAgent implements AgentInterface {
     @Override
     public synchronized void play() {
         this.pause = false;
+        this.gameOver = false;
         this.notifyAll();
     }
 
@@ -38,21 +40,24 @@ public class GameLoopAgent implements AgentInterface {
 
         /* GAME LOOP */
         while (true) {
-            while (this.pause) {
+            while (this.pause || this.gameOver) {
                 try {
-                    this.stateObs.stateAction(AppState.PAUSE);
+                    if (this.pause) {
+                        this.stateObs.stateAction(AppState.PAUSE);
+                    } else {
+                        this.stateObs.stateAction(AppState.GAME_OVER);
+                    }
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-//            /* CHECK GIOCO FINITO */
-//            if (GameStateImpl.getInstance().isGameEnded()) {
-//                this.pause = true;
-//                this.stateObs.stateAction(AppState.GAME_OVER);
-//                continue;
-//            }
+            /* CHECK GIOCO FINITO */
+            if (GameStateImpl.getInstance().isGameEnded()) {
+                this.gameOver = true;
+                continue;
+            }
             
             /* ACQUISIZIONE TASTI PREMUTI */
             this.processKeys();
