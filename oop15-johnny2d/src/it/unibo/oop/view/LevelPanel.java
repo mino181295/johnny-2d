@@ -61,9 +61,7 @@ public class LevelPanel extends BackgroundPanel {
         } catch (IOException e) {
             System.out.println("Error loading the sprites");
         }
-        this.stats = new JLabel();
-        this.stats.setFont(new Font("Verdana", 1, 30));
-        this.stats.setForeground(Color.RED);
+        this.stats = MyLabel.createLabel(null, new Font("Verdana", 1, 40), Color.RED);
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.add(this.stats);
     }
