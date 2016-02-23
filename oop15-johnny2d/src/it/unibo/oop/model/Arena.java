@@ -127,7 +127,7 @@ public class Arena {
      */
     public Position getPositionInside() {
         final Random rand = new Random();
-        Position resultPos = new Position(rand.nextInt((int) this.playableRectangle.getWidth()) + this.playableRectangle.getX(),
+        final Position resultPos = new Position(rand.nextInt((int) this.playableRectangle.getWidth()) + this.playableRectangle.getX(),
         		rand.nextInt((int) this.playableRectangle.getHeight()) + this.playableRectangle.getY());
         return resultPos;
     }

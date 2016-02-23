@@ -112,7 +112,7 @@ public final class GameStateImpl implements GameState {
 		
 		if (this.updatesNumber%60 == 0){
 			this.updatesNumber = 0;
-			Position randomPos = this.getArena().getPositionInside();
+			final Position randomPos = this.getArena().getPositionInside();
 			this.addStableEntity(new HealthBonus(randomPos.getX(), randomPos.getY()));
 		}
 	}

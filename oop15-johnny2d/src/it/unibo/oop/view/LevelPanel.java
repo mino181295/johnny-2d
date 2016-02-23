@@ -71,7 +71,6 @@ public class LevelPanel extends BackgroundPanel {
     @Override
     protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.BLACK);
         g.drawImage(this.arena, this.gs.getArena().getPlayableRectangle().x,
                 this.gs.getArena().getPlayableRectangle().y, this.gs.getArena().getPlayableRectangle().width,
                 this.gs.getArena().getPlayableRectangle().height, this);

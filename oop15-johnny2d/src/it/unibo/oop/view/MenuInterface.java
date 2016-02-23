@@ -23,7 +23,7 @@ public interface MenuInterface extends ESource<StateObserver> {
      *            components to attach. NB: a {@link JPanel} with {@link FlowLayout}
      *            is used in addition to wrap the components.
      */
-    public void addComponents(final JComponent... cmps);
+    void addComponents(final JComponent... cmps);
 
     /**
      * @param btns

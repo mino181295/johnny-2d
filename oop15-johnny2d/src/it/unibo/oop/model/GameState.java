@@ -20,13 +20,13 @@ public interface GameState {
      *            entity to remove.
      */
 
-    public List<AbstractEntity> getStableList();
+    List<AbstractEntity> getStableList();
 
-    public List<MovableEntity> getMovableList();
+    List<MovableEntity> getMovableList();
 
-    public Optional<MainCharacter> getMainChar();
+    Optional<MainCharacter> getMainChar();
 
-    public Arena getArena();
+    Arena getArena();
 
     /**
      * @return true if game is finished.
@@ -36,5 +36,5 @@ public interface GameState {
     /**
      * Determines if the player has made a new record.
      */
-    public void checkTopScore();
+    void checkTopScore();
 }

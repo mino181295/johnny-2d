@@ -22,15 +22,15 @@ public interface Controller {
     /**
      * @return best {@link Score}.
      */
-    public Score getStatFromFile();
+    Score getStatFromFile();
 
     /**
      * to put best {@link Score} to file.
      */
-    public void putStatToFile(Score topScores);
+    void putStatToFile(Score topScores);
 
     /**
      * @return true if player has made a new record.
      */
-    public boolean isRecord();
+    boolean isRecord();
 }

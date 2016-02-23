@@ -7,7 +7,7 @@ public class CollisionHandlingException extends Exception{
 	public CollisionHandlingException() {
 		super();
 	}
-	public CollisionHandlingException (String message) {
+	public CollisionHandlingException (final String message) {
 		  super(message); 
 	}
 

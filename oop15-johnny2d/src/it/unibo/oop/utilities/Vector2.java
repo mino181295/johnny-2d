@@ -52,7 +52,7 @@ public class Vector2 extends Position {
 	 * @return
 	 */
 	public double length(){
-		double length = Math.sqrt(this.getX()*this.getX() + this.getY()*this.getY());
+		final double length = Math.sqrt(this.getX()*this.getX() + this.getY()*this.getY());
 		return length>=0?length:0;
 	}
 	

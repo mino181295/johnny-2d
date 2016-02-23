@@ -79,17 +79,22 @@ public class Position implements Point2{
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		if (this == obj) {
+		    return true;
+		}
+		if (obj == null) {
+		    return false;
+		}
+		if (getClass() != obj.getClass()) {
+		    return false;
+		}
 		final Position other = (Position) obj;
-		if (x != other.x)
-			return false;
-		if (y != other.y)
-			return false;
+		if (x != other.x) {
+		    return false;
+		}
+		if (y != other.y) {
+		    return false;
+		}
 		return true;
 	}
 	
@@ -97,6 +102,4 @@ public class Position implements Point2{
 	public String toString() {
 		return "("+this.getX()+","+this.getY()+")";
 	}
-	
-	
 }

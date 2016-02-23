@@ -11,7 +11,7 @@ public class KeyboardObserverImpl implements KeyboardObserver {
     private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
     private final KeysManager<KeyCommands, ?> man;
 
-    public KeyboardObserverImpl(KeysManager<KeyCommands, ?> man) {
+    public KeyboardObserverImpl(final KeysManager<KeyCommands, ?> man) {
         this.man = man;
         this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
         for (final KeyCommands cmd : KeyCommands.class.getEnumConstants()) {

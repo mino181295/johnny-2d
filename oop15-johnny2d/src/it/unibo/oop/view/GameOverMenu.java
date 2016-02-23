@@ -24,7 +24,7 @@ public class GameOverMenu extends MenuPanel {
         this.setIcon("/gameover.png");
 
         /* SCORE LABEL */
-        final JLabel label = new JLabel("" + GameStateImpl.getInstance().getMainChar().get().getScore());
+        final JLabel label = new JLabel(GameStateImpl.getInstance().getMainChar().get().getScore().toString());
         String mex = "";
         if (ControllerImpl.getInstance().isRecord()) {
             mex = "Congratulations! New record!";

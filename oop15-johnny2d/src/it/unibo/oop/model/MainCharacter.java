@@ -46,7 +46,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
         Vector2 newMovement = newDirection.getVector2();
         // If the main character is accelerating
         try {
-            if (!(newDirection == Direction.NONE)) {
+            if ((newDirection != Direction.NONE)) {
                 lastDirection = newDirection;
                 newMovement = newMovement.setLength(this.getVelocity().accelerate(this.getMovement().length()));
             } else {
@@ -65,7 +65,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
     }
 
-    public void checkCollision(Position newPosition) throws CollisionHandlingException {
+    public void checkCollision(final Position newPosition) throws CollisionHandlingException {
 
         final MainCharacter tmpJohnny = Factory.MainCharacterFactory.generateStillCharacter(newPosition.getX(),
                 newPosition.getY());
@@ -162,5 +162,4 @@ public class MainCharacter extends MovableEntity implements Shooter {
     public void shoot() {
         this.getEnvironment().addShoot(new Bullet(this));
     }
-
 }
