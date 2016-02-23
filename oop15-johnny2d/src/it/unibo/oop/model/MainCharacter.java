@@ -110,7 +110,6 @@ public class MainCharacter extends MovableEntity implements Shooter {
             enemyCollisions.stream().forEach(x -> x.removeFromEnvironment());
 
             if (this.isDead()) {
-                this.getEnvironment().killMainChar();
                 throw new CollisionHandlingException("The main character died");
             }
         }

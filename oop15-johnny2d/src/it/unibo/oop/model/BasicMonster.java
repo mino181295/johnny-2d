@@ -2,6 +2,9 @@ package it.unibo.oop.model;
 
 import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
@@ -24,9 +27,13 @@ public class BasicMonster extends AbstractEnemy {
     }
 
     public void update() {
-
-        final Vector2 newMovement = this.getBehavior().get()
-                .getNextMove(this.getEnvironment().getMainChar().get().getPosition());
+    	Vector2 newMovement;
+    	if ( this.getEnvironment().getMainChar().isPresent() ){
+    		newMovement  = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
+    	} else {
+    		newMovement = new Vector2();   		
+    	}
+        
         try {
             this.checkCollision(this.getPosition().sumVector(newMovement));
             this.setMovement(newMovement);
@@ -48,6 +55,13 @@ public class BasicMonster extends AbstractEnemy {
         
         if (numWallCollisions > 0) {
             throw new CollisionHandlingException("Next movement collides a wall");
+        }
+        final List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
+                .filter(x -> x instanceof AbstractEnemy).filter(tmpEnemy::intersecate).map(x -> (AbstractEnemy) x)
+                .collect(Collectors.toList());
+        
+        if (enemyCollisions.size() > 1){
+        	throw new CollisionHandlingException();
         }
 
     }
