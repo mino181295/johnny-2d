@@ -52,7 +52,7 @@ public enum KeyCommands {
     /**
      * Shooting action of main character.
      */
-    SPACE(KeyEvent.VK_ENTER, Direction.NONE),
+    SPACE(KeyEvent.VK_SPACE, Direction.NONE),
 
     /**
      * To pause the game.
