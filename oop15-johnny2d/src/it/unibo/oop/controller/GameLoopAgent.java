@@ -61,11 +61,8 @@ public class GameLoopAgent implements AgentInterface {
             GameStateImpl.getInstance().updatePositions(this.mainCharDir, this.isMainCharShooting);
             
             /* CHECK GIOCO FINITO */
-            if (GameStateImpl.getInstance().isGameEnded()) {
-                this.gameOver = true;
-               // continue;
-            }
-            
+            this.gameOver = GameStateImpl.getInstance().isGameEnded();
+
             /* AGGIORNAMENTO PRINT DEL FRAME */
             this.viewsMan.getView().updateLevel();
             this.viewsMan.getView().showIt();
