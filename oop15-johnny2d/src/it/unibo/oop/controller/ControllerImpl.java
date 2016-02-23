@@ -75,7 +75,7 @@ public final class ControllerImpl implements Controller {
                 new BufferedInputStream(new FileInputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
             topScore = (Score) inStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File was empty.");
         }
         return topScore;
     }
@@ -84,7 +84,6 @@ public final class ControllerImpl implements Controller {
         this.isRecord = true;
         try (ObjectOutputStream outStream = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
-
             outStream.writeObject(topScore);
         } catch (IOException e) {
             e.printStackTrace();
