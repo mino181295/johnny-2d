@@ -15,8 +15,8 @@ import it.unibo.oop.utilities.Position;
 
 public final class GameStateImpl implements GameState {
 	
-	private static final int BASE_MONSTERS = 40;
-	private static final int MONSTER_SCALE = 5;
+	private static final int BASE_MONSTERS = 15;
+	private static final int MONSTER_SCALE = 4;
 	
 	private static final int COLLECTIBLES_DELAY = 180;
 	private static final int MONSTERS_DELAY = 120;
@@ -28,9 +28,11 @@ public final class GameStateImpl implements GameState {
 	private final Arena gameArena;
 	
 	private long updatesNumber;
+	private long lastShotFrame;
 
 	private GameStateImpl() {
 		this.updatesNumber = 0;
+		this.lastShotFrame = 0;
 		this.movableList = new ArrayList<>();
 		this.stableList = new ArrayList<>();
 		this.johnnyCharacter = Optional.of(new MainCharacter());
@@ -120,7 +122,11 @@ public final class GameStateImpl implements GameState {
      * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
-       this.movableList.add(newBullet);
+    	long deltaTime = this.updatesNumber - this.lastShotFrame;   	
+    	if (deltaTime >= 10){
+    		this.lastShotFrame = this.updatesNumber;
+    		this.movableList.add(newBullet);
+    	}
     }
 
 	/**
@@ -128,6 +134,7 @@ public final class GameStateImpl implements GameState {
 	 * pressed
 	 */
 	protected void updateHeroPos(final Direction newDirection, final boolean isShooting) {
+		
 		johnnyCharacter.ifPresent(c -> c.update(newDirection, isShooting));
 	}
 	

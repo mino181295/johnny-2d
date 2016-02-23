@@ -16,11 +16,6 @@ public class BasicMonster extends AbstractEnemy {
     private final static int DMG = 1;
 
     public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector,
-            final Velocity speedValue, final MovementBehavior movBeh) {
-        super(startingX, startingY, movementVector, speedValue, movBeh);
-    }
-
-    public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
         this.attachBehavior(new BasicEnemyBehavior(this));
