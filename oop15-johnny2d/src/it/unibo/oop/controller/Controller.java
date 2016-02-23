@@ -1,5 +1,7 @@
 package it.unibo.oop.controller;
 
+import it.unibo.oop.model.Score;
+
 /**
  * Interface for Controller entity in MVC model.
  */
@@ -16,4 +18,19 @@ public interface Controller {
      * interface.
      */
     void play();
+
+    /**
+     * @return best {@link Score}.
+     */
+    public Score getStatFromFile();
+
+    /**
+     * to put best {@link Score} to file.
+     */
+    public void putStatToFile(Score topScores);
+
+    /**
+     * @return true if player has made a new record.
+     */
+    public boolean isRecord();
 }

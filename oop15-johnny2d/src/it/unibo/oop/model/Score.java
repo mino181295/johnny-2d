@@ -7,7 +7,7 @@ import java.io.Serializable;
  * {@link MainCharacter} has killed. Class implementing
  * {@link java.io.Serializable} that can be wrote and saved by the user.
  */
-public class Score implements Serializable {
+public class Score implements Serializable, Comparable<Score> {
 
     private static final long serialVersionUID = 1L;
     private static final int DEFAULT_SCORE = 0;
@@ -32,5 +32,13 @@ public class Score implements Serializable {
     public String toString() {
         return "Score: " + currentScore;
     }
+    
+    public int getValue() {
+        return this.currentScore;
+    }
 
+    @Override
+    public int compareTo(Score score) {
+        return this.getValue() - score.getValue();
+    }
 }

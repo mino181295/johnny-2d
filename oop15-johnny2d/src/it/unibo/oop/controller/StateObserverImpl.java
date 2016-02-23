@@ -1,5 +1,6 @@
 package it.unibo.oop.controller;
 
+import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.view.LevelInterface;
 
 public class StateObserverImpl implements StateObserver {
@@ -33,7 +34,11 @@ public class StateObserverImpl implements StateObserver {
         case BACK:
             this.man.showLast();
             break;
+        case GAME_OVER:
+            GameStateImpl.getInstance().checkTopScore();
+            break;    
         case EXIT:
+            /* chiusura file */
             System.exit(0);
             break;
         default:

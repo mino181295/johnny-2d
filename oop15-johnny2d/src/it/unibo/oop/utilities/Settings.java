@@ -41,12 +41,13 @@ public final class Settings {
     /**
      * Folder for the saves and highscores
      */
-    public static final String MY_FOLDER = HOME_FOLDER + FILE_SEPARATOR + "Johnny2D" + FILE_SEPARATOR;
+    public static final String MY_FOLDER = HOME_FOLDER + FILE_SEPARATOR + ".johnny2d" + FILE_SEPARATOR;
 
     /**
      * Highscores folder
      */
-    public static final String HIGHSCORE_FOLDER = MY_FOLDER + FILE_SEPARATOR + "Highscores" + FILE_SEPARATOR;
+    public static final String HIGHSCORE_FOLDER = MY_FOLDER + FILE_SEPARATOR;
+    public static final String HIGHSCORE_FILE = "highscores.bin";
 
     private Settings() {
     };
