@@ -32,15 +32,15 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
     private static final long serialVersionUID = 1L;
     private static final Color COMPONENTS_COLOR = new Color(255, 220, 130);
-    private static final int TOP_INSET = 5;
-    private static final int LEFT_INSET = 5;
-    private static final int BOTTOM_INSET = 5;
-    private static final int RIGHT_INSET = 5;
-    private static final int FONT_SIZE = 30;
     private static final Color FONT_COLOR = Color.WHITE;
     private static final int PANEL_WIDTH = Settings.MENU_DIMENSION.width - 10;
-    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/3 - 10;;
-    private final Dimension prefComponentSize = new Dimension(160, 40);
+    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/3 - 10;
+    private static final int FONT_SIZE = PANEL_HEIGHT/5;
+    private static final int TOP_INSET = PANEL_HEIGHT/35;
+    private static final int LEFT_INSET = PANEL_HEIGHT/35;
+    private static final int BOTTOM_INSET = PANEL_HEIGHT/35;
+    private static final int RIGHT_INSET = PANEL_HEIGHT/35;
+    private final Dimension prefComponentSize = new Dimension(PANEL_WIDTH/5, (int)(PANEL_HEIGHT/4.3));
     private final GridBagConstraints cnst = new GridBagConstraints();
     private final List<StateObserver> obsList;
 
