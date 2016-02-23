@@ -64,24 +64,6 @@ public final class GameStateImpl implements GameState {
         }
     }
 
-	/**
-	 * Initialize the new level of the game creating enemies and the character
-	 */
-	public void initialize(final int levelNumber) {
-		// This may create bugs.
-		this.movableList.clear();
-		this.stableList.clear();
-		this.stableList.addAll(this.gameArena.getBoundsList());
-		// The screen dimension should be passed by the controller (POSSIBLE BUG
-		// FOR THE SCORE)
-		this.johnnyCharacter = Optional.ofNullable(
-				Factory.MainCharacterFactory.generateStillCharacter(this.getArena().getPlayableRectangle().getCenterX(),
-						this.getArena().getPlayableRectangle().getCenterY()));
-		// Should be improved the monster generation
-		this.generateMonsters(levelNumber * (BASE_MONSTERS + new Random().nextInt(MONSTER_SCALE)) );
-	}
-
-
 	public void generateMonsters(final int number){
 		BasicMonster tmpMonster;
 		Position randomPos;
@@ -99,28 +81,11 @@ public final class GameStateImpl implements GameState {
 		}
 	}
 
-
-    /**
-     * Updates all the positions of the {@link MovableEntity} in the lists.
-     */
-    public void updatePositions(final Direction newDirection, final boolean isShooting) {
-        for (final MovableEntity currentE : movableList) {
-            if (currentE instanceof Bullet) {
-                ((Bullet) currentE).update();
-            }
-            if (currentE instanceof BasicMonster) {
-                ((BasicMonster) currentE).update();
-            }
-        }
-        this.updateHeroPos(newDirection, isShooting);
-        this.removeDeadEntities();
-    }
-
     private void removeDeadEntities() {
         this.stableList.removeAll(this.stableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
         this.movableList.removeAll(this.movableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
     }
-
+    
 	/**
 	 * Removes an entity from the list of the things to be drawed and updated.
 	 */
@@ -152,7 +117,6 @@ public final class GameStateImpl implements GameState {
 		}
 	}
 
-
     /**
      * Adds a {@link Bullet} to the MovableList of {@link MovableEntity}
      * 
@@ -162,12 +126,6 @@ public final class GameStateImpl implements GameState {
         System.out.println("Projkrnegre");
         this.movableList.add(newBullet);
     }
-
-	private void removeDeadEntities(){
-		this.stableList.removeAll(this.stableList.stream().filter(x->x.isDead()).collect(Collectors.toList()));
-		this.movableList.removeAll(this.movableList.stream().filter(x->x.isDead()).collect(Collectors.toList()));
-	}
-
 
 	/**
 	 * Updates the {@link MainCharacter} basing the new movement on the keys
@@ -185,17 +143,6 @@ public final class GameStateImpl implements GameState {
     protected void killMainChar() {
      //   this.johnnyCharacter = Optional.empty();
     }
-
-	/**
-	 * Adds a {@link Bullet} to the MovableList of {@link MovableEntity}
-	 * 
-	 * @param newBullet
-	 */
-	protected void addShoot(final Bullet newBullet) {
-		System.out.println("Projkrnegre");
-		this.movableList.add(newBullet);
-	}
-
 
 	/**
 	 * Adds a {@link MovableEntity} to the movableList
@@ -228,7 +175,6 @@ public final class GameStateImpl implements GameState {
 		return new ArrayList<>(this.movableList);
 	}
 
-
     /**
      * Gets the {@link Arena} of the Game
      * 
@@ -251,21 +197,6 @@ public final class GameStateImpl implements GameState {
 	 */
 	public Optional<MainCharacter> getMainChar() {
 		return this.johnnyCharacter;
-	}
-
-    public boolean isGameEnded() {
-        final boolean noneEnemy = this.movableList.stream().filter(e -> e instanceof Enemy).collect(Collectors.toList())
-                .isEmpty();
-        return noneEnemy || this.johnnyCharacter.isPresent() && this.johnnyCharacter.get().isDead();
-    }
-
-	/**
-	 * Gets the {@link Arena} of the Game
-	 * 
-	 * @return
-	 */
-	public Arena getArena() {
-		return this.gameArena;
 	}
 
 	public boolean isGameEnded() {
