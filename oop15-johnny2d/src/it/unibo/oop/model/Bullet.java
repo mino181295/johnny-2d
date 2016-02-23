@@ -1,6 +1,7 @@
 package it.unibo.oop.model;
 
 import static it.unibo.oop.utilities.CharactersSettings.BULLET;
+import static it.unibo.oop.utilities.CharactersSettings.MAIN_CHARACTER;
 
 import java.util.List;
 import java.util.Random;
@@ -24,7 +25,7 @@ public class Bullet extends MovableEntity implements Shot {
     }
 
     public Bullet(final MainCharacter heroPosition) {
-        this(heroPosition.getX(), heroPosition.getY(), heroPosition.getMovement());
+        this(heroPosition.getX(), heroPosition.getY()-MAIN_CHARACTER.getHeight()/5, heroPosition.getMovement());
         // Takes the hero position
         this.setMovement(heroPosition.getLastDirection().getVector2());
         // The movement vector is in the same Hero direction but in another

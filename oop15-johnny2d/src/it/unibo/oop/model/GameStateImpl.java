@@ -46,6 +46,7 @@ public final class GameStateImpl implements GameState {
         // Should be improved the monster generation
         for (int nMonsters = 0; nMonsters < levelNumber * 10; nMonsters++) {
             final Position randomPos = this.gameArena.getPositionInside();
+            System.out.println(randomPos);
             final BasicMonster tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(), randomPos.getY());
             if (this.getArena().isInside(tmpMonster)){
             	this.addMovableEntity(tmpMonster);

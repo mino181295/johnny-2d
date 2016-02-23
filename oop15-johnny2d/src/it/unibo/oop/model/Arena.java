@@ -126,11 +126,10 @@ public class Arena {
      * Gets a position inside the playable {@link Rectangle}
      */
     public Position getPositionInside() {
-        final Random randX = new Random((long) playableRectangle.getWidth());
-        final Random randY = new Random((long) playableRectangle.getHeight());
-
-        return new Position(randX.nextInt() + this.playableRectangle.getX(),
-                randY.nextInt() + this.playableRectangle.getY());
+        final Random rand = new Random();
+        Position resultPos = new Position(rand.nextInt((int) this.playableRectangle.getWidth()) + this.playableRectangle.getX(),
+        		rand.nextInt((int) this.playableRectangle.getHeight()) + this.playableRectangle.getY());
+        return resultPos;
     }
 
     /**
