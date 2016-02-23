@@ -63,7 +63,7 @@ public class GameLoopAgent implements AgentInterface {
             /* CHECK GIOCO FINITO */
             if (GameStateImpl.getInstance().isGameEnded()) {
                 this.gameOver = true;
-              //  continue;
+               // continue;
             }
             
             /* AGGIORNAMENTO PRINT DEL FRAME */
