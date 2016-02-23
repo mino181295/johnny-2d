@@ -62,7 +62,7 @@ public class Level implements LevelInterface {
 
     @Override
     public void enableMusic(final boolean val) {
-        
+
     }
 
 }
