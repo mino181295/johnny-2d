@@ -77,9 +77,11 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawMainCharacter(final Graphics g) {
-        g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
-                this.gs.getMainChar().get().getTopLeftPos().getIntX(),
-                this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
+        if (!this.gs.getMainChar().get().isDead()) {
+            g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
+                    this.gs.getMainChar().get().getTopLeftPos().getIntX(),
+                    this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
+        }
     }
 
     private void drawMovables(final Graphics g) {
@@ -100,8 +102,7 @@ public class LevelPanel extends BackgroundPanel {
         if (!this.gs.getStableList().isEmpty()) {
             this.gs.getStableList().forEach(e -> {
                 if (e instanceof Wall) {
-                    g.drawRect(e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), WALL.getWidth(),
-                            WALL.getHeight());
+                    g.drawRect(e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), WALL.getWidth(), WALL.getHeight());
                 }
                 if (e instanceof HealthBonus) {
                     g.drawImage(this.bonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
@@ -111,8 +112,7 @@ public class LevelPanel extends BackgroundPanel {
     }
 
     private void drawStats(final Graphics g) {
-        g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX() + DEFAULT_SPACING, this.getY() + DEFAULT_SPACING,
-                this);
+        g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX() + DEFAULT_SPACING, this.getY() + DEFAULT_SPACING, this);
         this.stats.setText(this.gs.getMainChar().get().getScore().toString());
     }
 }
