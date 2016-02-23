@@ -6,17 +6,20 @@ import static it.unibo.oop.utilities.Settings.SCREEN_WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 import it.unibo.oop.controller.ControllerImpl;
+import it.unibo.oop.utilities.CharactersSettings;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
 
 public final class GameStateImpl implements GameState {
 	
-	private static final int BASE_MONSTERS = 15;
-	private static final int MONSTER_SCALE = 10;
+	private static final int BASE_MONSTERS = 40;
+	private static final int MONSTER_SCALE = 5;
+	
+	private static final int COLLECTIBLES_DELAY = 180;
+	private static final int MONSTERS_DELAY = 120;
 
 	private static final GameStateImpl SINGLETON = new GameStateImpl();
 	private final List<MovableEntity> movableList;
@@ -24,7 +27,7 @@ public final class GameStateImpl implements GameState {
 	private Optional<MainCharacter> johnnyCharacter;
 	private final Arena gameArena;
 	
-	private int updatesNumber;
+	private long updatesNumber;
 
 	private GameStateImpl() {
 		this.updatesNumber = 0;
@@ -53,46 +56,38 @@ public final class GameStateImpl implements GameState {
                 Factory.MainCharacterFactory.generateStillCharacter(this.getArena().getPlayableRectangle().getCenterX(),
                         this.getArena().getPlayableRectangle().getCenterY()));
         // Should be improved the monster generation
-        for (int nMonsters = 0; nMonsters < levelNumber * 10; nMonsters++) {
-            final Position randomPos = this.gameArena.getPositionInside();
-            System.out.println(randomPos);
-            final BasicMonster tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(),
-                    randomPos.getY());
-            if (this.getArena().isInside(tmpMonster)) {
-                this.addMovableEntity(tmpMonster);
-            }
-        }
+        this.spawnMonsters(BASE_MONSTERS);
+        this.spawnRandomHealthCollectable();
     }
 
-	public void generateMonsters(final int number){
+	private void spawnMonsters(final int number){
 		BasicMonster tmpMonster;
 		Position randomPos;
 		long monsterConfilicts;
+		boolean distanceCondition;
 		
 		for (int nMonsters = 0; nMonsters < number; nMonsters++) {
 			do {
-				randomPos  = this.gameArena.getPositionInside();
+				randomPos  = this.gameArena.getPositionInside(CharactersSettings.BASIC_ENEMY);
 				tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(), randomPos.getY());
 				final BasicMonster finalMonster = tmpMonster;
 				monsterConfilicts = this.movableList.stream().filter(x -> x.intersecate(finalMonster))
 						.filter(x -> x instanceof AbstractEnemy).count();
-			} while (!this.getArena().isInside(tmpMonster) || (monsterConfilicts != 0));
+				distanceCondition = Position.pointsDistance(this.getMainChar().get().getPosition(), tmpMonster.getPosition())>400?false:true;
+			} while (monsterConfilicts != 0 || distanceCondition);
 			this.addMovableEntity(tmpMonster);
 		}
 	}
+	
+	private void spawnRandomHealthCollectable(){
+		final Position randomPos = this.getArena().getPositionInside(CharactersSettings.BONUS);
+		this.addStableEntity(new HealthBonus(randomPos.getX(), randomPos.getY()));		
+	}	
 
     private void removeDeadEntities() {
         this.stableList.removeAll(this.stableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
         this.movableList.removeAll(this.movableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
     }
-    
-	/**
-	 * Removes an entity from the list of the things to be drawed and updated.
-	 */
-	protected void removeEntity(final Entity entity) {
-		movableList.remove(entity);
-		stableList.remove(entity);
-	}
 
 	/**
 	 * Updates all the positions of the {@link MovableEntity} in the lists.
@@ -110,10 +105,12 @@ public final class GameStateImpl implements GameState {
 		this.updateHeroPos(newDirection, isShooting);
 		this.removeDeadEntities();
 		
-		if (this.updatesNumber%60 == 0){
-			this.updatesNumber = 0;
-			final Position randomPos = this.getArena().getPositionInside();
-			this.addStableEntity(new HealthBonus(randomPos.getX(), randomPos.getY()));
+		if (this.updatesNumber % COLLECTIBLES_DELAY == 0){
+			this.spawnRandomHealthCollectable();
+		}
+		
+		if (this.updatesNumber % MONSTERS_DELAY == 0){
+			this.spawnMonsters(MONSTER_SCALE);
 		}
 	}
 
@@ -123,8 +120,7 @@ public final class GameStateImpl implements GameState {
      * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
-        System.out.println("Projkrnegre");
-        this.movableList.add(newBullet);
+       this.movableList.add(newBullet);
     }
 
 	/**
@@ -134,16 +130,7 @@ public final class GameStateImpl implements GameState {
 	protected void updateHeroPos(final Direction newDirection, final boolean isShooting) {
 		johnnyCharacter.ifPresent(c -> c.update(newDirection, isShooting));
 	}
-
-
-    /**
-     * Kills the {@link MainCharacter}
-     */
-    // May create bugs with the Score
-    protected void killMainChar() {
-     //   this.johnnyCharacter = Optional.empty();
-    }
-
+	
 	/**
 	 * Adds a {@link MovableEntity} to the movableList
 	 */

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import it.unibo.oop.utilities.CharactersSettings;
 import it.unibo.oop.utilities.Position;
 
 /**
@@ -125,11 +126,12 @@ public class Arena {
     /**
      * Gets a position inside the playable {@link Rectangle}
      */
-    public Position getPositionInside() {
-        final Random rand = new Random();
-        final Position resultPos = new Position(rand.nextInt((int) this.playableRectangle.getWidth()) + this.playableRectangle.getX(),
-        		rand.nextInt((int) this.playableRectangle.getHeight()) + this.playableRectangle.getY());
-        return resultPos;
+    public Position getPositionInside(CharactersSettings characterType) {
+    	double newX = this.playableRectangle.getX() + characterType.getWidth()/2;
+    	double newY = this.playableRectangle.getY() + characterType.getHeight()/2;
+    	double newWidth = this.playableRectangle.getWidth() - characterType.getWidth();
+    	double newHeight = this.playableRectangle.getHeight() - characterType.getHeight();
+        return new Position(newX + new Random().nextInt((int)newWidth), newY + new Random().nextInt((int)newHeight));
     }
 
     /**
