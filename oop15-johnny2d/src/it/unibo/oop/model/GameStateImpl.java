@@ -188,7 +188,6 @@ public final class GameStateImpl implements GameState {
         final Score score = this.johnnyCharacter.get().getScore();
         if (score.compareTo(ControllerImpl.getInstance().getStatFromFile()) >= 0) {
             ControllerImpl.getInstance().putStatToFile(score);
-            System.out.println("CIAO");
         }
     }
 
