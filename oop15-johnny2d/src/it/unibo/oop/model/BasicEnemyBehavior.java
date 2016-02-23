@@ -10,7 +10,7 @@ public class BasicEnemyBehavior implements MovementBehavior{
 	
 	private final MovableEntity playerPosition;
 	
-	public BasicEnemyBehavior(final MovableEntity player){
+	public BasicEnemyBehavior(final BasicMonster player){
 		this.playerPosition = player;
 	}
 	

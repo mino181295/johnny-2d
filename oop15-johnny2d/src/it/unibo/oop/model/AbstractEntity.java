@@ -127,11 +127,4 @@ public abstract class AbstractEntity implements Entity {
         return this.gameEnvironment.get();
     }
 
-    /**
-     * Removes an {@link Entity} from the environment to avoid new updates and
-     * new draws in the screen.
-     */
-    public void removeFromEnvironment() {
-        gameEnvironment.get().removeEntity(this);
-    }
 }

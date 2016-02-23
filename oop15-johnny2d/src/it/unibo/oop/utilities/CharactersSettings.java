@@ -1,34 +1,37 @@
 package it.unibo.oop.utilities;
 
 import java.util.Optional;
-
+/**
+ * Class that contains the settings of every character in game to calculate the bounds and the speed
+ */
 public enum CharactersSettings {
-	MAIN_CHARACTER(32, 48, new Velocity(8, 12, 5)),
+	MAIN_CHARACTER(32, 48, new Velocity(7, 11, 5)),
 	BASIC_ENEMY(32, 48, new Velocity(5, 5, 10)),
+	KAMIKAZE_ENEMY(32, 48, new Velocity(30, 30, 5)),
 	BULLET(16, 16, new Velocity(20, 30, 1)),
 	BONUS(16, 16, null),
 	WALL(32, 32, null);
 	
-	int width;
-	int height;
-	Optional<Velocity> speed;
+	int characterWidth;
+	int characterHeight;
+	Optional<Velocity> characterSpeed;
 	
 	private CharactersSettings(final int width, final int height, final Velocity speed){
-		this.width = width;
-		this.height = height;
-		this.speed = Optional.ofNullable(speed);
+		this.characterWidth = width;
+		this.characterHeight = height;
+		this.characterSpeed = Optional.ofNullable(speed);
 	}
 
 	public int getWidth() {
-		return this.width;
+		return this.characterWidth;
 	}
 
 	public int getHeight() {
-		return this.height;
+		return this.characterHeight;
 	}
 
 	public Velocity getSpeed() {
-		return this.speed.get();
+		return this.characterSpeed.get();
 	}
 	
 }

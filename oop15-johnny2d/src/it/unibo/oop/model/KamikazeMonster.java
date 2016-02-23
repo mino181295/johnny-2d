@@ -1,7 +1,8 @@
 package it.unibo.oop.model;
 
-import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
+import static it.unibo.oop.utilities.CharactersSettings.KAMIKAZE_ENEMY;
 
+import java.awt.Rectangle;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,15 +11,22 @@ import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;;
 
-public class BasicMonster extends AbstractEnemy {
+public class KamikazeMonster extends AbstractEnemy {
 
-    private static final int SCORE_VALUE = 10;
-    private final static int DMG = 1;
+    private static final int SCORE_VALUE = 50;
+    private final static int DMG = 2;
+    
+    private static int actionRadiusLenght = 400;
+    
+    private boolean isVisible = false;
+    private Rectangle actionRadius;
 
-    public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector,
+
+    public KamikazeMonster(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
-        this.attachBehavior(new BasicEnemyBehavior(this));
+        this.attachBehavior(new KamikazeEnemyBehavior(this));
+        this.actionRadius = new Rectangle((int)startingX-actionRadiusLenght/2,(int)startingY - actionRadiusLenght/2, actionRadiusLenght,actionRadiusLenght);
     }
 
     public void update() {
@@ -51,32 +59,36 @@ public class BasicMonster extends AbstractEnemy {
         if (numWallCollisions > 0) {
             throw new CollisionHandlingException("Next movement collides a wall");
         }
-        final List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
-                .filter(x -> x instanceof AbstractEnemy).filter(tmpEnemy::intersecate).map(x -> (AbstractEnemy) x)
-                .collect(Collectors.toList());
-        
-        if (enemyCollisions.size() > 1){
-        	throw new CollisionHandlingException();
-        }
-
     }
 
-    protected int getEntityHeight() {
-        return BASIC_ENEMY.getHeight();
+    public boolean isVisible() {
+		return this.isVisible;
+	}
+
+	public void setVisible(boolean isVisible) {
+		this.isVisible = isVisible;
+	}
+
+	public Rectangle getActionRadius() {
+		return this.actionRadius;
+	}
+
+	protected int getEntityHeight() {
+        return KAMIKAZE_ENEMY.getHeight();
     }
 
     protected int getEntityWidth() {
-        return BASIC_ENEMY.getWidth();
+        return KAMIKAZE_ENEMY.getWidth();
     }
 
     @Override
     public int getScoreValue() {
-        return BasicMonster.SCORE_VALUE;
+        return KamikazeMonster.SCORE_VALUE;
     }
 
     @Override
     public int getDamage() {
-        return BasicMonster.DMG;
+        return KamikazeMonster.DMG;
     }
 
 }
