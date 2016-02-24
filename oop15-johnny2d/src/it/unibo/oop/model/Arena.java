@@ -126,11 +126,11 @@ public class Arena {
     /**
      * Gets a position inside the playable {@link Rectangle}
      */
-    public Position getPositionInside(CharactersSettings characterType) {
-    	double newX = this.playableRectangle.getX() + characterType.getWidth()/2;
-    	double newY = this.playableRectangle.getY() + characterType.getHeight()/2;
-    	double newWidth = this.playableRectangle.getWidth() - characterType.getWidth();
-    	double newHeight = this.playableRectangle.getHeight() - characterType.getHeight();
+    public Position getPositionInside(final CharactersSettings characterType) {
+        final double newX = this.playableRectangle.getX() + characterType.getWidth()/2;
+        final double newY = this.playableRectangle.getY() + characterType.getHeight()/2;
+        final double newWidth = this.playableRectangle.getWidth() - characterType.getWidth();
+        final double newHeight = this.playableRectangle.getHeight() - characterType.getHeight();
         return new Position(newX + new Random().nextInt((int)newWidth), newY + new Random().nextInt((int)newHeight));
     }
 

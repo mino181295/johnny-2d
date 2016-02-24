@@ -31,6 +31,8 @@ public abstract class MovableEntity extends AbstractEntity implements Movable {
 	
 	public abstract void checkCollision(Position newPosition) throws CollisionHandlingException;
 	
+	public abstract void update();
+	
 	public Velocity getVelocity(){
 		return this.speedValues;
 	}

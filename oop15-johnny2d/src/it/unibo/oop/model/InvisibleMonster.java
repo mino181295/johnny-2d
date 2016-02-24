@@ -14,7 +14,7 @@ public class InvisibleMonster extends AbstractEnemy {
     private static final int SCORE_VALUE = 50;
     private final static int DMG = 2;
     
-    private static int actionRadiusLenght = 400;
+    private static int actionRadiusLenght = 800;
     
     private boolean isVisible;
     private final Rectangle actionRadius;
@@ -31,6 +31,7 @@ public class InvisibleMonster extends AbstractEnemy {
     	Vector2 newMovement;
     	if ( this.getEnvironment().getMainChar().isPresent() ){
     		newMovement  = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
+    		System.out.println(newMovement);
     	} else {
     		newMovement = new Vector2();   		
     	}

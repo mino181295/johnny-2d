@@ -1,6 +1,7 @@
 package it.unibo.oop.model;
 
 import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
+import static it.unibo.oop.utilities.CharactersSettings.INVISIBLE_ENEMY;
 import static it.unibo.oop.utilities.CharactersSettings.MAIN_CHARACTER;
 import static it.unibo.oop.utilities.CharactersSettings.WALL;
 
@@ -63,6 +64,9 @@ public class Factory {
 		
 		public static BasicMonster generateStillBasicEnemy(final double intialX, final double intialY){
 			return new BasicMonster(intialX, intialY, new Vector2(), BASIC_ENEMY.getSpeed());
+		}
+		public static InvisibleMonster generateStillInvisibleEnemy(final double intialX, final double intialY){
+			return new InvisibleMonster(intialX, intialY, new Vector2(), INVISIBLE_ENEMY.getSpeed());
 		}
 	}
 	

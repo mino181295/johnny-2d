@@ -34,9 +34,9 @@ public class LevelPanel extends BackgroundPanel {
     private static final int MEDIUM_SPACING = 20;
     private static final int LONG_SPACING = 30;
 
-    private final Map<Direction, BufferedImage> mainCharacterSprites;
-    private final Map<Direction, BufferedImage> enemySprites;
-    private final Map<Direction, BufferedImage> invisibleEnemySprites;
+    private Map<Direction, BufferedImage> mainCharacterSprites;
+    private Map<Direction, BufferedImage> enemySprites;
+    private Map<Direction, BufferedImage> invisibleEnemySprites;
     private BufferedImage arena;
     private BufferedImage wall;
     private BufferedImage scoreBonus;
@@ -52,11 +52,18 @@ public class LevelPanel extends BackgroundPanel {
     public LevelPanel() {
         super("/level.jpg");
         this.gs = GameStateImpl.getInstance();
+        this.loadSprites();
+        this.stats = MyLabel.createLabel(null, new Font("Verdana", 1, 40), Color.RED);
+        this.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        this.add(this.stats);
+    }
+    
+    private void loadSprites() {
         final SpriteSheet mainCharacterSheet = new SpriteSheet("/mainCharacter.png");
         this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
         final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
         this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
-        final SpriteSheet invisibleEnemySheet = new SpriteSheet("/invisibleEnemy.jpg");
+        final SpriteSheet invisibleEnemySheet = new SpriteSheet("/invisibleEnemy.png");
         this.invisibleEnemySprites = invisibleEnemySheet.split(INVISIBLE_ENEMY.getWidth(), INVISIBLE_ENEMY.getHeight());
         try {
             this.arena = ImageLoader.load("/field/grass_template_straightpath.jpg");
@@ -68,9 +75,6 @@ public class LevelPanel extends BackgroundPanel {
         } catch (IOException e) {
             System.out.println("Error loading the sprites");
         }
-        this.stats = MyLabel.createLabel(null, new Font("Verdana", 1, 40), Color.RED);
-        this.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        this.add(this.stats);
     }
 
     @Override

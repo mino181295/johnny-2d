@@ -18,15 +18,17 @@ public class MainCharacter extends MovableEntity implements Shooter {
     private Score currentScore;
 
     private Direction lastDirection;
+    private Direction currentDirection;
+    
+    private boolean isShooting;
 
     public MainCharacter(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
         this.currentHealth = new Health();
         this.currentScore = new Score(0);
-
         this.lastDirection = Direction.UP;
-
+        this.currentDirection = Direction.NONE;
     }
 
     public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
@@ -40,14 +42,21 @@ public class MainCharacter extends MovableEntity implements Shooter {
     public MainCharacter() {
         this(Settings.SCREEN_WIDTH / 2, Settings.SCREEN_HEIGHT / 2, new Vector2(), MAIN_CHARACTER.getSpeed());
     }
+    
+    public void setInput(final Direction newDirection, final boolean isShooting){
+    	if (newDirection != Direction.NONE){
+    		lastDirection = this.currentDirection;
+    	}
+    	this.currentDirection = newDirection;    	
+    	this.isShooting = isShooting;
+    }
 
-    public void update(final Direction newDirection, final boolean isShooting) {
+    public void update() {
         // Takes the new frame direction
-        Vector2 newMovement = newDirection.getVector2();
+        Vector2 newMovement = currentDirection.getVector2();
         // If the main character is accelerating
         try {
-            if ((newDirection != Direction.NONE)) {
-                lastDirection = newDirection;
+            if ((currentDirection != Direction.NONE)) {
                 newMovement = newMovement.setLength(this.getVelocity().accelerate(this.getMovement().length()));
             } else {
                 newMovement = this.getMovement().setLength(this.getVelocity().slow(this.getMovement().length()));

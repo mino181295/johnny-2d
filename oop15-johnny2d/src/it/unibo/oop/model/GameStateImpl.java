@@ -59,7 +59,8 @@ public final class GameStateImpl implements GameState {
                 Factory.MainCharacterFactory.generateStillCharacter(this.getArena().getPlayableRectangle().getCenterX(),
                         this.getArena().getPlayableRectangle().getCenterY()));
         // Should be improved the monster generation
-        this.spawnMonsters(BASE_MONSTERS);
+        //this.spawnMonsters(BASE_MONSTERS);
+        this.addMovableEntity(Factory.EnemiesFactory.generateStillInvisibleEnemy(200, 600));
     }
 
 	private void spawnMonsters(final int number){
@@ -101,14 +102,7 @@ public final class GameStateImpl implements GameState {
 	 */
 	public void updatePositions(final Direction newDirection, final boolean isShooting) {
 		this.updatesNumber ++;
-		for (final MovableEntity currentE : movableList) {
-			if (currentE instanceof Bullet) {
-				((Bullet) currentE).update();
-			}
-			if (currentE instanceof BasicMonster) {
-				((BasicMonster) currentE).update();
-			}
-		}
+		movableList.stream().forEach(x -> x.update());
 		this.updateHeroPos(newDirection, isShooting);
 		this.removeDeadEntities();
 		
@@ -131,7 +125,7 @@ public final class GameStateImpl implements GameState {
      * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
-    	long deltaTime = this.updatesNumber - this.lastShotFrame;   	
+        final long deltaTime = this.updatesNumber - this.lastShotFrame;   	
     	if (deltaTime >= 10){
     		this.lastShotFrame = this.updatesNumber;
     		this.movableList.add(newBullet);
@@ -144,7 +138,10 @@ public final class GameStateImpl implements GameState {
 	 */
 	protected void updateHeroPos(final Direction newDirection, final boolean isShooting) {
 		
-		johnnyCharacter.ifPresent(c -> c.update(newDirection, isShooting));
+		johnnyCharacter.ifPresent(c -> {
+										c.setInput(newDirection, isShooting);
+										c.update();
+										});
 	}
 	
 	/**
