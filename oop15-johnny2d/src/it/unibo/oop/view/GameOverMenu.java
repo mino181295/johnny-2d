@@ -26,11 +26,11 @@ public class GameOverMenu extends MenuPanel {
         /* SCORE LABEL */
         String mex = "Record " + ControllerImpl.getInstance().getStatFromFile();
         if (ControllerImpl.getInstance().isRecord()) {
-            mex = "Congratulations! New record!";
+            mex = ControllerImpl.getInstance().isScoreReset() ? "Record resetted" : "Congratulations! New record!";
         }
         final JLabel label = new JLabel(GameStateImpl.getInstance().getMainChar().get().getScore().toString());
         final JLabel record = new JLabel(mex);
-        this.addComponents(label, record);
+        this.addComponents(record, label);
         
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START), 

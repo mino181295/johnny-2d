@@ -22,7 +22,7 @@ public interface Controller {
     /**
      * Reset player's record-score to minimum score.
      */
-    public void resetStatFile();
+    void resetStatFile();
     
     /**
      * @return best {@link Score}.
@@ -38,4 +38,9 @@ public interface Controller {
      * @return true if player has made a new record.
      */
     boolean isRecord();
+    
+    /**
+     * @return true if player's record is reset.
+     */
+    boolean isScoreReset();
 }
