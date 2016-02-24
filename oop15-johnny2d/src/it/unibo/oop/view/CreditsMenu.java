@@ -26,7 +26,6 @@ public class CreditsMenu extends MenuPanel {
                            new JLabel("View: Pasini Giacomo"),
                            new JLabel("Controller: Paolo Venturi"));
                 
-
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Back", AppState.BACK));
     }

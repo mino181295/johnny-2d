@@ -132,6 +132,9 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         this.obsList.forEach(action);
     }
 
+    /**
+     * Class for a custom button with an {@link AppState}.
+     */
     public static class StateButton {
         private final String name;
         private final AppState state;

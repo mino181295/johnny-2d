@@ -63,7 +63,7 @@ public class LevelPanel extends BackgroundPanel {
         this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
         final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
         this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
-        final SpriteSheet invisibleEnemySheet = new SpriteSheet("/invisibleEnemy.png");
+        final SpriteSheet invisibleEnemySheet = new SpriteSheet("/invisibleEnemy.jpg");
         this.invisibleEnemySprites = invisibleEnemySheet.split(INVISIBLE_ENEMY.getWidth(), INVISIBLE_ENEMY.getHeight());
         try {
             this.arena = ImageLoader.load("/field/grass_template_straightpath.jpg");
