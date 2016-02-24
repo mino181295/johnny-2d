@@ -16,16 +16,16 @@ import it.unibo.oop.utilities.Position;
 
 public final class GameStateImpl implements GameState {
 	
-	private static final int BASIC_DEFAULT = 15;
+	private static final int BASIC_DEFAULT = 20;
 	private static final int BASIC_SCALE = 4;
 	
 	private static final int INVISIBLE_DEFAULT = 3;
 	
-	private static int COLLECTIBLES_DELAY = 180;
-	private static int MONSTERS_DELAY = 120;
+	private static final int COLLECTIBLES_DELAY = 120;
+	private static final int MONSTERS_DELAY = 130;
 	
-	private int randomCollectiblesDelay = 60;
-	private int randomMonstersDelay = 60;
+	private int randomCollectiblesDelay = COLLECTIBLES_DELAY;
+	private int randomMonstersDelay = MONSTERS_DELAY;
 
 	private static final GameStateImpl SINGLETON = new GameStateImpl();
 	private final List<MovableEntity> movableList;
@@ -62,8 +62,7 @@ public final class GameStateImpl implements GameState {
                 Factory.MainCharacterFactory.generateStillCharacter(this.getArena().getPlayableRectangle().getCenterX(),
                         this.getArena().getPlayableRectangle().getCenterY()));
         this.spawnBasicMonsters(BASIC_DEFAULT);
-        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
-        this.addMovableEntity(Factory.EnemiesFactory.generateStillInvisibleEnemy(200, 600));
+        //this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
 
 	private void spawnBasicMonsters(final int number){
@@ -136,11 +135,10 @@ public final class GameStateImpl implements GameState {
 				this.spawnRandomScoreCollectable();
 			}
 		}
-		
-		if (this.updatesNumber % MONSTERS_DELAY+randomMonstersDelay == 0){
+		if (this.updatesNumber % (MONSTERS_DELAY+randomMonstersDelay) == 0){
 			randomMonstersDelay = new Random().nextInt(MONSTERS_DELAY);
 			this.spawnBasicMonsters(BASIC_SCALE);
-		}
+		} 
 	}
 
     /**
@@ -150,7 +148,7 @@ public final class GameStateImpl implements GameState {
      */
     protected void addShoot(final Bullet newBullet) {
     	long deltaTime = this.updatesNumber - this.lastShotFrame;   	
-    	if (deltaTime >= 10){
+    	if (deltaTime >= 6){
     		this.lastShotFrame = this.updatesNumber;
     		this.movableList.add(newBullet);
     	}
