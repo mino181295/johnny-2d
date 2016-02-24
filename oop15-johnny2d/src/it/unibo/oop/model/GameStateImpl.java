@@ -62,7 +62,7 @@ public final class GameStateImpl implements GameState {
                 Factory.MainCharacterFactory.generateStillCharacter(this.getArena().getPlayableRectangle().getCenterX(),
                         this.getArena().getPlayableRectangle().getCenterY()));
         this.spawnBasicMonsters(BASIC_DEFAULT);
-        //this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
+        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
 
 	private void spawnBasicMonsters(final int number){

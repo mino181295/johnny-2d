@@ -14,7 +14,8 @@ public class InvisibleMonster extends AbstractEnemy {
     private static final int SCORE_VALUE = 50;
     private final static int DMG = 2;
     
-    private static int actionRadiusLenght = 800;
+    private static int actionRadiusLenght = 1000;
+  
     
     private boolean isVisible;
     private final Rectangle actionRadius;
