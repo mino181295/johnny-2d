@@ -21,7 +21,8 @@ public final class ControllerImpl implements Controller {
 
     private static Optional<ControllerImpl> singleton = Optional.empty();
     private Optional<AgentInterface> gLAgent = Optional.empty();
-    private boolean isRecord;
+    private volatile boolean isRecord;
+    private volatile boolean isReset;
 
     private ControllerImpl() {
         this.createStatFile();
@@ -47,6 +48,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void play() { // pause -> play
+        this.isReset = false;
         this.isRecord = false;
         ViewsManagerImpl.getInstance().hideView();
         if (!this.gLAgent.isPresent()) {
@@ -70,6 +72,7 @@ public final class ControllerImpl implements Controller {
     }
     
     public synchronized void resetStatFile() {
+        this.isReset= true;
         this.putStatToFile(new Score());
     }
 
@@ -96,6 +99,10 @@ public final class ControllerImpl implements Controller {
 
     public boolean isRecord() {
         return this.isRecord;
+    }
+    
+    public boolean isScoreReset() {
+        return this.isReset;
     }
     
     /**
