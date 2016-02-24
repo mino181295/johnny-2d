@@ -31,7 +31,6 @@ public class InvisibleMonster extends AbstractEnemy {
     	Vector2 newMovement;
     	if ( this.getEnvironment().getMainChar().isPresent() ){
     		newMovement  = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
-    		System.out.println(newMovement);
     	} else {
     		newMovement = new Vector2();   		
     	}

@@ -16,11 +16,16 @@ import it.unibo.oop.utilities.Position;
 
 public final class GameStateImpl implements GameState {
 	
-	private static final int BASE_MONSTERS = 15;
-	private static final int MONSTER_SCALE = 4;
+	private static final int BASIC_DEFAULT = 15;
+	private static final int BASIC_SCALE = 4;
 	
-	private static final int COLLECTIBLES_DELAY = 180;
-	private static final int MONSTERS_DELAY = 120;
+	private static final int INVISIBLE_DEFAULT = 3;
+	
+	private static int COLLECTIBLES_DELAY = 180;
+	private static int MONSTERS_DELAY = 120;
+	
+	private int randomCollectiblesDelay = 60;
+	private int randomMonstersDelay = 60;
 
 	private static final GameStateImpl SINGLETON = new GameStateImpl();
 	private final List<MovableEntity> movableList;
@@ -53,17 +58,15 @@ public final class GameStateImpl implements GameState {
         this.movableList.clear();
         this.stableList.clear();
         this.stableList.addAll(this.gameArena.getBoundsList());
-        // The screen dimension should be passed by the controller (POSSIBLE BUG
-        // FOR THE SCORE)
         this.johnnyCharacter = Optional.ofNullable(
                 Factory.MainCharacterFactory.generateStillCharacter(this.getArena().getPlayableRectangle().getCenterX(),
                         this.getArena().getPlayableRectangle().getCenterY()));
-        // Should be improved the monster generation
-        //this.spawnMonsters(BASE_MONSTERS);
+        this.spawnBasicMonsters(BASIC_DEFAULT);
+        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
         this.addMovableEntity(Factory.EnemiesFactory.generateStillInvisibleEnemy(200, 600));
     }
 
-	private void spawnMonsters(final int number){
+	private void spawnBasicMonsters(final int number){
 		BasicMonster tmpMonster;
 		Position randomPos;
 		long monsterConfilicts;
@@ -77,6 +80,25 @@ public final class GameStateImpl implements GameState {
 				monsterConfilicts = this.movableList.stream().filter(x -> x.intersecate(finalMonster))
 						.filter(x -> x instanceof AbstractEnemy).count();
 				distanceCondition = Position.pointsDistance(this.getMainChar().get().getPosition(), tmpMonster.getPosition())>400?false:true;
+			} while (monsterConfilicts != 0 || distanceCondition);
+			this.addMovableEntity(tmpMonster);
+		}
+	}
+	
+	private void spawnInvisibleMonsters(final int number){
+		InvisibleMonster tmpMonster;
+		Position randomPos;
+		long monsterConfilicts;
+		boolean distanceCondition;
+		
+		for (int nMonsters = 0; nMonsters < number; nMonsters++) {
+			do {
+				randomPos  = this.gameArena.getPositionInside(CharactersSettings.INVISIBLE_ENEMY);
+				tmpMonster = Factory.EnemiesFactory.generateStillInvisibleEnemy(randomPos.getX(), randomPos.getY());
+				final InvisibleMonster finalMonster = tmpMonster;
+				monsterConfilicts = this.movableList.stream().filter(x -> x.intersecate(finalMonster))
+						.filter(x -> x instanceof AbstractEnemy).count();
+				distanceCondition = Position.pointsDistance(this.getMainChar().get().getPosition(), tmpMonster.getPosition())>700?false:true;
 			} while (monsterConfilicts != 0 || distanceCondition);
 			this.addMovableEntity(tmpMonster);
 		}
@@ -106,7 +128,8 @@ public final class GameStateImpl implements GameState {
 		this.updateHeroPos(newDirection, isShooting);
 		this.removeDeadEntities();
 		
-		if (this.updatesNumber % COLLECTIBLES_DELAY == 0){
+		if (this.updatesNumber % (COLLECTIBLES_DELAY+randomCollectiblesDelay) == 0){
+			randomCollectiblesDelay = new Random().nextInt(COLLECTIBLES_DELAY);
 			if (new Random().nextInt(3) == 0){
 				this.spawnRandomHealthCollectable();
 			} else {
@@ -114,8 +137,9 @@ public final class GameStateImpl implements GameState {
 			}
 		}
 		
-		if (this.updatesNumber % MONSTERS_DELAY == 0){
-			this.spawnMonsters(MONSTER_SCALE);
+		if (this.updatesNumber % MONSTERS_DELAY+randomMonstersDelay == 0){
+			randomMonstersDelay = new Random().nextInt(MONSTERS_DELAY);
+			this.spawnBasicMonsters(BASIC_SCALE);
 		}
 	}
 
@@ -125,7 +149,7 @@ public final class GameStateImpl implements GameState {
      * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
-        final long deltaTime = this.updatesNumber - this.lastShotFrame;   	
+    	long deltaTime = this.updatesNumber - this.lastShotFrame;   	
     	if (deltaTime >= 10){
     		this.lastShotFrame = this.updatesNumber;
     		this.movableList.add(newBullet);

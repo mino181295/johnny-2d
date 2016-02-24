@@ -105,6 +105,7 @@ public class LevelPanel extends BackgroundPanel {
                             e.getTopLeftPos().getIntY(), this);
                 }
                 if ((e instanceof InvisibleMonster) && ((InvisibleMonster) e).isVisible()) {
+                	System.out.println("Disegnato");
                     g.drawImage(this.invisibleEnemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(),
                             e.getTopLeftPos().getIntY(), this);
                 }
