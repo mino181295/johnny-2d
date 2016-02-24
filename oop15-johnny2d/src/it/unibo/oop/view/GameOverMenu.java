@@ -24,13 +24,13 @@ public class GameOverMenu extends MenuPanel {
         this.setIcon("/gameover.png");
 
         /* SCORE LABEL */
-        String mex = "Record-" + ControllerImpl.getInstance().getStatFromFile();
+        String mex = "Record " + ControllerImpl.getInstance().getStatFromFile();
         if (ControllerImpl.getInstance().isRecord()) {
             mex = "Congratulations! New record!";
         }
         final JLabel label = new JLabel(GameStateImpl.getInstance().getMainChar().get().getScore().toString());
         final JLabel record = new JLabel(mex);
-        this.addComponents(record, label);
+        this.addComponents(label, record);
         
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START), 
