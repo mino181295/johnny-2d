@@ -3,8 +3,6 @@ package it.unibo.oop.model;
 import static it.unibo.oop.utilities.CharactersSettings.KAMIKAZE_ENEMY;
 
 import java.awt.Rectangle;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Position;
@@ -18,8 +16,8 @@ public class KamikazeMonster extends AbstractEnemy {
     
     private static int actionRadiusLenght = 400;
     
-    private boolean isVisible = false;
-    private Rectangle actionRadius;
+    private boolean isVisible;
+    private final Rectangle actionRadius;
 
 
     public KamikazeMonster(final double startingX, final double startingY, final Vector2 movementVector,
@@ -65,7 +63,7 @@ public class KamikazeMonster extends AbstractEnemy {
 		return this.isVisible;
 	}
 
-	public void setVisible(boolean isVisible) {
+	public void setVisible(final boolean isVisible) {
 		this.isVisible = isVisible;
 	}
 

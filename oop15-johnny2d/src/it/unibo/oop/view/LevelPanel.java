@@ -18,6 +18,7 @@ import it.unibo.oop.model.Bullet;
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.model.HealthBonus;
+import it.unibo.oop.model.ScoreBonus;
 import it.unibo.oop.model.Wall;
 import it.unibo.oop.utilities.Direction;
 
@@ -36,9 +37,10 @@ public class LevelPanel extends BackgroundPanel {
     private final Map<Direction, BufferedImage> enemySprites;
     private BufferedImage arena;
     private BufferedImage wall;
-    private BufferedImage bonus;
+    private BufferedImage scoreBonus;
+    private BufferedImage healthBonus;
     private BufferedImage bullet;
-    private BufferedImage heart;
+    private BufferedImage health;
     private final JLabel stats;
     private final GameState gs;
 
@@ -55,9 +57,10 @@ public class LevelPanel extends BackgroundPanel {
         try {
             this.arena = ImageLoader.load("/field/grass_template_straightpath.jpg");
             this.wall = ImageLoader.load("/wall.png");
-            this.bonus = ImageLoader.load("/coin.png");
+            this.scoreBonus = ImageLoader.load("/coin.png");
+            this.healthBonus = ImageLoader.load("/heart.png");
             this.bullet = ImageLoader.load("/bullet.png");
-            this.heart = ImageLoader.load("/heart.png");
+            this.health = ImageLoader.load("/health.png");
         } catch (IOException e) {
             System.out.println("Error loading the sprites");
         }
@@ -106,8 +109,11 @@ public class LevelPanel extends BackgroundPanel {
                 if (e instanceof Wall) {
                     g.drawImage(this.wall, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
+                if (e instanceof ScoreBonus) {
+                    g.drawImage(this.scoreBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+                }
                 if (e instanceof HealthBonus) {
-                    g.drawImage(this.bonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+                    g.drawImage(this.healthBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
             });
         }
@@ -116,7 +122,7 @@ public class LevelPanel extends BackgroundPanel {
     private void drawStats(final Graphics g) {
         g.drawImage(this.mainCharacterSprites.get(DOWN), this.getX() + MEDIUM_SPACING, this.getY() + MEDIUM_SPACING, this);
         for (int i = 0; i < this.gs.getMainChar().get().getHealth().getCurrentHealth(); i++) {
-            g.drawImage(this.heart, this.getX() + MAIN_CHARACTER.getWidth() + LONG_SPACING + (this.heart.getWidth() + SMALL_SPACING) * i,
+            g.drawImage(this.health, this.getX() + MAIN_CHARACTER.getWidth() + LONG_SPACING + (this.health.getWidth() + SMALL_SPACING) * i,
                     this.getY() + LONG_SPACING, this);
         }
         this.stats.setText(this.gs.getMainChar().get().getScore().toString());
