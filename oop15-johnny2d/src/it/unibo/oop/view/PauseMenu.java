@@ -1,6 +1,9 @@
 package it.unibo.oop.view;
 
+import javax.swing.JLabel;
+
 import it.unibo.oop.controller.AppState;
+import it.unibo.oop.controller.ControllerImpl;
 import it.unibo.oop.controller.StateObserver;
 
 /**
@@ -19,6 +22,10 @@ public class PauseMenu extends MenuPanel {
 
         /* ICON SETTING */
         this.setIcon("/pause.png");
+        
+        /* SCORE LABEL */
+        final JLabel record = new JLabel("Current Record-" + ControllerImpl.getInstance().getStatFromFile());
+        this.addComponents(record);
 
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Resume", AppState.PLAY),

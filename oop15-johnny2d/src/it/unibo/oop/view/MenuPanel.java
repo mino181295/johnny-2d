@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.LayoutManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +35,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final Color FONT_COLOR = Color.WHITE;
     private static final int PANEL_WIDTH = Settings.MENU_DIMENSION.width - 10;
     private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/2 - 10;
-    private static final int FONT_SIZE = PANEL_HEIGHT/7;
+    private static final int FONT_SIZE = PANEL_HEIGHT/8;
     private static final int TOP_INSET = PANEL_HEIGHT/30;
     private static final int LEFT_INSET = PANEL_HEIGHT/30;
     private static final int BOTTOM_INSET = PANEL_HEIGHT/30;
@@ -69,8 +68,8 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
     @Override
     public void addComponents(final JComponent... cmps) {
-        final JPanel nestedPanel = this.customPanel(PANEL_WIDTH, (int)(PANEL_HEIGHT/1.5));
-        nestedPanel.setMinimumSize(new Dimension(PANEL_WIDTH, (int)(PANEL_HEIGHT/1.5)));
+        final JPanel nestedPanel = this.customPanel(PANEL_WIDTH, PANEL_HEIGHT);
+        nestedPanel.setMinimumSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT/2));
         Arrays.asList(cmps).forEach(e -> {
             if (e instanceof JLabel) {
                 this.customizeLabel((JLabel)e);

@@ -1,6 +1,5 @@
 package it.unibo.oop.view;
 
-import java.awt.FlowLayout;
 import java.util.function.Consumer;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -20,7 +19,7 @@ public interface MenuInterface extends ESource<StateObserver> {
     
     /**
      * @param cmps
-     *            components to attach. NB: a {@link JPanel} with {@link FlowLayout}
+     *            components to attach. NB: a {@link JPanel} with {@link BoxLayout}
      *            is used in addition to wrap the components.
      */
     void addComponents(final JComponent... cmps);

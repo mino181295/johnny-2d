@@ -20,6 +20,11 @@ public interface Controller {
     void play();
 
     /**
+     * Reset player's record-score to minimum score.
+     */
+    public void resetStatFile();
+    
+    /**
      * @return best {@link Score}.
      */
     Score getStatFromFile();

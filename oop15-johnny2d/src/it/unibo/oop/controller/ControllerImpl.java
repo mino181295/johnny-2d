@@ -68,8 +68,12 @@ public final class ControllerImpl implements Controller {
         }
 
     }
+    
+    public synchronized void resetStatFile() {
+        this.putStatToFile(new Score());
+    }
 
-    public Score getStatFromFile() {
+    public synchronized Score getStatFromFile() {
         Score topScore = new Score();
         try (ObjectInputStream inStream = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
@@ -80,7 +84,7 @@ public final class ControllerImpl implements Controller {
         return topScore;
     }
 
-    public void putStatToFile(final Score topScore) {
+    public synchronized void putStatToFile(final Score topScore) {
         this.isRecord = true;
         try (ObjectOutputStream outStream = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
@@ -99,6 +103,6 @@ public final class ControllerImpl implements Controller {
      *            ignored.
      */
     public static void main(final String... args) {
-        new ControllerImpl();
+        ControllerImpl.getInstance();
     }
 }
