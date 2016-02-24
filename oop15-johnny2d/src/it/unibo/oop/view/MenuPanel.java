@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.LayoutManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,10 +69,8 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
     @Override
     public void addComponents(final JComponent... cmps) {
-        final JPanel nestedPanel = new JPanel();
-        nestedPanel.setLayout(new BoxLayout(nestedPanel, BoxLayout.PAGE_AXIS));
-        nestedPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        nestedPanel.setOpaque(false);
+        final JPanel nestedPanel = this.customPanel(PANEL_WIDTH, (int)(PANEL_HEIGHT/1.5));
+        nestedPanel.setMinimumSize(new Dimension(PANEL_WIDTH, (int)(PANEL_HEIGHT/1.5)));
         Arrays.asList(cmps).forEach(e -> {
             if (e instanceof JLabel) {
                 this.customizeLabel((JLabel)e);
@@ -82,6 +81,14 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         this.addComponent(nestedPanel);
     }
 
+    private JPanel customPanel(final int width, final int height) {
+        final JPanel nestedPanel = new JPanel();
+        nestedPanel.setLayout(new BoxLayout(nestedPanel, BoxLayout.PAGE_AXIS));
+        nestedPanel.setPreferredSize(new Dimension(width, height));
+        nestedPanel.setOpaque(false);
+        return nestedPanel;
+    }
+    
     private JButton customizeButton(final JButton btn) {
         btn.setPreferredSize(this.prefComponentSize);
         btn.setMinimumSize(this.prefComponentSize);
@@ -115,7 +122,10 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         final URL imgURL = MenuPanel.class.getResource(path);
         final ImageIcon icon = new ImageIcon(imgURL);
         final JLabel label = new JLabel(icon);
-        this.addComponents(label);
+        final JPanel nestedPanel = this.customPanel(PANEL_WIDTH, PANEL_HEIGHT);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nestedPanel.add(label);
+        this.addComponent(nestedPanel);
     }
 
     @Override
