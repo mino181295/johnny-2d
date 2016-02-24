@@ -15,7 +15,7 @@ import it.unibo.oop.model.Score;
 import it.unibo.oop.utilities.Settings;
 
 /**
- * class implementing the Controller of the MVC model.
+ * Class implementing the Controller of the MVC model.
  */
 public final class ControllerImpl implements Controller {
 
@@ -72,6 +72,7 @@ public final class ControllerImpl implements Controller {
 
     }
     
+    @Override
     public synchronized void resetStatFile() {
         this.isReset = true;
         try (ObjectOutputStream outStream = new ObjectOutputStream(
@@ -82,6 +83,7 @@ public final class ControllerImpl implements Controller {
         }
     }
 
+    @Override
     public synchronized Score getStatFromFile() {
         Score topScore = new Score();
         try (ObjectInputStream inStream = new ObjectInputStream(
@@ -93,7 +95,8 @@ public final class ControllerImpl implements Controller {
         }
         return topScore;
     }
-
+    
+    @Override
     public synchronized void putStatToFile(final Score topScore) {
         this.isRecord = true;
         try (ObjectOutputStream outStream = new ObjectOutputStream(
@@ -104,19 +107,13 @@ public final class ControllerImpl implements Controller {
         }
     }
 
+    @Override
     public boolean isRecord() {
         return this.isRecord;
     }
     
+    @Override
     public boolean isScoreReset() {
         return this.isReset;
-    }
-    
-    /**
-     * @param args
-     *            ignored.
-     */
-    public static void main(final String... args) {
-        ControllerImpl.getInstance();
     }
 }

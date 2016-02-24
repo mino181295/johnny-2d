@@ -3,18 +3,19 @@ package it.unibo.oop.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * Abstract class for a generic KeysManager
+ *
+ * @param <I>
+ *            Type of input, b.p. a wrapping type for the keys of keyboard.
+ * @param <O>
+ *            Type of output after the keys processing.
+ */
 public abstract class AbstractKeysManager<I, O> implements KeysManager<I, O> {
 
-    /*
-     * elementi rimossi all'occorenza di un KeyRelease event: relativa a tasti
-     * premuti PROLUNGATAMENTE
-     */
-    private List<I> keysPressed;
-
-    /*
-     * lista svuotata ad ogni frame: indica tasti premuti NON prolungatamente
-     */
-    private List<I> keysTyped;
+    private List<I> keysPressed; // list containing long-pressed keys.
+    private List<I> keysTyped;   // list containing typed keys.
 
     public AbstractKeysManager() {
         this.reset();
@@ -26,6 +27,7 @@ public abstract class AbstractKeysManager<I, O> implements KeysManager<I, O> {
         this.keysTyped = new ArrayList<>();
     }
 
+    @Override
     public synchronized void addKey(final I key) {
         if (!this.keysPressed.contains(key)) {
             this.keysPressed.add(key);
@@ -56,7 +58,7 @@ public abstract class AbstractKeysManager<I, O> implements KeysManager<I, O> {
         this.process(limit, this.keysPressed, outList);
     }
 
-    protected void processTyped(final int limit, final List<I> outList) {
+    protected synchronized void processTyped(final int limit, final List<I> outList) {
         this.process(limit, this.keysTyped, outList);
         this.keysTyped = new ArrayList<>(); /* resetto la keysTyped list */
     }

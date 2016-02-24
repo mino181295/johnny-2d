@@ -67,6 +67,9 @@ public enum MovementKey implements Key {
         return this.vkCode;
     }
 
+    /**
+     * @return direction.
+     */
     public Direction getDir() {
         return this.dir;
     }

@@ -70,6 +70,7 @@ public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppS
         }
     }
 
+    @Override
     public synchronized void showLast() {
         final int lastIndex = this.history.size() - 1;
         if (lastIndex > 0) {

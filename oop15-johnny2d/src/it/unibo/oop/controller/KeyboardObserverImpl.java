@@ -10,6 +10,12 @@ public class KeyboardObserverImpl <T extends Key> implements KeyboardObserver {
     private final Map<Integer, T> mapVKCodeToKeyCmd;
     private final KeysManager<T, ?> man;
 
+    /**
+     * @param keysEnum
+     *                  class of the enum from which get the values for the mapping.
+     * @param man
+     *                  {@link KeysManager} receiver of the {@link #keyAction(int, int) keyAction} method.
+     */
     public KeyboardObserverImpl(final Class<T> keysEnum, final KeysManager<T, ?> man) {
         this.man = man;
         this.mapVKCodeToKeyCmd = new HashMap<>();
@@ -19,9 +25,6 @@ public class KeyboardObserverImpl <T extends Key> implements KeyboardObserver {
     }
 
     @Override
-    /* synchronized per essere sicuro che l'esecuzione per un KEY_PRESSED event non venga sospesa in favore di un 
-     * evento KEY_RELEASED.
-     */
     public synchronized void keyAction(final int keyCode, final int eventID) {
         final Optional<T> cmd = this.vkCodeToKeyCommand(keyCode);
         if (cmd.isPresent()) { // ignoro eventi provenienti da tasti non
@@ -43,7 +46,7 @@ public class KeyboardObserverImpl <T extends Key> implements KeyboardObserver {
         }
     }
 
-    /* per filtrare(da cui l'Optional)/mappare i tasti su i comandi */
+    /* per filtrare/mappare i tasti su i comandi */
     private Optional<T> vkCodeToKeyCommand(final int vkCode) {
         return Optional.ofNullable(this.mapVKCodeToKeyCmd.get(vkCode));
     }

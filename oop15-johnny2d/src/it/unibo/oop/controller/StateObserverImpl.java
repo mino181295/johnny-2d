@@ -3,9 +3,16 @@ package it.unibo.oop.controller;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.view.LevelInterface;
 
+/**
+ * Class implementing {@link StateObserver} interface.
+ */
 public class StateObserverImpl implements StateObserver {
 
     private final ViewsManager<LevelInterface, AppState> man;
+    
+    /**
+     * @param man
+     */
     public StateObserverImpl(final ViewsManager<LevelInterface, AppState> man) {
         this.man = man;
     }

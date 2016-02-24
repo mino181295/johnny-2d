@@ -63,7 +63,7 @@ public class GameLoopAgent implements AgentInterface {
             /* CHECK GIOCO FINITO */
             this.gameOver = GameStateImpl.getInstance().isGameEnded();
 
-            /* AGGIORNAMENTO PRINT DEL FRAME */
+            /* AGGIORNAMENTO E PRINTING DEL FRAME */
             this.viewsMan.getView().updateLevel();
             this.viewsMan.getView().showIt();
             
@@ -79,7 +79,7 @@ public class GameLoopAgent implements AgentInterface {
         final ActionKey action = ActionKeysManager.getInstance().processKeys(); 
         this.pause = action == ActionKey.PAUSE;
         this.isMainCharShooting = action == ActionKey.SHOOT;
-        this.mainCharDir = MovementKeysManager.getInstance().processKeys(); // rimuovo le KeysTyped.
+        this.mainCharDir = MovementKeysManager.getInstance().processKeys();
     }
 
     /* per debugging */

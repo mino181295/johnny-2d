@@ -3,7 +3,7 @@ package it.unibo.oop.controller;
 import java.awt.event.KeyEvent;
 
 /**
- * Interface for action keys i.e. which are not for hero movement.
+ * Interface for action keys i.e. not for hero movement.
  */
 public enum ActionKey implements Key{
 
@@ -18,7 +18,7 @@ public enum ActionKey implements Key{
     PAUSE(KeyEvent.VK_ESCAPE),
 
     /**
-     * When no moves have been performed.
+     * When no actions have been performed.
      */
     NONE(KeyEvent.VK_UNDEFINED);
     

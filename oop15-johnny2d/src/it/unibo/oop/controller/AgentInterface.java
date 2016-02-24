@@ -1,7 +1,7 @@
 package it.unibo.oop.controller;
 
 /**
- * Interface for an agent b.p. GameLoopAgent
+ * Interface for an agent b.p. {@link GameLoopAgent}.
  */
 public interface AgentInterface extends Runnable {
 

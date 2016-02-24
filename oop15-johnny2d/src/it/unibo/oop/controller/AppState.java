@@ -1,7 +1,7 @@
 package it.unibo.oop.controller;
 
 /**
- * Enum with each application state used to
+ * Enumeration with each application state, used to
  * communicate the next state of the app.
  */
 public enum AppState {
