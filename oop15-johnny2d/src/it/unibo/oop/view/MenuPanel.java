@@ -71,7 +71,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         final JPanel nestedPanel = new JPanel();
         nestedPanel.setLayout(new BoxLayout(nestedPanel, BoxLayout.PAGE_AXIS));
         nestedPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-       // nestedPanel.setOpaque(false);
+        nestedPanel.setOpaque(false);
         Arrays.asList(cmps).forEach(e -> {
             if (e instanceof JLabel) {
                 this.customizeLabel((JLabel)e);
