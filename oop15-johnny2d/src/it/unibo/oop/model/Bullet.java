@@ -25,7 +25,7 @@ public class Bullet extends MovableEntity implements Shot {
     }
 
     public Bullet(final MainCharacter heroPosition) {
-        this(heroPosition.getX(), heroPosition.getY()-MAIN_CHARACTER.getHeight()/5, heroPosition.getMovement());
+        this(heroPosition.getX(), heroPosition.getY(), heroPosition.getMovement());
         // Takes the hero position
         this.setMovement(heroPosition.getLastDirection().getVector2());
         // The movement vector is in the same Hero direction but in another
