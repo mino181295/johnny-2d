@@ -42,12 +42,13 @@ public final class ControllerImpl implements Controller {
     @Override
     public void start() { // launcher -> play / pause -> replay
         GameStateImpl.getInstance().initialize(1);
-        KeysManagerImpl.getInstance().reset();
         this.play();
     }
 
     @Override
     public void play() { // pause -> play
+        KeysManagerImpl.getInstance().reset();
+        ActionKeysManager.getInstance().reset();
         this.isReset = false;
         this.isRecord = false;
         ViewsManagerImpl.getInstance().hideView();

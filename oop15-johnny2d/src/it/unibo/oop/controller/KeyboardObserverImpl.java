@@ -5,16 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class KeyboardObserverImpl implements KeyboardObserver {
+public class KeyboardObserverImpl <T extends Key> implements KeyboardObserver {
 
-    private static final int NO_COMMANDS = KeyCommands.class.getEnumConstants().length;
-    private final Map<Integer, KeyCommands> mapVKCodeToKeyCmd;
-    private final KeysManager<KeyCommands, ?> man;
+    private final Map<Integer, T> mapVKCodeToKeyCmd;
+    private final KeysManager<T, ?> man;
 
-    public KeyboardObserverImpl(final KeysManager<KeyCommands, ?> man) {
+    public KeyboardObserverImpl(final Class<T> keysEnum, final KeysManager<T, ?> man) {
         this.man = man;
-        this.mapVKCodeToKeyCmd = new HashMap<>(NO_COMMANDS);
-        for (final KeyCommands cmd : KeyCommands.class.getEnumConstants()) {
+        this.mapVKCodeToKeyCmd = new HashMap<>();
+        for (final T cmd : keysEnum.getEnumConstants()) {
             this.mapVKCodeToKeyCmd.put(cmd.getVkCode(), cmd);
         }
     }
@@ -24,7 +23,7 @@ public class KeyboardObserverImpl implements KeyboardObserver {
      * evento KEY_RELEASED.
      */
     public synchronized void keyAction(final int keyCode, final int eventID) {
-        final Optional<KeyCommands> cmd = this.vkCodeToKeyCommand(keyCode);
+        final Optional<T> cmd = this.vkCodeToKeyCommand(keyCode);
         if (cmd.isPresent()) { // ignoro eventi provenienti da tasti non
                                // significativi.
             switch (eventID) {
@@ -45,7 +44,7 @@ public class KeyboardObserverImpl implements KeyboardObserver {
     }
 
     /* per filtrare(da cui l'Optional)/mappare i tasti su i comandi */
-    private Optional<KeyCommands> vkCodeToKeyCommand(final int vkCode) {
+    private Optional<T> vkCodeToKeyCommand(final int vkCode) {
         return Optional.ofNullable(this.mapVKCodeToKeyCmd.get(vkCode));
     }
 }

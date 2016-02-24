@@ -8,7 +8,7 @@ import it.unibo.oop.utilities.Direction;
  * Enum defining which keys can be pressed during the gameplay. NOTE: the
  * keyboard layout can be customize simply modifying the VK_Code of the keys.
  */
-public enum KeyCommands {
+public enum KeyCommands implements Key {
     /**
      * Up movement of main character.
      */
@@ -50,16 +50,6 @@ public enum KeyCommands {
     LEFTDOWN(KeyEvent.VK_UNDEFINED, Direction.LEFTDOWN),
 
     /**
-     * Shooting action of main character.
-     */
-    SPACE(KeyEvent.VK_SPACE, Direction.NONE),
-
-    /**
-     * To pause the game.
-     */
-    ESC(KeyEvent.VK_ESCAPE, Direction.NONE),
-
-    /**
      * When no moves have been performed.
      */
     NONE(KeyEvent.VK_UNDEFINED, Direction.NONE);
@@ -72,15 +62,12 @@ public enum KeyCommands {
         this.dir = dir;
     }
 
-    int getVkCode() {
+    @Override
+    public int getVkCode() {
         return this.vkCode;
     }
 
-    Direction getDir() {
+    public Direction getDir() {
         return this.dir;
-    }
-
-    boolean isMovement() {
-        return this.dir != Direction.NONE;
     }
 }

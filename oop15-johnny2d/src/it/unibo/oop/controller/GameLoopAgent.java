@@ -76,9 +76,10 @@ public class GameLoopAgent implements AgentInterface {
     }
 
     private void processKeys() {
-        this.pause = this.keysMan.isAKeyPressed(KeyCommands.ESC);
-        this.isMainCharShooting = this.keysMan.isAKeyPressed(KeyCommands.SPACE);
-        this.mainCharDir = this.keysMan.processKeys(); // rimuovo le KeysTyped.
+        final ActionKey action = ActionKeysManager.getInstance().processKeys(); 
+        this.pause = action == ActionKey.PAUSE;
+        this.isMainCharShooting = action == ActionKey.SHOOT;
+        this.mainCharDir = KeysManagerImpl.getInstance().processKeys(); // rimuovo le KeysTyped.
     }
 
     /* per debugging */

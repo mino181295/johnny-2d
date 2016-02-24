@@ -2,6 +2,8 @@ package it.unibo.oop.view;
 
 import static it.unibo.oop.utilities.Settings.SCREEN_DIMENSION;
 
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 
 import it.unibo.oop.controller.KeyboardObserver;
@@ -23,7 +25,7 @@ public class Level implements LevelInterface {
      * @param obs
      *            observer of the keyboard.
      */
-    public Level(final KeyboardObserver obs) {
+    public Level(final KeyboardObserver... obs) {
         this.frame = new JFrame(TITLE);
         this.frame.setSize(SCREEN_DIMENSION);
         frame.setUndecorated(true);
@@ -34,8 +36,7 @@ public class Level implements LevelInterface {
         this.frame.getContentPane().add(mainLevel);
 
         /* per MainKeyListener */
-        this.keyListener = new MainKeyListener();
-        this.keyListener.addObserver(obs);
+        this.keyListener = new MainKeyListener(Arrays.asList(obs));
         this.frame.addKeyListener(this.keyListener);
         this.frame.setFocusTraversalKeysEnabled(false);
     }

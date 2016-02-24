@@ -3,7 +3,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import javax.swing.SwingUtilities;
+
 import it.unibo.oop.view.Level;
 import it.unibo.oop.view.LevelInterface;
 import it.unibo.oop.view.MainFrame;
@@ -22,7 +24,8 @@ public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppS
     private ViewsManagerImpl() {
         this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
-        this.level = new Level(new KeyboardObserverImpl(KeysManagerImpl.getInstance()));
+        this.level = new Level(new KeyboardObserverImpl<>(KeyCommands.class, KeysManagerImpl.getInstance()),
+                               new KeyboardObserverImpl<>(ActionKey.class, ActionKeysManager.getInstance()));
     }
 
     /**
