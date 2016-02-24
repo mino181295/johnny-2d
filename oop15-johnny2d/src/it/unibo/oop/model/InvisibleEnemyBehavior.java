@@ -5,11 +5,11 @@ import java.awt.Point;
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 
-public class KamikazeEnemyBehavior implements MovementBehavior{
+public class InvisibleEnemyBehavior implements MovementBehavior{
 	
-	private final KamikazeMonster playerPosition;
+	private final InvisibleMonster playerPosition;
 	
-	public KamikazeEnemyBehavior(final KamikazeMonster player){
+	public InvisibleEnemyBehavior(final InvisibleMonster player){
 		this.playerPosition = player;
 	}
 	

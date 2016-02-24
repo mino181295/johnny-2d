@@ -18,6 +18,7 @@ import it.unibo.oop.model.Bullet;
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.model.HealthBonus;
+import it.unibo.oop.model.InvisibleMonster;
 import it.unibo.oop.model.ScoreBonus;
 import it.unibo.oop.model.Wall;
 import it.unibo.oop.utilities.Direction;
@@ -35,6 +36,7 @@ public class LevelPanel extends BackgroundPanel {
 
     private final Map<Direction, BufferedImage> mainCharacterSprites;
     private final Map<Direction, BufferedImage> enemySprites;
+    private final Map<Direction, BufferedImage> invisibleEnemySprites;
     private BufferedImage arena;
     private BufferedImage wall;
     private BufferedImage scoreBonus;
@@ -54,6 +56,8 @@ public class LevelPanel extends BackgroundPanel {
         this.mainCharacterSprites = mainCharacterSheet.split(MAIN_CHARACTER.getWidth(), MAIN_CHARACTER.getHeight());
         final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
         this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
+        final SpriteSheet invisibleEnemySheet = new SpriteSheet("/invisibleEnemy.jpg");
+        this.invisibleEnemySprites = invisibleEnemySheet.split(INVISIBLE_ENEMY.getWidth(), INVISIBLE_ENEMY.getHeight());
         try {
             this.arena = ImageLoader.load("/field/grass_template_straightpath.jpg");
             this.wall = ImageLoader.load("/wall.png");
@@ -94,6 +98,10 @@ public class LevelPanel extends BackgroundPanel {
             this.gs.getMovableList().forEach(e -> {
                 if (e instanceof BasicMonster) {
                     g.drawImage(this.enemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(),
+                            e.getTopLeftPos().getIntY(), this);
+                }
+                if ((e instanceof InvisibleMonster) && ((InvisibleMonster) e).isVisible()) {
+                    g.drawImage(this.invisibleEnemySprites.get(e.getFaceDirection()), e.getTopLeftPos().getIntX(),
                             e.getTopLeftPos().getIntY(), this);
                 }
                 if (e instanceof Bullet) {

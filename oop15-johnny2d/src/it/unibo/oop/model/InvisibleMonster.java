@@ -1,6 +1,6 @@
 package it.unibo.oop.model;
 
-import static it.unibo.oop.utilities.CharactersSettings.KAMIKAZE_ENEMY;
+import static it.unibo.oop.utilities.CharactersSettings.INVISIBLE_ENEMY;
 
 import java.awt.Rectangle;
 
@@ -9,7 +9,7 @@ import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;;
 
-public class KamikazeMonster extends AbstractEnemy {
+public class InvisibleMonster extends AbstractEnemy {
 
     private static final int SCORE_VALUE = 50;
     private final static int DMG = 2;
@@ -20,10 +20,10 @@ public class KamikazeMonster extends AbstractEnemy {
     private final Rectangle actionRadius;
 
 
-    public KamikazeMonster(final double startingX, final double startingY, final Vector2 movementVector,
+    public InvisibleMonster(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
-        this.attachBehavior(new KamikazeEnemyBehavior(this));
+        this.attachBehavior(new InvisibleEnemyBehavior(this));
         this.actionRadius = new Rectangle((int)startingX-actionRadiusLenght/2,(int)startingY - actionRadiusLenght/2, actionRadiusLenght,actionRadiusLenght);
     }
 
@@ -72,21 +72,21 @@ public class KamikazeMonster extends AbstractEnemy {
 	}
 
 	protected int getEntityHeight() {
-        return KAMIKAZE_ENEMY.getHeight();
+        return INVISIBLE_ENEMY.getHeight();
     }
 
     protected int getEntityWidth() {
-        return KAMIKAZE_ENEMY.getWidth();
+        return INVISIBLE_ENEMY.getWidth();
     }
 
     @Override
     public int getScoreValue() {
-        return KamikazeMonster.SCORE_VALUE;
+        return InvisibleMonster.SCORE_VALUE;
     }
 
     @Override
     public int getDamage() {
-        return KamikazeMonster.DMG;
+        return InvisibleMonster.DMG;
     }
 
 }
