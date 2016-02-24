@@ -109,9 +109,9 @@ public class LevelPanel extends BackgroundPanel {
                 if (e instanceof Wall) {
                     g.drawImage(this.wall, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
-                if (e instanceof ScoreBonus) {
-                    g.drawImage(this.scoreBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
-                }
+//                if (e instanceof ScoreBonus) {
+//                    g.drawImage(this.scoreBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+//                }
                 if (e instanceof HealthBonus) {
                     g.drawImage(this.healthBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
                 }
