@@ -32,9 +32,6 @@ public class GameOverMenu extends MenuPanel {
         final JLabel record = new JLabel(mex);
         this.addComponents(record, label);
         
-        
-        
-        
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START), 
                             new MenuPanel.StateButton("Options", AppState.OPTIONS), 

@@ -1,8 +1,11 @@
 package it.unibo.oop.view;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+
 import it.unibo.oop.controller.AppState;
+import it.unibo.oop.controller.ControllerImpl;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.controller.ViewsManagerImpl;
 
@@ -30,6 +33,11 @@ public class OptionsMenu extends MenuPanel {
         check.setSelected(true);
         check.addActionListener(e -> ViewsManagerImpl.getInstance().getView().enableMusic(check.isSelected()));
         this.addComponents(label, check);
+        
+        /* DELETE RECORD-SCORE */
+        final JButton reset = new JButton("Reset Record");
+        reset.addActionListener(e -> new Thread(() -> ControllerImpl.getInstance().resetStatFile()).start());
+        this.addComponent(reset);
 
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Credits", AppState.CREDITS),
