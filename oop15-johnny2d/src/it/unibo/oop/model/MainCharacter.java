@@ -45,7 +45,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
     
     public void setInput(final Direction newDirection, final boolean isShooting){
     	if (newDirection != Direction.NONE){
-    		lastDirection = this.currentDirection;
+    		lastDirection = newDirection;
     	}
     	this.currentDirection = newDirection;    	
     	this.isShooting = isShooting;

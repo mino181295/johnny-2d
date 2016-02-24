@@ -161,8 +161,8 @@ public final class GameStateImpl implements GameState {
 	protected void updateHeroPos(final Direction newDirection, final boolean isShooting) {
 		
 		johnnyCharacter.ifPresent(c -> {
-										c.setInput(newDirection, isShooting);
-										c.update();
+											c.setInput(newDirection, isShooting);
+											c.update();
 										});
 	}
 	
