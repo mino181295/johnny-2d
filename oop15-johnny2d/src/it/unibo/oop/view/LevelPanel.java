@@ -53,7 +53,7 @@ public class LevelPanel extends BackgroundPanel {
         final SpriteSheet enemySheet = new SpriteSheet("/enemy.png");
         this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
         try {
-            this.arena = ImageLoader.load("/fields/grass/grass_template_straightpath.jpg");
+            this.arena = ImageLoader.load("/field/grass_template_straightpath.jpg");
             this.wall = ImageLoader.load("/wall.png");
             this.bonus = ImageLoader.load("/coin.png");
             this.bullet = ImageLoader.load("/bullet.png");
