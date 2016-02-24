@@ -34,13 +34,13 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final Color COMPONENTS_COLOR = new Color(255, 220, 130);
     private static final Color FONT_COLOR = Color.WHITE;
     private static final int PANEL_WIDTH = Settings.MENU_DIMENSION.width - 10;
-    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/4 - 10;
-    private static final int FONT_SIZE = PANEL_HEIGHT/4;
+    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/2 - 10;
+    private static final int FONT_SIZE = PANEL_HEIGHT/7;
     private static final int TOP_INSET = PANEL_HEIGHT/30;
     private static final int LEFT_INSET = PANEL_HEIGHT/30;
     private static final int BOTTOM_INSET = PANEL_HEIGHT/30;
     private static final int RIGHT_INSET = PANEL_HEIGHT/30;
-    private final Dimension prefComponentSize = new Dimension(PANEL_WIDTH/5, (int)(PANEL_HEIGHT/4));
+    private final Dimension prefComponentSize = new Dimension(PANEL_WIDTH/5, (int)(PANEL_HEIGHT/7));
     private final GridBagConstraints cnst = new GridBagConstraints();
     private final List<StateObserver> obsList;
 
@@ -84,6 +84,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
 
     private JButton customizeButton(final JButton btn) {
         btn.setPreferredSize(this.prefComponentSize);
+        btn.setMinimumSize(this.prefComponentSize);
         btn.setBackground(COMPONENTS_COLOR);
         return btn;
     }
@@ -114,7 +115,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         final URL imgURL = MenuPanel.class.getResource(path);
         final ImageIcon icon = new ImageIcon(imgURL);
         final JLabel label = new JLabel(icon);
-        this.addComponent(label);
+        this.addComponents(label);
     }
 
     @Override
