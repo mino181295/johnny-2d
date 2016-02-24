@@ -125,7 +125,7 @@ public final class GameStateImpl implements GameState {
      * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
-    	long deltaTime = this.updatesNumber - this.lastShotFrame;   	
+        final long deltaTime = this.updatesNumber - this.lastShotFrame;   	
     	if (deltaTime >= 10){
     		this.lastShotFrame = this.updatesNumber;
     		this.movableList.add(newBullet);

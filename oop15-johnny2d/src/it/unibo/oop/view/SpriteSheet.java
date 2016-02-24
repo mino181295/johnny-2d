@@ -72,6 +72,8 @@ public class SpriteSheet {
                         break;
             	}
             }
+        } else {
+            System.out.println("The sprites aren't splittable");
         }
         return sprites;
     }

@@ -13,18 +13,18 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
 	private static final int HIGH_BONUS = 150;
 	
 
-	public ScoreBonus(double startingX, double startingY) {
+	public ScoreBonus(final double startingX, final double startingY) {
 		super(startingX,startingY);
 		this.scoreBonusValue = randomScoreGeneration();
 	}
 
 	@Override
-	public void collect(MainCharacter bonusCollector) {
+	public void collect(final MainCharacter bonusCollector) {
 		bonusCollector.getScore().increaseScore(scoreBonusValue);
 	}
 	
 	private int randomScoreGeneration(){
-		int value = new Random().nextInt(1000);
+	        final int value = new Random().nextInt(1000);
 		if(isBetween(value, 0, 700)){
 			return LOW_BONUS;
 		}
@@ -35,7 +35,7 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
 		
 	}
 	
-	private boolean isBetween(int x, int lower, int upper) {
+	private boolean isBetween(final int x, final int lower, final int upper) {
 		  return lower <= x && x <= upper;
 	}
 
