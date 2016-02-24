@@ -1,6 +1,6 @@
 package it.unibo.oop.controller;
 
-import static it.unibo.oop.controller.KeyCommands.NONE;
+import static it.unibo.oop.controller.MovementKey.NONE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,17 +9,17 @@ import it.unibo.oop.utilities.Direction;
 /**
  * Class used to process the keys passed.
  */
-public final class KeysManagerImpl extends AbstractKeysManager<KeyCommands, Direction> {
+public final class MovementKeysManager extends AbstractKeysManager<MovementKey, Direction> {
 
-    private static Optional<KeysManager<KeyCommands, Direction>> singleton = Optional.empty();
+    private static Optional<KeysManager<MovementKey, Direction>> singleton = Optional.empty();
     private static final int LIMIT = 1;
     
     /**
      * @return the singleton instance of the class.
      */
-    public static synchronized KeysManager<KeyCommands, Direction> getInstance() {
+    public static synchronized KeysManager<MovementKey, Direction> getInstance() {
         if (!singleton.isPresent()) {
-            singleton = Optional.of(new KeysManagerImpl());
+            singleton = Optional.of(new MovementKeysManager());
         }
         return singleton.get();
     }
@@ -37,8 +37,8 @@ public final class KeysManagerImpl extends AbstractKeysManager<KeyCommands, Dire
 
     @Override
     public synchronized Direction processKeys() {
-        final List<KeyCommands> tmpList = new ArrayList<>();
-        KeyCommands out = NONE;
+        final List<MovementKey> tmpList = new ArrayList<>();
+        MovementKey out = NONE;
 
         this.processPressed(LIMIT, tmpList);
         this.processTyped(LIMIT, tmpList);
@@ -47,20 +47,20 @@ public final class KeysManagerImpl extends AbstractKeysManager<KeyCommands, Dire
             out = tmpList.get(0);
             break;
         case 2:
-            if (tmpList.contains(KeyCommands.UP) && tmpList.contains(KeyCommands.DOWN)) {
+            if (tmpList.contains(MovementKey.UP) && tmpList.contains(MovementKey.DOWN)) {
                 break;
             }
-            if (tmpList.contains(KeyCommands.UP)) {
-                if (tmpList.contains(KeyCommands.RIGHT)) {
-                    out = KeyCommands.RIGHTUP;
+            if (tmpList.contains(MovementKey.UP)) {
+                if (tmpList.contains(MovementKey.RIGHT)) {
+                    out = MovementKey.RIGHTUP;
                 } else {
-                    out = KeyCommands.LEFTUP;
+                    out = MovementKey.LEFTUP;
                 }
-            } else if (tmpList.contains(KeyCommands.DOWN)) {
-                if (tmpList.contains(KeyCommands.RIGHT)) {
-                    out = KeyCommands.RIGHTDOWN;
+            } else if (tmpList.contains(MovementKey.DOWN)) {
+                if (tmpList.contains(MovementKey.RIGHT)) {
+                    out = MovementKey.RIGHTDOWN;
                 } else {
-                    out = KeyCommands.LEFTDOWN;
+                    out = MovementKey.LEFTDOWN;
                 }
             }
             break;

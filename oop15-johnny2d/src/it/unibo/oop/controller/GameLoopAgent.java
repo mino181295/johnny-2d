@@ -12,7 +12,7 @@ public class GameLoopAgent implements AgentInterface {
     private static final double FPS = 30;
     private static final int TO_SECONDS = 1000;
     private static final int SLEEPING_TIME = (int) (1 / FPS * TO_SECONDS);
-    private final KeysManager<KeyCommands, Direction> keysMan = KeysManagerImpl.getInstance();
+    private final KeysManager<MovementKey, Direction> keysMan = MovementKeysManager.getInstance();
     private final ViewsManager<LevelInterface, AppState> viewsMan = ViewsManagerImpl.getInstance();
     private final StateObserver stateObs;
     private volatile Direction mainCharDir;
@@ -79,7 +79,7 @@ public class GameLoopAgent implements AgentInterface {
         final ActionKey action = ActionKeysManager.getInstance().processKeys(); 
         this.pause = action == ActionKey.PAUSE;
         this.isMainCharShooting = action == ActionKey.SHOOT;
-        this.mainCharDir = KeysManagerImpl.getInstance().processKeys(); // rimuovo le KeysTyped.
+        this.mainCharDir = MovementKeysManager.getInstance().processKeys(); // rimuovo le KeysTyped.
     }
 
     /* per debugging */

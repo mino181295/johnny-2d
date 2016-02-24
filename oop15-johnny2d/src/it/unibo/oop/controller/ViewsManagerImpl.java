@@ -24,7 +24,7 @@ public final class ViewsManagerImpl implements ViewsManager<LevelInterface, AppS
     private ViewsManagerImpl() {
         this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
-        this.level = new Level(new KeyboardObserverImpl<>(KeyCommands.class, KeysManagerImpl.getInstance()),
+        this.level = new Level(new KeyboardObserverImpl<>(MovementKey.class, MovementKeysManager.getInstance()),
                                new KeyboardObserverImpl<>(ActionKey.class, ActionKeysManager.getInstance()));
     }
 

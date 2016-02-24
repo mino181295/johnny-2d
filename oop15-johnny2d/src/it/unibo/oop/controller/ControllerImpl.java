@@ -47,7 +47,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void play() { // pause -> play
-        KeysManagerImpl.getInstance().reset();
+        MovementKeysManager.getInstance().reset();
         ActionKeysManager.getInstance().reset();
         this.isReset = false;
         this.isRecord = false;
