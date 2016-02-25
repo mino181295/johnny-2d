@@ -11,7 +11,9 @@ import it.unibo.oop.utilities.Vector2;
 public class InvisibleEnemyBehavior implements MovementBehavior {
 	
 	private final InvisibleMonster playerPosition;
-	
+	/**
+	 * Gets the {@link InvisibleMonster} to calculate the next move with and creates the behaior
+	 */
 	public InvisibleEnemyBehavior(final InvisibleMonster player){
 		this.playerPosition = player;
 	}	

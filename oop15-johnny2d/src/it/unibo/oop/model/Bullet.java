@@ -20,12 +20,16 @@ public class Bullet extends MovableEntity implements Shot {
     private static final int BULLET_RANDOM = 500;
 
     private double remainingDistance = BULLET_BASE + new Random().nextInt(BULLET_RANDOM);
-
+    /**
+     * Constructor that takes the basic informations of the {@link Bullet}
+     */
     public Bullet(final double startingX, final double startingY, final Vector2 movementVector) {
         super(startingX, startingY, movementVector, BULLET.getSpeed());
         this.setMovement(movementVector);
     }
-
+    /**
+     * Constructor that takes the {@link Bullet} informations from the {@link MainCharacter}
+     */
     public Bullet(final MainCharacter heroPosition) {
         this(heroPosition.getX(), heroPosition.getY(), heroPosition.getMovement());
         // Takes the hero position
@@ -34,7 +38,10 @@ public class Bullet extends MovableEntity implements Shot {
         // speed values
         this.getMovement().setLength(this.getVelocity().getMinVelocity());
     }
-
+    /**
+     * Function that checks if this {@link Entity} in the next position collides with other ones. 
+     * The {@link Bullet} kills the {@link Enemy} and smashes in the {@link Wall}
+     */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(),
                 this.getMovement());
@@ -67,7 +74,9 @@ public class Bullet extends MovableEntity implements Shot {
             throw new CollisionHandlingException("This bullet collided an enemy");
         }
     }
-
+    /**
+     * Accelerates the bullet and moves it to the next position every frame
+     */
     public void update() {
         try {
             final double newLength = this.getVelocity().accelerate(this.getMovement().length());
@@ -86,16 +95,21 @@ public class Bullet extends MovableEntity implements Shot {
             System.out.println(e.getMessage());
         }
     }
-
+    /**
+     * Gets the {@link Bullet} height
+     */
     protected int getEntityHeight() {
         return BULLET.getHeight();
     }
-
-    @Override
+    /**
+     * Gets the {@link Bullet} width
+     */
     protected int getEntityWidth() {
         return BULLET.getWidth();
     }
-
+    /**
+     * Gets the remaining distance of the {@link Bullet}
+     */
     public double getRemainingDistance() {
         return this.remainingDistance;
     }

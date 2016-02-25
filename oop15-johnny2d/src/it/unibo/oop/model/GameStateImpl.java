@@ -39,7 +39,9 @@ public final class GameStateImpl implements GameState {
 
     private long updatesNumber;
     private long lastShotFrame;
-
+    /**
+     * Constructor that initializes the entire game logic
+     */
     private GameStateImpl() {
         this.updatesNumber = 0;
         this.lastShotFrame = 0;
@@ -48,12 +50,15 @@ public final class GameStateImpl implements GameState {
         this.johnnyCharacter = Optional.empty();
         this.gameArena = Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
     }
-
+    /**
+     * Singleton function that returns the single instance of the {@link GameStateImpl}
+     */
     public static GameStateImpl getInstance() {
         return SINGLETON;
     }
-
-    @Override
+    /**
+     * The function that creates the initials {@link Entity} like the {@link MainCharacter} and the {@link Enemy}
+     */
     public void initialize(final int levelNumber) {
         this.movableList.clear();
         this.stableList.clear();
@@ -61,9 +66,11 @@ public final class GameStateImpl implements GameState {
         this.johnnyCharacter = Optional.ofNullable(
                 Factory.MainCharacterFactory.generateCentredCharacter(this.getArena().getPlayableRectangle()));
         this.spawnBasicMonsters(BASIC_DEFAULT);
-//        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
+        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
-
+    /**
+     * A method that creates a defined number of {@link BasicMonster} in N free random position
+     */
     private void spawnBasicMonsters(final int number) {
         BasicMonster tmpMonster;
         Position randomPos;
@@ -83,7 +90,9 @@ public final class GameStateImpl implements GameState {
             this.addMovableEntity(tmpMonster);
         }
     }
-
+    /**
+     * A method that creates a defined number of {@link InvisibleMonster} in N free random position
+     */
     private void spawnInvisibleMonsters(final int number) {
         this.monstersCap -= number;
         InvisibleMonster tmpMonster;
@@ -104,17 +113,23 @@ public final class GameStateImpl implements GameState {
             this.addMovableEntity(tmpMonster);
         }
     }
-
+    /**
+     * Spawns a random {@link HealthBonus} and puts it in the stable {@link List}
+     */
     private void spawnRandomHealthCollectable() {
         final Position randomPos = this.getArena().getPositionInside(CharactersSettings.BONUS);
         this.addStableEntity(new HealthBonus(randomPos.getX(), randomPos.getY()));
     }
-
+    /**
+     * Spawns a random {@link ScoreBonus} and puts it in the stable {@link List}
+     */
     private void spawnRandomScoreCollectable() {
         final Position randomPos = this.getArena().getPositionInside(CharactersSettings.BONUS);
         this.addStableEntity(new ScoreBonus(randomPos.getX(), randomPos.getY()));
     }
-
+    /**
+     * If an {@link Entity} is dead and it should not be seen it gets removed from the environment
+     */
     private void removeDeadEntities() {
         this.stableList.removeAll(this.stableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
         this.movableList.removeAll(this.movableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
@@ -147,8 +162,6 @@ public final class GameStateImpl implements GameState {
 
     /**
      * Adds a {@link Bullet} to the MovableList of {@link MovableEntity}
-     * 
-     * @param newBullet
      */
     protected void addShoot(final Bullet newBullet) {
         final long deltaTime = this.updatesNumber - this.lastShotFrame;
@@ -158,12 +171,12 @@ public final class GameStateImpl implements GameState {
         }
     }
 
+
     /**
      * Updates the {@link MainCharacter} basing the new movement on the keys
      * pressed
      */
     protected void updateHeroPos(final Direction newDirection, final boolean isShooting) {
-
         johnnyCharacter.ifPresent(c -> {
             c.setInput(newDirection, isShooting);
             c.update();
@@ -203,8 +216,6 @@ public final class GameStateImpl implements GameState {
 
     /**
      * Gets the {@link Arena} of the Game
-     * 
-     * @return
      */
     public Arena getArena() {
         return this.gameArena;

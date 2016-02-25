@@ -20,14 +20,18 @@ public class InvisibleMonster extends AbstractEnemy {
     private boolean isVisible;
     private final Rectangle actionRadius;
 
-
+    /**
+     * Creates an invisible monster that reaches you if you enter his visibility area
+     */
     public InvisibleMonster(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
         super(startingX, startingY, movementVector, speedValue);
         this.attachBehavior(new InvisibleEnemyBehavior(this));
         this.actionRadius = new Rectangle((int)startingX-actionRadiusLenght/2,(int)startingY - actionRadiusLenght/2, actionRadiusLenght,actionRadiusLenght);
     }
-
+    /**
+     * Checks if the monster collides the walls or it goes out from the playable area
+     */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(), newPosition.getIntY());
         // Checks if the entity in the next move is inside the rectanuglar Arena
@@ -41,32 +45,47 @@ public class InvisibleMonster extends AbstractEnemy {
             throw new CollisionHandlingException("Next movement collides a wall");
         }
     }
+    /**
+     * Returns if the monster is visible or not
+     */
     public boolean isVisible() {
 		return this.isVisible;
 	}
-
+    /**
+     * Sets the monster visibility
+     */
 	public void setVisible(final boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-
+	/**
+	 * Gets the action and visibility radius of the monster
+	 */
 	public Rectangle getActionRadius() {
 		return this.actionRadius;
 	}
-
+	/**
+	 * Gets the {@link InvisibleMonster} height
+	 */
 	protected int getEntityHeight() {
         return INVISIBLE_ENEMY.getHeight();
     }
-
+	/**
+	 * Gets the {@link InvisibleMonster} width
+	 */
     protected int getEntityWidth() {
         return INVISIBLE_ENEMY.getWidth();
     }
 
-    @Override
+    /**
+     * Gets the score points for the {@link InvisibleMonster}
+     */
     public int getScoreValue() {
         return InvisibleMonster.SCORE_VALUE;
     }
 
-    @Override
+    /**
+     * Gets the damage dealt by the {@link InvisibleMonster}
+     */
     public int getDamage() {
         return InvisibleMonster.DMG;
     }

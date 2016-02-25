@@ -19,7 +19,9 @@ public class Score implements Serializable, Comparable<Score> {
     public Score(final int initialScore) {
         this.currentScore = initialScore;
     }
-
+    /**
+     * Constructor that sets the score to the default Value
+     */
     public Score() {
         this(DEFAULT_SCORE);
     }
