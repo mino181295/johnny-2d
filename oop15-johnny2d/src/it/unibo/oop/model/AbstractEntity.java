@@ -50,7 +50,7 @@ public abstract class AbstractEntity implements Entity {
      * Sets the {@link AbstractEntity} dead
      */
 	public void killEntity() {
-		this.deathFlag = false;
+		this.deathFlag = true;
 	}
 
 	/**
