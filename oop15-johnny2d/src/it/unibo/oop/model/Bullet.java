@@ -15,9 +15,9 @@ import it.unibo.oop.utilities.Vector2;
  * {@link Shooter}.
  */
 public class Bullet extends MovableEntity implements Shot {
-	
-	private static final double BULLET_BASE = 500;
-	private static final int BULLET_RANDOM = 500;
+
+    private static final double BULLET_BASE = 500;
+    private static final int BULLET_RANDOM = 500;
 
     private double remainingDistance = BULLET_BASE + new Random().nextInt(BULLET_RANDOM);
 
@@ -36,11 +36,12 @@ public class Bullet extends MovableEntity implements Shot {
     }
 
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
-        final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
+        final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(),
+                this.getMovement());
         // Counting how much walls it collides (Usually 1)
         if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
-        	this.killEntity();
-        	throw new CollisionHandlingException("Next movement not inside the arena");
+            this.killEntity();
+            throw new CollisionHandlingException("Next movement not inside the arena");
         }
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
                 .filter(tmpBullet::intersecate).count();
@@ -50,7 +51,7 @@ public class Bullet extends MovableEntity implements Shot {
                 .collect(Collectors.toList());
         // If collides a wall the bullet dies and gets removed
         if (numWallCollisions > 0) {
-            this.killEntity(); 
+            this.killEntity();
             throw new CollisionHandlingException("Next movement collides a wall");
         }
         // If the bullet collides with an enemy both die
@@ -66,9 +67,10 @@ public class Bullet extends MovableEntity implements Shot {
             throw new CollisionHandlingException("This bullet collided an enemy");
         }
     }
+
     public void update() {
         try {
-        	final double newLength = this.getVelocity().accelerate(this.getMovement().length());
+            final double newLength = this.getVelocity().accelerate(this.getMovement().length());
             // Calculates the new movement vector
             final Vector2 newMovement = this.getMovement().setLength(newLength);
             // Check if there are collision in the new position
@@ -78,7 +80,7 @@ public class Bullet extends MovableEntity implements Shot {
             this.move();
             this.remainingDistance -= newLength;
             if (this.getRemainingDistance() <= 0) {
-            	this.killEntity();
+                this.killEntity();
             }
         } catch (CollisionHandlingException e) {
             System.out.println(e.getMessage());

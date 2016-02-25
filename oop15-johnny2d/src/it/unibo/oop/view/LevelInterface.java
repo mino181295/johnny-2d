@@ -22,5 +22,5 @@ public interface LevelInterface extends Showable, ESource<KeyboardObserver> {
      * @param level
      *              of initialization.
      */
-    void initialize(final int level);
+    void initialize(final int levelNumber);
 }
