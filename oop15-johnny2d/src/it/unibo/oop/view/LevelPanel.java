@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import javax.swing.JLabel;
 
@@ -33,7 +32,6 @@ import it.unibo.oop.utilities.Direction;
 public class LevelPanel extends BackgroundPanel {
 
     private static final long serialVersionUID = 8057405927611227670L;
-    private static final int LEVELS = 10;
     private static final int SMALL_SPACING = 10;
     private static final int MEDIUM_SPACING = 20;
     private static final int LONG_SPACING = 30;
@@ -57,15 +55,15 @@ public class LevelPanel extends BackgroundPanel {
     public LevelPanel() {
         super("/level.jpg");
         this.gs = GameStateImpl.getInstance();
-        this.arenasMap = new HashMap<>();
-        this.loadArena();
+        this.loadArenas();
         this.loadSprites();
         this.stats = MyLabel.createLabel(null, new Font("Verdana", 1, 40), Color.RED);
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.add(this.stats);
     }
     
-    private void loadArena() {
+    private void loadArenas() {
+        this.arenasMap = new HashMap<>();
         this.arenasMap.put(0, "/grass_template_straightpath.jpg");
         this.arenasMap.put(1, "/grass_template2.jpg");
         this.arenasMap.put(2, "/light_sand_template.jpg");

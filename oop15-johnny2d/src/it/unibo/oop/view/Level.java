@@ -28,11 +28,11 @@ public class Level implements LevelInterface {
     public Level(final KeyboardObserver... obs) {
         this.frame = new JFrame(TITLE);
         this.frame.setSize(SCREEN_DIMENSION);
-        frame.setUndecorated(true);
+        this.frame.setUndecorated(true);
         this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
-        mainLevel = new LevelPanel();
+        this.mainLevel = new LevelPanel();
         this.frame.getContentPane().add(mainLevel);
 
         /* per MainKeyListener */
@@ -66,7 +66,7 @@ public class Level implements LevelInterface {
 
     }
     
-    public void initialize(final int level) {
-        this.mainLevel.setArena(level);
+    public void initialize(final int levelNumber) {
+        this.mainLevel.setArena(levelNumber);
     }
 }

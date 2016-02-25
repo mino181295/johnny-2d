@@ -29,13 +29,11 @@ public final class ControllerImpl implements Controller {
     private Optional<AgentInterface> gLAgent = Optional.empty();
     private volatile boolean record;
     private volatile boolean isReset;
-    private final Random rdm;
     private final ViewsManager<LevelInterface, AppState> viewsMan = ViewsManagerImpl.getInstance();
     private final GameState gameState = GameStateImpl.getInstance();
     
     private ControllerImpl() {
         this.createStatFile();
-        this.rdm = new Random();
         this.viewsMan.showView(AppState.LAUNCHING);
     }
 
@@ -51,9 +49,9 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void start() { // launcher -> play / pause -> replay
-        final int rmdVal = this.rdm.nextInt(LEVELS);
-        this.gameState.initialize(rmdVal);
-        this.viewsMan.getView().initialize(rmdVal);
+        final int levelNumber = new Random().nextInt(LEVELS);
+        this.gameState.initialize(levelNumber);
+        this.viewsMan.getView().initialize(levelNumber);
         this.play();
     }
 
