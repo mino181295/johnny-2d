@@ -10,19 +10,32 @@ import it.unibo.oop.utilities.Velocity;
 /**
  * Class representing an enemy with his own {@link MovementBehavior} based on the type. 
  */
-public abstract class AbstractEnemy extends MovableEntity implements Enemy{
+public abstract class AbstractEnemy extends MovableEntity implements Enemy {
 
 	private Optional<MovementBehavior> behavior;
-
+	/**
+	 * Constructor with all the parameters to create an {@link Enemy} without a specific {@link MovementBehavior}
+	 * @param startingX starting X position
+	 * @param startingY starting Y position
+	 * @param movementVector Initial movement vector
+	 * @param speedValue The speed setting of the character
+	 */
 	public AbstractEnemy(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue) {
 		super(startingX, startingY, movementVector, speedValue);
+		this.behavior = (Optional.empty());
 	}
-	
+	/**
+	 * Constructor that defines all the standards variables and also the {@link MovementBehavior}
+	 * @param movBeh The {@link MovementBehavior} of the Enemy
+	 */
 	public AbstractEnemy(final double startingX, final double startingY, final Vector2 movementVector, final Velocity speedValue, final MovementBehavior movBeh) {
 		this(startingX, startingY, movementVector, speedValue);
 		this.attachBehavior(movBeh);
 	}
-	
+	/**
+	 * Method that updates the {@link Enemy} to the next position using his {@link Vector2}, his {@link Velocity}, 
+	 * his {@link Position} and his {@link MovementBehavior} and checks the collisions.
+	 */
 	public void update() {
 		try {
 			Vector2 newMovement;

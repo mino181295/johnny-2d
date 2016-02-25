@@ -94,7 +94,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
         // If it collides with one or more bonus it takes them and apply it;
         if (!collectablesCollided.isEmpty()) {
             collectablesCollided.stream().forEach(x -> x.collect(this));
-            collectablesCollided.stream().forEach(x -> ((AbstractEntity) x).killEntity(true));
+            collectablesCollided.stream().forEach(x -> ((AbstractEntity) x).killEntity());
         }
         // Checks the collision with the collided enemies. Damage the hero and
         // kills the monsters (temporary)
@@ -105,7 +105,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
             final int scoreGained = enemyCollisions.stream().map(x -> x.getScoreValue()).reduce((x, y) -> x + y).get();
             this.currentScore.increaseScore(scoreGained);
 
-            enemyCollisions.stream().forEach(x -> x.killEntity(true));
+            enemyCollisions.stream().forEach(x -> x.killEntity());
 
             if (this.isDead()) {
                 throw new CollisionHandlingException("The main character died");

@@ -39,7 +39,7 @@ public class Bullet extends MovableEntity implements Shot {
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(), this.getMovement());
         // Counting how much walls it collides (Usually 1)
         if (!this.getEnvironment().getArena().isInside(tmpBullet)) {
-        	this.killEntity(true);
+        	this.killEntity();
         	throw new CollisionHandlingException("Next movement not inside the arena");
         }
         final long numWallCollisions = this.getEnvironment().getStableList().stream().filter(x -> x instanceof Wall)
@@ -50,7 +50,7 @@ public class Bullet extends MovableEntity implements Shot {
                 .collect(Collectors.toList());
         // If collides a wall the bullet dies and gets removed
         if (numWallCollisions > 0) {
-            this.killEntity(true); //this.removeFromEnvironment();
+            this.killEntity(); 
             throw new CollisionHandlingException("Next movement collides a wall");
         }
         // If the bullet collides with an enemy both die
@@ -60,8 +60,8 @@ public class Bullet extends MovableEntity implements Shot {
             this.getEnvironment().getMainChar().get().getScore().increaseScore(tmpScore);
 
             // Removes the monsters from the envirnoment
-            enemyCollisions.stream().forEach(x -> x.killEntity(true));
-            this.killEntity(true);
+            enemyCollisions.stream().forEach(x -> x.killEntity());
+            this.killEntity();
             // Throws the exception avoiding the next movement
             throw new CollisionHandlingException("This bullet collided an enemy");
         }
@@ -78,7 +78,7 @@ public class Bullet extends MovableEntity implements Shot {
             this.move();
             this.remainingDistance -= newLength;
             if (this.getRemainingDistance() <= 0) {
-            	this.killEntity(true);
+            	this.killEntity();
             }
         } catch (CollisionHandlingException e) {
             System.out.println(e.getMessage());

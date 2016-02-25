@@ -8,14 +8,17 @@ import it.unibo.oop.utilities.Vector2;
  */
 public class BasicEnemyBehavior implements MovementBehavior{
 	
-	private final MovableEntity playerPosition;
-	
+	private final BasicMonster playerPosition;
+	/**
+	 * The constructor that gets the {@link BasicMonster} to move 
+	 * @param player
+	 */
 	public BasicEnemyBehavior(final BasicMonster player){
 		this.playerPosition = player;
 	}
 	
 	/**
-	 * Returns a vector that indicates where the {@link Enemy} should go to follow the {@link MainCharacter}.
+	 * Returns a {@link Vector2} that indicates where the {@link Enemy} should go to follow the {@link MainCharacter}.
 	 */
 	public Vector2 getNextMove(final Position targetPosition) {
 		final double distanceX = targetPosition.getX() - playerPosition.getX();

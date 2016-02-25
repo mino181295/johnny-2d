@@ -12,17 +12,27 @@ public class Health {
     private final int minHealth;
 
     private int currentHealth;
-
+    /**
+     * Constructor that gives you the possibility to generate a custom {@link Health}
+     * @param minHealth The value of {@link Health} when the character is considered Dead
+     * @param maxHealth The value of the max {@link Health}
+     * @param initialHealth The starting {@link Health}
+     */
     public Health(final int minHealth, final int maxHealth, final int initialHealth) {
         this.minHealth = minHealth;
         this.maxHealth = maxHealth;
         this.currentHealth = initialHealth;
     }
-
+    /**
+     * Constructor that create the {@link Health} of a character
+     * @param maxHealth
+     */
     public Health(final int maxHealth) {
         this(DEFAULT_MIN_HEALTH, maxHealth, maxHealth);
     }
-
+    /**
+     * Constructor that create the {@link Health} of a character with a default value
+     */
     public Health() {
         this(DEFAULT_HEALTH);
     }

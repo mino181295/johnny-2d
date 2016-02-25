@@ -7,34 +7,30 @@ import java.util.Optional;
  * Interface for game state.
  */
 public interface GameState {
-
+	/**
+	 * Gets the entities that can't be moved
+	 */
+	public List<AbstractEntity> getStableList();
+	/**
+	 * Gets the entities that can be moved
+	 */
+    public List<MovableEntity> getMovableList();
     /**
-     * For game initializing: creates the game state for next play.
-     * 
-     * @param level
-     *            value which identifies the next level
+     * Gets the {@link MainCharacter} as an {@link Optional}
      */
-
+    public Optional<MainCharacter> getMainChar();
     /**
-     * @param entity
-     *            entity to remove.
+     * Gets the {@link Arena} where the game is played
      */
-
-    List<AbstractEntity> getStableList();
-
-    List<MovableEntity> getMovableList();
-
-    Optional<MainCharacter> getMainChar();
-
-    Arena getArena();
+    public Arena getArena();
 
     /**
      * @return true if game is finished.
      */
-    boolean isGameEnded();
+    public boolean isGameEnded();
     
     /**
      * Determines if the player has made a new record.
      */
-    void checkTopScore();
+    public void checkTopScore();
 }

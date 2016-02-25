@@ -23,7 +23,12 @@ public class Arena {
     private final Rectangle playableRectangle;
 
     private final List<Position> spawnPoints;
-
+    /**
+     * Constructor that creates an {@link Arena} made by {@link Wall} inside a defined rectangular panel 
+     * @param panelHeight The height of the panel
+     * @param panelWidth The width of the panel
+     * @param hudDimension The dimension of the HUD of informations about the {@link MainCharacter}
+     */
     public Arena(final int panelHeight, final int panelWidth, final int hudDimension) {
         // Settings the arena walls
         this.boundsList = new ArrayList<>();
@@ -79,7 +84,6 @@ public class Arena {
 
     /**
      * Add a spawn point to the possible spawn points {@link List}
-     * 
      * @param spawnPosition
      *            The spawn point that will be added
      */

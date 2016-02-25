@@ -15,14 +15,20 @@ public class BasicMonster extends AbstractEnemy {
 
     private static final int SCORE_VALUE = 10;
     private final static int DMG = 1;
-
+    /**
+     * Constructors that creates a {@link BasicMonster} that is moving with a movementVector form a starting {@link Position}
+     * @param startingX The X position where the Monster is created
+     * @param startingY The Y position where the Monster is created
+     * @param movementVector The initial movement of the monster
+     */
     public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector) {
         super(startingX, startingY, movementVector, BASIC_ENEMY.getSpeed());
         this.attachBehavior(new BasicEnemyBehavior(this));
-    }
-
+    }  
     
-
+    /**
+     * Method that check if the monster collides with {@link Wall}, {@link Enemy} 
+     */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(), newPosition.getIntY());
         // Checks if the entity in the next move is inside the rectanuglar Arena
@@ -38,26 +44,37 @@ public class BasicMonster extends AbstractEnemy {
         final List<AbstractEnemy> enemyCollisions = this.getEnvironment().getMovableList().stream()
                 .filter(x -> x instanceof AbstractEnemy).filter(tmpEnemy::intersecate).map(x -> (AbstractEnemy) x)
                 .collect(Collectors.toList());
-        
+        //If the monster collides with other enemies except himself (1)
         if (enemyCollisions.size() > 1){
         	throw new CollisionHandlingException();
         }
 
     }
+    
+    /**
+     * The {@link BasicMonster} Height
+     */
     protected int getEntityHeight() {
         return BASIC_ENEMY.getHeight();
     }
 
+    /**
+     * The {@link BasicMonster} Width
+     */
     protected int getEntityWidth() {
         return BASIC_ENEMY.getWidth();
     }
 
-    @Override
+    /**
+     * The score you gain killing the {@link BasicMonster}
+     */
     public int getScoreValue() {
         return BasicMonster.SCORE_VALUE;
     }
 
-    @Override
+    /**
+     * The damage that the {@link BasicMonster} deals.
+     */
     public int getDamage() {
         return BasicMonster.DMG;
     }
