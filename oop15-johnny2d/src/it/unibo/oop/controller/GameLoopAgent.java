@@ -4,7 +4,6 @@ import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
-import it.unibo.oop.view.ViewsManager;
 import it.unibo.oop.view.ViewsManagerImpl;
 
 /**
@@ -16,7 +15,7 @@ public class GameLoopAgent implements AgentInterface {
     private static final int TO_SECONDS = 1000;
     private static final int SLEEPING_TIME = (int) (1 / FPS * TO_SECONDS);
     private final GameState gameState = GameStateImpl.getInstance();
-    private final ViewsManager<LevelInterface, AppState> viewsMan = ViewsManagerImpl.getInstance();
+    private final LevelInterface level; 
     private final StateObserver stateObs;
     private volatile Direction mainCharDir;
     private volatile boolean isMainCharShooting;
@@ -27,8 +26,9 @@ public class GameLoopAgent implements AgentInterface {
      * Class's constructor.
      */
     public GameLoopAgent() {
+        this.level = ViewsManagerImpl.getInstance().getView();
         this.pause = false;
-        this.stateObs = new StateObserverImpl(this.viewsMan);
+        this.stateObs = new StateObserverImpl(ViewsManagerImpl.getInstance());
     }
 
     @Override
@@ -67,8 +67,8 @@ public class GameLoopAgent implements AgentInterface {
             this.gameOver = this.gameState.isGameEnded();
 
             /* AGGIORNAMENTO E PRINTING DEL FRAME */
-            this.viewsMan.getView().updateLevel();
-            this.viewsMan.getView().showIt();
+            this.level.updateLevel();
+            this.level.showIt();
             
             try {
                 Thread.sleep(SLEEPING_TIME);

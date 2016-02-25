@@ -65,5 +65,4 @@ public class Level implements LevelInterface {
     public void enableMusic(final boolean val) {
 
     }
-
 }

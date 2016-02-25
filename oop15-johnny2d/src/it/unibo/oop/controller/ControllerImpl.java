@@ -48,7 +48,6 @@ public final class ControllerImpl implements Controller {
     public void start() { // launcher -> play / pause -> replay
         final int rmdVal = this.rdm.nextInt(LEVELS);
         GameStateImpl.getInstance().initialize(rmdVal);
-       // GameStateImpl.getInstance().initialize(rmdVal);
         this.play();
     }
 
