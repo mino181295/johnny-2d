@@ -1,7 +1,8 @@
 package it.unibo.oop.controller;
 
+import javax.swing.text.View;
+
 import it.unibo.oop.model.GameStateImpl;
-import it.unibo.oop.view.View;
 
 /**
  * Class implementing {@link StateObserver} interface.
