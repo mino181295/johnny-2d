@@ -12,6 +12,6 @@ public interface MovementBehavior {
 	 * @param targetPosition The position where the Movemnt Behavior should guide you
 	 * @return A {@link Vector2} that rappresents the direction to follow
 	 */
-	public Vector2 getNextMove(Position targetPosition);
+	Vector2 getNextMove(Position targetPosition);
 	
 }

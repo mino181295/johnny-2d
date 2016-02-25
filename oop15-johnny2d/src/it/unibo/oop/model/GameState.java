@@ -9,41 +9,44 @@ import it.unibo.oop.utilities.Direction;
  * Interface for game state.
  */
 public interface GameState {
-    
+
     /**
      * Updates main character and enemies position.
      * 
      * @param newDirection
-     *                  of the main character.
+     *            of the main character.
      * @param isShooting
-     *                  if main character is shooting.
+     *            if main character is shooting.
      */
-    public void updatePositions(Direction newDirection, boolean isShooting);
-	
+    void updatePositions(Direction newDirection, boolean isShooting);
+
     /**
-	 * Gets the entities that can't be moved
-	 */
-	public List<AbstractEntity> getStableList();
-	/**
-	 * Gets the entities that can be moved
-	 */
-    public List<MovableEntity> getMovableList();
+     * Gets the entities that can't be moved
+     */
+    List<AbstractEntity> getStableList();
+
+    /**
+     * Gets the entities that can be moved
+     */
+    List<MovableEntity> getMovableList();
+
     /**
      * Gets the {@link MainCharacter} as an {@link Optional}
      */
-    public Optional<MainCharacter> getMainChar();
+    Optional<MainCharacter> getMainChar();
+
     /**
      * Gets the {@link Arena} where the game is played
      */
-    public Arena getArena();
+    Arena getArena();
 
     /**
      * @return true if game is finished.
      */
-    public boolean isGameEnded();
-    
+    boolean isGameEnded();
+
     /**
      * Determines if the player has made a new record.
      */
-    public void checkTopScore();
+    void checkTopScore();
 }

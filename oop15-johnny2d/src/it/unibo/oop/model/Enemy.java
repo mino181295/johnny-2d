@@ -9,18 +9,18 @@ public interface Enemy {
 	/**
 	 * Attach a new {@link MovementBehavior}
 	 */
-	public void attachBehavior(MovementBehavior enemyBehavior);
+	void attachBehavior(MovementBehavior enemyBehavior);
 	/**
 	 * Uses the attached {@link MovementBehavior}
 	 */
-	public void useBehavior(Position targetPosition);
+	void useBehavior(Position targetPosition);
 	/**
 	 * Gets the score value of the {@link Enemy}
 	 */
-	public int getScoreValue();
+	int getScoreValue();
 	/**
 	 * Gets the damage value of the {@link Enemy}
 	 */
-	public int getDamage();
+	int getDamage();
 	
 }

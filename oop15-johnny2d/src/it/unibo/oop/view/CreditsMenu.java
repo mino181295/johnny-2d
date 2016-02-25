@@ -23,7 +23,7 @@ public class CreditsMenu extends MenuPanel {
 
         /* LABELS ADDING */
         this.addComponents(new JLabel("Model: Matteo Minardi"),
-                           new JLabel("View: Pasini Giacomo"),
+                           new JLabel("View: Giacomo Pasini"),
                            new JLabel("Controller: Paolo Venturi"));
                 
         /* BUTTONS CREATION */

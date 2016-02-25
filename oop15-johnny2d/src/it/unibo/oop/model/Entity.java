@@ -13,17 +13,17 @@ public interface Entity {
 	 * Function that returns the position of every object placed in the map.
 	 * @return the position of this entity
 	 */
-	public Position getPosition();
+	Position getPosition();
 	
 	/**
 	 * It return and calculates the bounds of a specific {@link Entity}.
 	 * @return the {@link Rectangle} containing the object
 	 */
-	public Rectangle getBounds();
+	Rectangle getBounds();
 	
 	/**
 	 * 
 	 * @return true if the entity intersecates the secondEntity
 	 */
-	public boolean intersecate(Entity secondEntity);
+	boolean intersecate(Entity secondEntity);
 }
