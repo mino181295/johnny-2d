@@ -14,6 +14,8 @@ import java.util.Random;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.model.Score;
 import it.unibo.oop.utilities.Settings;
+import it.unibo.oop.view.LevelInterface;
+import it.unibo.oop.view.ViewsManager;
 import it.unibo.oop.view.ViewsManagerImpl;
 
 /**
@@ -27,11 +29,12 @@ public final class ControllerImpl implements Controller {
     private volatile boolean record;
     private volatile boolean isReset;
     private final Random rdm;
+    private final ViewsManager<LevelInterface, AppState> viewsMan = ViewsManagerImpl.getInstance();
     
     private ControllerImpl() {
         this.createStatFile();
         this.rdm = new Random();
-        ViewsManagerImpl.getInstance().showView(AppState.LAUNCHING);
+        this.viewsMan.showView(AppState.LAUNCHING);
     }
 
     /**
@@ -48,6 +51,7 @@ public final class ControllerImpl implements Controller {
     public void start() { // launcher -> play / pause -> replay
         final int rmdVal = this.rdm.nextInt(LEVELS);
         GameStateImpl.getInstance().initialize(rmdVal);
+        this.viewsMan.getView().initialize(rmdVal);
         this.play();
     }
 

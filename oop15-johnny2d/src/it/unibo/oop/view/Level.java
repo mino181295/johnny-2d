@@ -65,4 +65,8 @@ public class Level implements LevelInterface {
     public void enableMusic(final boolean val) {
 
     }
+    
+    public void initialize(final int level) {
+        this.mainLevel.setArena(level);
+    }
 }

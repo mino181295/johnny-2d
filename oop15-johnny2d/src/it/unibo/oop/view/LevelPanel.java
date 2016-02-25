@@ -76,7 +76,6 @@ public class LevelPanel extends BackgroundPanel {
         this.arenasMap.put(7, "/snow_template_decorated.jpg");
         this.arenasMap.put(8, "/snow_template_nodeco.jpg");
         this.arenasMap.put(9, "/snow_template1.jpg");
-        this.setArena(gs.getLevelNumber());
     }
     
     private void loadSprites() {

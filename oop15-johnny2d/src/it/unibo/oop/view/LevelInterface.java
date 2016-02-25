@@ -17,4 +17,10 @@ public interface LevelInterface extends Showable, ESource<KeyboardObserver> {
      *            to enable(true)/disable(false) music.	    
      */ 
     void enableMusic(final boolean val);
+    
+    /**
+     * @param level
+     *              of initialization.
+     */
+    void initialize(final int level);
 }
