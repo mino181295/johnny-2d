@@ -21,6 +21,10 @@ public final class GameStateImpl implements GameState {
 	
 	private static final int INVISIBLE_DEFAULT = 3;
 	
+	private int monstersCap = 50;
+	
+	private static final int MAX_COLLECTIBLES = 4;
+	
 	private static final int COLLECTIBLES_DELAY = 120;
 	private static final int MONSTERS_DELAY = 130;
 	
@@ -54,7 +58,6 @@ public final class GameStateImpl implements GameState {
      * Initialize the new level of the game creating enemies and the character
      */
     public void initialize(final int levelNumber) {
-        // This may create bugs.
         this.movableList.clear();
         this.stableList.clear();
         this.stableList.addAll(this.gameArena.getBoundsList());
@@ -68,8 +71,8 @@ public final class GameStateImpl implements GameState {
 		Position randomPos;
 		long monsterConfilicts;
 		boolean distanceCondition;
-		
-		for (int nMonsters = 0; nMonsters < number; nMonsters++) {
+		this.monstersCap -= number;
+		for (int nMonsters = 0; nMonsters < number; nMonsters++) {			
 			do {
 				randomPos  = this.gameArena.getPositionInside(CharactersSettings.BASIC_ENEMY);
 				tmpMonster = Factory.EnemiesFactory.generateStillBasicEnemy(randomPos.getX(), randomPos.getY());
@@ -83,6 +86,7 @@ public final class GameStateImpl implements GameState {
 	}
 	
 	private void spawnInvisibleMonsters(final int number){
+		this.monstersCap -= number;
 		InvisibleMonster tmpMonster;
 		Position randomPos;
 		long monsterConfilicts;
@@ -100,7 +104,6 @@ public final class GameStateImpl implements GameState {
 			this.addMovableEntity(tmpMonster);
 		}
 	}
-	
 	private void spawnRandomHealthCollectable(){
 		final Position randomPos = this.getArena().getPositionInside(CharactersSettings.BONUS);
 		this.addStableEntity(new HealthBonus(randomPos.getX(), randomPos.getY()));		
@@ -125,7 +128,8 @@ public final class GameStateImpl implements GameState {
 		this.updateHeroPos(newDirection, isShooting);
 		this.removeDeadEntities();
 		
-		if (this.updatesNumber % (COLLECTIBLES_DELAY+randomCollectiblesDelay) == 0){
+		long collectibleCount = this.stableList.stream().filter(x -> x instanceof Collectable).count();
+		if (this.updatesNumber % (COLLECTIBLES_DELAY+randomCollectiblesDelay) == 0 && collectibleCount < MAX_COLLECTIBLES){
 			randomCollectiblesDelay = new Random().nextInt(COLLECTIBLES_DELAY);
 			if (new Random().nextInt(3) == 0){
 				this.spawnRandomHealthCollectable();
@@ -133,7 +137,7 @@ public final class GameStateImpl implements GameState {
 				this.spawnRandomScoreCollectable();
 			}
 		}
-		if (this.updatesNumber % (MONSTERS_DELAY+randomMonstersDelay) == 0){
+		if (this.updatesNumber % (MONSTERS_DELAY+randomMonstersDelay) == 0 && this.monstersCap >= 0){
 			randomMonstersDelay = new Random().nextInt(MONSTERS_DELAY);
 			this.spawnBasicMonsters(BASIC_SCALE);
 		} 
