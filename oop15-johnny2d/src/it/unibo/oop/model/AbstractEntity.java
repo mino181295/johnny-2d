@@ -108,7 +108,7 @@ public abstract class AbstractEntity implements Entity {
      * Removes the environment if it's necessary.
      */
     public void removeEnvironment() {
-        if (this.gameEnvironment.isPresent()) {
+        if (this.hasEnvironment()) {
             this.gameEnvironment = Optional.empty();
         }
     }

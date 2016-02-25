@@ -1,19 +1,19 @@
 package it.unibo.oop.model;
 
-import static it.unibo.oop.utilities.CharactersSettings.BASIC_ENEMY;
 import static it.unibo.oop.utilities.CharactersSettings.INVISIBLE_ENEMY;
-import static it.unibo.oop.utilities.CharactersSettings.MAIN_CHARACTER;
 import static it.unibo.oop.utilities.CharactersSettings.WALL;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 
 public class Factory {
 	
 	public static class WallFactory {
+		
+		private static final double HUD_PERCENTAGE = 0.05;
 		
 		private WallFactory() {
 		}
@@ -35,35 +35,31 @@ public class Factory {
 		}
 		
 		public static Arena generateArena(final int panelHeight, final int panelWidth){
-			//TODO settare l'hud dimension
-			return new Arena(panelHeight,panelWidth,(int)(panelHeight*0.05));
+			return new Arena(panelHeight,panelWidth,(int)(panelHeight*HUD_PERCENTAGE));
 		}
 	}
 	
 	public static class MainCharacterFactory {
 		
-		private MainCharacterFactory() {
-		}
-	
-		public static MainCharacter generateCentredCharacter(final Position centerPos){
-			return new MainCharacter(centerPos.getX(), centerPos.getY());
+		private MainCharacterFactory() {}
+		
+		public static MainCharacter generateCentredCharacter(final Rectangle panel){
+			return new MainCharacter(panel.getCenterX(), panel.getCenterY());
 		}
 		public static MainCharacter generateStillCharacter(final double startingX, final double startingY){
 			return new MainCharacter(startingX,startingY);
-		}
-		
+		}		
 		public static MainCharacter generateMovingCharacter(final double startingX, final double startingY, final Vector2 movement){
-			return new MainCharacter(startingX,startingY,movement,MAIN_CHARACTER.getSpeed());
+			return new MainCharacter(startingX,startingY,movement);
 		}
 	}
 	
 	public static class EnemiesFactory {
 		
-		private EnemiesFactory() {
-		}
+		private EnemiesFactory() {}
 		
 		public static BasicMonster generateStillBasicEnemy(final double intialX, final double intialY){
-			return new BasicMonster(intialX, intialY, new Vector2(), BASIC_ENEMY.getSpeed());
+			return new BasicMonster(intialX, intialY, new Vector2());
 		}
 		public static InvisibleMonster generateStillInvisibleEnemy(final double intialX, final double intialY){
 			return new InvisibleMonster(intialX, intialY, new Vector2(), INVISIBLE_ENEMY.getSpeed());
@@ -72,8 +68,7 @@ public class Factory {
 	
 	public static class BulletFactory {
 		
-		private BulletFactory() {
-		}
+		private BulletFactory() {	}
 		
 		public static Bullet shootBulletFromCharacter(final MainCharacter mainChar){
 			return new Bullet(mainChar);

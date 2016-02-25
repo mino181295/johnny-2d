@@ -18,7 +18,8 @@ public class BasicEnemyBehavior implements MovementBehavior{
 	 * Returns a vector that indicates where the {@link Enemy} should go to follow the {@link MainCharacter}.
 	 */
 	public Vector2 getNextMove(final Position targetPosition) {
-		final Vector2 newMovement = new Vector2(targetPosition.getX() - playerPosition.getX(), targetPosition.getY() - playerPosition.getY());
-		return newMovement.setLength(playerPosition.getVelocity().getMaxVelocity());
+		final double distanceX = targetPosition.getX() - playerPosition.getX();
+		final double distanceY = targetPosition.getY() - playerPosition.getY();		
+		return new Vector2(distanceX, distanceY).setLength(playerPosition.getVelocity().getMaxVelocity());
 	}
 }

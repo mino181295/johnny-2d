@@ -7,6 +7,4 @@ public interface Shot {
 	
 	double getRemainingDistance();
 	
-	// public double getDamageDealt();
-	
 }

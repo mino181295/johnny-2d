@@ -1,7 +1,6 @@
 package it.unibo.oop.model;
 
 import static it.unibo.oop.utilities.CharactersSettings.BULLET;
-import static it.unibo.oop.utilities.CharactersSettings.MAIN_CHARACTER;
 
 import java.util.List;
 import java.util.Random;
@@ -16,8 +15,11 @@ import it.unibo.oop.utilities.Vector2;
  * {@link Shooter}.
  */
 public class Bullet extends MovableEntity implements Shot {
+	
+	private static final double BULLET_BASE = 500;
+	private static final int BULLET_RANDOM = 500;
 
-    private double remainingDistance = 600 + new Random().nextInt(400);
+    private double remainingDistance = BULLET_BASE + new Random().nextInt(BULLET_RANDOM);
 
     public Bullet(final double startingX, final double startingY, final Vector2 movementVector) {
         super(startingX, startingY, movementVector, BULLET.getSpeed());
@@ -64,20 +66,19 @@ public class Bullet extends MovableEntity implements Shot {
             throw new CollisionHandlingException("This bullet collided an enemy");
         }
     }
-
     public void update() {
         try {
+        	final double newLength = this.getVelocity().accelerate(this.getMovement().length());
             // Calculates the new movement vector
-            final Vector2 newMovement = this.getMovement()
-                    .setLength(this.getVelocity().accelerate(this.getMovement().length()));
+            final Vector2 newMovement = this.getMovement().setLength(newLength);
             // Check if there are collision in the new position
             this.checkCollision(this.getPosition().sumVector(newMovement));
             // moves if no exception
             this.setMovement(newMovement);
             this.move();
-            this.remainingDistance -= this.getMovement().length();
-            if (remainingDistance <= 0) {
-            	this.killEntity(true);//this.removeFromEnvironment();
+            this.remainingDistance -= newLength;
+            if (this.getRemainingDistance() <= 0) {
+            	this.killEntity(true);
             }
         } catch (CollisionHandlingException e) {
             System.out.println(e.getMessage());

@@ -7,12 +7,12 @@ import it.unibo.oop.utilities.Position;
  */
 public interface Enemy {
 	
-	void attachBehavior(MovementBehavior enemyBehavior);
+	public void attachBehavior(MovementBehavior enemyBehavior);
 	
-	void useBehavior(Position targetPosition);
+	public void useBehavior(Position targetPosition);
 	
-	int getScoreValue();
+	public int getScoreValue();
 	
-	int getDamage();
+	public int getDamage();
 	
 }

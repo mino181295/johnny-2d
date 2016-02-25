@@ -2,6 +2,7 @@ package it.unibo.oop.model;
 
 import java.util.Optional;
 
+import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Position;
 import it.unibo.oop.utilities.Vector2;
 import it.unibo.oop.utilities.Velocity;
@@ -21,6 +22,23 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy{
 		this(startingX, startingY, movementVector, speedValue);
 		this.attachBehavior(movBeh);
 	}
+	
+	public void update() {
+		try {
+			Vector2 newMovement;
+			if ( this.getEnvironment().getMainChar().isPresent() && this.getBehavior().isPresent()){
+				newMovement  = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
+			} else {
+				newMovement = new Vector2();   		
+			}       
+            this.checkCollision(this.getPosition().sumVector(newMovement));
+            this.setMovement(newMovement);
+            this.move();
+        } catch (CollisionHandlingException e) {
+        	e.getMessage();
+        }
+
+    }
 	
 	/**
 	 * Changes the behavior with a new one passed as parameter.

@@ -50,17 +50,9 @@ public class Health {
         this.currentHealth += heal;
         currentHealth = (currentHealth > maxHealth ? maxHealth : currentHealth);
     }
-
     /**
-     * Special information of the {@link MainCharacter} remaining {@link Health}
-     * 
-     * @return
+     * Getter for the current {@link Health}
      */
-    public int computePercentage() {
-        final double tmp = currentHealth / (maxHealth - minHealth);
-        return (int) (tmp * 100);
-    }
-
     public int getCurrentHealth() {
         return this.currentHealth;
     }

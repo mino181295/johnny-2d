@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
-import it.unibo.oop.utilities.Settings;
 import it.unibo.oop.utilities.Vector2;
-import it.unibo.oop.utilities.Velocity;
 
 public class MainCharacter extends MovableEntity implements Shooter {
 
@@ -22,25 +20,16 @@ public class MainCharacter extends MovableEntity implements Shooter {
     
     private boolean isShooting;
 
-    public MainCharacter(final double startingX, final double startingY, final Vector2 movementVector,
-            final Velocity speedValue) {
-        super(startingX, startingY, movementVector, speedValue);
+    public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
+        super(startingX, startingY, startingMovement, MAIN_CHARACTER.getSpeed());
         this.currentHealth = new Health();
         this.currentScore = new Score(0);
         this.lastDirection = Direction.UP;
         this.currentDirection = Direction.NONE;
     }
 
-    public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
-        this(startingX, startingY, startingMovement, MAIN_CHARACTER.getSpeed());
-    }
-
     public MainCharacter(final double startingX, final double startingY) {
-        this(startingX, startingY, new Vector2(), MAIN_CHARACTER.getSpeed());
-    }
-
-    public MainCharacter() {
-        this(Settings.SCREEN_WIDTH / 2, Settings.SCREEN_HEIGHT / 2, new Vector2(), MAIN_CHARACTER.getSpeed());
+        this(startingX, startingY, new Vector2());
     }
     
     public void setInput(final Direction newDirection, final boolean isShooting){
@@ -167,7 +156,9 @@ public class MainCharacter extends MovableEntity implements Shooter {
     public boolean isDead() {
         return this.currentHealth.isDead();
     }
-
+    /**
+     * Shoots a normal bullet adding it in the {@link GameStateImpl}
+     */
     public void shoot() {
         this.getEnvironment().addShoot(new Bullet(this));
     }

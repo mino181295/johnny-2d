@@ -7,37 +7,21 @@ import java.util.stream.Collectors;
 
 import it.unibo.oop.exceptions.CollisionHandlingException;
 import it.unibo.oop.utilities.Position;
-import it.unibo.oop.utilities.Vector2;
-import it.unibo.oop.utilities.Velocity;;
-
+import it.unibo.oop.utilities.Vector2;;
+/**
+ * Basic monster that implements {@link AbstractEnemy} that follows the {@link MainCharacter} and tries to catch him.
+ */
 public class BasicMonster extends AbstractEnemy {
 
     private static final int SCORE_VALUE = 10;
     private final static int DMG = 1;
 
-    public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector,
-            final Velocity speedValue) {
-        super(startingX, startingY, movementVector, speedValue);
+    public BasicMonster(final double startingX, final double startingY, final Vector2 movementVector) {
+        super(startingX, startingY, movementVector, BASIC_ENEMY.getSpeed());
         this.attachBehavior(new BasicEnemyBehavior(this));
     }
 
-    public void update() {
-    	Vector2 newMovement;
-    	if ( this.getEnvironment().getMainChar().isPresent() ){
-    		newMovement  = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
-    	} else {
-    		newMovement = new Vector2();   		
-    	}
-        
-        try {
-            this.checkCollision(this.getPosition().sumVector(newMovement));
-            this.setMovement(newMovement);
-            this.move();
-        } catch (CollisionHandlingException e) {
-        	e.getMessage();
-        }
-
-    }
+    
 
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(), newPosition.getIntY());
@@ -60,7 +44,6 @@ public class BasicMonster extends AbstractEnemy {
         }
 
     }
-
     protected int getEntityHeight() {
         return BASIC_ENEMY.getHeight();
     }

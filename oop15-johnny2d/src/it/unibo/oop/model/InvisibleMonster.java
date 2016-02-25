@@ -28,24 +28,6 @@ public class InvisibleMonster extends AbstractEnemy {
         this.actionRadius = new Rectangle((int)startingX-actionRadiusLenght/2,(int)startingY - actionRadiusLenght/2, actionRadiusLenght,actionRadiusLenght);
     }
 
-    public void update() {
-    	Vector2 newMovement;
-    	if ( this.getEnvironment().getMainChar().isPresent() ){
-    		newMovement  = this.getBehavior().get().getNextMove(this.getEnvironment().getMainChar().get().getPosition());
-    	} else {
-    		newMovement = new Vector2();   		
-    	}
-        
-        try {
-            this.checkCollision(this.getPosition().sumVector(newMovement));
-            this.setMovement(newMovement);
-            this.move();
-        } catch (CollisionHandlingException e) {
-        	e.getMessage();
-        }
-
-    }
-
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(), newPosition.getIntY());
         // Checks if the entity in the next move is inside the rectanuglar Arena
@@ -59,7 +41,6 @@ public class InvisibleMonster extends AbstractEnemy {
             throw new CollisionHandlingException("Next movement collides a wall");
         }
     }
-
     public boolean isVisible() {
 		return this.isVisible;
 	}
