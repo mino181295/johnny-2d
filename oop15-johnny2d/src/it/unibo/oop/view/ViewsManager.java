@@ -1,4 +1,6 @@
-package it.unibo.oop.controller;
+package it.unibo.oop.view;
+
+import it.unibo.oop.controller.Manager;
 
 /**
  * 

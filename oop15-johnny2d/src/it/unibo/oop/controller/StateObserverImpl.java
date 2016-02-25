@@ -2,6 +2,7 @@ package it.unibo.oop.controller;
 
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.view.LevelInterface;
+import it.unibo.oop.view.ViewsManager;
 
 /**
  * Class implementing {@link StateObserver} interface.

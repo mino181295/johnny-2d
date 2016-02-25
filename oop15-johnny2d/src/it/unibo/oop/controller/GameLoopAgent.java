@@ -4,6 +4,8 @@ import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
+import it.unibo.oop.view.ViewsManager;
+import it.unibo.oop.view.ViewsManagerImpl;
 
 /**
  * Agent used by {@link ControllerImpl} to perform the game loop.

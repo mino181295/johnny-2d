@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.controller.StateObserverImpl;
-import it.unibo.oop.controller.ViewsManagerImpl;
 import it.unibo.oop.utilities.Settings;
 
 /**

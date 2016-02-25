@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.ControllerImpl;
 import it.unibo.oop.controller.StateObserver;
-import it.unibo.oop.controller.ViewsManagerImpl;
 
 /**
  * {@link javax.swing.JPanel} for options Menu-view.

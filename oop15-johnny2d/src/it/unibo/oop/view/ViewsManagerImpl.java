@@ -1,4 +1,4 @@
-package it.unibo.oop.controller;
+package it.unibo.oop.view;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,12 @@ import java.util.Optional;
 
 import javax.swing.SwingUtilities;
 
-import it.unibo.oop.view.Level;
-import it.unibo.oop.view.LevelInterface;
-import it.unibo.oop.view.MainFrame;
-import it.unibo.oop.view.MainFrameImpl;
+import it.unibo.oop.controller.ActionKey;
+import it.unibo.oop.controller.ActionKeysManager;
+import it.unibo.oop.controller.AppState;
+import it.unibo.oop.controller.KeyboardObserverImpl;
+import it.unibo.oop.controller.MovementKey;
+import it.unibo.oop.controller.MovementKeysManager;
 
 /**
  * class which manages all the game views.

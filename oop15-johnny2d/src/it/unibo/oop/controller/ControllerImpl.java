@@ -14,6 +14,7 @@ import java.util.Random;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.model.Score;
 import it.unibo.oop.utilities.Settings;
+import it.unibo.oop.view.ViewsManagerImpl;
 
 /**
  * Class implementing the Controller of the MVC model.
