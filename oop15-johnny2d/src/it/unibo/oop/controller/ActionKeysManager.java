@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * Class for a keyboard manager which manages ActionKeys.
  */
-public class ActionKeysManager extends AbstractKeysManager<ActionKey, ActionKey> {
+public final class ActionKeysManager extends AbstractKeysManager<ActionKey, ActionKey> {
 
     private static Optional<KeysManager<ActionKey, ActionKey>> singleton = Optional.empty();
     private static final int LIMIT = 0;

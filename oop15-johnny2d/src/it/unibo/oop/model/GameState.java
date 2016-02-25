@@ -3,11 +3,24 @@ package it.unibo.oop.model;
 import java.util.List;
 import java.util.Optional;
 
+import it.unibo.oop.utilities.Direction;
+
 /**
  * Interface for game state.
  */
 public interface GameState {
-	/**
+    
+    /**
+     * Updates main character and enemies position.
+     * 
+     * @param newDirection
+     *                  of the main character.
+     * @param isShooting
+     *                  if main character is shooting.
+     */
+    public void updatePositions(Direction newDirection, boolean isShooting);
+	
+    /**
 	 * Gets the entities that can't be moved
 	 */
 	public List<AbstractEntity> getStableList();

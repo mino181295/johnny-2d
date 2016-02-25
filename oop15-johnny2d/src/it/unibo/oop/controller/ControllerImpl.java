@@ -21,7 +21,7 @@ public final class ControllerImpl implements Controller {
 
     private static Optional<ControllerImpl> singleton = Optional.empty();
     private Optional<AgentInterface> gLAgent = Optional.empty();
-    private volatile boolean isRecord;
+    private volatile boolean record;
     private volatile boolean isReset;
 
     private ControllerImpl() {
@@ -50,7 +50,7 @@ public final class ControllerImpl implements Controller {
         MovementKeysManager.getInstance().reset();
         ActionKeysManager.getInstance().reset();
         this.isReset = false;
-        this.isRecord = false;
+        this.record = false;
         ViewsManagerImpl.getInstance().hideView();
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
@@ -98,7 +98,7 @@ public final class ControllerImpl implements Controller {
     
     @Override
     public synchronized void putStatToFile(final Score topScore) {
-        this.isRecord = true;
+        this.record = true;
         try (ObjectOutputStream outStream = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
             outStream.writeObject(topScore);
@@ -109,7 +109,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public boolean isRecord() {
-        return this.isRecord;
+        return this.record;
     }
     
     @Override

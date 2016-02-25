@@ -1,5 +1,6 @@
 package it.unibo.oop.controller;
 
+import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.LevelInterface;
@@ -12,7 +13,7 @@ public class GameLoopAgent implements AgentInterface {
     private static final double FPS = 30;
     private static final int TO_SECONDS = 1000;
     private static final int SLEEPING_TIME = (int) (1 / FPS * TO_SECONDS);
-    private final KeysManager<MovementKey, Direction> keysMan = MovementKeysManager.getInstance();
+    private final GameState gameState = GameStateImpl.getInstance();
     private final ViewsManager<LevelInterface, AppState> viewsMan = ViewsManagerImpl.getInstance();
     private final StateObserver stateObs;
     private volatile Direction mainCharDir;
@@ -58,10 +59,10 @@ public class GameLoopAgent implements AgentInterface {
             this.dbgKeysMan(); /* per debugging */
             
             /* AGGIORNAMENTO GAMESTATE */
-            GameStateImpl.getInstance().updatePositions(this.mainCharDir, this.isMainCharShooting);
+            this.gameState.updatePositions(this.mainCharDir, this.isMainCharShooting);
             
             /* CHECK GIOCO FINITO */
-            this.gameOver = GameStateImpl.getInstance().isGameEnded();
+            this.gameOver = this.gameState.isGameEnded();
 
             /* AGGIORNAMENTO E PRINTING DEL FRAME */
             this.viewsMan.getView().updateLevel();

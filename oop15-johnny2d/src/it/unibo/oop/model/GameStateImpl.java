@@ -58,9 +58,9 @@ public final class GameStateImpl implements GameState {
         this.movableList.clear();
         this.stableList.clear();
         this.stableList.addAll(this.gameArena.getBoundsList());
-        this.johnnyCharacter = Optional.ofNullable( Factory.MainCharacterFactory.generateCentredCharacter(this.getArena().getPlayableRectangle()) );
+        this.johnnyCharacter = Optional.ofNullable(Factory.MainCharacterFactory.generateCentredCharacter(this.getArena().getPlayableRectangle()));
         this.spawnBasicMonsters(BASIC_DEFAULT);
-        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
+        // this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
 
 	private void spawnBasicMonsters(final int number){

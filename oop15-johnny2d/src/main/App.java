@@ -5,8 +5,10 @@ import it.unibo.oop.controller.ControllerImpl;
 /**
  * Entry for the application.
  */
-public class App {
+public final class App {
 
+    private App() {}
+    
     /**
      * @param args
      *            ignored.

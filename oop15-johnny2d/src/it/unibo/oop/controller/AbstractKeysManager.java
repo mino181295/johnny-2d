@@ -22,7 +22,7 @@ public abstract class AbstractKeysManager<I, O> implements KeysManager<I, O> {
     }
 
     @Override
-    public synchronized void reset() {
+    public final synchronized void reset() {
         this.keysPressed = new ArrayList<>();
         this.keysTyped = new ArrayList<>();
     }
