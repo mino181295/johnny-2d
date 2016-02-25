@@ -1,4 +1,4 @@
-package it.unibo.oop.controller;
+package it.unibo.oop.view.keyboard;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;

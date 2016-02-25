@@ -1,4 +1,4 @@
-package it.unibo.oop.controller;
+package it.unibo.oop.view.keyboard;
 
 /**
  *  Interface for objects used in response to a keyboard event.

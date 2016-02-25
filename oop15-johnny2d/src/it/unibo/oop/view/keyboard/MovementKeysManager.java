@@ -1,9 +1,7 @@
-package it.unibo.oop.controller;
+package it.unibo.oop.view.keyboard;
 
-import static it.unibo.oop.controller.MovementKey.NONE;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import it.unibo.oop.utilities.Direction;
 
 /**
@@ -11,18 +9,7 @@ import it.unibo.oop.utilities.Direction;
  */
 public final class MovementKeysManager extends AbstractKeysManager<MovementKey, Direction> {
 
-    private static Optional<KeysManager<MovementKey, Direction>> singleton = Optional.empty();
     private static final int LIMIT = 1;
-    
-    /**
-     * @return the singleton instance of the class.
-     */
-    public static synchronized KeysManager<MovementKey, Direction> getInstance() {
-        if (!singleton.isPresent()) {
-            singleton = Optional.of(new MovementKeysManager());
-        }
-        return singleton.get();
-    }
 
     /*
      * FUNZIONAMENTO: Scorro la lista keysPressed e cerco i primi due tasti di
@@ -38,7 +25,7 @@ public final class MovementKeysManager extends AbstractKeysManager<MovementKey, 
     @Override
     public synchronized Direction processKeys() {
         final List<MovementKey> tmpList = new ArrayList<>();
-        MovementKey out = NONE;
+        MovementKey out = MovementKey.NONE;
 
         this.processPressed(LIMIT, tmpList);
         this.processTyped(LIMIT, tmpList);

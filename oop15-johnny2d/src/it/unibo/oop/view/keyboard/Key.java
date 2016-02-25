@@ -1,4 +1,4 @@
-package it.unibo.oop.controller;
+package it.unibo.oop.view.keyboard;
 
 /**
  * Interface to wrap a generic key from the keyboard.
