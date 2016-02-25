@@ -41,6 +41,7 @@ public class LevelPanel extends BackgroundPanel {
     private Map<Direction, BufferedImage> mainCharacterSprites;
     private Map<Direction, BufferedImage> enemySprites;
     private Map<Direction, BufferedImage> invisibleEnemySprites;
+    private Map<Integer, String> arenasMap;
     private BufferedImage arena;
     private BufferedImage wall;
     private BufferedImage scoreBonus;
@@ -56,6 +57,7 @@ public class LevelPanel extends BackgroundPanel {
     public LevelPanel() {
         super("/level.jpg");
         this.gs = GameStateImpl.getInstance();
+        this.arenasMap = new HashMap<>();
         this.loadArena();
         this.loadSprites();
         this.stats = MyLabel.createLabel(null, new Font("Verdana", 1, 40), Color.RED);
@@ -64,22 +66,17 @@ public class LevelPanel extends BackgroundPanel {
     }
     
     private void loadArena() {
-        final Map<Integer, String> arenasMap = new HashMap<>();
-        arenasMap.put(0, "/grass_template_straightpath.jpg");
-        arenasMap.put(1, "/grass_template2.jpg");
-        arenasMap.put(2, "/light_sand_template.jpg");
-        arenasMap.put(3, "/light_sand_template_straightpath.jpg");
-        arenasMap.put(4, "/sand_template.jpg");
-        arenasMap.put(5, "/sand_template_straightpath.jpg");
-        arenasMap.put(6, "/snow_template.jpg");
-        arenasMap.put(7, "/snow_template_decorated.jpg");
-        arenasMap.put(8, "/snow_template_nodeco.jpg");
-        arenasMap.put(9, "/snow_template1.jpg");
-        try {
-            this.arena = ImageLoader.load("/field" + arenasMap.get(new Random().nextInt(LEVELS)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.arenasMap.put(0, "/grass_template_straightpath.jpg");
+        this.arenasMap.put(1, "/grass_template2.jpg");
+        this.arenasMap.put(2, "/light_sand_template.jpg");
+        this.arenasMap.put(3, "/light_sand_template_straightpath.jpg");
+        this.arenasMap.put(4, "/sand_template.jpg");
+        this.arenasMap.put(5, "/sand_template_straightpath.jpg");
+        this.arenasMap.put(6, "/snow_template.jpg");
+        this.arenasMap.put(7, "/snow_template_decorated.jpg");
+        this.arenasMap.put(8, "/snow_template_nodeco.jpg");
+        this.arenasMap.put(9, "/snow_template1.jpg");
+        this.setArena(gs.getLevelNumber());
     }
     
     private void loadSprites() {
@@ -99,6 +96,14 @@ public class LevelPanel extends BackgroundPanel {
             e.printStackTrace();
         }
     }
+    
+    public void setArena(final int levelNumber) {
+        try {
+            this.arena = ImageLoader.load("/field" + this.arenasMap.get(levelNumber));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void paintComponent(final Graphics g) {
@@ -106,17 +111,25 @@ public class LevelPanel extends BackgroundPanel {
         g.drawImage(this.arena, this.gs.getArena().getPlayableRectangle().x,
                 this.gs.getArena().getPlayableRectangle().y, this.gs.getArena().getPlayableRectangle().width,
                 this.gs.getArena().getPlayableRectangle().height, this);
-        this.drawMainCharacter(g);
-        this.drawMovables(g);
         this.drawStables(g);
+        this.drawMovables(g);
+        this.drawMainCharacter(g);
         this.drawStats(g);
     }
-
-    private void drawMainCharacter(final Graphics g) {
-        if (!this.gs.getMainChar().get().isDead()) {
-            g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
-                    this.gs.getMainChar().get().getTopLeftPos().getIntX(),
-                    this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
+    
+    private void drawStables(final Graphics g) {
+        if (!this.gs.getStableList().isEmpty()) {
+            this.gs.getStableList().forEach(e -> {
+                if (e instanceof Wall) {
+                    g.drawImage(this.wall, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+                }
+                if (e instanceof ScoreBonus) {
+                    g.drawImage(this.scoreBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+                }
+                if (e instanceof HealthBonus) {
+                    g.drawImage(this.healthBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
+                }
+            });
         }
     }
 
@@ -137,20 +150,12 @@ public class LevelPanel extends BackgroundPanel {
             });
         }
     }
-
-    private void drawStables(final Graphics g) {
-        if (!this.gs.getStableList().isEmpty()) {
-            this.gs.getStableList().forEach(e -> {
-                if (e instanceof Wall) {
-                    g.drawImage(this.wall, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
-                }
-                if (e instanceof ScoreBonus) {
-                    g.drawImage(this.scoreBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
-                }
-                if (e instanceof HealthBonus) {
-                    g.drawImage(this.healthBonus, e.getTopLeftPos().getIntX(), e.getTopLeftPos().getIntY(), this);
-                }
-            });
+    
+    private void drawMainCharacter(final Graphics g) {
+        if (!this.gs.getMainChar().get().isDead()) {
+            g.drawImage(this.mainCharacterSprites.get(this.gs.getMainChar().get().getFaceDirection()),
+                    this.gs.getMainChar().get().getTopLeftPos().getIntX(),
+                    this.gs.getMainChar().get().getTopLeftPos().getIntY(), this);
         }
     }
 
