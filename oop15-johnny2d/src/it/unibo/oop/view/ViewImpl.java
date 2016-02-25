@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.swing.SwingUtilities;
 
 import it.unibo.oop.controller.AppState;
+import it.unibo.oop.utilities.Action;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.keyboard.ActionKey;
 import it.unibo.oop.view.keyboard.ActionKeysManager;
@@ -25,11 +26,11 @@ public final class ViewImpl implements View {
     private final LevelInterface level;
     private final MainFrame mainFrame; // class which contains all the menu-views.
     private final KeysManager<MovementKey, Direction> movKeysMan;
-    private final KeysManager<ActionKey, ActionKey> actKeysMan;
+    private final KeysManager<ActionKey, Action> actKeysMan;
     private List<AppState> history; // stack open-views.
 
     private ViewImpl() {
-        this.reset();
+        this.history = new ArrayList<>();
         this.mainFrame = new MainFrameImpl();
         this.movKeysMan = new MovementKeysManager();
         this.actKeysMan = new ActionKeysManager();
@@ -49,13 +50,13 @@ public final class ViewImpl implements View {
     }
 
     @Override
-    public KeysManager<?, Direction> getMovementKeysManager() {
-        return this.movKeysMan;
+    public Direction getMovement() {
+        return this.movKeysMan.processKeys();
     }
 
     @Override
-    public KeysManager<?, ActionKey> getACtionKeysManager() {
-        return this.actKeysMan;
+    public Action getAction() {
+        return this.actKeysMan.processKeys();
     }
     
     @Override
@@ -94,7 +95,9 @@ public final class ViewImpl implements View {
     }
     
     @Override
-    public synchronized void reset() { /* per evitare di sovraffollare inutilmente la history */ 
-        this.history = new ArrayList<>();
+    public synchronized void reset() {  
+        this.history = new ArrayList<>(); /* per evitare di sovraffollare inutilmente la history */
+        this.movKeysMan.reset();
+        this.actKeysMan.reset();
     }
 }

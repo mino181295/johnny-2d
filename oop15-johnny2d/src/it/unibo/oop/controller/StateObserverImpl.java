@@ -35,9 +35,6 @@ public class StateObserverImpl implements StateObserver {
         case PLAY:
             ControllerImpl.getInstance().play();
             break;
-        case PAUSE:
-            this.view.reset();
-            break;
         case BACK:
             this.view.showLast();
             break;

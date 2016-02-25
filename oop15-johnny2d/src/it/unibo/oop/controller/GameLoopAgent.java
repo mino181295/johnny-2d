@@ -2,10 +2,10 @@ package it.unibo.oop.controller;
 
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
+import it.unibo.oop.utilities.Action;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.view.View;
 import it.unibo.oop.view.ViewImpl;
-import it.unibo.oop.view.keyboard.ActionKey;
 
 /**
  * Agent used by {@link ControllerImpl} to perform the game loop.
@@ -56,7 +56,7 @@ public class GameLoopAgent implements AgentInterface {
             }
 
             /* ACQUISIZIONE TASTI PREMUTI */
-            this.processKeys();
+            this.processEvents();
             this.dbgKeysMan(); /* per debugging */
             
             /* AGGIORNAMENTO GAMESTATE */
@@ -77,11 +77,11 @@ public class GameLoopAgent implements AgentInterface {
         }
     }
 
-    private void processKeys() {
-        final ActionKey action = this.view.getACtionKeysManager().processKeys(); 
-        this.pause = action == ActionKey.PAUSE;
-        this.isMainCharShooting = action == ActionKey.SHOOT;
-        this.mainCharDir = this.view.getMovementKeysManager().processKeys();
+    private void processEvents() {
+        final Action action = this.view.getAction(); 
+        this.pause = action == Action.PAUSE;
+        this.isMainCharShooting = action == Action.SHOOT;
+        this.mainCharDir = this.view.getMovement();
     }
 
     /* per debugging */

@@ -56,8 +56,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void play() { // pause -> play
-        view.getMovementKeysManager().reset();
-        view.getACtionKeysManager().reset();
+        view.reset();
         this.isReset = false;
         this.record = false;
         this.view.hideView();
