@@ -9,7 +9,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.swing.JLabel;
 
@@ -31,6 +33,7 @@ import it.unibo.oop.utilities.Direction;
 public class LevelPanel extends BackgroundPanel {
 
     private static final long serialVersionUID = 8057405927611227670L;
+    private static final int LEVELS = 10;
     private static final int SMALL_SPACING = 10;
     private static final int MEDIUM_SPACING = 20;
     private static final int LONG_SPACING = 30;
@@ -53,10 +56,30 @@ public class LevelPanel extends BackgroundPanel {
     public LevelPanel() {
         super("/level.jpg");
         this.gs = GameStateImpl.getInstance();
+        this.loadArena();
         this.loadSprites();
         this.stats = MyLabel.createLabel(null, new Font("Verdana", 1, 40), Color.RED);
         this.setLayout(new FlowLayout(FlowLayout.RIGHT));
         this.add(this.stats);
+    }
+    
+    private void loadArena() {
+        final Map<Integer, String> arenasMap = new HashMap<>();
+        arenasMap.put(0, "/grass_template_straightpath.jpg");
+        arenasMap.put(1, "/grass_template2.jpg");
+        arenasMap.put(2, "/light_sand_template.jpg");
+        arenasMap.put(3, "/light_sand_template_straightpath.jpg");
+        arenasMap.put(4, "/sand_template.jpg");
+        arenasMap.put(5, "/sand_template_straightpath.jpg");
+        arenasMap.put(6, "/snow_template.jpg");
+        arenasMap.put(7, "/snow_template_decorated.jpg");
+        arenasMap.put(8, "/snow_template_nodeco.jpg");
+        arenasMap.put(9, "/snow_template1.jpg");
+        try {
+            this.arena = ImageLoader.load("/field" + arenasMap.get(new Random().nextInt(LEVELS)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     private void loadSprites() {
@@ -67,7 +90,6 @@ public class LevelPanel extends BackgroundPanel {
             this.enemySprites = enemySheet.split(BASIC_ENEMY.getWidth(), BASIC_ENEMY.getHeight());
             final SpriteSheet invisibleEnemySheet = new SpriteSheet("/invisibleEnemy.png");
             this.invisibleEnemySprites = invisibleEnemySheet.split(INVISIBLE_ENEMY.getWidth(), INVISIBLE_ENEMY.getHeight());
-            this.arena = ImageLoader.load("/field/grass_template_straightpath.jpg");
             this.wall = ImageLoader.load("/wall.png");
             this.scoreBonus = ImageLoader.load("/coin.png");
             this.healthBonus = ImageLoader.load("/heart.png");
