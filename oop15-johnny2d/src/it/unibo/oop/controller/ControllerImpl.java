@@ -15,7 +15,6 @@ import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.model.Score;
 import it.unibo.oop.utilities.Settings;
-import it.unibo.oop.view.LevelInterface;
 import it.unibo.oop.view.View;
 import it.unibo.oop.view.ViewImpl;
 
