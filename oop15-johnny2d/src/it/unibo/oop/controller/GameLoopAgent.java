@@ -1,23 +1,28 @@
 package it.unibo.oop.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.utilities.Action;
 import it.unibo.oop.utilities.Direction;
+import it.unibo.oop.view.ESource;
 import it.unibo.oop.view.View;
 import it.unibo.oop.view.ViewImpl;
 
 /**
  * Agent used by {@link ControllerImpl} to perform the game loop.
  */
-public class GameLoopAgent implements AgentInterface {
+public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
 
     private static final double FPS = 30;
     private static final int TO_SECONDS = 1000;
     private static final int SLEEPING_TIME = (int) (1 / FPS * TO_SECONDS);
     private final GameState gameState = GameStateImpl.getInstance();
     private final View view = ViewImpl.getInstance();
-    private final StateObserver stateObs;
+    private final List<StateObserver> stateObs;
     private volatile Direction mainCharDir;
     private volatile boolean isMainCharShooting;
     private volatile boolean pause;
@@ -27,7 +32,7 @@ public class GameLoopAgent implements AgentInterface {
      * Class's constructor.
      */
     public GameLoopAgent() {
-        this.stateObs = new StateObserverImpl(this.view);
+        this.stateObs = Arrays.asList(new StateObserverImpl(this.view));
     }
 
     @Override
@@ -44,11 +49,13 @@ public class GameLoopAgent implements AgentInterface {
         while (true) {
             while (this.pause || this.gameOver) {
                 try {
+                    AppState state;
                     if (this.pause) {
-                        this.stateObs.stateAction(AppState.PAUSE);
-                    } else {
-                        this.stateObs.stateAction(AppState.GAME_OVER);
+                        state = AppState.PAUSE;
+                    } else { 
+                        state = AppState.GAME_OVER;
                     }
+                    this.doAction(e -> e.stateAction(state));
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -90,5 +97,15 @@ public class GameLoopAgent implements AgentInterface {
             System.out.println("Dir : " + this.mainCharDir);
         }
         System.out.println(this.isMainCharShooting ? "SHOOT!" : "");
+    }
+
+    @Override
+    public void addObserver(StateObserver obs) {
+        this.stateObs.add(obs);        
+    }
+
+    @Override
+    public void doAction(Consumer<StateObserver> action) {
+        this.stateObs.forEach(action);
     }
 }

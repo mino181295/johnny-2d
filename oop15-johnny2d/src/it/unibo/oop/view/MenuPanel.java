@@ -112,7 +112,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         Arrays.asList(btns).forEach(btn -> {
             final JButton jBtn = new JButton(btn.getName());
             jBtn.addActionListener(
-                    (e) -> this.doObsAction(obs -> new Thread(() -> obs.stateAction(btn.getState())).start()));
+                    (e) -> this.doAction(obs -> new Thread(() -> obs.stateAction(btn.getState())).start()));
             this.addComponent(jBtn);
         });
     }
@@ -129,7 +129,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     }
 
     @Override
-    public void doObsAction(final Consumer<StateObserver> action) {
+    public void doAction(final Consumer<StateObserver> action) {
         this.obsList.forEach(action);
     }
 
