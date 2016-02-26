@@ -1,11 +1,9 @@
 package it.unibo.oop.view;
 
-import it.unibo.oop.view.keyboard.KeyboardObserver;
-
 /**
  * Interface for {@link Level}.
  */
-public interface LevelInterface extends Showable, ESource<KeyboardObserver> {
+public interface LevelInterface extends Showable {
 
     /**
      * Repaints the {@link LevelPanel}.

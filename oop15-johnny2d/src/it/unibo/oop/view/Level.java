@@ -44,11 +44,6 @@ public class Level implements LevelInterface {
     }
 
     @Override
-    public void addObserver(final KeyboardObserver obs) {
-        this.keyListener.addObserver(obs);
-    }
-
-    @Override
     public void showIt() {
         this.frame.setVisible(true);
     }

@@ -1,6 +1,5 @@
 package it.unibo.oop.view;
 
-import java.util.function.Consumer;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import it.unibo.oop.controller.StateObserver;
@@ -35,10 +34,4 @@ public interface MenuInterface extends ESource<StateObserver> {
      *            path of image to add as icon.
      */
     void setIcon(final String path);
-
-    /**
-     * @param action
-     *            which will be performed by each {@link StateObserver}
-     */
-    void doObsAction(final Consumer<StateObserver> action);
 }
