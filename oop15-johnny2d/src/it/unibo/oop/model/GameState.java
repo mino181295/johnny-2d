@@ -50,7 +50,7 @@ public interface GameState {
      * @return true if game is finished.
      */
     boolean isGameEnded();
-
+    
     /**
      * Determines if the player has made a new record.
      */

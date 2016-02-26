@@ -20,27 +20,7 @@ public interface Controller {
     void play();
 
     /**
-     * Reset player's record-score to minimum score.
+     * Puts best {@link Score} to file.
      */
-    void resetStatFile();
-    
-    /**
-     * @return best {@link Score}.
-     */
-    Score getStatFromFile();
-
-    /**
-     * to put best {@link Score} to file.
-     */
-    void putStatToFile(Score topScores);
-
-    /**
-     * @return true if player has made a new record.
-     */
-    boolean isRecord();
-    
-    /**
-     * @return true if player's record is reset.
-     */
-    boolean isScoreReset();
+    void putStatToFile();
 }

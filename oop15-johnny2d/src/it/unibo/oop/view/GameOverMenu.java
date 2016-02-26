@@ -2,9 +2,10 @@ package it.unibo.oop.view;
 
 import javax.swing.JLabel;
 import it.unibo.oop.controller.AppState;
-import it.unibo.oop.controller.ControllerImpl;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.model.GameStateImpl;
+import it.unibo.oop.model.Record;
+import it.unibo.oop.model.RecordImpl;
 
 /**
  * {@link javax.swing.JPanel} for pause GameOver-view.
@@ -24,13 +25,14 @@ public class GameOverMenu extends MenuPanel {
         this.setIcon("/gameover.png");
 
         /* SCORE LABEL */
-        String mex = "Record " + ControllerImpl.getInstance().getStatFromFile();
-        if (ControllerImpl.getInstance().isRecord()) {
-            mex = ControllerImpl.getInstance().isScoreReset() ? "Record resetted" : "Congratulations! New record!";
+        final Record record = RecordImpl.getInstance();
+        String mex = "Record " + record.getValue();
+        if (record.isRecord()) {
+            mex = record.isRecord() ? "Congratulations! New record!" : "";
         }
         final JLabel label = new JLabel(GameStateImpl.getInstance().getMainChar().get().getScore().toString());
-        final JLabel record = new JLabel(mex);
-        this.addComponents(label, record);
+        final JLabel recordLab = new JLabel(mex);
+        this.addComponents(label, recordLab);
         
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START), 

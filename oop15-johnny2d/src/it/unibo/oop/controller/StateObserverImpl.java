@@ -42,6 +42,7 @@ public class StateObserverImpl implements StateObserver {
             GameStateImpl.getInstance().checkTopScore();
             break;    
         case EXIT:
+            ControllerImpl.getInstance().putStatToFile();
             System.exit(0);
             break;
         default:

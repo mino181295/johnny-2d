@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
-
-import it.unibo.oop.controller.ControllerImpl;
 import it.unibo.oop.utilities.CharactersSettings;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
@@ -39,6 +37,7 @@ public final class GameStateImpl implements GameState {
 
     private long updatesNumber;
     private long lastShotFrame;
+    
     /**
      * Constructor that initializes the entire game logic
      */
@@ -66,7 +65,7 @@ public final class GameStateImpl implements GameState {
         this.johnnyCharacter = Optional.ofNullable(
                 Factory.MainCharacterFactory.generateCentredCharacter(this.getArena().getPlayableRectangle()));
         this.spawnBasicMonsters(BASIC_DEFAULT);
-        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
+//        this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
     /**
      * A method that creates a defined number of {@link BasicMonster} in N free random position
@@ -215,29 +214,33 @@ public final class GameStateImpl implements GameState {
     }
 
     /**
-     * Gets the {@link Arena} of the Game
-     */
-    public Arena getArena() {
-        return this.gameArena;
-    }
-
-    public void checkTopScore() {
-        final Score score = this.johnnyCharacter.get().getScore();
-        if (score.compareTo(ControllerImpl.getInstance().getStatFromFile()) >= 0) {
-            ControllerImpl.getInstance().putStatToFile(score);
-        }
-    }
-
-    /**
      * Returns the {@link Optional} of the main character
      */
     public Optional<MainCharacter> getMainChar() {
         return this.johnnyCharacter;
     }
-
+    
+    /**
+     * Gets the {@link Arena} of the Game
+     */
+    public Arena getArena() {
+        return this.gameArena;
+    }
+    
+    @Override
     public boolean isGameEnded() {
         final boolean noneEnemy = this.movableList.stream().filter(e -> e instanceof Enemy).collect(Collectors.toList())
                 .isEmpty();
         return noneEnemy || this.johnnyCharacter.isPresent() && this.johnnyCharacter.get().isDead();
+    }
+    
+    @Override
+    public void checkTopScore() {
+        final Score score = this.johnnyCharacter.get().getScore();
+        if (score.compareTo(RecordImpl.getInstance().getValue()) >= 0) {
+            RecordImpl.getInstance().setRecord(score);
+        } else {
+            RecordImpl.getInstance().reset(RecordImpl.getInstance().getValue());
+        }
     }
 }

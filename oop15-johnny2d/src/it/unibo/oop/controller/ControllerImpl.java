@@ -13,6 +13,8 @@ import java.util.Random;
 
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
+import it.unibo.oop.model.Record;
+import it.unibo.oop.model.RecordImpl;
 import it.unibo.oop.model.Score;
 import it.unibo.oop.utilities.Settings;
 import it.unibo.oop.view.View;
@@ -26,14 +28,13 @@ public final class ControllerImpl implements Controller {
     private static final int LEVELS = 10;
     private static Optional<ControllerImpl> singleton = Optional.empty();
     private Optional<AgentInterface> gLAgent = Optional.empty();
-    private volatile boolean record;
-    private volatile boolean isReset;
     private final View view = ViewImpl.getInstance();
     private final GameState gameState = GameStateImpl.getInstance();
+    private final Record record = RecordImpl.getInstance();
     
     private ControllerImpl() {
-        this.createStatFile();
-        this.view.showView(AppState.LAUNCHING);
+        this.record.setValue(this.getStatFromFile());
+        this.view.showView(AppState.LAUNCHING);       
     }
 
     /**
@@ -57,8 +58,6 @@ public final class ControllerImpl implements Controller {
     @Override
     public void play() { // pause -> play
         view.reset();
-        this.isReset = false;
-        this.record = false;
         this.view.hideView();
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
@@ -68,7 +67,7 @@ public final class ControllerImpl implements Controller {
         }
     }
 
-    private void createStatFile() {
+    private synchronized void createStatFile() {
         final File statDir = new File(Settings.HIGHSCORE_FOLDER);
         final File statFile = new File(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE);
         try {
@@ -77,51 +76,28 @@ public final class ControllerImpl implements Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-    }
-    
-    @Override
-    public synchronized void resetStatFile() {
-        this.isReset = true;
-        try (ObjectOutputStream outStream = new ObjectOutputStream(
-                new BufferedOutputStream(new FileOutputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
-            outStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    @Override
-    public synchronized Score getStatFromFile() {
+    private synchronized Score getStatFromFile() {
         Score topScore = new Score();
         try (ObjectInputStream inStream = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
             topScore = (Score) inStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("File was empty or doesn't exist.");
+            System.out.println("Error in file reading.");
             this.createStatFile();
         }
         return topScore;
     }
     
     @Override
-    public synchronized void putStatToFile(final Score topScore) {
-        this.record = true;
+    public synchronized void putStatToFile() {
         try (ObjectOutputStream outStream = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
-            outStream.writeObject(topScore);
+            this.createStatFile();
+            outStream.writeObject(this.record.getValue());
         } catch (IOException e) {
-            System.out.println("File doesn't exist.");
+            System.out.println("Error in file writing.");
         }
-    }
-
-    @Override
-    public boolean isRecord() {
-        return this.record;
-    }
-    
-    @Override
-    public boolean isScoreReset() {
-        return this.isReset;
     }
 }

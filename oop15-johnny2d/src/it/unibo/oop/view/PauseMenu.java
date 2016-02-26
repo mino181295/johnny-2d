@@ -3,8 +3,8 @@ package it.unibo.oop.view;
 import javax.swing.JLabel;
 
 import it.unibo.oop.controller.AppState;
-import it.unibo.oop.controller.ControllerImpl;
 import it.unibo.oop.controller.StateObserver;
+import it.unibo.oop.model.RecordImpl;
 
 /**
  * {@link javax.swing.JPanel} for pause Menu-view.
@@ -24,7 +24,7 @@ public class PauseMenu extends MenuPanel {
         this.setIcon("/pause.png");
         
         /* SCORE LABEL */
-        final JLabel record = new JLabel("Current Record-" + ControllerImpl.getInstance().getStatFromFile());
+        final JLabel record = new JLabel("Current Record-" + RecordImpl.getInstance().getValue());
         this.addComponents(record);
 
         /* BUTTONS CREATION */
