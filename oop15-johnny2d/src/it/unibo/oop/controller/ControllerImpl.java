@@ -31,10 +31,10 @@ public final class ControllerImpl implements Controller {
     private final View view = ViewImpl.getInstance();
     private final GameState gameState = GameStateImpl.getInstance();
     private final Record record = RecordImpl.getInstance();
-    
+
     private ControllerImpl() {
         this.record.setValue(this.getStatFromFile());
-        this.view.showView(AppState.LAUNCHING);       
+        this.view.showView(AppState.LAUNCHING);
     }
 
     /**
@@ -84,20 +84,18 @@ public final class ControllerImpl implements Controller {
                 new BufferedInputStream(new FileInputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
             topScore = (Score) inStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error in file reading.");
+            System.out.println("Error in file reading, is it empty?.");
             this.createStatFile();
         }
         return topScore;
     }
-    
+
     @Override
-    public synchronized void putStatToFile() {
+    public synchronized void putStatToFile() throws IOException {
         try (ObjectOutputStream outStream = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE)))) {
             this.createStatFile();
             outStream.writeObject(this.record.getValue());
-        } catch (IOException e) {
-            System.out.println("Error in file writing.");
         }
     }
 }

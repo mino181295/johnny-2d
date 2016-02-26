@@ -1,5 +1,7 @@
 package it.unibo.oop.controller;
 
+import java.io.IOException;
+
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.view.View;
 
@@ -42,7 +44,11 @@ public class StateObserverImpl implements StateObserver {
             GameStateImpl.getInstance().checkTopScore();
             break;    
         case EXIT:
-            ControllerImpl.getInstance().putStatToFile();
+            try {
+                ControllerImpl.getInstance().putStatToFile();
+            } catch (IOException e) {
+                System.out.println("Error in file writing.");
+            }
             System.exit(0);
             break;
         default:

@@ -1,5 +1,7 @@
 package it.unibo.oop.controller;
 
+import java.io.IOException;
+
 import it.unibo.oop.model.Score;
 
 /**
@@ -21,6 +23,9 @@ public interface Controller {
 
     /**
      * Puts best {@link Score} to file.
+     * 
+     * @throws IOException
+     *             if some errors occurs in writing.
      */
-    void putStatToFile();
+    void putStatToFile() throws IOException;
 }
