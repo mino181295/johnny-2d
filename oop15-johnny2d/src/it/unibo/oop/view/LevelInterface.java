@@ -12,13 +12,13 @@ public interface LevelInterface extends Showable {
 
     /**
      * @param val
-     *            to enable(true)/disable(false) music.	    
-     */ 
+     *            to enable(true)/disable(false) music.
+     */
     void enableMusic(final boolean val);
-    
+
     /**
      * @param level
-     *              of initialization.
+     *            of initialization.
      */
     void initialize(final int levelNumber);
 }

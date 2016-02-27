@@ -18,13 +18,14 @@ import it.unibo.oop.view.keyboard.MovementKey;
 import it.unibo.oop.view.keyboard.MovementKeysManager;
 
 /**
- * class which manages all the game views.
+ * Class which manages all the game views.
  */
 public final class ViewImpl implements View {
 
     private static Optional<View> singleton = Optional.empty();
     private final LevelInterface level;
-    private final MainFrame mainFrame; // class which contains all the menu-views.
+    private final MainFrame mainFrame; // class which contains all the
+                                       // menu-views.
     private final KeysManager<MovementKey, Direction> movKeysMan;
     private final KeysManager<ActionKey, Action> actKeysMan;
     private List<AppState> history; // stack open-views.
@@ -35,12 +36,11 @@ public final class ViewImpl implements View {
         this.movKeysMan = new MovementKeysManager();
         this.actKeysMan = new ActionKeysManager();
         this.level = new Level(new KeyboardObserverImpl<>(MovementKey.class, this.movKeysMan),
-                               new KeyboardObserverImpl<>(ActionKey.class, this.actKeysMan));
+                new KeyboardObserverImpl<>(ActionKey.class, this.actKeysMan));
     }
 
     /**
-     * @return
-     *          the singleton instance of the class.
+     * @return the singleton instance of the class.
      */
     public static synchronized View getInstance() {
         if (!singleton.isPresent()) {
@@ -58,7 +58,7 @@ public final class ViewImpl implements View {
     public Action getAction() {
         return this.actKeysMan.processKeys();
     }
-    
+
     @Override
     public LevelInterface getLevelView() {
         return this.level;
@@ -89,14 +89,21 @@ public final class ViewImpl implements View {
     public synchronized void showLast() {
         final int lastIndex = this.history.size() - 1;
         if (lastIndex > 0) {
-            this.history.remove(lastIndex); /* rimuovo la view che ha fatto "roll-back" per evitare loop */
-            this.showView(this.history.get(lastIndex - 1)); /* mostro quella che la precedeva */
+            this.history.remove(lastIndex); /*
+                                             * rimuovo la view che ha fatto
+                                             * "roll-back" per evitare loop
+                                             */
+            this.showView(this.history
+                    .get(lastIndex - 1)); /* mostro quella che la precedeva */
         }
     }
-    
+
     @Override
-    public synchronized void reset() {  
-        this.history = new ArrayList<>(); /* per evitare di sovraffollare inutilmente la history */
+    public synchronized void reset() {
+        this.history = new ArrayList<>(); /*
+                                           * per evitare di sovraffollare
+                                           * inutilmente la history
+                                           */
         this.movKeysMan.reset();
         this.actKeysMan.reset();
     }

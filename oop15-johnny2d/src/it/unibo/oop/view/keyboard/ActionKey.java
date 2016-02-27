@@ -22,20 +22,20 @@ public enum ActionKey implements Key {
      * When no actions have been performed.
      */
     NONE(KeyEvent.VK_UNDEFINED, Action.NONE);
-    
+
     private final int vkCode;
-    private final Action action;        
-    
+    private final Action action;
+
     ActionKey(final int vkCode, final Action action) {
         this.vkCode = vkCode;
         this.action = action;
     }
-   
+
     @Override
     public int getVkCode() {
         return this.vkCode;
     }
-    
+
     /**
      * @return action.
      */

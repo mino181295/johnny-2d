@@ -5,16 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class KeyboardObserverImpl <T extends Key> implements KeyboardObserver {
+public class KeyboardObserverImpl<T extends Key> implements KeyboardObserver {
 
     private final Map<Integer, T> mapVKCodeToKeyCmd;
     private final KeysManager<T, ?> man;
 
     /**
      * @param keysEnum
-     *                  class of the enum from which get the values for the mapping.
+     *            class of the enumeration from which get the values for the
+     *            mapping.
      * @param man
-     *                  {@link KeysManager} receiver of the {@link #keyAction(int, int) keyAction} method.
+     *            {@link KeysManager} receiver of the {@link #keyAction} method.
      */
     public KeyboardObserverImpl(final Class<T> keysEnum, final KeysManager<T, ?> man) {
         this.man = man;

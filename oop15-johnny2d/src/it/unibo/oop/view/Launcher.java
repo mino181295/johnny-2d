@@ -22,7 +22,7 @@ public class Launcher extends MenuPanel {
 
         /* BUTTONS ADDING */
         this.addStateButton(new MenuPanel.StateButton("Play", AppState.START),
-                            new MenuPanel.StateButton("Options", AppState.OPTIONS),
-                            new MenuPanel.StateButton("Quit", AppState.QUIT));
+                new MenuPanel.StateButton("Options", AppState.OPTIONS),
+                new MenuPanel.StateButton("Quit", AppState.QUIT));
     }
 }

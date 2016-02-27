@@ -35,8 +35,7 @@ public class MainFrameImpl implements MainFrame {
     @Override
     public void changeView(final AppState state) {
         try {
-            this.factory.makePanel(Objects.requireNonNull(state))
-                        .ifPresent(p -> this.frame.setContentPane(p));
+            this.factory.makePanel(Objects.requireNonNull(state)).ifPresent(p -> this.frame.setContentPane(p));
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
@@ -52,8 +51,9 @@ public class MainFrameImpl implements MainFrame {
 
     private static class MenuPanelFactory {
 
-        private Optional<MenuPanel> makePanel(final AppState state) throws InstantiationException, IllegalAccessException,
-                IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+        private Optional<MenuPanel> makePanel(final AppState state)
+                throws InstantiationException, IllegalAccessException, IllegalArgumentException,
+                InvocationTargetException, NoSuchMethodException, SecurityException {
 
             Class<? extends MenuPanel> outPanel;
 
@@ -80,7 +80,7 @@ public class MainFrameImpl implements MainFrame {
                 return Optional.empty();
             }
             return Optional.of(outPanel.getConstructor(StateObserver.class)
-                           .newInstance(new StateObserverImpl(ViewImpl.getInstance())));
+                    .newInstance(new StateObserverImpl(ViewImpl.getInstance())));
         }
     }
 }

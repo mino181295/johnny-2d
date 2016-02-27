@@ -16,10 +16,14 @@ public abstract class AbstractEntity implements Entity {
     private Position entityPosition;
     private Optional<GameStateImpl> gameEnvironment = Optional.ofNullable(GameStateImpl.getInstance());
     private boolean deathFlag;
+
     /**
      * Constructor with a position where to place the {@link AbstractEntity}
-     * @param startingX Starting X position
-     * @param startingY Starting Y position
+     * 
+     * @param startingX
+     *            Starting X position
+     * @param startingY
+     *            Starting Y position
      */
     public AbstractEntity(final double startingX, final double startingY) {
         this.entityPosition = new Position(startingX, startingY);
@@ -39,21 +43,23 @@ public abstract class AbstractEntity implements Entity {
     public void setPosition(final Position newPosition) {
         this.entityPosition = newPosition;
     }
+
     /**
      * 
      * @return True if the {@link AbstractEnemy} is dead
      */
     public boolean isDead() {
-		return this.deathFlag;
-	}
+        return this.deathFlag;
+    }
+
     /**
      * Sets the {@link AbstractEntity} dead
      */
-	public void killEntity() {
-		this.deathFlag = true;
-	}
+    public void killEntity() {
+        this.deathFlag = true;
+    }
 
-	/**
+    /**
      * Getter for the X position of an {@link Entity}.
      * 
      * @return
@@ -70,6 +76,7 @@ public abstract class AbstractEntity implements Entity {
     public double getY() {
         return entityPosition.getY();
     }
+
     /**
      * The top left corner of the {@link Entity}
      */
@@ -137,5 +144,4 @@ public abstract class AbstractEntity implements Entity {
     public GameStateImpl getEnvironment() {
         return this.gameEnvironment.get();
     }
-
 }

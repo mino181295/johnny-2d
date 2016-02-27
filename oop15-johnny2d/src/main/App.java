@@ -7,8 +7,9 @@ import it.unibo.oop.controller.ControllerImpl;
  */
 public final class App {
 
-    private App() {}
-    
+    private App() {
+    }
+
     /**
      * @param args
      *            ignored.

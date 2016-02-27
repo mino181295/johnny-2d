@@ -22,15 +22,15 @@ public class PauseMenu extends MenuPanel {
 
         /* ICON SETTING */
         this.setIcon("/pause.png");
-        
+
         /* SCORE LABEL */
         final JLabel record = new JLabel("Current Record-" + RecordImpl.getInstance().getValue());
         this.addComponents(record);
 
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Resume", AppState.PLAY),
-                            new MenuPanel.StateButton("Replay", AppState.START),
-                            new MenuPanel.StateButton("Options", AppState.OPTIONS), 
-                            new MenuPanel.StateButton("Quit", AppState.QUIT));
+                new MenuPanel.StateButton("Replay", AppState.START),
+                new MenuPanel.StateButton("Options", AppState.OPTIONS),
+                new MenuPanel.StateButton("Quit", AppState.QUIT));
     }
 }

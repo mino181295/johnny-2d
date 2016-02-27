@@ -22,10 +22,9 @@ public class CreditsMenu extends MenuPanel {
         this.setIcon("/credits.png");
 
         /* LABELS ADDING */
-        this.addComponents(new JLabel("Model: Matteo Minardi"),
-                           new JLabel("View: Giacomo Pasini"),
-                           new JLabel("Controller: Paolo Venturi"));
-                
+        this.addComponents(new JLabel("Model: Matteo Minardi"), new JLabel("View: Giacomo Pasini"),
+                new JLabel("Controller: Paolo Venturi"));
+
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Back", AppState.BACK));
     }

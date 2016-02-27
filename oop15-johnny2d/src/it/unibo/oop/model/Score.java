@@ -13,12 +13,14 @@ public class Score implements Serializable, Comparable<Score> {
     private static final int DEFAULT_SCORE = 0;
 
     private int currentScore;
+
     /**
      * Constructor that initializes the {@link Score} with an initial value
      */
     public Score(final int initialScore) {
         this.currentScore = initialScore;
     }
+
     /**
      * Constructor that sets the score to the default Value
      */
@@ -36,7 +38,7 @@ public class Score implements Serializable, Comparable<Score> {
     public String toString() {
         return "Score: " + currentScore;
     }
-    
+
     public int getValue() {
         return this.currentScore;
     }

@@ -39,7 +39,7 @@ public interface View {
      * Shows the previous view.
      */
     void showLast();
-    
+
     /**
      * Resets view or some parts of it.
      */

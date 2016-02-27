@@ -98,5 +98,4 @@ public class InvisibleMonster extends AbstractEnemy {
     public int getDamage() {
         return InvisibleMonster.DMG;
     }
-
 }

@@ -11,7 +11,7 @@ import it.unibo.oop.model.RecordImpl;
  * {@link javax.swing.JPanel} for pause GameOver-view.
  */
 public class GameOverMenu extends MenuPanel {
-    
+
     private static final long serialVersionUID = 5096699286815303104L;
 
     /**
@@ -33,10 +33,10 @@ public class GameOverMenu extends MenuPanel {
         final JLabel label = new JLabel(GameStateImpl.getInstance().getScore().toString());
         final JLabel recordLab = new JLabel(mex);
         this.addComponents(label, recordLab);
-        
+
         /* BUTTONS CREATION */
-        this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START), 
-                            new MenuPanel.StateButton("Options", AppState.OPTIONS), 
-                            new MenuPanel.StateButton("Quit", AppState.QUIT));
+        this.addStateButton(new MenuPanel.StateButton("Replay", AppState.START),
+                new MenuPanel.StateButton("Options", AppState.OPTIONS),
+                new MenuPanel.StateButton("Quit", AppState.QUIT));
     }
 }

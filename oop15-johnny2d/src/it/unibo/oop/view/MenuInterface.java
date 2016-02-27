@@ -6,8 +6,8 @@ import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.view.MenuPanel.StateButton;
 
 /**
- * Interface implemented by menu views.
- * The logos are made with FlamingText.
+ * Interface implemented by menu views. The logos are made with FlamingText.
+ * 
  * @see <a href="http://www.flamingtext.com/">FlamingText</a>
  */
 public interface MenuInterface extends ESource<StateObserver> {
@@ -17,11 +17,11 @@ public interface MenuInterface extends ESource<StateObserver> {
      *            component to attach.
      */
     void addComponent(JComponent cmp);
-    
+
     /**
      * @param cmps
-     *            components to attach. NB: a {@link JPanel} with {@link BoxLayout}
-     *            is used in addition to wrap the components.
+     *            components to attach. NB: a {@link JPanel} with
+     *            {@link BoxLayout} is used in addition to wrap the components.
      */
     void addComponents(final JComponent... cmps);
 

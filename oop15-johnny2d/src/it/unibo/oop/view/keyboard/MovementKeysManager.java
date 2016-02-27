@@ -26,7 +26,6 @@ public final class MovementKeysManager extends AbstractKeysManager<MovementKey, 
     public synchronized Direction processKeys() {
         final List<MovementKey> tmpList = new ArrayList<>();
         MovementKey out = MovementKey.NONE;
-
         this.processPressed(LIMIT, tmpList);
         this.processTyped(LIMIT, tmpList);
         switch (tmpList.size()) {
@@ -54,7 +53,6 @@ public final class MovementKeysManager extends AbstractKeysManager<MovementKey, 
         default:
             break;
         }
-
         return out.getDir();
     }
 }

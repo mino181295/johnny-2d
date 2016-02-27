@@ -1,7 +1,8 @@
 package it.unibo.oop.view;
 
 /**
- * Interface for each object that can be showed (designed for {@link javax.swing.JFrame} wrappers).
+ * Interface for each object that can be showed (designed for
+ * {@link javax.swing.JFrame} wrappers).
  */
 public interface Showable {
 

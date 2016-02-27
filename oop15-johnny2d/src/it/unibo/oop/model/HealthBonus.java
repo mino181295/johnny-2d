@@ -9,20 +9,26 @@ import static it.unibo.oop.utilities.CharactersSettings.BONUS;
 public class HealthBonus extends AbstractEntity implements Collectable {
 
     private static final int HEAL_VALUE = 1;
+
     /**
      * Creates the {@link HealthBonus} in a defined starting position
-     * @param startingX Starting X position
-     * @param startingY	Starting Y position
+     * 
+     * @param startingX
+     *            Starting X position
+     * @param startingY
+     *            Starting Y position
      */
     public HealthBonus(final double startingX, final double startingY) {
         super(startingX, startingY);
     }
+
     /**
      * Gets the {@link HealthBonus} Height
      */
     protected int getEntityHeight() {
         return BONUS.getHeight();
     }
+
     /**
      * gets the {@link HealthBonus} width
      */
