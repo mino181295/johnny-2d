@@ -1,6 +1,10 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1040{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
 {\*\generator Riched20 10.0.10586}\viewkind4\uc1 
-\pard\sa200\sl276\slmult1\qj\f0\fs52\lang16 Capitolo 2\fs96\par
+\pard\sa200\sl276\slmult1\qj\f0\fs52\lang16 PER MINO:\par
+\fs22 Per facilitare la gestione del record da parte delle principali componenti del pattern mvc, si \'e8 deciso di utilizzare una classe ad hoc "RecordImpl" che, tramite implementazione del pattern singleton, pu\'f2 essere acceduta in totale libert\'e0 senza dalle suddette parti. Tale classe wrappa uno Score serializzabile che potr\'e0 essere salvato su file dal Controller, Stampato a schermo dalla View e aggiornato Model.\fs52\par
+\par
+\par
+Capitolo 2\fs96\par
 \fs48 Design\par
 \fs36 Architettura\fs22\par
 Nel coordinamento dei componenti principali di cui \'e8 composta l'applicazione \'e8 stato utilizzato il pattern MVC. La classificazione in package rispecchia tale suddivisione. \par
@@ -16152,7 +16156,7 @@ cccc0099cc99006699000066cc66009999660066cc99003399330033663300ccffcc00cccc9900
 010101010101010101010101010101010101010101040000002701ffff030000000000
 }\par
 
-\pard\sa200\sl276\slmult1\qj\fs22 Al suo interno, il Controller \'e8 formato da alcune sottoclassi atte a gestire le varie fasi di vita dell'applicazione. Il cuore del Controller, il cosidetto "game loop", \'e8 implementato nella classe GameLoopAgent. Questa ha come scopo quello di alternare in modo continuo la scansione degli input dalla View con le notifiche al Model e il conseguente ri-aggiornamento della View. Per semplificare la gestione delle notifiche alla view, non ch\'e8 il susseguirsi delle diverse fasi dell'applicazione, si \'e8 utilizzato un Observer apposito che gestisse il passagio da uno stato (AppSate) ad un altro dell'applicazione. Tramite questo \'e8 possibile comunicare sia al Controller che all View in quale stato si dovr\'e0 migrare, non ch\'e8 quale menu/scena la view dovr\'e0 mostrare. \par
+\pard\sa200\sl276\slmult1\qj\fs22 Al suo interno, il Controller \'e8 formato da alcune sottoclassi atte a gestire le varie fasi di vita dell'applicazione. Mentre ControllerImpl gestisce le inizializzationi varie, Il vero cuore del Controller, il cosidetto "game loop", \'e8 implementato nella classe GameLoopAgent. Questa ha come scopo quello di alternare in modo continuo la scansione degli input dalla View con le notifiche al Model e il conseguente ri-aggiornamento della View. Per semplificare la gestione delle notifiche alla view, non ch\'e8 il susseguirsi delle diverse fasi dell'applicazione, si \'e8 utilizzato un Observer apposito che gestisse il passagio da uno stato (AppSate) ad un altro dell'applicazione. Tramite questo \'e8 possibile comunicare sia al Controller che alla View in quale stato si dovr\'e0 migrare, e, relativamente a quest'ultima, quale menu dovr\'e0 essere mostrato. \par
 Come appena detto, e come si pu\'f2 notare nell'UML, \'e8 stato quindi utilizzato il pattern Observer per notificare il Controller dello stato in cui passare (che viene modificato in risposta ad eventi della view) e un pattern Strategy per il metodo doAction appartenente al precedente pattern, che, accettando come argomento un Consumer<O> consente di poter riutilizzare il pattern Observer in modo simile in altri parti del progetto.\par
 
 \pard\sa200\sl240\slmult1\qj\fs36{\pict{\*\picprop}\wmetafile8\picwgoal8640\pichgoal3540 
@@ -20865,7 +20869,7 @@ cccc0099cc99006699000066cc66009999660066cc9900ccccff0066669900336699006699cc00
 0000
 }\fs22\par
 
-\pard\sa200\sl276\slmult1\qj L'utilizzo dell'observer e della enumerazione associata (AppState), contenente gli stati in cui l'applicazione pu\'f2 trovarsi, consentono in visione di future features (come ad esempio l'aggiunta di nuovi menu o nuovi stati di gioco) di poterle integrare facilmente alla parte di controllo senza dover stravolgere la struttura di questo.\par
+\pard\sa200\sl276\slmult1\qj L'utilizzo dell'observer e della enumerazione associata (AppState), contenente gli stati in cui l'applicazione pu\'f2 trovarsi, consentono in visione di future features (come ad esempio l'aggiunta di nuovi menu o nuovi stati di gioco) un' integrazione semplice alla parte di controllo senza dover stravolgere la struttura di questo.\par
  Infine, la classe ControllerImpl implementa il pattern Singleton, il che consente di poter interagire con quest'ultima in modo pi\'f9 libero e senza vincoli di passaggio ai costruttori delle varie classi clienti.\par
 
 \pard\sa200\sl240\slmult1\qc{\pict{\*\picprop}\wmetafile8\picw5186\pich3254\picwgoal2940\pichgoal1845 
@@ -33390,7 +33394,7 @@ cc6600ffcccc00cc999900cc6666009966660099336600cc669900ffccff003399000066990000
 ffff030000000000
 }\par
 
-\pard\sa200\sl276\slmult1\qj Per ci\'f2 che concerte questo secondo tipo di eventi, che non interessano direttamente il game loop, la view (o meglio i menu di cui si compone la view) accedono prima all'observer, conseguentemente, a seconda dell'evento, si ha un passaggio di stato relativo alla sola vie(cambio di menu), oppure che coinvolge anche lo stato del Controller (p.e. i comandi play, replay). \par
+\pard\sa200\sl276\slmult1\qj Per ci\'f2 che concerte questo secondo tipo di eventi, che non interessano direttamente il game loop, la view (o meglio i menu di cui si compone la view e generati dalla relativa factory) accedono prima all'observer, conseguentemente, a seconda dell'evento, si ha un passaggio di stato relativo alla sola view (cambio di menu), oppure un cambio di stato che coinvolge anche il Controller (p.e. i comandi play, replay). \par
 Come da uml, un'ultima tipologia di interazione che si pu\'f2 avere \'e8 tra la entry class del Controller e la View. Questa interazione avviene esclusivamente nella fasi di inizializzazione-reinizializzazione della view e delle fasi di gioco, realizzando di fatto una divisione delle responsabilit\'e0 di gestione della View da parte delle due principali classi che ne regolano il controllo. \par
 }
  
