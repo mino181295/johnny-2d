@@ -17,10 +17,12 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
     private Direction lastDirection;
     private Direction currentDirection;
-    
+
     private boolean isShooting;
+
     /**
-     * Creates a {@link MainCharacter} with a standard {@link Health} end a {@link Score} resetted
+     * Creates a {@link MainCharacter} with a standard {@link Health} end a
+     * {@link Score} resetted
      */
     public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
         super(startingX, startingY, startingMovement, MAIN_CHARACTER.getSpeed());
@@ -29,23 +31,25 @@ public class MainCharacter extends MovableEntity implements Shooter {
         this.lastDirection = Direction.UP;
         this.currentDirection = Direction.NONE;
     }
+
     /**
      * Creates a new {@link MainCharacter} with no movement {@link Vector2}
      */
     public MainCharacter(final double startingX, final double startingY) {
         this(startingX, startingY, new Vector2());
     }
+
     /**
      * Changes the direction and the shooting flag of the {@link MainCharacter}
      */
-    public void setInput(final Direction newDirection, final boolean isShooting){
-    	if (newDirection != Direction.NONE){
-    		lastDirection = newDirection;
-    	}
-    	this.currentDirection = newDirection;    	
-    	this.isShooting = isShooting;
+    public void setInput(final Direction newDirection, final boolean isShooting) {
+        if (newDirection != Direction.NONE) {
+            lastDirection = newDirection;
+        }
+        this.currentDirection = newDirection;
+        this.isShooting = isShooting;
     }
-    
+
     public void update() {
         // Takes the new frame direction
         Vector2 newMovement = currentDirection.getVector2();
@@ -68,9 +72,11 @@ public class MainCharacter extends MovableEntity implements Shooter {
         }
 
     }
+
     /**
-     * Function that checks if this {@link Entity} in the next position collides with other ones. 
-     * The {@link MainCharacter} kills the {@link Enemy} and he does not go over the {@link Wall}
+     * Function that checks if this {@link Entity} in the next position collides
+     * with other ones. The {@link MainCharacter} kills the {@link Enemy} and he
+     * does not go over the {@link Wall}
      */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
 
@@ -142,30 +148,35 @@ public class MainCharacter extends MovableEntity implements Shooter {
             return lastDirection;
         }
     }
+
     /**
      * Gets the last direction
      */
     public Direction getLastDirection() {
         return lastDirection;
     }
+
     /**
      * Gets the {@link MainCharacter} height
      */
     protected int getEntityHeight() {
         return MAIN_CHARACTER.getHeight();
     }
+
     /**
      * Gets the {@link MainCharacter} width
      */
     protected int getEntityWidth() {
         return MAIN_CHARACTER.getWidth();
     }
+
     /**
      * Gets the score reached killing {@link Enemy} units
      */
     public Score getScore() {
         return this.currentScore;
     }
+
     /**
      * Gets the {@link Health} object of the Character
      */
@@ -177,6 +188,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
     public boolean isDead() {
         return this.currentHealth.isDead();
     }
+
     /**
      * Shoots a normal bullet adding it in the {@link GameStateImpl}
      */

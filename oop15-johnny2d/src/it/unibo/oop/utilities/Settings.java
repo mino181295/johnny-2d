@@ -36,8 +36,7 @@ public final class Settings {
     /**
      * Menu fixed dimension.
      */
-    public static final Dimension MENU_DIMENSION = new Dimension((int) (SCREEN_WIDTH / 2),
-                                                                 (int) (SCREEN_HEIGHT / 1.5));
+    public static final Dimension MENU_DIMENSION = new Dimension((int) (SCREEN_WIDTH / 2), (int) (SCREEN_HEIGHT / 1.5));
     /**
      * Folder for the saves and highscores
      */

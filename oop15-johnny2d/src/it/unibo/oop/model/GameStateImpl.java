@@ -18,7 +18,7 @@ public final class GameStateImpl implements GameState {
     private static final int BASIC_DEFAULT = 17;
     private static final int BASIC_SCALE = 4;
     private static final int MONSTERS_DELAY = 130;
-    
+
     private static final int INVISIBLE_DEFAULT = 3;
 
     private int monstersCap = 50;
@@ -26,8 +26,8 @@ public final class GameStateImpl implements GameState {
     private static final int MAX_COLLECTIBLES = 4;
     private static final int COLLECTIBLES_DELAY = 120;
     
-    private static final int BASIC_DISTANCE = 400;
-    private static final int INVISIBLE_DISTANCE = 500;
+    private static final int BASIC_DISTANCE = (int) (Math.max(SCREEN_WIDTH, SCREEN_HEIGHT)/2 *0.5);
+    private static final int INVISIBLE_DISTANCE = (int) (Math.max(SCREEN_WIDTH, SCREEN_HEIGHT)/2 *0.7);
 
     private int randomCollectiblesDelay = COLLECTIBLES_DELAY;
     private int randomMonstersDelay = MONSTERS_DELAY;
@@ -40,7 +40,7 @@ public final class GameStateImpl implements GameState {
 
     private long updatesNumber;
     private long lastShotFrame;
-    
+
     /**
      * Constructor that initializes the entire game logic
      */
@@ -52,14 +52,18 @@ public final class GameStateImpl implements GameState {
         this.johnnyCharacter = Optional.empty();
         this.gameArena = Factory.WallFactory.generateArena(SCREEN_HEIGHT, SCREEN_WIDTH);
     }
+
     /**
-     * Singleton function that returns the single instance of the {@link GameStateImpl}
+     * Singleton function that returns the single instance of the
+     * {@link GameStateImpl}
      */
     public static GameStateImpl getInstance() {
         return SINGLETON;
     }
+
     /**
-     * The function that creates the initials {@link Entity} like the {@link MainCharacter} and the {@link Enemy}
+     * The function that creates the initials {@link Entity} like the
+     * {@link MainCharacter} and the {@link Enemy}
      */
     public void initialize(final int levelNumber) {
         this.movableList.clear();
@@ -70,8 +74,10 @@ public final class GameStateImpl implements GameState {
         this.spawnBasicMonsters(BASIC_DEFAULT);
         this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
+
     /**
-     * A method that creates a defined number of {@link BasicMonster} in N free random position
+     * A method that creates a defined number of {@link BasicMonster} in N free
+     * random position
      */
     private void spawnBasicMonsters(final int number) {
         BasicMonster tmpMonster;
@@ -92,8 +98,10 @@ public final class GameStateImpl implements GameState {
             this.addMovableEntity(tmpMonster);
         }
     }
+
     /**
-     * A method that creates a defined number of {@link InvisibleMonster} in N free random position
+     * A method that creates a defined number of {@link InvisibleMonster} in N
+     * free random position
      */
     private void spawnInvisibleMonsters(final int number) {
         this.monstersCap -= number;
@@ -115,13 +123,16 @@ public final class GameStateImpl implements GameState {
             this.addMovableEntity(tmpMonster);
         }
     }
+
     /**
-     * Spawns a random {@link HealthBonus} and puts it in the stable {@link List}
+     * Spawns a random {@link HealthBonus} and puts it in the stable
+     * {@link List}
      */
     private void spawnRandomHealthCollectable() {
         final Position randomPos = this.getArena().getPositionInside(CharactersSettings.BONUS);
         this.addStableEntity(new HealthBonus(randomPos.getX(), randomPos.getY()));
     }
+
     /**
      * Spawns a random {@link ScoreBonus} and puts it in the stable {@link List}
      */
@@ -129,8 +140,10 @@ public final class GameStateImpl implements GameState {
         final Position randomPos = this.getArena().getPositionInside(CharactersSettings.BONUS);
         this.addStableEntity(new ScoreBonus(randomPos.getX(), randomPos.getY()));
     }
+
     /**
-     * If an {@link Entity} is dead and it should not be seen it gets removed from the environment
+     * If an {@link Entity} is dead and it should not be seen it gets removed
+     * from the environment
      */
     private void removeDeadEntities() {
         this.stableList.removeAll(this.stableList.stream().filter(x -> x.isDead()).collect(Collectors.toList()));
@@ -172,7 +185,6 @@ public final class GameStateImpl implements GameState {
             this.movableList.add(newBullet);
         }
     }
-
 
     /**
      * Updates the {@link MainCharacter} basing the new movement on the keys
@@ -222,21 +234,21 @@ public final class GameStateImpl implements GameState {
     public Optional<MainCharacter> getMainChar() {
         return this.johnnyCharacter;
     }
-    
+
     /**
      * Gets the {@link Arena} of the Game
      */
     public Arena getArena() {
         return this.gameArena;
     }
-    
+
     @Override
     public boolean isGameEnded() {
         final boolean noneEnemy = this.movableList.stream().filter(e -> e instanceof Enemy).collect(Collectors.toList())
                 .isEmpty();
         return noneEnemy || this.johnnyCharacter.isPresent() && this.johnnyCharacter.get().isDead();
     }
-    
+
     @Override
     public void checkTopScore() {
         final Score score = this.johnnyCharacter.get().getScore();
@@ -247,7 +259,7 @@ public final class GameStateImpl implements GameState {
             record.setValue(RecordImpl.getInstance().getValue());
         }
     }
-    
+
     public Score getScore() {
         return this.johnnyCharacter.get().getScore();
     }

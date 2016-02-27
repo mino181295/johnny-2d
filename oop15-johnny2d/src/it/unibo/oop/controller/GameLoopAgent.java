@@ -52,7 +52,7 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
                     AppState state;
                     if (this.pause) {
                         state = AppState.PAUSE;
-                    } else { 
+                    } else {
                         state = AppState.GAME_OVER;
                     }
                     this.doAction(e -> e.stateAction(state));
@@ -65,17 +65,17 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
             /* ACQUISIZIONE TASTI PREMUTI */
             this.processEvents();
             this.dbgKeysMan(); /* per debugging */
-            
+
             /* AGGIORNAMENTO GAMESTATE */
             this.gameState.updatePositions(this.mainCharDir, this.isMainCharShooting);
-            
+
             /* CHECK GIOCO FINITO */
             this.gameOver = this.gameState.isGameEnded();
 
             /* AGGIORNAMENTO E PRINTING DEL FRAME */
             this.view.getLevelView().updateLevel();
             this.view.getLevelView().showIt();
-            
+
             try {
                 Thread.sleep(SLEEPING_TIME);
             } catch (InterruptedException e) {
@@ -85,7 +85,7 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
     }
 
     private void processEvents() {
-        final Action action = this.view.getAction(); 
+        final Action action = this.view.getAction();
         this.pause = action == Action.PAUSE;
         this.isMainCharShooting = action == Action.SHOOT;
         this.mainCharDir = this.view.getMovement();
@@ -100,12 +100,12 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
     }
 
     @Override
-    public void addObserver(StateObserver obs) {
-        this.stateObs.add(obs);        
+    public void addObserver(final StateObserver obs) {
+        this.stateObs.add(obs);
     }
 
     @Override
-    public void doAction(Consumer<StateObserver> action) {
+    public void doAction(final Consumer<StateObserver> action) {
         this.stateObs.forEach(action);
     }
 }

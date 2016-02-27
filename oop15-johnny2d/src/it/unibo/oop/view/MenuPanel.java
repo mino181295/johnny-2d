@@ -34,14 +34,15 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final Color COMPONENTS_COLOR = new Color(255, 220, 130);
     private static final Color FONT_COLOR = Color.WHITE;
     private static final int PANEL_WIDTH = Settings.MENU_DIMENSION.width - 10;
-    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height/2 - 10;
-    private static final int FONT_SIZE = PANEL_HEIGHT/8;
-    private static final int TOP_INSET = PANEL_HEIGHT/30;
-    private static final int LEFT_INSET = PANEL_HEIGHT/30;
-    private static final int BOTTOM_INSET = PANEL_HEIGHT/30;
-    private static final int RIGHT_INSET = PANEL_HEIGHT/30;
-    private static final Dimension PREF_SIZE = new Dimension(PANEL_WIDTH/5, (int)(PANEL_HEIGHT/7));
-//    private static final Dimension MIN_SIZE = new Dimension(PANEL_WIDTH/4, (int)(PANEL_HEIGHT/7));
+    private static final int PANEL_HEIGHT = Settings.MENU_DIMENSION.height / 2 - 10;
+    private static final int FONT_SIZE = PANEL_HEIGHT / 8;
+    private static final int TOP_INSET = PANEL_HEIGHT / 30;
+    private static final int LEFT_INSET = PANEL_HEIGHT / 30;
+    private static final int BOTTOM_INSET = PANEL_HEIGHT / 30;
+    private static final int RIGHT_INSET = PANEL_HEIGHT / 30;
+    private static final Dimension PREF_SIZE = new Dimension(PANEL_WIDTH / 5, (int) (PANEL_HEIGHT / 7));
+    // private static final Dimension MIN_SIZE = new Dimension(PANEL_WIDTH/4,
+    // (int)(PANEL_HEIGHT/7));
     private final GridBagConstraints cnst = new GridBagConstraints();
     private final List<StateObserver> obsList;
 
@@ -70,10 +71,10 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     @Override
     public void addComponents(final JComponent... cmps) {
         final JPanel nestedPanel = this.customPanel(PANEL_WIDTH, PANEL_HEIGHT);
-        nestedPanel.setMinimumSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT/2));
+        nestedPanel.setMinimumSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT / 2));
         Arrays.asList(cmps).forEach(e -> {
             if (e instanceof JLabel) {
-                this.customizeLabel((JLabel)e);
+                this.customizeLabel((JLabel) e);
             }
             e.setAlignmentX(Component.CENTER_ALIGNMENT);
             nestedPanel.add(e);
@@ -88,7 +89,7 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
         nestedPanel.setOpaque(false);
         return nestedPanel;
     }
-    
+
     private JButton customizeButton(final JButton btn) {
         btn.setPreferredSize(PREF_SIZE);
         btn.setMinimumSize(PREF_SIZE);

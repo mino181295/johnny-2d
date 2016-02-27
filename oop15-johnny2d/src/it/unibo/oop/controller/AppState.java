@@ -1,8 +1,8 @@
 package it.unibo.oop.controller;
 
 /**
- * Enumeration with each application state, used to
- * communicate the next state of the app.
+ * Enumeration with each application state, used to communicate the next state
+ * of the app.
  */
 public enum AppState {
 
@@ -50,7 +50,7 @@ public enum AppState {
      * To show the credits of the app.
      */
     CREDITS(true),
-    
+
     /**
      * To show the menu of game over.
      */

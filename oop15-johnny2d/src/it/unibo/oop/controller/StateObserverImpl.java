@@ -11,14 +11,14 @@ import it.unibo.oop.view.View;
 public class StateObserverImpl implements StateObserver {
 
     private final View view;
-    
+
     /**
      * @param man
      */
     public StateObserverImpl(final View view) {
         this.view = view;
     }
-    
+
     @Override
     public void stateAction(final AppState state) {
         synchronized (this.view) {
@@ -42,7 +42,7 @@ public class StateObserverImpl implements StateObserver {
             break;
         case GAME_OVER:
             GameStateImpl.getInstance().checkTopScore();
-            break;    
+            break;
         case EXIT:
             try {
                 ControllerImpl.getInstance().putStatToFile();

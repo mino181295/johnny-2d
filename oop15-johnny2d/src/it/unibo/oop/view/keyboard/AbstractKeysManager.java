@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * Abstract class for a generic KeysManager
+ * Abstract class for a generic KeysManager.
  *
  * @param <I>
  *            Type of input, b.p. a wrapping type for the keys of keyboard.
@@ -15,7 +14,7 @@ import java.util.List;
 public abstract class AbstractKeysManager<I, O> implements KeysManager<I, O> {
 
     private List<I> keysPressed; // list containing long-pressed keys.
-    private List<I> keysTyped;   // list containing typed keys.
+    private List<I> keysTyped; // list containing typed keys.
 
     public AbstractKeysManager() {
         this.reset();

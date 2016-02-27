@@ -12,10 +12,10 @@ public interface GameState {
 
     /**
      * @param level
-     *              of initialization.
+     *            of initialization.
      */
     void initialize(final int level);
-    
+
     /**
      * Updates main character and enemies position.
      * 
@@ -50,12 +50,12 @@ public interface GameState {
      * @return true if game is finished.
      */
     boolean isGameEnded();
-    
+
     /**
      * Determines if the player has made a new record.
      */
     void checkTopScore();
-    
+
     /**
      * @return hero's score.
      */

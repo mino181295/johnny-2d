@@ -5,16 +5,16 @@ import java.util.Optional;
 /**
  * Class implementing {@link Record}.
  */
-public class RecordImpl implements Record {
+public final class RecordImpl implements Record {
 
     private static Optional<Record> singleton = Optional.empty();
     private volatile boolean record;
     private Score value;
-    
+
     private RecordImpl() {
         this.value = new Score();
     }
-    
+
     /**
      * @return the SINGLETON instance of the class.
      */
@@ -24,32 +24,32 @@ public class RecordImpl implements Record {
         }
         return singleton.get();
     }
-    
+
     @Override
     public synchronized void reset() {
         this.record = false;
         this.value = new Score();
     }
-    
+
     @Override
     public synchronized void setRecord(final Score value) {
         this.value = value;
         this.record = true;
     }
-    
+
     @Override
     public boolean isRecord() {
         return this.record;
     }
-    
+
     @Override
     public synchronized Score getValue() {
         return this.value;
     }
 
     @Override
-    public synchronized void setValue(Score value) {
+    public synchronized void setValue(final Score value) {
         this.reset();
-        this.value = value;   
+        this.value = value;
     }
 }

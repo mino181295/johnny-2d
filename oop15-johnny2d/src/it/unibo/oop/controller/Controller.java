@@ -10,13 +10,13 @@ import it.unibo.oop.model.Score;
 public interface Controller {
 
     /**
-     * method which "starts" the object implementing this interface for the
+     * Method which "starts" the object implementing this interface for the
      * first time.
      */
     void start();
 
     /**
-     * method which "plays" some functionalities of the object implementing this
+     * Method which "plays" some functionalities of the object implementing this
      * interface.
      */
     void play();

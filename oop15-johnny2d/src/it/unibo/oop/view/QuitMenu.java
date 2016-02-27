@@ -22,6 +22,6 @@ public class QuitMenu extends MenuPanel {
 
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Yes", AppState.EXIT),
-                            new MenuPanel.StateButton("No", AppState.BACK));
+                new MenuPanel.StateButton("No", AppState.BACK));
     }
 }

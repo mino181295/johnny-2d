@@ -7,11 +7,13 @@ import it.unibo.oop.utilities.Vector2;
  * Interface for a common AI movement calculated with a specific algorithm.
  */
 public interface MovementBehavior {
-	/**
-	 * 
-	 * @param targetPosition The position where the Movemnt Behavior should guide you
-	 * @return A {@link Vector2} that rappresents the direction to follow
-	 */
-	Vector2 getNextMove(Position targetPosition);
-	
+
+    /**
+     * 
+     * @param targetPosition
+     *            the {@link Position} where the {@link MovementBehavior} should
+     *            guide you
+     * @return A {@link Vector2} that represents the direction to follow
+     */
+    Vector2 getNextMove(Position targetPosition);
 }

@@ -7,8 +7,9 @@ public interface StateObserver {
 
     /**
      * Action to do according to the {@link AppState} passed.
+     * 
      * @param state
-     *              state of the application.
+     *            state of the application.
      */
     void stateAction(AppState state);
 }

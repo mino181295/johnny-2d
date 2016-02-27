@@ -31,7 +31,7 @@ public class OptionsMenu extends MenuPanel {
         check.setSelected(true);
         check.addActionListener(e -> ViewImpl.getInstance().getLevelView().enableMusic(check.isSelected()));
         this.addComponents(label, check);
-        
+
         /* DELETE RECORD-SCORE */
         final JButton reset = new JButton("Reset Record");
         reset.addActionListener(e -> new Thread(() -> RecordImpl.getInstance().reset()).start());
@@ -39,6 +39,6 @@ public class OptionsMenu extends MenuPanel {
 
         /* BUTTONS CREATION */
         this.addStateButton(new MenuPanel.StateButton("Credits", AppState.CREDITS),
-                            new MenuPanel.StateButton("Back", AppState.BACK));
+                new MenuPanel.StateButton("Back", AppState.BACK));
     }
 }

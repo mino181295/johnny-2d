@@ -8,7 +8,6 @@ import it.unibo.oop.controller.AppState;
 public interface MainFrame {
 
     /**
-     * 
      * @param state
      *            state used to define the view to show.
      */

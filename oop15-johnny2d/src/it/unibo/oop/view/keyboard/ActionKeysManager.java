@@ -9,9 +9,9 @@ import it.unibo.oop.utilities.Action;
  * Class for a keyboard manager which manages ActionKeys.
  */
 public final class ActionKeysManager extends AbstractKeysManager<ActionKey, Action> {
-    
+
     private static final int LIMIT = 0;
-    
+
     @Override
     public synchronized Action processKeys() {
         final List<ActionKey> tmpList = new ArrayList<>();

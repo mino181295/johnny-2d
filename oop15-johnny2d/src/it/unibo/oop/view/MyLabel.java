@@ -9,18 +9,20 @@ import javax.swing.JLabel;
  * A simple class to easily create a {@link javax.swing.JLabel}.
  */
 public final class MyLabel {
-    
+
     private MyLabel() {
     }
-    
+
     /**
-     * Creates a {@link javax.swing.JLabel} with the specified text, font and color.
+     * Creates a {@link javax.swing.JLabel} with the specified text, font and
+     * color.
+     * 
      * @param text
-     *          the text
+     *            the text
      * @param font
-     *          the font
+     *            the font
      * @param color
-     *          the color
+     *            the color
      * @return
      */
     public static JLabel createLabel(final String text, final Font font, final Color color) {
