@@ -3,6 +3,8 @@ package it.unibo.oop.controller;
 import java.io.IOException;
 
 import it.unibo.oop.model.GameStateImpl;
+import it.unibo.oop.utilities.MusicPlayer;
+import it.unibo.oop.utilities.MusicPlayerImpl;
 import it.unibo.oop.view.View;
 
 /**
@@ -42,8 +44,12 @@ public class StateObserverImpl implements StateObserver {
             break;
         case GAME_OVER:
             GameStateImpl.getInstance().checkTopScore();
+            MusicPlayerImpl.getInstance().stopAll();
+            MusicPlayerImpl.getInstance().play(MusicPlayerImpl.GAME_OVER);
+            MusicPlayerImpl.getInstance().setMusic(true);
             break;
         case EXIT:
+            MusicPlayerImpl.getInstance().closeMusicPlayer();
             try {
                 ControllerImpl.getInstance().putStatToFile();
             } catch (IOException e) {

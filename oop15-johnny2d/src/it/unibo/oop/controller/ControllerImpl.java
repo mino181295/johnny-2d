@@ -10,11 +10,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Optional;
 import java.util.Random;
+
 import it.unibo.oop.model.GameState;
 import it.unibo.oop.model.GameStateImpl;
 import it.unibo.oop.model.Record;
 import it.unibo.oop.model.RecordImpl;
 import it.unibo.oop.model.Score;
+import it.unibo.oop.utilities.MusicPlayer;
+import it.unibo.oop.utilities.MusicPlayerImpl;
 import it.unibo.oop.utilities.Settings;
 import it.unibo.oop.view.View;
 import it.unibo.oop.view.ViewImpl;
@@ -30,6 +33,7 @@ public final class ControllerImpl implements Controller {
     private final View view = ViewImpl.getInstance();
     private final GameState gameState = GameStateImpl.getInstance();
     private final Record record = RecordImpl.getInstance();
+    private final MusicPlayer mPlayer= MusicPlayerImpl.getInstance();
 
     private ControllerImpl() {
         this.record.setValue(this.getStatFromFile());
@@ -58,6 +62,9 @@ public final class ControllerImpl implements Controller {
     public void play() { // pause -> play
         view.reset();
         this.view.hideView();
+        this.mPlayer.stopAll();
+        this.mPlayer.playLoop(MusicPlayerImpl.GAME_OVER);
+        this.mPlayer.setMusic(true);
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
             new Thread(this.gLAgent.get()).start();
