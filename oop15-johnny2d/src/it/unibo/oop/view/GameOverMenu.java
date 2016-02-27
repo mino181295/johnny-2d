@@ -30,7 +30,7 @@ public class GameOverMenu extends MenuPanel {
         if (record.isRecord()) {
             mex = record.isRecord() ? "Congratulations! New record!" : "";
         }
-        final JLabel label = new JLabel(GameStateImpl.getInstance().getMainChar().get().getScore().toString());
+        final JLabel label = new JLabel(GameStateImpl.getInstance().getScore().toString());
         final JLabel recordLab = new JLabel(mex);
         this.addComponents(label, recordLab);
         

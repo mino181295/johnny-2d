@@ -1,6 +1,7 @@
 package main;
 
-import it.unibo.oop.controller.ControllerImpl;
+import it.unibo.oop.controller.AppState;
+import it.unibo.oop.view.ViewImpl;
 
 /**
  * Entry for the application.
@@ -14,6 +15,6 @@ public final class App {
      *            ignored.
      */
     public static void main(final String... args) {
-        ControllerImpl.getInstance();
+        ViewImpl.getInstance().showView(AppState.LAUNCHING);
     }
 }

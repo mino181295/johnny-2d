@@ -55,4 +55,9 @@ public interface GameState {
      * Determines if the player has made a new record.
      */
     void checkTopScore();
+    
+    /**
+     * @return hero's score.
+     */
+    Score getScore();
 }
