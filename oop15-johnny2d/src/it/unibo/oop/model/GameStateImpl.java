@@ -240,10 +240,11 @@ public final class GameStateImpl implements GameState {
     @Override
     public void checkTopScore() {
         final Score score = this.johnnyCharacter.get().getScore();
-        if (score.compareTo(RecordImpl.getInstance().getValue()) >= 0) {
-            RecordImpl.getInstance().setRecord(score);
+        final Record record = RecordImpl.getInstance();
+        if (score.compareTo(record.getValue()) >= 0) {
+            record.setRecord(score);
         } else {
-            RecordImpl.getInstance().reset(RecordImpl.getInstance().getValue());
+            record.setValue(RecordImpl.getInstance().getValue());
         }
     }
     

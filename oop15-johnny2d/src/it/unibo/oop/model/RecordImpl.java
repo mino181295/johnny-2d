@@ -26,9 +26,9 @@ public class RecordImpl implements Record {
     }
     
     @Override
-    public synchronized void reset(final Score value) {
+    public synchronized void reset() {
         this.record = false;
-        this.setValue(value);
+        this.value = new Score();
     }
     
     @Override
@@ -49,6 +49,7 @@ public class RecordImpl implements Record {
 
     @Override
     public synchronized void setValue(Score value) {
-        this.value = value;
+        this.reset();
+        this.value = value;   
     }
 }

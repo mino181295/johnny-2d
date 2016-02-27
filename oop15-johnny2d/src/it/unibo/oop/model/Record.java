@@ -17,9 +17,9 @@ public interface Record {
     public void setValue(Score value);
 
     /**
-     * Reset player's record-score at {@link Score} value passed.
+     * Reset player's record-score to minimum {@link Score} value.
      */
-    void reset(Score value);
+    void reset();
 
     /**
      * @param value

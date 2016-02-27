@@ -3,11 +3,9 @@ package it.unibo.oop.view;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.model.RecordImpl;
-import it.unibo.oop.model.Score;
 
 /**
  * {@link javax.swing.JPanel} for options Menu-view.
@@ -36,7 +34,7 @@ public class OptionsMenu extends MenuPanel {
         
         /* DELETE RECORD-SCORE */
         final JButton reset = new JButton("Reset Record");
-        reset.addActionListener(e -> new Thread(() -> RecordImpl.getInstance().reset(new Score())).start());
+        reset.addActionListener(e -> new Thread(() -> RecordImpl.getInstance().reset()).start());
         this.addComponent(reset);
 
         /* BUTTONS CREATION */
