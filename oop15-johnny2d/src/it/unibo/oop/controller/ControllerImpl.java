@@ -33,6 +33,7 @@ public final class ControllerImpl implements Controller {
 
     private ControllerImpl() {
         this.record.setValue(this.getStatFromFile());
+        this.view.showView(AppState.LAUNCHING);
     }
 
     /**
