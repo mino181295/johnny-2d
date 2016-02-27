@@ -2,7 +2,7 @@ package it.unibo.oop.utilities;
 
 /**
  * Encapsulates a 2D vector. Allows some methods that modifies a Vector.
- * {@link https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/math/Vector2.html}.
+ * @see <a href="https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/math/Vector2.html">Vector2</a>
  */
 public class Vector2 extends Position {
 	
@@ -22,6 +22,7 @@ public class Vector2 extends Position {
 	public Vector2(final Vector2 newVector){
 		super(newVector.getX(),newVector.getY());
 	}
+	
 	public Vector2(){
 		super(0,0);
 	}

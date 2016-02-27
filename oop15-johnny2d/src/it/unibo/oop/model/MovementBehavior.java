@@ -9,8 +9,8 @@ import it.unibo.oop.utilities.Vector2;
 public interface MovementBehavior {
 	/**
 	 * 
-	 * @param targetPosition The position where the Movemnt Behavior should guide you
-	 * @return A {@link Vector2} that rappresents the direction to follow
+	 * @param targetPosition the {@link Position} where the {@link MovementBehavior} should guide you
+	 * @return A {@link Vector2} that represents the direction to follow
 	 */
 	Vector2 getNextMove(Position targetPosition);
 	

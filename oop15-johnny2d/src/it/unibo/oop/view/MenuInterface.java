@@ -7,6 +7,8 @@ import it.unibo.oop.view.MenuPanel.StateButton;
 
 /**
  * Interface implemented by menu views.
+ * The logos are made with FlamingText.
+ * @see <a href="http://www.flamingtext.com/">FlamingText</a>
  */
 public interface MenuInterface extends ESource<StateObserver> {
 

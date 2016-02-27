@@ -11,6 +11,8 @@ import static it.unibo.oop.utilities.Direction.*;
 
 /**
  * A class representing a sprite sheet.
+ * The sprite sheets are generated with MMORPG Maker XB Sprite Generator.
+ * @see <a href="http://www.mmorpgmakerxb.com/p/characters-sprites-generator">MMORPG Maker XB Sprite Generator</a>
  */
 public class SpriteSheet {
 
