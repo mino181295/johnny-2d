@@ -100,12 +100,12 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
     }
 
     @Override
-    public void addObserver(StateObserver obs) {
+    public void addObserver(final StateObserver obs) {
         this.stateObs.add(obs);        
     }
 
     @Override
-    public void doAction(Consumer<StateObserver> action) {
+    public void doAction(final Consumer<StateObserver> action) {
         this.stateObs.forEach(action);
     }
 }

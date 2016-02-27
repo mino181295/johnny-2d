@@ -52,7 +52,7 @@ public class MainKeyListener implements KeyListener, ESource<KeyboardObserver> {
     }
 
     @Override
-    public void doAction(Consumer<KeyboardObserver> action) {
+    public void doAction(final Consumer<KeyboardObserver> action) {
         this.obsList.forEach(action);
     }
     

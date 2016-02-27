@@ -26,7 +26,7 @@ public enum ActionKey implements Key {
     private final int vkCode;
     private final Action action;        
     
-    ActionKey(final int vkCode, Action action) {
+    ActionKey(final int vkCode, final Action action) {
         this.vkCode = vkCode;
         this.action = action;
     }

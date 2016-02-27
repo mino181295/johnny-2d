@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * Class implementing {@link Record}.
  */
-public class RecordImpl implements Record {
+public final class RecordImpl implements Record {
 
     private static Optional<Record> singleton = Optional.empty();
     private volatile boolean record;
@@ -48,7 +48,7 @@ public class RecordImpl implements Record {
     }
 
     @Override
-    public synchronized void setValue(Score value) {
+    public synchronized void setValue(final Score value) {
         this.reset();
         this.value = value;   
     }

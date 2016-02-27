@@ -15,7 +15,6 @@ public class Level implements LevelInterface {
      */
     private static final String TITLE = "Johnny2D";
     private final JFrame frame;
-    private final MainKeyListener keyListener;
     private final LevelPanel mainLevel;
 
     /**
@@ -23,6 +22,7 @@ public class Level implements LevelInterface {
      *            observer of the keyboard.
      */
     public Level(final KeyboardObserver... obs) {
+        final MainKeyListener keyListener;
         this.frame = new JFrame(TITLE);
         this.frame.setSize(SCREEN_DIMENSION);
         this.frame.setUndecorated(true);
@@ -33,8 +33,8 @@ public class Level implements LevelInterface {
         this.frame.getContentPane().add(mainLevel);
 
         /* per MainKeyListener */
-        this.keyListener = new MainKeyListener(Arrays.asList(obs));
-        this.frame.addKeyListener(this.keyListener);
+        keyListener = new MainKeyListener(Arrays.asList(obs));
+        this.frame.addKeyListener(keyListener);
         this.frame.setFocusTraversalKeysEnabled(false);
     }
 
