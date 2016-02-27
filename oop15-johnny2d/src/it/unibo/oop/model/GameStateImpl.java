@@ -25,9 +25,9 @@ public final class GameStateImpl implements GameState {
 
     private static final int MAX_COLLECTIBLES = 4;
     private static final int COLLECTIBLES_DELAY = 120;
-
-    private static final int BASIC_DISTANCE = 400;
-    private static final int INVISIBLE_DISTANCE = 500;
+    
+    private static final int BASIC_DISTANCE = (int) (Math.max(SCREEN_WIDTH, SCREEN_HEIGHT)/2 *0.5);
+    private static final int INVISIBLE_DISTANCE = (int) (Math.max(SCREEN_WIDTH, SCREEN_HEIGHT)/2 *0.7);
 
     private int randomCollectiblesDelay = COLLECTIBLES_DELAY;
     private int randomMonstersDelay = MONSTERS_DELAY;
