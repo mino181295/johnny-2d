@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
+
 import it.unibo.oop.utilities.CharactersSettings;
 import it.unibo.oop.utilities.Direction;
 import it.unibo.oop.utilities.Position;
@@ -244,5 +245,9 @@ public final class GameStateImpl implements GameState {
         } else {
             RecordImpl.getInstance().reset(RecordImpl.getInstance().getValue());
         }
+    }
+    
+    public Score getScore() {
+        return this.johnnyCharacter.get().getScore();
     }
 }
