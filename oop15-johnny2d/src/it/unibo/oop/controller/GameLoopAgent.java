@@ -64,7 +64,7 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
 
             /* ACQUISIZIONE TASTI PREMUTI */
             this.processEvents();
-            this.dbgKeysMan(); /* per debugging */
+//            this.dbgKeysMan(); /* per debugging */
 
             /* AGGIORNAMENTO GAMESTATE */
             this.gameState.updatePositions(this.mainCharDir, this.isMainCharShooting);
