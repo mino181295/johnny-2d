@@ -64,7 +64,7 @@ public class MainCharacter extends MovableEntity implements Shooter {
             this.setMovement(newMovement);
             this.move();
         } catch (CollisionHandlingException e) {
-            System.out.println(e.getMessage());
+            System.out.println("The main character collided");
         } finally {
             if (isShooting && !this.currentHealth.isDead()) {
                 this.shoot();

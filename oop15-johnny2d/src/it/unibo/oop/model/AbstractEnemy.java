@@ -65,7 +65,7 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
             this.setMovement(newMovement);
             this.move();
         } catch (CollisionHandlingException e) {
-            e.printStackTrace();
+            System.out.println("The monster collided so he cant move and" + (this.isDead()?" is dead":" is not dead"));
         }
 
     }

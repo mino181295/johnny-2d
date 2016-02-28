@@ -7,4 +7,14 @@ public class TestClass {
     @Test
     private void testUtilities() {
     }
+    private void testCollectables(){
+    	
+    }
+    
+    private void testEnemies(){
+    	
+    }
+    private void testMainCharacter(){
+    	
+    }
 }

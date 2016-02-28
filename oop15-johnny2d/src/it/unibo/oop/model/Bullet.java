@@ -98,7 +98,7 @@ public class Bullet extends MovableEntity implements Shot {
                 this.killEntity();
             }
         } catch (CollisionHandlingException e) {
-            System.out.println(e.getMessage());
+            System.out.println("The bullet collided with something");
         }
     }
 
