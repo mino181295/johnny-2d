@@ -3,7 +3,6 @@ package it.unibo.oop.controller;
 import java.io.IOException;
 
 import it.unibo.oop.model.GameStateImpl;
-import it.unibo.oop.utilities.MusicPlayer;
 import it.unibo.oop.utilities.MusicPlayerImpl;
 import it.unibo.oop.view.View;
 

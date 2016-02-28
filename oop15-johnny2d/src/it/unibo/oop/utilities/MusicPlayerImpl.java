@@ -1,7 +1,6 @@
 package it.unibo.oop.utilities;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,19 +27,15 @@ public final class MusicPlayerImpl implements MusicPlayer {
 
     private MusicPlayerImpl() {
         this.musicLibrary = new HashMap<>();
-        this.musicLibrary.put(LEVEL_BACKGROUND, this.loadMusic("/audio/LevelBackground.mp3"));
+        this.musicLibrary.put(LEVEL_BACKGROUND, this.loadMusic("/audio/LevelBackground.wav"));
         this.musicLibrary.put(GAME_OVER, this.loadMusic("/audio/GameOver.wav"));
     }
 
     private Clip loadMusic(final String path) {
-        AudioInputStream ais;
         Clip clip = null;
-        final URL url = this.getClass().getResource(path);
-        try {
-            ais = AudioSystem.getAudioInputStream(url);
+        try (final AudioInputStream ais = AudioSystem.getAudioInputStream(this.getClass().getResourceAsStream(path))) {
             clip = AudioSystem.getClip();
             clip.open(ais);
-            ais.close();
         } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
             e.printStackTrace();
         }
