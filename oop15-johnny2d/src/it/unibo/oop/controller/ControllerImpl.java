@@ -37,6 +37,7 @@ public final class ControllerImpl implements Controller {
 
     private ControllerImpl() {
         this.record.setValue(this.getStatFromFile());
+        this.mPlayer.setMusic(true);
         this.view.showView(AppState.LAUNCHING);
     }
 
@@ -63,8 +64,7 @@ public final class ControllerImpl implements Controller {
         view.reset();
         this.view.hideView();
         this.mPlayer.stopAll();
-        this.mPlayer.playLoop(MusicPlayerImpl.GAME_OVER);
-        this.mPlayer.setMusic(true);
+        this.mPlayer.playLoop(MusicPlayerImpl.LEVEL_BACKGROUND);
         if (!this.gLAgent.isPresent()) {
             this.gLAgent = Optional.ofNullable(new GameLoopAgent());
             new Thread(this.gLAgent.get()).start();

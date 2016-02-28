@@ -29,7 +29,7 @@ public class OptionsMenu extends MenuPanel {
         final JLabel label = new JLabel("Music");
         final JCheckBox check = new JCheckBox();
         check.setOpaque(false);
-        check.setSelected(true);
+        check.setSelected(MusicPlayerImpl.getInstance().isMusicOn());
         check.addActionListener(e -> MusicPlayerImpl.getInstance().setMusic(check.isSelected()));
         this.addComponents(label, check);
 

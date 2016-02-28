@@ -44,8 +44,7 @@ public class StateObserverImpl implements StateObserver {
         case GAME_OVER:
             GameStateImpl.getInstance().checkTopScore();
             MusicPlayerImpl.getInstance().stopAll();
-            MusicPlayerImpl.getInstance().play(MusicPlayerImpl.GAME_OVER);
-            MusicPlayerImpl.getInstance().setMusic(true);
+            MusicPlayerImpl.getInstance().playLoop(MusicPlayerImpl.GAME_OVER);
             break;
         case EXIT:
             MusicPlayerImpl.getInstance().closeMusicPlayer();
