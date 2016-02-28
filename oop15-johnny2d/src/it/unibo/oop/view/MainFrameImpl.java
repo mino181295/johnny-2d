@@ -1,5 +1,6 @@
 package it.unibo.oop.view;
 
+import java.awt.Container;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class MainFrameImpl implements MainFrame {
     @Override
     public void changeView(final AppState state) {
         try {
-            this.factory.makePanel(Objects.requireNonNull(state)).ifPresent(p -> this.frame.setContentPane(p));
+            this.factory.makePanel(Objects.requireNonNull(state)).ifPresent(p -> this.frame.setContentPane((Container) p));
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | NoSuchMethodException | SecurityException e) {
             e.printStackTrace();
@@ -51,7 +52,7 @@ public class MainFrameImpl implements MainFrame {
 
     private static class MenuPanelFactory {
 
-        private Optional<MenuPanel> makePanel(final AppState state)
+        private Optional<MenuInterface> makePanel(final AppState state)
                 throws InstantiationException, IllegalAccessException, IllegalArgumentException,
                 InvocationTargetException, NoSuchMethodException, SecurityException {
 

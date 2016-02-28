@@ -9,39 +9,39 @@ import it.unibo.oop.utilities.Direction;
  */
 public interface View {
 
-    /**
-     * @return the {@link LevelInterface}
-     */
-    LevelInterface getLevelView();
-
-    /**
-     * @return the {@link Direction}
-     */
-    Direction getMovement();
-
-    /**
-     * @return the {@link Action}
-     */
-    Action getAction();
-
-    /**
-     * @param state
-     *            object used to choose which view should be shown.
-     */
-    void showView(AppState state);
-
-    /**
-     * Hides the view or some parts of it.
-     */
-    void hideView();
-
-    /**
-     * Shows the previous view.
-     */
-    void showLast();
-
-    /**
-     * Resets view or some parts of it.
-     */
-    void reset();
+//    /**
+//     * @return the {@link LevelInterface}
+//     */
+//    LevelInterface getLevelView();
+//
+//    /**
+//     * @return the {@link Direction}
+//     */
+//    Direction getMovement();
+//
+//    /**
+//     * @return the {@link Action}
+//     */
+//    Action getAction();
+//
+//    /**
+//     * @param state
+//     *            object used to choose which view should be shown.
+//     */
+//    void showView(AppState state);
+//
+//    /**
+//     * Hides the view or some parts of it.
+//     */
+//    void hideView();
+//
+//    /**
+//     * Shows the previous view.
+//     */
+//    void showLast();
+//
+//    /**
+//     * Resets view or some parts of it.
+//     */
+//    void reset();
 }

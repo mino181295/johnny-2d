@@ -23,12 +23,12 @@ import it.unibo.oop.view.keyboard.MovementKeysManager;
 public final class ViewImpl implements View {
 
     private static Optional<View> singleton = Optional.empty();
-    private final LevelInterface level;
-    private final MainFrame mainFrame; // class which contains all the
-                                       // menu-views.
-    private final KeysManager<MovementKey, Direction> movKeysMan;
-    private final KeysManager<ActionKey, Action> actKeysMan;
-    private List<AppState> history; // stack open-views.
+//    private final LevelInterface level;
+//    private final MainFrame mainFrame; // class which contains all the
+//                                       // menu-views.
+//    private final KeysManager<MovementKey, Direction> movKeysMan;
+//    private final KeysManager<ActionKey, Action> actKeysMan;
+//    private List<AppState> history; // stack open-views.
 
     private ViewImpl() {
         this.history = new ArrayList<>();
@@ -48,63 +48,63 @@ public final class ViewImpl implements View {
         }
         return singleton.get();
     }
-
-    @Override
-    public Direction getMovement() {
-        return this.movKeysMan.processKeys();
-    }
-
-    @Override
-    public Action getAction() {
-        return this.actKeysMan.processKeys();
-    }
-
-    @Override
-    public LevelInterface getLevelView() {
-        return this.level;
-    }
-
-    @Override
-    public synchronized void showView(final AppState state) {
-        try {
-            SwingUtilities.invokeAndWait(() -> this.mainFrame.changeView(state));
-            if (!this.history.contains(state)) {
-                this.history.add(state);
-            }
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public synchronized void hideView() {
-        try {
-            SwingUtilities.invokeAndWait(() -> this.mainFrame.setVisible(false));
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public synchronized void showLast() {
-        final int lastIndex = this.history.size() - 1;
-        if (lastIndex > 0) {
-            this.history.remove(lastIndex); /*
-                                             * rimuovo la view che ha fatto
-                                             * "roll-back" per evitare loop
-                                             */
-            this.showView(this.history
-                    .get(lastIndex - 1)); /* mostro quella che la precedeva */
-        }
-    }
-
-    @Override
-    public synchronized void reset() {
-        this.history = new ArrayList<>(); /*
-                                           * per evitare di sovraffollare
-                                           * inutilmente la history
-                                           */
-        this.movKeysMan.reset();
-        this.actKeysMan.reset();
-    }
+//
+//    @Override
+//    public Direction getMovement() {
+//        return this.movKeysMan.processKeys();
+//    }
+//
+//    @Override
+//    public Action getAction() {
+//        return this.actKeysMan.processKeys();
+//    }
+//
+//    @Override
+//    public LevelInterface getLevelView() {
+//        return this.level;
+//    }
+//
+//    @Override
+//    public synchronized void showView(final AppState state) {
+//        try {
+//            SwingUtilities.invokeAndWait(() -> this.mainFrame.changeView(state));
+//            if (!this.history.contains(state)) {
+//                this.history.add(state);
+//            }
+//        } catch (InterruptedException | InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public synchronized void hideView() {
+//        try {
+//            SwingUtilities.invokeAndWait(() -> this.mainFrame.setVisible(false));
+//        } catch (InterruptedException | InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public synchronized void showLast() {
+//        final int lastIndex = this.history.size() - 1;
+//        if (lastIndex > 0) {
+//            this.history.remove(lastIndex); /*
+//                                             * rimuovo la view che ha fatto
+//                                             * "roll-back" per evitare loop
+//                                             */
+//            this.showView(this.history
+//                    .get(lastIndex - 1)); /* mostro quella che la precedeva */
+//        }
+//    }
+//
+//    @Override
+//    public synchronized void reset() {
+//        this.history = new ArrayList<>(); /*
+//                                           * per evitare di sovraffollare
+//                                           * inutilmente la history
+//                                           */
+//        this.movKeysMan.reset();
+//        this.actKeysMan.reset();
+//    }
 }
