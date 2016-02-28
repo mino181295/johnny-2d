@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="it.unibo.oop.model.Factory.WallFactory" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="439" y="59"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" language="java" name="it.unibo.oop.model.Entity" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1892" y="-148"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="it.unibo.oop.model.Shooter" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Shooter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2232" y="661"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="it.unibo.oop.model.Wall" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Wall.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2130" y="7"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="it.unibo.oop.model.Movable" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Movable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2091" y="233"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="it.unibo.oop.model.Record" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Record.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2813" y="453"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="it.unibo.oop.model.AbstractEntity" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/AbstractEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1905" y="120"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="it.unibo.oop.model.GameState" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/GameState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2629" y="-192"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="it.unibo.oop.model.MainCharacter" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/MainCharacter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2234" y="870"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" language="java" name="it.unibo.oop.model.Collectable" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Collectable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1554" y="269"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="it.unibo.oop.model.ScoreBonus" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/ScoreBonus.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1453" y="460"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="it.unibo.oop.model.BasicEnemyBehavior" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/BasicEnemyBehavior.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1548" y="1462"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="it.unibo.oop.model.Factory" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="961" y="-244"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="it.unibo.oop.model.Bullet" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Bullet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2217" y="442"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="it.unibo.oop.model.HealthBonus" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/HealthBonus.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1659" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="it.unibo.oop.model.InvisibleEnemyBehavior" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/InvisibleEnemyBehavior.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1859" y="1459"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="it.unibo.oop.model.MovableEntity" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/MovableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1909" y="441"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="it.unibo.oop.model.Factory.EnemiesFactory" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="731" y="50"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="it.unibo.oop.model.BasicMonster" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/BasicMonster.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1549" y="1112"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="20" language="java" name="it.unibo.oop.model.Enemy" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1382" y="851"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="21" language="java" name="it.unibo.oop.model.Factory.MainCharacterFactory" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1156" y="52"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="22" language="java" name="it.unibo.oop.model.Shot" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Shot.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2443" y="442"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="23" language="java" name="it.unibo.oop.model.MovementBehavior" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/MovementBehavior.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1701" y="1323"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="it.unibo.oop.model.Factory.BulletFactory" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Factory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1493" y="41"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="it.unibo.oop.model.GameStateImpl" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/GameStateImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2628" y="119"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="it.unibo.oop.model.Score" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Score.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2568" y="655"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="it.unibo.oop.model.AbstractEnemy" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/AbstractEnemy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1743" y="854"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="it.unibo.oop.model.Arena" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Arena.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2311" y="-229"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="it.unibo.oop.model.Health" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/Health.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2571" y="867"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="it.unibo.oop.model.InvisibleMonster" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/InvisibleMonster.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1855" y="1140"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="it.unibo.oop.model.RecordImpl" project="oop15-johnny2d" 
+    file="/oop15-johnny2d/src/it/unibo/oop/model/RecordImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2815" y="654"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <realization id="35">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="36">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="37" name="currentHealth"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="40" name="gameArena"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <association id="44">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="45" name="stableList"/>      
+      <multiplicity id="46" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="47">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <nesting id="48">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="18"/>  
+  </nesting>  
+  <realization id="49">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="50">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="27"/>  
+  </generalization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="53">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="54" name="playerPosition"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="56">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <association id="57">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="58" name="currentScore"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="60">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="21"/>  
+  </nesting>  
+  <association id="61">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="62" name="boundsList"/>      
+      <multiplicity id="63" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="64">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <nesting id="65">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="24"/>  
+  </nesting>  
+  <association id="66">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="67" name="SINGLETON"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="69">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="70">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="71" name="value"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="73">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="1"/>  
+  </nesting>  
+  <realization id="74">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <realization id="75">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="76">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="77">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="78" name="playerPosition"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="80">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="82">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="83" name="movableList"/>      
+      <multiplicity id="84" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="85">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="false" protected="false" private="false" static="false"/>    
+    <operations public="true" package="false" protected="false" private="false" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
