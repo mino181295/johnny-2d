@@ -33,7 +33,7 @@ public final class ControllerImpl implements Controller {
     private final View view = ViewImpl.getInstance();
     private final GameState gameState = GameStateImpl.getInstance();
     private final Record record = RecordImpl.getInstance();
-    private final MusicPlayer mPlayer= MusicPlayerImpl.getInstance();
+    private final MusicPlayer mPlayer = MusicPlayerImpl.getInstance();
 
     private ControllerImpl() {
         this.record.setValue(this.getStatFromFile());
