@@ -24,12 +24,20 @@ public class MainCharacter extends MovableEntity implements Shooter {
      * Creates a {@link MainCharacter} with a standard {@link Health} end a
      * {@link Score} resetted
      */
-    public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
+    public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement, Health creationHealth) {
         super(startingX, startingY, startingMovement, MAIN_CHARACTER.getSpeed());
-        this.currentHealth = new Health();
+        this.currentHealth = creationHealth;
         this.currentScore = new Score(0);
         this.lastDirection = Direction.UP;
         this.currentDirection = Direction.NONE;
+    }
+    
+    /**
+     * Creates a {@link MainCharacter} with a standard {@link Health} end a
+     * {@link Score} resetted
+     */
+    public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
+        this(startingX, startingY, startingMovement,  new Health());
     }
 
     /**

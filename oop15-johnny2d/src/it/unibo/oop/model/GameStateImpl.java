@@ -20,8 +20,9 @@ public final class GameStateImpl implements GameState {
     private static final int MONSTERS_DELAY = 130;
 
     private static final int INVISIBLE_DEFAULT = 3;
+    private static final int MONSTER_CAP=50;
 
-    private int monstersCap = 50;
+    private int monstersCap=0;
 
     private static final int MAX_COLLECTIBLES = 4;
     private static final int COLLECTIBLES_DELAY = 120;
@@ -71,6 +72,7 @@ public final class GameStateImpl implements GameState {
         this.stableList.addAll(this.gameArena.getBoundsList());
         this.johnnyCharacter = Optional.ofNullable(
                 Factory.MainCharacterFactory.generateCentredCharacter(this.getArena().getPlayableRectangle()));
+        monstersCap = MONSTER_CAP;
         this.spawnBasicMonsters(BASIC_DEFAULT);
         this.spawnInvisibleMonsters(INVISIBLE_DEFAULT);
     }
