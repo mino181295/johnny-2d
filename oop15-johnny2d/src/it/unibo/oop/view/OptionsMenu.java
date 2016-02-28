@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import it.unibo.oop.controller.AppState;
 import it.unibo.oop.controller.StateObserver;
 import it.unibo.oop.model.RecordImpl;
+import it.unibo.oop.utilities.MusicPlayerImpl;
 
 /**
  * {@link javax.swing.JPanel} for options Menu-view.
@@ -29,7 +30,7 @@ public class OptionsMenu extends MenuPanel {
         final JCheckBox check = new JCheckBox();
         check.setOpaque(false);
         check.setSelected(true);
-        check.addActionListener(e -> ViewImpl.getInstance().getLevelView().enableMusic(check.isSelected()));
+        check.addActionListener(e -> MusicPlayerImpl.getInstance().setMusic(check.isSelected()));
         this.addComponents(label, check);
 
         /* DELETE RECORD-SCORE */
