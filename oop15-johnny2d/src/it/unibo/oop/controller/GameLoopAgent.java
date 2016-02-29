@@ -84,13 +84,13 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
         this.mainCharDir = this.view.getMovement();
     }
 
-    /* per debugging */
-    private void dbgKeysMan() {
-        if (this.mainCharDir != Direction.NONE) {
-            System.out.println("Dir : " + this.mainCharDir);
-        }
-        System.out.println(this.isMainCharShooting ? "SHOOT!" : "");
-    }
+//    /* per debugging */
+//    private void dbgKeysMan() {
+//        if (this.mainCharDir != Direction.NONE) {
+//            System.out.println("Dir : " + this.mainCharDir);
+//        }
+//        System.out.println(this.isMainCharShooting ? "SHOOT!" : "");
+//    }
 
     @Override
     public void addObserver(final StateObserver obs) {
