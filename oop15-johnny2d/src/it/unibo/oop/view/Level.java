@@ -1,8 +1,12 @@
 package it.unibo.oop.view;
 
 import static it.unibo.oop.utilities.Settings.SCREEN_DIMENSION;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import it.unibo.oop.view.keyboard.KeyboardObserver;
 
 /**
@@ -40,8 +44,14 @@ public class Level implements LevelInterface {
 
     @Override
     public void updateLevel() {
-        this.mainLevel.repaint();
-        this.frame.setVisible(true);
+    	try {
+			SwingUtilities.invokeAndWait(() -> {
+				this.mainLevel.repaint();
+			    this.frame.setVisible(true);
+			});
+		} catch (InterruptedException | InvocationTargetException e) {
+			e.printStackTrace();
+		} 
     }
 
     public void initialize(final int levelNumber) {

@@ -77,8 +77,8 @@ public final class ControllerImpl implements Controller {
         final File statDir = new File(Settings.HIGHSCORE_FOLDER);
         final File statFile = new File(Settings.HIGHSCORE_FOLDER + Settings.HIGHSCORE_FILE);
         try {
-            boolean a = statDir.mkdir();
-            boolean b = statFile.createNewFile();
+            final boolean a = statDir.mkdir();
+            final boolean b = statFile.createNewFile();
             System.out.println(a && b ? "StatFile created." : "File still exist.");
         } catch (IOException e) {
             System.out.println("Error in file reading, is it empty?");
