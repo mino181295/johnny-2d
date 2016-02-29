@@ -44,16 +44,6 @@ public class Level implements LevelInterface {
         this.frame.setVisible(true);
     }
 
-    @Override
-    public void showIt() {
-        this.frame.setVisible(true);
-    }
-
-    @Override
-    public void hideIt() {
-        this.frame.setVisible(false);
-    }
-
     public void initialize(final int levelNumber) {
         this.mainLevel.setArena(levelNumber);
     }
