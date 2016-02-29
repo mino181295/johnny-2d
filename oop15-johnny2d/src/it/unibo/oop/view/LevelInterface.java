@@ -11,7 +11,7 @@ public interface LevelInterface {
     void updateLevel();
 
     /**
-     * @param level
+     * @param levelNumber
      *            of initialization.
      */
     void initialize(final int levelNumber);

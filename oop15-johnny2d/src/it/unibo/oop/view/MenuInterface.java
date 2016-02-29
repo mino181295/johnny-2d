@@ -21,7 +21,7 @@ public interface MenuInterface extends ESource<StateObserver> {
     /**
      * @param cmps
      *            components to attach. NB: a {@link JPanel} with
-     *            {@link BoxLayout} is used in addition to wrap the components.
+     *            BoxLayout is used in addition to wrap the components.
      */
     void addComponents(final JComponent... cmps);
 

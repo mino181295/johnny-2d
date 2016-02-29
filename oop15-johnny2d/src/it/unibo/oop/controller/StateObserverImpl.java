@@ -14,7 +14,8 @@ public class StateObserverImpl implements StateObserver {
     private final View view;
 
     /**
-     * @param man
+     * @param view
+     * 			to observe.
      */
     public StateObserverImpl(final View view) {
         this.view = view;
