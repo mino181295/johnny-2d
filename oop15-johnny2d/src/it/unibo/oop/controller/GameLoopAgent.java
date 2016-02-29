@@ -49,13 +49,7 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
         while (true) {
             while (this.pause || this.gameOver) {
                 try {
-                    AppState state;
-                    if (this.pause) {
-                        state = AppState.PAUSE;
-                    } else {
-                        state = AppState.GAME_OVER;
-                    }
-                    this.doAction(e -> e.stateAction(state));
+                    this.doAction(e -> e.stateAction(this.pause ? AppState.PAUSE : AppState.GAME_OVER));
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -74,7 +68,6 @@ public class GameLoopAgent implements AgentInterface, ESource<StateObserver> {
 
             /* AGGIORNAMENTO E PRINTING DEL FRAME */
             this.view.getLevelView().updateLevel();
-            this.view.getLevelView().showIt();
 
             try {
                 Thread.sleep(SLEEPING_TIME);

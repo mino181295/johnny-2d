@@ -3,18 +3,12 @@ package it.unibo.oop.view;
 /**
  * Interface for {@link Level}.
  */
-public interface LevelInterface extends Showable {
+public interface LevelInterface {
 
     /**
      * Repaints the {@link LevelPanel}.
      */
     void updateLevel();
-
-    /**
-     * @param val
-     *            to enable(true)/disable(false) music.
-     */
-    void enableMusic(final boolean val);
 
     /**
      * @param level

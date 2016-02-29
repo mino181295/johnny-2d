@@ -41,6 +41,7 @@ public class Level implements LevelInterface {
     @Override
     public void updateLevel() {
         this.mainLevel.repaint();
+        this.frame.setVisible(true);
     }
 
     @Override
@@ -51,11 +52,6 @@ public class Level implements LevelInterface {
     @Override
     public void hideIt() {
         this.frame.setVisible(false);
-    }
-
-    @Override
-    public void enableMusic(final boolean val) {
-
     }
 
     public void initialize(final int levelNumber) {
