@@ -14,6 +14,8 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
 
     /**
      * Constructor that creates a {@link ScoreBonus} in a defined position
+     * @param startingX The initial X position
+     * @param startingY The initial Y value
      */
     public ScoreBonus(final double startingX, final double startingY) {
         super(startingX, startingY);
@@ -23,6 +25,7 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
     /**
      * Method that takes the {@link MainCharacter} that collected the bonus and
      * gives to him the {@link Score} gained
+     * @param bonusCollector the {@link MainCharacter} that collected the bonus
      */
     public void collect(final MainCharacter bonusCollector) {
         bonusCollector.getScore().increaseScore(scoreBonusValue);
@@ -30,6 +33,7 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
 
     /**
      * Creates a random value of the score to the Score bonus
+     * @return a Random score bonus value
      */
     private int randomScoreGeneration() {
         final int value = new Random().nextInt(1000);
@@ -43,16 +47,13 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
 
     }
 
-    /**
-     * Function that returns if the value is between the lower and the upper
-     * bound
-     */
     private boolean isBetween(final int x, final int lower, final int upper) {
         return lower <= x && x <= upper;
     }
 
     /**
      * Gets the {@link ScoreBonus} height
+     * @return the height
      */
     protected int getEntityHeight() {
         return BONUS.getHeight();
@@ -60,6 +61,7 @@ public class ScoreBonus extends AbstractEntity implements Collectable {
 
     /**
      * Gets the {@link ScoreBonus} width
+     * @return the width
      */
     protected int getEntityWidth() {
         return BONUS.getWidth();

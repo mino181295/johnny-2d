@@ -22,6 +22,14 @@ public class InvisibleMonster extends AbstractEnemy {
     /**
      * Creates an invisible monster that reaches you if you enter his visibility
      * area
+     * @param startingX
+     *            The X position where the Monster is created
+     * @param startingY
+     *            The Y position where the Monster is created
+     * @param movementVector
+     *            The initial movement of the monster
+     * @param speedValue 
+     * 			  His own speed information
      */
     public InvisibleMonster(final double startingX, final double startingY, final Vector2 movementVector,
             final Velocity speedValue) {
@@ -34,6 +42,7 @@ public class InvisibleMonster extends AbstractEnemy {
     /**
      * Checks if the monster collides the walls or it goes out from the playable
      * area
+     * @param newPosition The next position where the function has to check collisions
      */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(),

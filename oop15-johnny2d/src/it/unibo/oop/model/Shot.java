@@ -9,7 +9,7 @@ public interface Shot {
     /**
      * Gets the remaining distance of the shot
      * 
-     * @return
+     * @return the distance 
      */
     double getRemainingDistance();
 }

@@ -24,6 +24,7 @@ public class HealthBonus extends AbstractEntity implements Collectable {
 
     /**
      * Gets the {@link HealthBonus} Height
+     * @return the height
      */
     protected int getEntityHeight() {
         return BONUS.getHeight();
@@ -31,6 +32,7 @@ public class HealthBonus extends AbstractEntity implements Collectable {
 
     /**
      * gets the {@link HealthBonus} width
+     * @return the width
      */
     protected int getEntityWidth() {
         return BONUS.getWidth();
@@ -39,6 +41,7 @@ public class HealthBonus extends AbstractEntity implements Collectable {
     /**
      * The {@link MainCharacter} passed collects the {@link HealthBonus} and
      * gets healed.
+     * @param bonusCollector The character who collected the bonus
      */
     public void collect(final MainCharacter bonusCollector) {
         bonusCollector.getHealth().increaseHealth(HEAL_VALUE);

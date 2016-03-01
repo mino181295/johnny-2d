@@ -24,8 +24,8 @@ public interface Entity {
     Rectangle getBounds();
 
     /**
-     * 
-     * @return true if the entity intersecates the secondEntity
+     * @param secondEntity the second entity to check if intersects the bounds
+     * @return True if the entity intersects the secondEntity
      */
     boolean intersecate(Entity secondEntity);
 }

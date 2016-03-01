@@ -16,6 +16,7 @@ public class Score implements Serializable, Comparable<Score> {
 
     /**
      * Constructor that initializes the {@link Score} with an initial value
+     * @param initialScore the initial score value
      */
     public Score(final int initialScore) {
         this.currentScore = initialScore;
@@ -30,6 +31,7 @@ public class Score implements Serializable, Comparable<Score> {
 
     /**
      * Increases the current score.
+     * @param value of the amount to add
      */
     public void increaseScore(final int value) {
         this.currentScore += value;
@@ -38,7 +40,10 @@ public class Score implements Serializable, Comparable<Score> {
     public String toString() {
         return "Score: " + currentScore;
     }
-
+    /**
+     * Getter for the score Value
+     * @return the score value
+     */
     public int getValue() {
         return this.currentScore;
     }

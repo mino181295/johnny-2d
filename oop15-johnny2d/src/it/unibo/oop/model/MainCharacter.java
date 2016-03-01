@@ -22,7 +22,16 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
     /**
      * Creates a {@link MainCharacter} with a standard {@link Health} end a
-     * {@link Score} resetted
+     * {@link Score} reseted
+     * 
+     * @param startingX
+     *            The X position where the Monster is created
+     * @param startingY
+     *            The Y position where the Monster is created
+     * @param startingMovement
+     *            The initial movement of the monster
+     * @param creationHealth 
+     * 			  His own health information
      */
     public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement, Health creationHealth) {
         super(startingX, startingY, startingMovement, MAIN_CHARACTER.getSpeed());
@@ -35,6 +44,13 @@ public class MainCharacter extends MovableEntity implements Shooter {
     /**
      * Creates a {@link MainCharacter} with a standard {@link Health} end a
      * {@link Score} resetted
+     * 
+     * @param startingX
+     *            The X position where the Monster is created
+     * @param startingY
+     *            The Y position where the Monster is created
+     * @param startingMovement
+     *            The initial movement of the monster
      */
     public MainCharacter(final double startingX, final double startingY, final Vector2 startingMovement) {
         this(startingX, startingY, startingMovement,  new Health());
@@ -42,6 +58,11 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
     /**
      * Creates a new {@link MainCharacter} with no movement {@link Vector2}
+     * 
+     * @param startingX
+     *            The X position where the Monster is created
+     * @param startingY
+     *            The Y position where the Monster is created
      */
     public MainCharacter(final double startingX, final double startingY) {
         this(startingX, startingY, new Vector2());
@@ -49,6 +70,8 @@ public class MainCharacter extends MovableEntity implements Shooter {
 
     /**
      * Changes the direction and the shooting flag of the {@link MainCharacter}
+     * @param newDirection The new {@link MainCharacter} {@link Direction}
+     * @param isShooting the new Shooting flag
      */
     public void setInput(final Direction newDirection, final boolean isShooting) {
         if (newDirection != Direction.NONE) {
@@ -57,7 +80,9 @@ public class MainCharacter extends MovableEntity implements Shooter {
         this.currentDirection = newDirection;
         this.isShooting = isShooting;
     }
-
+    /**
+     * Accelerates the {@link MainCharacter} and moves it to the next position every frame shooting if necessary
+     */
     public void update() {
         // Takes the new frame direction
         Vector2 newMovement = currentDirection.getVector2();

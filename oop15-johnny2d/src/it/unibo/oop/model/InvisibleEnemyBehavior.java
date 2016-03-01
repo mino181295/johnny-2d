@@ -17,6 +17,7 @@ public class InvisibleEnemyBehavior implements MovementBehavior {
     /**
      * Gets the {@link InvisibleMonster} to calculate the next move with and
      * creates the behavior
+     * @param player the invisible monster associated to the behavior
      */
     public InvisibleEnemyBehavior(final InvisibleMonster player) {
         this.playerPosition = player;
@@ -25,6 +26,8 @@ public class InvisibleEnemyBehavior implements MovementBehavior {
     /**
      * Returns a vector that indicates where the {@link Enemy} should go to
      * follow the {@link MainCharacter}.
+     * @param targetPosition the position to reach
+     * @return the movement necessary to reache the targetPosition
      */
     public Vector2 getNextMove(final Position targetPosition) {
         Position destination;

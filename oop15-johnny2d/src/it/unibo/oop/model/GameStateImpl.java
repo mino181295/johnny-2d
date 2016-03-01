@@ -65,6 +65,7 @@ public final class GameStateImpl implements GameState {
     /**
      * The function that creates the initials {@link Entity} like the
      * {@link MainCharacter} and the {@link Enemy}
+     * @param levelNumber The current level to initialize
      */
     public void initialize(final int levelNumber) {
         this.movableList.clear();
@@ -80,6 +81,7 @@ public final class GameStateImpl implements GameState {
     /**
      * A method that creates a defined number of {@link BasicMonster} in N free
      * random position
+     * @param number The number of enemies to spawn
      */
     private void spawnBasicMonsters(final int number) {
         BasicMonster tmpMonster;
@@ -104,6 +106,7 @@ public final class GameStateImpl implements GameState {
     /**
      * A method that creates a defined number of {@link InvisibleMonster} in N
      * free random position
+     * @param number The number of enemies to spawn
      */
     private void spawnInvisibleMonsters(final int number) {
         this.monstersCap -= number;
@@ -154,6 +157,8 @@ public final class GameStateImpl implements GameState {
 
     /**
      * Updates all the positions of the {@link MovableEntity} in the lists.
+     * @param newDirection next direction where the {@link MainCharacter} has to move
+     * @param isShooting Boolean flag that indicates if the {@link MainCharacter} has to shoot
      */
     public void updatePositions(final Direction newDirection, final boolean isShooting) {
         this.updatesNumber++;
@@ -179,6 +184,7 @@ public final class GameStateImpl implements GameState {
 
     /**
      * Adds a {@link Bullet} to the MovableList of {@link MovableEntity}
+     * @param newBullet {@link Bullet} to add
      */
     protected void addShoot(final Bullet newBullet) {
         final long deltaTime = this.updatesNumber - this.lastShotFrame;
@@ -191,6 +197,10 @@ public final class GameStateImpl implements GameState {
     /**
      * Updates the {@link MainCharacter} basing the new movement on the keys
      * pressed
+     * 
+     * @param newDirection next direction where the {@link MainCharacter} has to move
+     * @param isShooting Boolean flag that indicates if the {@link MainCharacter} has to shoot
+     * 
      */
     protected void updateHeroPos(final Direction newDirection, final boolean isShooting) {
         johnnyCharacter.ifPresent(c -> {
@@ -201,6 +211,7 @@ public final class GameStateImpl implements GameState {
 
     /**
      * Adds a {@link MovableEntity} to the movableList
+     * @param newEntity Entity {@link Movable} to add
      */
     protected void addMovableEntity(final MovableEntity newEntity) {
         this.movableList.add(newEntity);
@@ -209,6 +220,7 @@ public final class GameStateImpl implements GameState {
     /**
      * Add to the stableList the stable entities like {@link HealthBonus} and
      * {@link Wall}
+     * @param newEntity Entity {@link AbstractEntity} to add
      */
     public void addStableEntity(final AbstractEntity newEntity) {
         this.stableList.add(newEntity);
@@ -217,6 +229,7 @@ public final class GameStateImpl implements GameState {
     /**
      * Gets a {@link List} of {@link AbstractEntity} that contains the
      * {@link Entity} that can't be moved
+     * @return The list of stable objects
      */
     public List<AbstractEntity> getStableList() {
         return new ArrayList<>(this.stableList);
@@ -225,13 +238,15 @@ public final class GameStateImpl implements GameState {
     /**
      * Gets a {@link List} of {@link MovableEntity} that contains the
      * {@link Entity} that can be moved
+     * @return The list of {@link Movable} objects
      */
     public List<MovableEntity> getMovableList() {
         return new ArrayList<>(this.movableList);
     }
 
     /**
-     * Returns the {@link Optional} of the main character
+     * Getter of the {@link Optional} of the main character
+     * @return The {@link Optional} of the {@link MainCharacter}
      */
     public Optional<MainCharacter> getMainChar() {
         return this.johnnyCharacter;
@@ -239,19 +254,25 @@ public final class GameStateImpl implements GameState {
 
     /**
      * Gets the {@link Arena} of the Game
+     * @return The game {@link Arena}
      */
     public Arena getArena() {
         return this.gameArena;
     }
 
-    @Override
+    /**
+     * Game ending flag getter
+     * @return If the game ended
+     */
     public boolean isGameEnded() {
         final boolean noneEnemy = this.movableList.stream().filter(e -> e instanceof Enemy).collect(Collectors.toList())
                 .isEmpty();
         return noneEnemy || this.johnnyCharacter.isPresent() && this.johnnyCharacter.get().isDead();
     }
 
-    @Override
+    /**
+     * Record setter
+     */
     public void checkTopScore() {
         final Score score = this.johnnyCharacter.get().getScore();
         final Record record = RecordImpl.getInstance();
@@ -262,6 +283,10 @@ public final class GameStateImpl implements GameState {
         }
     }
 
+    /**
+     * Getter for the score
+     * @return The current {@link MainCharacter} {@link Score}
+     */
     public Score getScore() {
         return this.johnnyCharacter.get().getScore();
     }

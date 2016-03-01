@@ -21,6 +21,7 @@ public class Wall extends AbstractEntity {
 
     /**
      * Gets the {@link Wall} height
+     * @return the height
      */
     protected int getEntityHeight() {
         return WALL.getHeight();
@@ -28,6 +29,7 @@ public class Wall extends AbstractEntity {
 
     /**
      * Gets the {@link Wall} width
+     * @return the width
      */
     protected int getEntityWidth() {
         return WALL.getWidth();

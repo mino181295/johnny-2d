@@ -37,6 +37,7 @@ public class BasicMonster extends AbstractEnemy {
     /**
      * Method that check if the monster collides with {@link Wall},
      * {@link Enemy}
+     * @param newPosition The next position where the function has to check collisions
      */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final BasicMonster tmpEnemy = Factory.EnemiesFactory.generateStillBasicEnemy(newPosition.getIntX(),
@@ -63,6 +64,7 @@ public class BasicMonster extends AbstractEnemy {
 
     /**
      * The {@link BasicMonster} Height
+     * @return Entity height
      */
     protected int getEntityHeight() {
         return BASIC_ENEMY.getHeight();
@@ -70,6 +72,7 @@ public class BasicMonster extends AbstractEnemy {
 
     /**
      * The {@link BasicMonster} Width
+     * @return Entity width
      */
     protected int getEntityWidth() {
         return BASIC_ENEMY.getWidth();

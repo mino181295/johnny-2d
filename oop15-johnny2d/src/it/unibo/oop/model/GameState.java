@@ -47,6 +47,7 @@ public interface GameState {
     Arena getArena();
 
     /**
+     * Getter for the game ending
      * @return true if game is finished.
      */
     boolean isGameEnded();
@@ -57,6 +58,7 @@ public interface GameState {
     void checkTopScore();
 
     /**
+     * Getter for the score
      * @return hero's score.
      */
     Score getScore();

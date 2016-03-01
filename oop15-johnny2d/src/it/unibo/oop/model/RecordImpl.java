@@ -25,13 +25,18 @@ public final class RecordImpl implements Record {
         return singleton.get();
     }
 
-    @Override
+    /**
+     * Resets the the record
+     */
     public synchronized void reset() {
         this.record = false;
         this.value = new Score();
     }
 
-    @Override
+    /**
+     * Setter for the record
+     * @param value the new value
+     */
     public synchronized void setRecord(final Score value) {
         this.value = value;
         this.record = true;
@@ -42,7 +47,10 @@ public final class RecordImpl implements Record {
         return this.record;
     }
 
-    @Override
+    /**
+     * Getter for the value
+     * @return the score record
+     */
     public synchronized Score getValue() {
         return this.value;
     }

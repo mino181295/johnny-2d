@@ -23,6 +23,9 @@ public class Bullet extends MovableEntity implements Shot {
 
     /**
      * Constructor that takes the basic informations of the {@link Bullet}
+     * @param Start X position
+     * @param Start Y position
+     * @param Inital movement vector
      */
     public Bullet(final double startingX, final double startingY, final Vector2 movementVector) {
         super(startingX, startingY, movementVector, BULLET.getSpeed());
@@ -32,6 +35,7 @@ public class Bullet extends MovableEntity implements Shot {
     /**
      * Constructor that takes the {@link Bullet} informations from the
      * {@link MainCharacter}
+     * @param heroPosition the hero that shot the {@link Bullet}
      */
     public Bullet(final MainCharacter heroPosition) {
         this(heroPosition.getX(), heroPosition.getY(), heroPosition.getMovement());
@@ -46,6 +50,8 @@ public class Bullet extends MovableEntity implements Shot {
      * Function that checks if this {@link Entity} in the next position collides
      * with other ones. The {@link Bullet} kills the {@link Enemy} and smashes
      * in the {@link Wall}
+     * 
+     * @param newPosition The next position where the function has to check collisions
      */
     public void checkCollision(final Position newPosition) throws CollisionHandlingException {
         final Bullet tmpBullet = Factory.BulletFactory.createBullet(newPosition.getIntX(), newPosition.getIntY(),
@@ -104,6 +110,7 @@ public class Bullet extends MovableEntity implements Shot {
 
     /**
      * Gets the {@link Bullet} height
+     * @return Entity height
      */
     protected int getEntityHeight() {
         return BULLET.getHeight();
@@ -111,6 +118,7 @@ public class Bullet extends MovableEntity implements Shot {
 
     /**
      * Gets the {@link Bullet} width
+     * @return Entity width
      */
     protected int getEntityWidth() {
         return BULLET.getWidth();
@@ -118,6 +126,7 @@ public class Bullet extends MovableEntity implements Shot {
 
     /**
      * Gets the remaining distance of the {@link Bullet}
+     * @return remaining distance
      */
     public double getRemainingDistance() {
         return this.remainingDistance;

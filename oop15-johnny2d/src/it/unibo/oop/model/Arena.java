@@ -67,6 +67,7 @@ public class Arena {
 
     /**
      * Returns the {@link List} of the bounding {@link Wall} entities
+     * @return {@link List} of bounds
      */
     public List<Wall> getBoundsList() {
         return this.boundsList;
@@ -75,20 +76,22 @@ public class Arena {
     /**
      * Getter that returns a {@link Rectangle} of the playable place inside the
      * {@link List} of {@link Wall}
+     * @return A {@link Rectangle} rapresentig the playable Area
      */
     public Rectangle getPlayableRectangle() {
         return this.playableRectangle;
     }
 
     /**
-     * Return the possible spawn points
+     * Return the possible spawn points (NOT used for now)
+     * 
      */
     public List<Position> getSpawnPoints() {
         return this.spawnPoints;
     }
 
     /**
-     * Add a spawn point to the possible spawn points {@link List}
+     * Add a spawn point to the possible spawn points {@link List} (NOT used for now)
      * 
      * @param spawnPosition
      *            The spawn point that will be added
@@ -98,7 +101,8 @@ public class Arena {
     }
 
     /**
-     * Gets a random spawn point from the list
+     * Gets a random spawn point from the list (NOT used for now)
+     * @return a random spawn {@link Position}
      */
     public Position getRandomSpawnPoint() {
         final Random tmpRandom = new Random(this.spawnPoints.size());
@@ -106,28 +110,28 @@ public class Arena {
     }
 
     /**
-     * 
+     * @return Upper Y
      */
     public double getUpperY() {
         return this.playableRectangle.getY();
     }
 
     /**
-     * 
+     * @return Lower Y
      */
     public double getLowerY() {
         return this.playableRectangle.getY() + this.playableRectangle.getHeight();
     }
 
     /**
-     * 
+     * @return Left X
      */
     public double getLeftX() {
         return this.playableRectangle.getX();
     }
 
     /**
-     * 
+     * @return Right X
      */
     public double getRightX() {
         return this.playableRectangle.getX() + this.playableRectangle.getWidth();
@@ -135,6 +139,8 @@ public class Arena {
 
     /**
      * Gets a position inside the playable {@link Rectangle}
+     * @param characterType the type of Character to spawn inside the area
+     * @return a {@link Position} inside the area
      */
     public Position getPositionInside(final CharactersSettings characterType) {
         final double newX = this.playableRectangle.getX() + characterType.getWidth() / 2;

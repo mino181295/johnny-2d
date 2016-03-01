@@ -34,7 +34,7 @@ public class Health {
     /**
      * Constructor that create the {@link Health} of a character
      * 
-     * @param maxHealth
+     * @param maxHealth starting max {@link Health}
      */
     public Health(final int maxHealth) {
         this(DEFAULT_MIN_HEALTH, maxHealth, maxHealth);
@@ -65,7 +65,7 @@ public class Health {
      * special {@link Collectable}
      * 
      * @param heal
-     *            The damage taken
+     *            The heal taken
      */
     public void increaseHealth(final int heal) {
         this.currentHealth += heal;
@@ -74,6 +74,7 @@ public class Health {
 
     /**
      * Getter for the current {@link Health}
+     * @return the current {@link Health}
      */
     public int getCurrentHealth() {
         return this.currentHealth;
@@ -82,6 +83,7 @@ public class Health {
     /**
      * This returns true if the {@link Health} is ended and the
      * {@link MainCharacter} is dead
+     * @return If the entity is dead
      */
     public boolean isDead() {
         return (this.currentHealth <= minHealth);

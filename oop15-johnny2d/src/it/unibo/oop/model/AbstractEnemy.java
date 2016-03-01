@@ -37,7 +37,13 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
     /**
      * Constructor that defines all the standards variables and also the
      * {@link MovementBehavior}
-     * 
+     *
+     * * @param startingX
+     *            starting X position
+     * @param startingY
+     *            starting Y position
+     * @param movementVector
+     *            Initial movement vector
      * @param movBeh
      *            The {@link MovementBehavior} of the Enemy
      */
@@ -72,6 +78,7 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
 
     /**
      * Changes the behavior with a new one passed as parameter.
+     * @param movBeh The movement behavior
      */
     public void attachBehavior(final MovementBehavior movBeh) {
         this.behavior = Optional.of(movBeh);
@@ -80,6 +87,8 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
     /**
      * Checks if the {@link MovementBehavior} is present and gets the next move
      * from it.
+     * 
+     * @param targetPosition The target {@link Position}
      */
     public void useBehavior(final Position targetPosition) {
         behavior.ifPresent(x -> this.setMovement(x.getNextMove(targetPosition)));
@@ -105,6 +114,7 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
     /**
      * Abstract method that indicates the score bonus taken from the
      * {@link MainCharacter} when it dies from a {@link Bullet}
+     * @return The score value of the {@link Enemy}
      */
     public abstract int getScoreValue();
 

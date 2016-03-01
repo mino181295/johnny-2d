@@ -9,6 +9,8 @@ public interface Collectable {
     /**
      * In case of collision with the {@link MainCharacter} this
      * {@link Collectable} gets collected.
+     * 
+     * @param bonusCollector The {@link MainCharacter} that collected the {@link Collectable}
      */
     void collect(MainCharacter bonusCollector);
 
