@@ -1,4 +1,5 @@
 package it.unibo.oop.utilities;
+import it.unibo.oop.model.Entity;
 
 /**
  * This class represents the position in the screen of every single
@@ -25,10 +26,7 @@ public class Position implements Point2 {
     /**
      * Constructor that creates a position with a precedent {@link Position}.
      * 
-     * @param x
-     *            Integer value of the X
-     * @param y
-     *            Integer value of the Y
+     * @param p the initial position
      */
     public Position(final Position p) {
         this(p.getX(), p.getY());
@@ -60,11 +58,7 @@ public class Position implements Point2 {
 
     /**
      * Sums to the current point.
-     * 
-     * @param secondX
-     *            second X value
-     * @param secondY
-     *            second Y value
+     * @param movement the movement vector
      * @return Returns the new Position of the summed vector
      */
     public Position sumVector(final Vector2 movement) {

@@ -1,5 +1,7 @@
 package it.unibo.oop.utilities;
 
+import it.unibo.oop.model.Entity;
+
 /**
  * Represents the speed and the acceleration of an {@link Entity}.
  */
