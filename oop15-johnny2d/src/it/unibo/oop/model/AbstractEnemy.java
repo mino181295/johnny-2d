@@ -87,6 +87,8 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
 
     /**
      * Getter for the {@link MovementBehavior} as an {@link Optional}.
+     * 
+     * @return the behavior of the {@link Enemy}
      */
     public Optional<MovementBehavior> getBehavior() {
         return this.behavior;
@@ -96,7 +98,7 @@ public abstract class AbstractEnemy extends MovableEntity implements Enemy {
      * Abstract method that indicates the damage dealt with a collision with the
      * {@link MainCharacter}.
      * 
-     * @return
+     * @return the damage of the {@link Enemy}
      */
     public abstract int getDamage();
 

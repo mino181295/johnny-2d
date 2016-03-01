@@ -39,6 +39,8 @@ public abstract class AbstractEntity implements Entity {
 
     /**
      * Setter for the {@link Position} of an {@link Entity}.
+     * 
+     * @param newPosition the position to set
      */
     public void setPosition(final Position newPosition) {
         this.entityPosition = newPosition;

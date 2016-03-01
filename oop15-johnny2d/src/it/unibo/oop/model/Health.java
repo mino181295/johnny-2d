@@ -64,7 +64,7 @@ public class Health {
      * Increase the {@link Health} of the {@link MainCharacter} if he collects a
      * special {@link Collectable}
      * 
-     * @param damage
+     * @param heal
      *            The damage taken
      */
     public void increaseHealth(final int heal) {
