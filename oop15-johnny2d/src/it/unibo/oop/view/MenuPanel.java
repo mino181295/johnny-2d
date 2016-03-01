@@ -41,8 +41,6 @@ public class MenuPanel extends BackgroundPanel implements MenuInterface {
     private static final int BOTTOM_INSET = PANEL_HEIGHT / 30;
     private static final int RIGHT_INSET = PANEL_HEIGHT / 30;
     private static final Dimension PREF_SIZE = new Dimension(PANEL_WIDTH / 5, (int) (PANEL_HEIGHT / 7));
-    // private static final Dimension MIN_SIZE = new Dimension(PANEL_WIDTH/4,
-    // (int)(PANEL_HEIGHT/7));
     private final GridBagConstraints cnst = new GridBagConstraints();
     private final List<StateObserver> obsList;
 
